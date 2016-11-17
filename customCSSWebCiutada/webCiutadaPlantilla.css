@@ -30,11 +30,6 @@ h2 {color: #fff;} /* Color títol */
 .etiqueta {background-color: #333;} /* Color fons*/
 .etiqueta a {color: #fff;} /* Color text */
 
-/* PÀGINA DETALL NOTIFICACIONS */
-
-/* Subtítol pàgina detall */
-h4 {color: #8e8e8e;}/* Color text */
-
 /* Barra Torneu a la bústia */
 .breadcrumb{
 	border-bottom:1px solid #ebebeb; /* Mida, tipus i color marge inferior */
