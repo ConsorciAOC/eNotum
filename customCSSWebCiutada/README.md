@@ -14,11 +14,18 @@ Comencem doncs, la modificació dels estils dins d'aquest apartat, afectarà als
 
 ### Color dels enllaços
 
-La modificació del
+Per als enllaços es permet definir *color* per defecte i quan el cursor passa per sobre dels mateixos, en l'estil base el color és el mateix per ambdos:
 
-```
+```css
 /* Color enllaços */
 a { color: #0d8ed1; }
 a:hover { color: #0d8ed1; }
 ```
+Per exemple els enllaços del llistat:
+
+![ColorLinkBase](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/ColorLinkBase.png)
+
+
+
+
 
