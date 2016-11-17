@@ -4,7 +4,7 @@ L'objectiu d'aquest readme és la de guiar en la generació d'un fitxer d'estils
 
 # Estils
 
-Tots els estils que ara veureu estàn definits al [webCiutadaPlantilla.css](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/webCiutadaPlantilla.css) i s'explicarà un a un el seu efecte sobre *webCiutada*. Evidentment es poden modificar propietats dels estils diferents als especificats a la plantilla base, l'únic que es recomana fer-ho amb cura i validar-ho bé per evitar possiblese **efectes indesitjats**; simplement tenir en compte que les modificacions fora de les especificades en la plantilla base són **at your own risk!** i per tant no rebran suport en cas d'errors provocades per les mateixes.
+Tots els estils que ara veureu estàn definits al [webCiutadaPlantilla.css](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/webCiutadaPlantilla.css) i s'explicarà un a un el seu efecte sobre *webCiutada*. Evidentment es poden modificar propietats dels estils diferents als especificats a la plantilla base, l'únic que es recomana fer-ho amb cura i validar-ho bé per evitar possiblese **efectes indesitjats**.
 
 # General
 
