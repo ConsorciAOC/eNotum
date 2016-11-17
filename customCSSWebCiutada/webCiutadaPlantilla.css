@@ -7,8 +7,11 @@
 a {color: #0d8ed1;}
 a:hover {color: #0d8ed1;}
 
-/* Color fons pàgina */
-body {background: #f1f1f1;}
+/* Color de fons i tipus de lletra de la pàgina */
+body {
+  font-family: Helvetica, Arial, Verdana, sans-serif;
+  background: #f1f1f1;
+}
 
 /* Barra blanca logotip */
 #header {background-color: #FFF;}  /* Color fons */
