@@ -7,4 +7,4 @@ Tota la documentació d'integració antiga així com altre tipus de documentaci�
 
 De moment aqui podeu trobar:
 
-[1. Manual d'estils personalitzats `CSS` de *WebCiutada*](commingSoon)
+[1. Manual d'estils personalitzats `CSS` de *WebCiutada*](https://github.com/ConsorciAOC/eNotum/tree/master/customCSSWebCiutada)
