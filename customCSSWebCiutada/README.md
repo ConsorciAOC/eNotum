@@ -58,3 +58,37 @@ body { background: greenyellow; }
 ```
 
 ![BackgroundColorModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BackgroundColorModificat.png)
+
+# Capçalera
+
+Els següent estil permet modificar el color de fons de la part de la capçalera que conté el logotip del ens i del color del títol, del font, del text i del bord inferior de la subcapçalera:
+
+```css
+/* Barra blanca logotip */
+#header { background-color: #FFF;}  /* Color fons */
+
+/* Barra negra encapçalament */
+h2 {color: #fff;} /* Color títol */
+#headerNotifica{
+	background-color: #333333;/* Color fons */
+	color:#FFF;/* Color text */
+	border-bottom: 1px solid #d9d9d9;/* Color bord inferior */
+}
+```
+
+Si es modifica per:
+
+```css
+/* Barra blanca logotip */
+#header { background-color: red;}  /* Color fons */
+
+/* Barra negra encapçalament */
+h2 {color: blue;} /* Color títol */
+#headerNotifica{
+	background-color: red;/* Color fons */
+	color:orange;/* Color text */
+	border-bottom: 1px solid #d9d9d9;/* Color bord inferior */
+}
+```
+
+
