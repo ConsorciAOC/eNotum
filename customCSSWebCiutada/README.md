@@ -14,7 +14,7 @@ La modificació dels estils dins d'aquest apartat, afectarà als elements dins d
 
 ### Color dels enllaços
 
-Per als enllaços es permet definir *color* per defecte i quan el cursor passa per sobre dels mateixos, en l'estil base el color és el mateix per ambdos:
+Per als enllaços es permet definir el *color* per defecte i el *color* quan el cursor passa per sobre dels mateixos, en l'estil base el color és el mateix per ambdos casos:
 
 ```css
 /* Color enllaços */
@@ -110,4 +110,48 @@ h2 {color: blue;} /* Color títol */
 
 ![BarNotificacionsModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BarNotificacionsModificat.png)
 
+# Notificacions
 
+Els següents estils tenen afectació sobre el llistat de notificacions i de la plana de detall de les mateixes.
+
+### Titols
+
+Els següent estil permet modificar el color del títol en la plana de detall de notificacions i en el llistat
+
+```css
+/* Títol detall i del llistat de notificacions */
+.box_mid_header h3 { color: #000; }
+```
+![TitleColorLlistatNoti](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleColorLlistatNoti.png)
+![TitleColorDetallNoti](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleColorDetallNoti.png)
+![TitleColorPreviNoti](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleColorPreviNoti.png)
+
+I si es modifica per:
+
+```css
+/* Títol detall i del llistat de notificacions */
+.box_mid_header h3 { color: violet; }
+```
+
+![TitleColorLlistatNotiModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleColorLlistatNotiModificat.png)
+![TitleColorDetallNotiModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleColorDetallNotiModificat.png)
+![TitleColorPreviNotiModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleColorPreviNotiModificat.png)
+
+### Títol cerca
+
+El següent estil permet modificar el color dels titol del camp de cerca:
+
+```css
+/* Títol Cerca */
+.box_small_header h3 {color: #4b4b4b;} /* Color text */
+```
+![TitleCercaColor](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleCercaColor.png)
+
+I si es modifica per:
+
+```css
+/* Títol Cerca */
+.box_small_header h3 {color: violet;} /* Color text */
+```
+
+![TitleCercaColorModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleCercaColorModificat.png)
