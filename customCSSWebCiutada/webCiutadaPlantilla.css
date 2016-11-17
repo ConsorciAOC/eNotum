@@ -17,10 +17,10 @@ body { background: #f1f1f1; }
 h2 {color: #fff;} /* Color títol */
 #headerNotifica{
 	background-color: #333333;/* Color fons */
-	border-bottom: 1px solid #d9d9d9;/* Color bord inferior */
+	border-bottom: 1px solid #d9d9d9; /* Mida, tipus i color marge inferior */
 }
 
-/* Títol notificació i al llistat de notificacions */
+/* Títol notificació i del llistat de notificacions */
 h3 { color: #000; }
 
 /* Títol Cerca */
@@ -48,6 +48,6 @@ h4 {color: #8e8e8e;}/* Color text */
 
 /* Barra Torneu a la bústia */
 .breadcrumb{
-	border-bottom:1px solid #ebebeb; /* Color bord inferior */
+	border-bottom:1px solid #ebebeb; /* Mida, tipus i color marge inferior */
 	background:#f8f8f8; /* Color fons barra */
 }
