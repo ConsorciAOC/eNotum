@@ -61,12 +61,32 @@ body { background: greenyellow; }
 
 # Capçalera
 
-Els següent estil permet modificar el color de fons de la part de la capçalera que conté el logotip del ens i del color del títol, del font, del text i del bord inferior de la subcapçalera:
+Els següents estils permeten la modificació de la _capçalera.
+
+### Capçalera logotip del ens
+
+Els següent estil permet modificar el color de fons de la part de la capçalera que conté el logotip del ens:
 
 ```css
 /* Barra blanca logotip */
 #header { background-color: #FFF;}  /* Color fons */
+```
 
+![HeaderColorDefecte](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/HeaderColorDefecte.png)
+
+Si es modifica per:
+
+```css
+/* Barra blanca logotip */
+#header { background-color: rebeccapurple;}  /* Color fons */
+```
+![HeaderColorModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/HeaderColorModificat.png)
+
+### Enapçalament
+
+El següent estil permet modificar la barra negra de la _capçalera_ més concretament el color del titol, el color de fons de la barra, el color del 
+
+```css
 /* Barra negra encapçalament */
 h2 {color: #fff;} /* Color títol */
 #headerNotifica{
@@ -75,13 +95,7 @@ h2 {color: #fff;} /* Color títol */
 	border-bottom: 1px solid #d9d9d9;/* Color bord inferior */
 }
 ```
-
-Si es modifica per:
-
 ```css
-/* Barra blanca logotip */
-#header { background-color: red;}  /* Color fons */
-
 /* Barra negra encapçalament */
 h2 {color: blue;} /* Color títol */
 #headerNotifica{
