@@ -176,3 +176,28 @@ I si es modifica per:
 ```
 
 ![FiltresModificats](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/FiltresModificats.png)
+
+### Barra torneu a la bústia
+
+Aquests estils defineixen el color de fons, i la mida, tipus i color del marge inferior de la barra de torneu a la bústia:
+
+```css
+/* Barra Torneu a la bústia */
+.breadcrumb{
+	border-bottom:1px solid #ebebeb; /* Mida, tipus i color marge inferior */
+	background:#f8f8f8; /* Color fons barra */
+}
+```
+
+![BarraTornar](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BarraTornar.png)
+
+I si es modifica per:
+
+```css
+.breadcrumb{
+	border-bottom:3px dashed blue; /* Color bord inferior */
+	background:violet; /* Color fons barra */
+}
+```
+
+![BarraTornarModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BarraTornarModificat.png)
