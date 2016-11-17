@@ -4,14 +4,14 @@
 -------------------------------------------------------------------------------- */
 
 /* Color enllaços */
-a { color: #0d8ed1; }
-a:hover { color: #0d8ed1; }
+a {color: #0d8ed1;}
+a:hover {color: #0d8ed1;}
 
 /* Color fons pàgina */
-body { background: #f1f1f1; }
+body {background: #f1f1f1;}
 
 /* Barra blanca logotip */
-#header { background-color: #FFF;}  /* Color fons */
+#header {background-color: #FFF;}  /* Color fons */
 
 /* Barra negra encapçalament */
 h2 {color: #fff;} /* Color títol */
@@ -21,13 +21,13 @@ h2 {color: #fff;} /* Color títol */
 }
 
 /* Títol detall i del llistat de notificacions */
-.box_mid_header h3 { color: #000; }
+.box_mid_header h3 {color: #000;}
 
 /* Títol Cerca */
 .box_small_header h3 {color: #4b4b4b;} /* Color text */
 
 /* Etiqueta filtres seleccionats */ 
-.etiqueta {	background-color: #333;} /* Color fons*/
+.etiqueta {background-color: #333;} /* Color fons*/
 .etiqueta a {color: #fff;} /* Color text */
 
 /* Categoria seleccionada */
