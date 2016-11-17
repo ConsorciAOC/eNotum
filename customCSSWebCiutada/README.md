@@ -155,3 +155,24 @@ I si es modifica per:
 ```
 
 ![TitleCercaColorModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/TitleCercaColorModificat.png)
+
+### Filtres
+
+El següent estil defineix el color de fons i el color del text dels filtres aplicats:
+
+```css
+/* Etiqueta filtres seleccionats */ 
+.etiqueta {background-color: #333;} /* Color fons*/
+.etiqueta a {color: #fff;} /* Color text */
+```
+![Filtre](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/Filtre.png)
+
+I si es modifica per:
+
+```css
+/* Etiqueta filtres seleccionats */ 
+.etiqueta {background-color: blue;} /* Color fons*/
+.etiqueta a {color: yellow;} /* Color text */
+```
+
+![FiltresModificats](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/FiltresModificats.png)
