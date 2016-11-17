@@ -30,12 +30,6 @@ h2 {color: #fff;} /* Color títol */
 .etiqueta {background-color: #333;} /* Color fons*/
 .etiqueta a {color: #fff;} /* Color text */
 
-/* Categoria seleccionada */
-.pestanyes li.on {
-	color: #fff; /* Color text */
-	background: #333; /* Color fons */
-}
-
 /* PÀGINA DETALL NOTIFICACIONS */
 
 /* Subtítol pàgina detall */
