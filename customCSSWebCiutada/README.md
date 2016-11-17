@@ -4,7 +4,7 @@ L'objectiu d'aquest readme és la de guiar en la generació d'un fitxer d'estils
 
 # Estils
 
-Tots els estils que ara veureu estàn definits al [webCiutadaPlantilla.css](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/webCiutadaPlantilla.css) i s'explicarà un a un el seu efecte sobre *webCiutada*. Tocar estils diferents als especificats a la plantilla pot provocar **efectes indesitjats**, aleshores penseu que les modificacions són **at your own risk!**
+Tots els estils que ara veureu estàn definits al [webCiutadaPlantilla.css](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/webCiutadaPlantilla.css) i s'explicarà un a un el seu efecte sobre *webCiutada*. Evidentment es poden modificar propietats dels estils diferents als especificats a la plantilla base, l'únic que es recomana fer-ho amb cura i validar-ho bé per evitar possiblese **efectes indesitjats**; simplement tenir en compte que les modificacions fora de les especificades en la plantilla base són **at your own risk!** i per tant no rebran suport en cas d'errors provocades per les mateixes.
 
 # General
 
@@ -84,25 +84,30 @@ Si es modifica per:
 
 ### Enapçalament
 
-El següent estil permet modificar la barra negra de la _capçalera_ més concretament el color del titol, el color de fons de la barra, el color del 
+El següent estil permet modificar la barra negra de la _capçalera_ més concretament el color del titol, el color de fons de la barra, així com la mida, el color i el tipus del marge inferior d'aquesta:
 
 ```css
 /* Barra negra encapçalament */
 h2 {color: #fff;} /* Color títol */
 #headerNotifica{
 	background-color: #333333;/* Color fons */
-	color:#FFF;/* Color text */
-	border-bottom: 1px solid #d9d9d9;/* Color bord inferior */
+	border-bottom: 1px solid #d9d9d9; /* Mida, tipus i color marge inferior */
 }
 ```
+
+![HeaderColorDefecte](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/HeaderColorDefecte.png)
+
+Si es modifica per:
+
 ```css
 /* Barra negra encapçalament */
 h2 {color: blue;} /* Color títol */
 #headerNotifica{
 	background-color: red;/* Color fons */
-	color:orange;/* Color text */
-	border-bottom: 1px solid #d9d9d9;/* Color bord inferior */
+	border-bottom: 10px dotted green; /* Mida, tipus i color marge inferior */
 }
 ```
+
+![BarNotificacionsModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BarNotificacionsModificat.png)
 
 
