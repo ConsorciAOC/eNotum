@@ -18,8 +18,8 @@ Per als enllaços es permet definir el *color* per defecte i el *color* quan el 
 
 ```css
 /* Color enllaços */
-a { color: #0d8ed1; }
-a:hover { color: #0d8ed1; }
+a {color: #0d8ed1;}
+a:hover {color: #0d8ed1;}
 ```
 Com hem comentat abans això tindrà afectació per a tots els enllaços del _cos_ de la web, com a exemple mostrarem el enllaços del llistat de notificacions:
 
@@ -29,8 +29,8 @@ Si es modifiquen el valor del _color_ en el `CSS` per exemple per:
 
 ```css
 /* Color enllaços */
-a { color: purple; }
-a:hover { color: green; }
+a {color:purple;}
+a:hover {color:green;}
 ```
 El resultat en aquests mateixos enllaços de la notificació seria:
 
@@ -46,7 +46,7 @@ Aquesta és la propietat que s'aplica com a base per al color de fons:
 
 ```css
 /* Color fons pàgina */
-body { background: #f1f1f1; }
+body {background: #f1f1f1;}
 ```
 ![BackgroundColorBase](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BackgroundColorBase.png)
 
@@ -54,10 +54,20 @@ Si es modifica per exemple per el següent:
 
 ```css
 /* Color fons pàgina */
-body { background: greenyellow; }
+body {background: greenyellow;}
 ```
 
 ![BackgroundColorModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BackgroundColorModificat.png)
+
+### Tipus de lletra
+
+També es pot modificar el tipus de lletra de l'aplicació modificant la següent propietat:
+
+```css
+/* Color fons pàgina */
+body {font-family: Helvetica, Arial, Verdana, sans-serif;}
+```
+
 
 # Capçalera
 
