@@ -8,7 +8,7 @@ Tots els estils que ara veureu estàn definits al [webCiutadaPlantilla.css](http
 
 # General
 
-Comencem doncs, la modificació dels estils dins d'aquest apartat, afectarà als elements dins del _cos_ de la web, no afectarà ni la _capçalera_ ni el _peu_:
+La modificació dels estils dins d'aquest apartat, afectarà als elements dins del _cos_ de la web, no afectarà ni la _capçalera_ ni el _peu_:
 
 ![headerBodyFooter](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/headerBodyFooter.jpg)
 
@@ -21,11 +21,40 @@ Per als enllaços es permet definir *color* per defecte i quan el cursor passa p
 a { color: #0d8ed1; }
 a:hover { color: #0d8ed1; }
 ```
-Per exemple els enllaços del llistat:
+Com hem comentat abans això tindrà afectació per a tots els enllaços del _cos_ de la web, com a exemple mostrarem el enllaços del llistat de notificacions:
 
 ![ColorLinkBase](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/ColorLinkBase.png)
 
+Si es modifiquen el valor del _color_ en el `CSS` per exemple per:
 
+```css
+/* Color enllaços */
+a { color: purple; }
+a:hover { color: green; }
+```
+El resultat en aquests mateixos enllaços de la notificació seria:
 
+![ColorLinkModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/ColorLinkModificat.png)
 
+I amb el cursor a sobre:
 
+![ColorLinkHoverModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/ColorLinkHoverModificat.png)
+
+### Color de fons
+
+Aquesta és la propietat que s'aplica com a base per al color de fons:
+
+```css
+/* Color fons pàgina */
+body { background: #f1f1f1; }
+```
+![BackgroundColorBase](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BackgroundColorBase.png)
+
+Si es modifica per exemple per el següent:
+
+```css
+/* Color fons pàgina */
+body { background: greenyellow; }
+```
+
+![BackgroundColorModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BackgroundColorModificat.png)
