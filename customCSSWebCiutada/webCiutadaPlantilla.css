@@ -1,0 +1,54 @@
+/* --------------------------------------------------------------------------------
+   CSS : AOC Notificacions i comunicacions electroniques
+   Theme: black
+-------------------------------------------------------------------------------- */
+
+/* Color enllaços */
+a { color: #0d8ed1; }
+a:hover { color: #0d8ed1; }
+
+/* Color fons pàgina */
+body { background: #f1f1f1; }
+
+/* Barra blanca logotip */
+#header { background-color: #FFF;}  /* Color fons */
+
+/* Barra negra encapçalament */
+h2 {color: #fff;} /* Color títol */
+#headerNotifica{
+	background-color: #333333;/* Color fons */
+	color:#FFF;/* Color text */
+	border-bottom: 1px solid #d9d9d9;/* Color bord inferior */
+}
+
+/* Títol notificació i al llistat de notificacions */
+h3 { color: #000; }
+
+/* Títol Cerca */
+.box_small_header h3 {color: #4b4b4b;} /* Color text */
+
+/* Etiqueta filtres seleccionats */ 
+.etiqueta {	background-color: #333;} /* Color fons*/
+.etiqueta a {color: #fff;} /* Color text */
+.etiqueta a:hover {	color: #fff!important;}/* Color text */
+
+/* Categoria seleccionada */
+.pestanyes li.on {
+	color: #fff; /* Color text */
+	background: #333; /* Color fons */
+}
+
+/* PÀGINA DETALL NOTIFICACIONS */
+
+/* Títol pàgina detall */
+.box_mid_header h3 {color: #000;}/* Color text */
+
+/* Subtítol pàgina detall */
+h4 {color: #8e8e8e;}/* Color text */
+
+
+/* Barra Torneu a la bústia */
+.breadcrumb{
+	border-bottom:1px solid #ebebeb; /* Color bord inferior */
+	background:#f8f8f8; /* Color fons barra */
+}
