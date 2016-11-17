@@ -29,7 +29,6 @@ h2 {color: #fff;} /* Color títol */
 /* Etiqueta filtres seleccionats */ 
 .etiqueta {	background-color: #333;} /* Color fons*/
 .etiqueta a {color: #fff;} /* Color text */
-.etiqueta a:hover {	color: #fff!important;}/* Color text */
 
 /* Categoria seleccionada */
 .pestanyes li.on {
