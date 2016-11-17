@@ -20,8 +20,8 @@ h2 {color: #fff;} /* Color títol */
 	border-bottom: 1px solid #d9d9d9; /* Mida, tipus i color marge inferior */
 }
 
-/* Títol notificació i del llistat de notificacions */
-h3 { color: #000; }
+/* Títol detall i del llistat de notificacions */
+.box_mid_header h3 { color: #000; }
 
 /* Títol Cerca */
 .box_small_header h3 {color: #4b4b4b;} /* Color text */
