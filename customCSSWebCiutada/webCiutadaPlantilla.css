@@ -38,3 +38,7 @@ h2 {color: #fff;} /* Color títol */
 	border-bottom:1px solid #ebebeb; /* Mida, tipus i color marge inferior */
 	background:#f8f8f8; /* Color fons barra */
 }
+
+/* Filtres */
+.menus {background-color:#ffffff;} /* Color fons filtres */
+.menu label {color: #000000;} /* Color text dels filtres */
