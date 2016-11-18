@@ -71,7 +71,7 @@ body {font-family: Helvetica, Arial, Verdana, sans-serif;}
 
 # Capçalera
 
-Els següents estils permeten la modificació de la _capçalera.
+Els següents estils permeten la modificació de la _capçalera_.
 
 ### Capçalera logotip del ens
 
