@@ -211,3 +211,25 @@ I si es modifica per:
 ```
 
 ![BarraTornarModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/BarraTornarModificat.png)
+
+### Filtres
+
+Els següents estils permeten cambiar el color de fons del formulari de filtres, així com el color del text dels mateixos:
+
+```css
+/* Filtres */
+.menus {background-color:#ffffff;} /* Color fons filtres */
+.menu label {color: #000000;} /* Color text dels filtres */
+```
+
+![FormFiltre](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/FormFiltre.png)
+
+Si es modifica per:
+
+```css
+/* Filtres */
+.menus {background-color:beige;} /* Color fons filtres */
+.menu label {color: brown;} /* Color text dels filtres */
+```
+![FormFiltreModificat](https://github.com/ConsorciAOC/eNotum/blob/master/customCSSWebCiutada/img/FormFiltreModificat.png)
+
