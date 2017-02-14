@@ -7,6 +7,6 @@ De moment la documentació d'integració per als callbacks de canvis d'estat la 
 
 # Documentació integradors
 
-Aqui de moment podeu trobar el WSDL amb la missatgeria per a la integració amb els callbacks de la versió 3.0:
+Aqui podeu trobar la següent informació:
 
-[1. Manual d'estils personalitzats `CSS` de *WebCiutada*](https://github.com/ConsorciAOC/eNotum/tree/master/customCSSWebCiutada)
+[1. `WSDL` integració callbacks canvis d'estat missatgeria *versió 3.0*](https://github.com/ConsorciAOC/eNotum/blob/master/integracioReportsCanvisEstat/WSDL/integracioReports.wsdl)
