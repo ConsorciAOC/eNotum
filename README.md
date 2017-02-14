@@ -8,3 +8,5 @@ Tota la documentació d'integració antiga així com altre tipus de documentaci�
 De moment aqui podeu trobar:
 
 [1. Manual d'estils personalitzats `CSS` de *WebCiutada*](https://github.com/ConsorciAOC/eNotum/tree/master/customCSSWebCiutada)
+
+[2. Integració callbacks canvis d'estat](https://github.com/ConsorciAOC/eNotum/tree/master/integracioReportsCanvisEstat)
