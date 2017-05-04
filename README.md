@@ -10,3 +10,9 @@ De moment aqui podeu trobar:
 [1. Manual d'estils personalitzats `CSS` de *WebCiutada*](https://github.com/ConsorciAOC/eNotum/tree/master/customCSSWebCiutada)
 
 [2. Integració callbacks canvis d'estat](https://github.com/ConsorciAOC/eNotum/tree/master/integracioReportsCanvisEstat)
+
+# Altres
+
+També hem afegit un nou document de FAQs que anirem informant en funció de les queixes/consultes que anem rebent:
+
+[FAQs](https://github.com/ConsorciAOC/eNotum/blob/master/guiesUsuaris/FAQs.md)
