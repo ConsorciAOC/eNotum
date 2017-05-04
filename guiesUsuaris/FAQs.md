@@ -14,7 +14,7 @@ Per a la resta de casos la mida màxima permesa és de **6MB**.
 Aquesta és la restricció màxima, a nivell d'ens és pot configurar un límit més restrictiu.
 A través de l'aplicació d'eNotum dins [_d'EACAT_](www.eacat.cat), anant a configuració i seleccionant l'ens en qüestió:
 
-IMG
+![grandariaMaximaEnsPortletEACAT](https://github.com/ConsorciAOC/eNotum/blob/master/guiesUsuaris/imgs/grandariaMaximaEnsPortletEACAT.png)
 
 Aquest camp aplica sempre i quan sigui més restrictiu que els **2MB** en cas d'adjuntar via missatgeria, o de **6MB** per a les altres formes. En cas de setejar amb un valor superior no és tindrà en compte.
 
