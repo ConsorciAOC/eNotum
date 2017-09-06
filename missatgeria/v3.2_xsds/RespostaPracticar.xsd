@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.aocat.net/NT/v3.2"
+	targetNamespace="http://www.aocat.net/NT/v3.2"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="Resposta.xsd"/>
+	<xs:include schemaLocation="Commons.xsd"/>
+
+	<xs:element name="RespostaPracticar" type="RespostaPracticarType"/>
+	<xs:complexType name="RespostaPracticarType">
+		<xs:annotation>
+			<xs:documentation>Dades relatives a la signatura de l'acceptació o rebuig de la notificació.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RespostaType">
+                <xs:choice>
+                    <xs:element name="Errors" type="ErrorsType"/>
+                    <xs:sequence>
+                        <xs:element name="IdNotificacio" type="xs:integer"/>
+                        <xs:element name="Operacio" type="OperacioPracticarType"/>
+                        <xs:element name="Decisio" type="DecisioPracticarType"/>
+					<xs:element name="DadesNotificacio" type="xs:anyType" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Dades de la notificació per ser mostrades.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+					<xs:element name="DigestDades" type="xs:base64Binary" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>Digest SHA-1 de l'element DadesNotificacio que ha de ser utilitzat per realitzar una signatura XAdES-T Detached.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

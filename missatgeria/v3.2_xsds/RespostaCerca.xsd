@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns="http://www.aocat.net/NT/v3.2" 
+	targetNamespace="http://www.aocat.net/NT/v3.2" 
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="Resposta.xsd" />
+	<xs:include schemaLocation="Commons.xsd" />
+
+	<xs:element name="RespostaCerca" type="RespostaCercaType" />
+	<xs:complexType name="RespostaCercaType">
+		<xs:complexContent>
+			<xs:extension base="RespostaType">
+				<xs:choice>
+					<xs:element name="Errors" type="ErrorsType" />
+					<xs:sequence>
+						<xs:element name="Resultats" type="ResultatsType" />
+						<xs:element name="DadesPaginacio" type="DadesPaginacioType" />
+					</xs:sequence>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DadesPaginacioType">
+		<xs:sequence>
+			<xs:element name="NumeroPagina" type="xs:integer" />
+			<xs:element name="ResultatsPerPagina" type="xs:integer" />
+			<xs:element name="TotalResultats" type="xs:integer" />
+			<xs:element name="TotalPagines" type="xs:integer" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResultatsType">
+		<xs:sequence>
+			<xs:element name="Notificacio" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TipusObjecte" type="TipusObjecteType" />
+						<xs:element name="IdNotificacio" type="xs:integer" />
+						<xs:element name="Referencia" type="xs:string" />
+						<xs:element name="Titol" type="xs:string" />
+						<xs:element name="DataCreacio" type="xs:dateTime" nillable="true" />
+						<xs:element name="DadesRegistre">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="DataRegistre" type="xs:dateTime" nillable="true" />
+									<xs:element name="NumeroRegistre" type="xs:string" nillable="true" />
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DataPublicacio" type="xs:dateTime" nillable="true" />
+						<xs:element name="DataVisualitzacio" type="xs:dateTime" nillable="true" />
+						<xs:element name="DataAcceptarRebutjar" type="xs:dateTime" nillable="true" />
+						<xs:element name="Estat" type="xs:string" />
+						<xs:element name="IdEstat" type="xs:integer" />
+						<xs:element name="DiesExpiracio" type="xs:integer" nillable="true" minOccurs="0"/>
+						<xs:element name="DiesResten" type="xs:integer" nillable="true" minOccurs="0" />
+						<xs:element name="DataLimit" type="xs:dateTime" nillable="true" minOccurs="0" />
+						<xs:element name="TipusAcces" type="TipusAccesType" />
+						<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0" />
+						<xs:element name="Idioma" type="Idioma" />
+						<xs:element name="CodiDepartament" type="xs:string" nillable="true" />
+						<xs:element name="NomDepartament" type="xs:string" nillable="true" />
+						<xs:element name="CodiBO" type="xs:string" nillable="true" minOccurs="0" />
+						<xs:element name="NumeroReintents" type="xs:integer" nillable="true" />
+						<xs:element name="DataReintent" type="xs:dateTime" nillable="true" />
+						<xs:element name="BustiesCorreu" type="BustiesCorreuType" nillable="true" minOccurs="0" />
+						<xs:element name="Telefons" type="TelefonsType" nillable="true" minOccurs="0" />
+						<xs:element name="Consultada" type="ConsultadaType" minOccurs="0"/>
+						<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+						<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+						<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+						<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

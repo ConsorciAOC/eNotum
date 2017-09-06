@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.aocat.net/NT/v3.2"
+	targetNamespace="http://www.aocat.net/NT/v3.2"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="Peticio.xsd"/>
+
+	<xs:element name="PeticioParaulaPas" type="PeticioParaulaPasType"/>
+	<xs:complexType name="PeticioParaulaPasType">
+		<xs:complexContent>
+			<xs:extension base="PeticioType">
+				<xs:sequence>
+					<xs:choice minOccurs="0">
+						<xs:element name="IdNotificacio" type="xs:integer"/>
+						<xs:element name="NumeroRegistre" type="xs:string"/>
+					</xs:choice>
+					<xs:element name="DocumentIdentificatiuPersonaFisica" type="DocumentPersonaFisicaType" minOccurs="0"/>
+					<xs:element name="DocumentIdentificatiuPersonaJuridica" type="DocumentPersonaJuridicaType" minOccurs="0"/>
+					<xs:element name="DadesEnviament">
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="BustiaCorreu" type="xs:string"/>
+								<xs:element name="Telefon" type="xs:string"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

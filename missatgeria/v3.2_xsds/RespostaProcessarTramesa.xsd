@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.aocat.net/NT/v3.2"
+	targetNamespace="http://www.aocat.net/NT/v3.2"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="Resposta.xsd"/>
+
+	<xs:element name="RespostaProcessarTramesa" type="RespostaProcessarTramesaType"/>
+	<xs:complexType name="RespostaProcessarTramesaType">
+		<xs:complexContent>
+			<xs:extension base="RespostaType">
+                <xs:choice>
+                    <xs:element name="Errors" type="ErrorsType"/>
+                    <xs:sequence>
+                        <xs:element name="NotificacionsCreades">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="IdNotificacio" type="xs:integer" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.aocat.net/NT/v3.2"
+	targetNamespace="http://www.aocat.net/NT/v3.2"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="Peticio.xsd"/>
+
+	<xs:element name="PeticioCredencialsCiutada" type="PeticioCredencialsCiutadaType"/>
+	<xs:complexType name="PeticioCredencialsCiutadaType">
+		<xs:complexContent>
+			<!-- Aquesta operació només funciona per rol ciutada, auth amb paraula de pas, i persona física -->
+			<xs:extension base="PeticioType">
+				<xs:sequence>
+					<!-- sinó ve informat s'agafen organisme i departament del <emissor>-->
+					<xs:element name="DadesEntitat" minOccurs="0">
+						<xs:complexType>
+							<xs:all>
+								<xs:element name="CodiOrganisme" type="xs:string"/>
+								<xs:element name="CodiDepartament" type="xs:string" minOccurs="0"/>
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.aocat.net/NT/v3.2"
+	targetNamespace="http://www.aocat.net/NT/v3.2"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="Resposta.xsd"/>
+
+	<xs:element name="RespostaReport" type="RespostaReportType"/>
+	<xs:complexType name="RespostaReportType">
+		<xs:annotation>
+			<xs:documentation>Resposta indicant que el report s'ha rebut correctament.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RespostaType">
+                <xs:sequence>
+                    <xs:element name="Error" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>
