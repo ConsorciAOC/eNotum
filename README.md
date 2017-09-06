@@ -11,6 +11,8 @@ De moment aqui podeu trobar:
 
 [2. Integració callbacks canvis d'estat](https://github.com/ConsorciAOC/eNotum/tree/master/integracioReportsCanvisEstat)
 
+[3. Integració missatgeria (en beta)](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria)
+
 # Altres
 
 També hem afegit un nou document de FAQs que anirem informant en funció de les queixes/consultes que anem rebent:
