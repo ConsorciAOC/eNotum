@@ -37,6 +37,7 @@
 												<xs:element name="PersonaJuridica" type="FiltrePersonaJuridicaType"/>
 											</xs:choice>
 											<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+											<xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
 										</xs:sequence>
 									</xs:complexType>
 								</xs:element>
@@ -53,7 +54,6 @@
 											<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
 											<xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
 											<xs:element name="Canal" type="CanalType" minOccurs="0"/>
-											<xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
 											<xs:element name="MostraTotes" type="xs:boolean" minOccurs="0" default="false"/>
 											<!-- filtre per a les notis consultades, el valor a la resposta només s'informa per a ciutada i en cas
 											que estigui informat aquest camp a la petició TOTES, LLEGIDES, NOLLEGIDES -->

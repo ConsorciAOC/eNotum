@@ -55,7 +55,6 @@
 						<xs:element name="DiesExpiracio" type="xs:integer" minOccurs="0"/>
 						<xs:element name="IdNotificacioEmissor" type="xs:string" minOccurs="0"/>
 						<xs:element name="Canal" type="CanalType" minOccurs="0"/>
-						<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -69,24 +68,28 @@
 			</xs:element>
 			<xs:element name="DadesActor">
 				<xs:complexType>
-					<xs:choice>
-						<xs:element name="PersonaFisica">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
-									<xs:element name="NomComplet" type="xs:string"/>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-						<xs:element name="PersonaJuridica">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
-									<xs:element name="RaoSocial" type="xs:string"/>
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
-					</xs:choice>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="PracticadaPaper" type="DadesPracticarCanalPaperType"/>
+							<xs:element name="PersonaFisica">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+										<xs:element name="NomComplet" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="PersonaJuridica">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+										<xs:element name="RaoSocial" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
+					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
 			<xs:element name="CodiBackOffice" type="xs:string" minOccurs="0"/>

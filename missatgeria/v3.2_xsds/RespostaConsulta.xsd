@@ -123,6 +123,7 @@
 												</xs:choice>
 												<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
 												<xs:element name="HaSignat" type="xs:boolean"/>
+												<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
 											</xs:sequence>
 										</xs:complexType>
 									</xs:element>
