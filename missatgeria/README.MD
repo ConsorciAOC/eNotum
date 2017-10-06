@@ -1,5 +1,5 @@
 
-# 1 Introducció
+# 1. Introducció
 
 A continuació és descriu el funcionament i les diferents modalitats de consum de la versió de missatgeria _3.2_ d'**eNotum**.
 
@@ -7,7 +7,7 @@ Les versions antigues de missatgeria segueixen sent compatibles i funcionen corr
 
 De totes formes podeu consultar les versions antigues de missatgeria i altres documents d'integració a través del [nostre portal de suport a la integració](https://www.aoc.cat/portal-suport/e-notum-base-coneixement/idservei/enotum/#integracio).
 
-# 1.1 Integració PCI
+## 1.1. Integració PCI
 
 Tal i com es reflecteix a la següent figura, el Backend d'**eNotum** s'integra dins de l'arquitectura de la PCI a mode d'un nou servei accessible a través de la MTI. 
 
