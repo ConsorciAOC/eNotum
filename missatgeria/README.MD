@@ -17,19 +17,11 @@ Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a t
 
 ## 1.2. Cicle de vida de les notificacions
 
-## TODO
-
 ### 1.2.1. Diagrama de cicle de vida
-
-### TODO
 
 ### 1.2.2. Descripció dels estats de les notificacions
 
-### TODO
-
 #### 1.2.2.1. Pendent de processar
-
-#### TODO
 
 #### 1.2.2.2. Registrada
 
@@ -37,20 +29,18 @@ Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a t
 
 ## 1.3. Cicle de vida de les comunicacions
 
-## TODO
-
 ## 1.4. Codificació dels estats eNOTUM
 
 # 2. Missatgeria
 
-Com es comenta en el punt 1 (TODO LINK) d'aquest document, **eNotum** funciona com a servei dins de la _PCI_, serà necessari treballar amb la missatgeria _PCI_, encapsulant la missatgeria específica de **eNotum** dins d’aquesta.
+Com es comenta en [el punt 1 d'aquest document]() **eNotum** funciona com a servei dins de la _PCI_, serà per tant necessari treballar amb la missatgeria de la _PCI_, encapsulant la missatgeria específica de **eNotum** dins d’aquesta.
 
 Específicament per a fer ús del servei d'**eNotum** dins de la missatgeria de la _PCI_ és necessari informar els següents elements del missatge _XML_:
 
-`//*:Peticion/*:Atributos/*:CodigoProducto` --> ENOTUM
-`//*:Peticion/*:Atributos/*:CodigoCertificado` --> ENOTUM
-`//*:Peticion/*:Solicitudes/*:SolicitudTransmision/*:DatosGenericos/*:Transmision/*:CodigoCertificado` --> ENOTUM
-`//*:Peticion/*:Solicitudes/*:SolicitudTransmision/DatosEspecíficos` --> Petició _XML_ específica d'**eNotum**
+* Al _XPath_ `//*:Peticion/*:Atributos/*:CodigoProducto` el _string_ ENOTUM
+* Al _XPath_ `//*:Peticion/*:Atributos/*:CodigoCertificado` el _string_ ENOTUM
+* Al _XPath_ `//*:Peticion/*:Solicitudes/*:SolicitudTransmision/*:DatosGenericos/*:Transmision/*:CodigoCertificado` el _string_ ENOTUM
+* Al _XPath_ `//*:Peticion/*:Solicitudes/*:SolicitudTransmision/DatosEspecíficos` Petició _XML_ específica d'**eNotum**
 
 Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requisits definits [al document d'integració de la PCI aqui](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/idservei/enotum/)
 
