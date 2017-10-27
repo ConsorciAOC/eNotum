@@ -1,4 +1,6 @@
 
+<h1> ESBORRANY </h1>
+
 # 1. Introducció
 
 A continuació és descriu el funcionament i les diferents modalitats de consum de la versió de missatgeria _3.2_ d'**eNotum**.
@@ -37,12 +39,31 @@ Com es comenta en [el punt 1 d'aquest document](https://github.com/ConsorciAOC/e
 
 Específicament per a fer ús del servei d'**eNotum** dins de la missatgeria de la _PCI_ és necessari informar els següents elements del missatge _XML_:
 
-* Al _XPath_ `//*:Peticion/*:Atributos/*:CodigoProducto` el _string_ ENOTUM
-* Al _XPath_ `//*:Peticion/*:Atributos/*:CodigoCertificado` el _string_ ENOTUM
-* Al _XPath_ `//*:Peticion/*:Solicitudes/*:SolicitudTransmision/*:DatosGenericos/*:Transmision/*:CodigoCertificado` el _string_ ENOTUM
-* Al _XPath_ `//*:Peticion/*:Solicitudes/*:SolicitudTransmision/DatosEspecíficos` Petició _XML_ específica d'**eNotum**
+* `//*:Peticion/*:Atributos/*:CodigoProducto` el _string_ ENOTUM
+* `//*:Peticion/*:Atributos/*:CodigoCertificado` el _string_ ENOTUM
+* `//*:Peticion/*:Solicitudes/*:SolicitudTransmision/*:DatosGenericos/*:Transmision/*:CodigoCertificado` el _string_ ENOTUM
+* `//*:Peticion/*:Solicitudes/*:SolicitudTransmision/DatosEspecíficos` Petició _XML_ específica d'**eNotum**
 
 Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requisits definits [al document d'integració de la PCI aqui](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/idservei/enotum/)
+
+# 3. Missatgeria específica eNotum versió 3.2
+
+A continuació es detallaran els elements comuns a totes les modalitats de consum:
+
+### 3.1. Petició
+
+### 3.2. Usuari
+
+....
+
+A continuació és detallaran els elements específics per a cadascúna de les modalitats de consum:
+
+ProcessarTramesa
+Consula
+Cerca 
+
+....
+
 
 
 
