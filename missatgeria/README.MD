@@ -39,10 +39,10 @@ Com es comenta en [el punt 1 d'aquest document](https://github.com/ConsorciAOC/e
 
 Específicament per a fer ús del servei d'**eNotum** dins de la missatgeria de la _PCI_ és necessari informar els següents elements del missatge _XML_:
 
-* `//*:Peticion/*:Atributos/*:CodigoProducto` el _string_ ENOTUM
-* `//*:Peticion/*:Atributos/*:CodigoCertificado` el _string_ ENOTUM
-* `//*:Peticion/*:Solicitudes/*:SolicitudTransmision/*:DatosGenericos/*:Transmision/*:CodigoCertificado` el _string_ ENOTUM
-* `//*:Peticion/*:Solicitudes/*:SolicitudTransmision/DatosEspecíficos` Petició _XML_ específica d'**eNotum**
+* `//Peticion/Atributos/CodigoProducto` el _string_ ENOTUM
+* `//Peticion/Atributos/CodigoCertificado` el _string_ ENOTUM
+* `//Peticion/Solicitudes/SolicitudTransmision/DatosGenericos/Transmision/CodigoCertificado` el _string_ ENOTUM
+* `//Peticion/Solicitudes/SolicitudTransmision/DatosEspecíficos` Petició _XML_ específica d'**eNotum**
 
 Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requisits definits [al document d'integració de la PCI aqui](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/idservei/enotum/)
 
@@ -52,9 +52,56 @@ A continuació es detallaran els elements comuns a totes les modalitats de consu
 
 ### 3.1. Petició
 
+Totes les modalitats de consum _WS_ que ofereix **eNotum** extenen el següent esquema de petició:
+
+```xml
+<xs:complexType name="PeticioType" abstract="true">
+	<xs:sequence>
+		<xs:element name="Usuari" type="UsuariType"/>
+		<xs:element name="Emissor" type="EmissorType"/>
+	</xs:sequence>
+</xs:complexType>
+```
+
+Per tant com és pot veure totes les peticions, a banda dels elements específics de cada modalitat de consum, tenen els següents elements:
+
+* `//PeticioType/Usuari` Dades de l'usuari, es descriuen a continuació.
+* `//PeticioType/Emissor` Dades de l'emissor. es descriuen a continuació.
+
+[Aquí podeu veure la definició completa del esquema _Peticio.xsd](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Peticio.xsd)
+
 ### 3.2. Usuari
 
-....
+La definició de l'element _UsuariType_, [la podeu trobar a_Usuari.xsd](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Usuari.xsd)
+
+Aquest tipus està format pels següents elements:
+
+CHOICE un dels 3.
+* `/Usuari/CertificatCiutada`
+Certificat del ciutadà per les operacions amb rol CIUTADA.
+* `/Usuari/IdParaulaPas`
+Identificador de la paraula de pas
+* `/Usuari/ParaulaPas`
+Paraula de pas
+	<xs:annotation>
+						<xs:documentation>Dades per l'autenticació amb Valid. Identificador de l'autenticació del client al que el deleguem (no cal q sigui el token de valid) sobre aquest id no es fa cap comprovació.</xs:documentation>
+					</xs:annotation>
+					<xs:choice minOccurs="0">
+						<xs:element name="NIF" type="NIF"/>
+						<xs:element name="PASSAPORT" type="NoEmptyString"/>
+					</xs:choice>
+					<xs:element name="CIF" type="CIF" minOccurs="0"/>
+					<xs:element name="IdAutenticacio" type="xs:string"/>
+          
+          
+          
+OPCIONALMENT * `/Usuari/Perfil`
+Perfil de l’usuari que realitza la consulta. Existiran 3 possibles valors per aquest perfil, que incidiran en la forma de la cerca de notificacions.
+* `/Usuari/Rol`
+Rol autoritzat de l’usuari:
+ EMPLEAT
+ CIUTADA
+* 
 
 A continuació és detallaran els elements específics per a cadascúna de les modalitats de consum:
 
