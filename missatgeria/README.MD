@@ -210,12 +210,13 @@ La tramesa és l'estructura que permet la creació de notificacions i/o comunica
 </xs:element>
 ```	
 
-L'element `<DadesAvisos>` és opcional i està format per els següents elements:
-
+L'element `<DadesAvisos>` és opcional ja que **eNotum** disposa d'un comportament per defecte per als valors especificats en aquest element, en cas de que vinguin informats al missatge, aquests tindran prioritat per a ser utilitzats en comptes dels que hi hagi establers per defecte. `<DadesAvisos>` està format pels següents elements:
+	
 #### Plantilla
 ```xml
 <xs:element name="Plantilla" type="xs:string" minOccurs="0"/>
 ```
+Identificador de plantilles de correu i SMS d'avis a utilitzar per a aquesta notificació. Es condició que a **eNotum** existeixi aquest identificador amb les plantilles creades.
 
 #### Email
 ```xml
@@ -235,6 +236,15 @@ L'element `<DadesAvisos>` és opcional i està format per els següents elements
 	</xs:complexType>
 </xs:element>
 ```
+Aquest element permet canviar la configuració per defecte que rebran els destinataris de la notificació via correu electrònic. Concretament permet indicar els següents camps:
+
+* `/Email/Emissor`
+Aquest camp conté l'adreça de correu electrònic que s'utilitzarà com a remitent pels avisos als destinataris de les notificacions.
+**eNotum** concatenarà el prefix *NORESPONEU_* al valor indicat per indicar al destinatari que no s'espera cap tipus de resposta de la seva part.
+* `/Email/Assumpte`
+Assumpte que s'utilitzarà per a l'avís del correu electrònic.
+* `/Email/Missatge`
+Cos del missatge del avis per correu electrònic. El missatge ha de ser en format de text pla. Aquest missatge s'embolcallarà dins de les plantilles definides al sistema, concretament a les plantilles s'espeficarà l'element `@@EMAIL_BODY@@` ([per més informació podeu veure documentació plantilles](https://www.aoc.cat/knowledge-base/document-dintegracio-e-notum-generacio-de-plantilles-de-correu-electronic/idservei/enotum/)) que serà substituit per aquest missatge en cas d'existir.
 
 #### SMS
 ```xml
