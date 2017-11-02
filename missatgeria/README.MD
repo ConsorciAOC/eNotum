@@ -50,7 +50,7 @@ Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requi
 
 A continuació es detallaran els elements comuns a totes les modalitats de consum:
 
-### 3.1. Petició
+## Petició
 
 Totes les modalitats de consum _WS_ que ofereix **eNotum** extenen el següent esquema de petició:
 
@@ -70,13 +70,13 @@ Per tant com és pot veure totes les peticions, a banda dels elements específic
 
 [Aquí podeu veure la definició completa del esquema _Peticio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Peticio.xsd)
 
-### 3.2. Usuari
+### Usuari
 
 La definició de l'element _UsuariType_, [la podeu trobar a _Usuari.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Usuari.xsd)
 
 El tipus usuari està format pels següents elements:
 
-### 3.2.1. /Usuari/Rol
+### /Usuari/Rol
 ```xml
 <xs:element name="Rol">
 	<xs:simpleType>
@@ -91,7 +91,7 @@ Aquest camp és obligatori i contindrà la etiqueta del rol autoritzat de l’us
 * *EMPLEAT* : L’empleat públic és el rol d'usuari autoritzat per a la creació de notificacions. A banda permet fer les operacions de modalitats de consum de Cerca, Consulta etc. A excepció de les operacions de Practicar i demanar Paraula de pas.
 * *CIUTADA* : El ciutadà és el rol d'usuari autoritzat a cercar i acceptar notificacions vinculades al propi usuari.
 
-### 3.2.2. /Usuari/Perfil
+### /Usuari/Perfil
 ```xml
 <xs:element name="Perfil" minOccurs="0">
 	<xs:simpleType>
@@ -108,17 +108,17 @@ Opcionalment en cas de `<Rol>` _CIUTADA_ i de que l'usuari presenti el NIF de pe
 * *EMPRESA* : Cerca les notificacions per a l’empresa.
 * *PERSONA_JURIDICA* : Cerca les notificacions com a persona jurídica.
 
-### 3.2.3. Autenticació usuari
+### Autenticació usuari
 
 En cas de `<Rol>` amb valor CIUTADA, s'haurà d'informar només un dels següents blocs en funció del mecanisme d'autenticació emprat per l'usuari.
 
-### 3.2.3.1. Certificat
+### Certificat
 ```xml
 <xs:element name="CertificatCiutada" type="xs:base64Binary"/>
 ```
 En cas d'autenticació amb certificat aquest camp contindrà el certificat del ciutadà que realitza l’operació.
 
-### 3.2.3.2. Paraula de pas
+### Paraula de pas
 ```xml
 <xs:sequence>
 	<xs:element name="IdParaulaPas" type="xs:string"/>
@@ -127,7 +127,7 @@ En cas d'autenticació amb certificat aquest camp contindrà el certificat del c
 ```
 Identificador i paraula de pas respectivament, emprades com a mecanisme d'autenticació del ciutadà que realitza l'operació.
 
-### 3.2.3.3. Mecanisme d'autenticació extern (Valid o altres)
+### Mecanisme d'autenticació extern (Valid o altres)
 ```xml
 <xs:sequence>
 	<xs:choice minOccurs="0">
@@ -145,41 +145,41 @@ En aquest cas és l'aplicació integrada la que assumeix la responsabilitat d'au
 * `/Usuari/CIF` CIF del usuari
 * `/Usuari/IdAutenticacio` Identificador intern de l'aplicació integradad per al procés d'autenticació.
 
-### 3.3. Emissor
+## Emissor
 
 La definició de l'element _EmissorType_, [la podeu trobar a _Emissor.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Emissor.xsd)
 
 Els elements que conté el tipus Emissor són els següents:
 
-### 3.3.1 CodiOrganisme
+### CodiOrganisme
 ```xml
 <xs:element name="CodiOrganisme" type="xs:string"/>
 ```
 Codi ENS de l’organisme emissor de la notificació
 
-### 3.3.2 CodiDepartament
+### CodiDepartament
 ```xml
 <xs:element name="CodiDepartament" type="xs:string"/>
 ```
 Codi ENS del departament emissor de la notificació.
 
-### 3.3.3 CodiBO
+### CodiBO
 ```xml
 <xs:element name="CodiBO" type="xs:string" minOccurs="0"/>
 ```
 Codi del Back Office de l’emissor
 
-### 3.4. Modalitats de consum del _WS_
+## Modalitats de consum del _WS_
 
 A continuació és detallaran els elements específics per a les diferents peticions de les modalitats de consum que ofereix el _WS_ d'**eNotum**.
 
-### 3.4.1 Petició ProcessarTramsea
+## Petició ProcessarTramsea
 
 [Aquí podeu veure la definició completa del esquema _ProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioProcessarTramesa.xsd)
 
 Aquesta petició permet la creació de notificacions dins del sistema. La definició d'aquesta petició exten la _peticioType_ afegint l'element `<Tramesa>` que es descriu a continuació.
 
-### 3.4.1.1. Tramesa
+### Tramesa
 ```xml
 <xs:element name="Tramesa">
 	<xs:complexType>
@@ -195,7 +195,88 @@ Aquesta petició permet la creació de notificacions dins del sistema. La defini
 ```
 La tramesa és l'estructura que permet la creació de notificacions i/o comunicacions i permet agrupar-les. Està formada per els elements que es descriuen a continuació:
 
-### 3.2.1.1.
+### DadesAvisos
+```xml
+<xs:element name="DadesAvisos" minOccurs="0">
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="Plantilla" type="xs:string" minOccurs="0"/>
+			<xs:element name="Email" minOccurs="0"/>
+			<xs:element name="SMS" minOccurs="0"/>
+			<xs:element name="DiesAvisos" type="DiesAvisosType" minOccurs="0"/>
+			<xs:element name="URLs" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+</xs:element>
+```	
+
+L'element `<DadesAvisos>` és opcional i està format per els següents elements:
+
+#### Plantilla
+```xml
+<xs:element name="Plantilla" type="xs:string" minOccurs="0"/>
+```
+
+#### Email
+```xml
+<xs:element name="Email" minOccurs="0">
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="Emissor" type="xs:string" minOccurs="0"/>
+			<xs:element name="Assumpte" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Missatge" type="xs:string" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+</xs:element>
+```
+
+#### SMS
+```xml
+<xs:element name="SMS" minOccurs="0">
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="Missatge" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="512"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+</xs:element>
+```
+
+#### DiesAvisos
+```xml
+<xs:element name="DiesAvisos" minOccurs="0"/>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="DiaAvis" type="xs:positiveInteger" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</element>
+```
+
+#### URLs
+```xml
+<xs:element name="URLs" minOccurs="0">
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="AccesNotificacio" type="xs:string" minOccurs="0"/>
+			<xs:element name="AccesLlistat" type="xs:string" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+</xs:element>
+```
+
+
 
 
 
