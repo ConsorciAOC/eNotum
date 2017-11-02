@@ -147,9 +147,59 @@ En aquest cas és l'aplicació integrada la que assumeix la responsabilitat d'au
 
 ### 3.3. Emissor
 
-BLA BLA BLA
+La definició de l'element _EmissorType_, [la podeu trobar a _Emissor.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Emissor.xsd)
 
-A continuació és detallaran els elements específics per a cadascúna de les modalitats de consum:
+Els elements que conté el tipus Emissor són els següents:
+
+### 3.3.1 CodiOrganisme
+```xml
+<xs:element name="CodiOrganisme" type="xs:string"/>
+```
+Codi ENS de l’organisme emissor de la notificació
+
+### 3.3.2 CodiDepartament
+```xml
+<xs:element name="CodiDepartament" type="xs:string"/>
+```
+Codi ENS del departament emissor de la notificació.
+
+### 3.3.3 CodiBO
+```xml
+<xs:element name="CodiBO" type="xs:string" minOccurs="0"/>
+```
+Codi del Back Office de l’emissor
+
+### 3.4. Modalitats de consum del _WS_
+
+A continuació és detallaran els elements específics per a les diferents peticions de les modalitats de consum que ofereix el _WS_ d'**eNotum**.
+
+### 3.4.1 Petició ProcessarTramsea
+
+[Aquí podeu veure la definició completa del esquema _ProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioProcessarTramesa.xsd)
+
+Aquesta petició permet la creació de notificacions dins del sistema. La definició d'aquesta petició exten la _peticioType_ afegint l'element `<Tramesa>` que es descriu a continuació.
+
+### 3.4.1.1. Tramesa
+```xml
+<xs:element name="Tramesa">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="DadesAvisos" minOccurs="0"/>
+			<xs:element name="DadesOfici"/>
+			<xs:element name="Documents" type="DocumentsType"/>
+			<xs:element name="Notificacio" type="NotificacioType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+```
+La tramesa és l'estructura que permet la creació de notificacions i/o comunicacions i permet agrupar-les. Està formada per els elements que es descriuen a continuació:
+
+### 3.2.1.1.
+
+
+
+
 
 ProcessarTramesa
 Consula
