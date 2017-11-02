@@ -68,52 +68,30 @@ Per tant com és pot veure totes les peticions, a banda dels elements específic
 * `//PeticioType/Usuari` Dades de l'usuari, es descriuen a continuació.
 * `//PeticioType/Emissor` Dades de l'emissor. es descriuen a continuació.
 
-[Aquí podeu veure la definició completa del esquema _Peticio.xsd](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Peticio.xsd)
+[Aquí podeu veure la definició completa del esquema _Peticio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Peticio.xsd)
 
 ### 3.2. Usuari
 
-La definició de l'element _UsuariType_, [la podeu trobar a_Usuari.xsd](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Usuari.xsd)
+La definició de l'element _UsuariType_, [la podeu trobar a _Usuari.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Usuari.xsd)
 
 El tipus usuari està format pels següents elements:
 
-En cas de `<Rol>` amb valor _CIUTADA_, s'informarà només un dels següents blocs en funció del mecanisme d'autenticació emprat per l'usuari.
-
-1. Amb certificat
+### 3.2.1. /Usuari/Rol
 ```xml
-<xs:element name="CertificatCiutada" type="xs:base64Binary"/>
+<xs:element name="Rol">
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EMPLEAT"/>
+			<xs:enumeration value="CIUTADA"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:element>
 ```
-* `/Usuari/CertificatCiutada` En cas d'autenticació amb certificat serà el certificat del ciutadà.
+Aquest camp és obligatori i contindrà la etiqueta del rol autoritzat de l’usuari que realitza la operació. Hi ha dos rols definits que es descriuen a continuació:
+* *EMPLEAT* : L’empleat públic és el rol d'usuari autoritzat per a la creació de notificacions. A banda permet fer les operacions de modalitats de consum de Cerca, Consulta etc. A excepció de les operacions de Practicar i demanar Paraula de pas.
+* *CIUTADA* : El ciutadà és el rol d'usuari autoritzat a cercar i acceptar notificacions vinculades al propi usuari.
 
-2. Amb paraula de pas
-```xml
-<xs:sequence>
-	<xs:element name="IdParaulaPas" type="xs:string"/>
-	<xs:element name="ParaulaPas" type="xs:string"/>
-</xs:sequence>
-```
-* `/Usuari/IdParaulaPas` Identificador de la paraula de pas
-* `/Usuari/ParaulaPas` Paraula de pas
-
-3. Amb mecansime extern (Valid o 3rs)
-```xml
-<xs:sequence>
-	<xs:choice minOccurs="0">
-		<xs:element name="NIF" type="NIF"/>
-		<xs:element name="PASSAPORT" type="NoEmptyString"/>
-	</xs:choice>
-	<xs:element name="CIF" type="CIF" minOccurs="0"/>
-	<xs:element name="IdAutenticacio" type="xs:string"/>
-</xs:sequence>
-```
-En aquest cas és l'aplicació integrada la que assumeix la responsabilitat d'autenticar l'usuari utilizant p.e el servei de Valid o qualsevol altre servei extern. En aquest cas s'ha d'informar:
-
-* `Usuari/NIF` NIF de l'usuari.
-* `Usuari/PASSAPORT` Passaport de l'usuari.
-* `Usuari/CIF` CIF del usuari
-* `Usuari/IdAutenticacio` Identificador intern de l'aplicació integradad per al procés d'autenticació.
-
-A banda d'aquests en el tipus usuari també tenim:
-
+### 3.2.2. /Usuari/Perfil
 ```xml
 <xs:element name="Perfil" minOccurs="0">
 	<xs:simpleType>
@@ -125,20 +103,47 @@ A banda d'aquests en el tipus usuari també tenim:
 	</xs:simpleType>
 </xs:element>
 ```
-* `/Usuari/Perfil` Perfil de l’usuari que realitza la consulta, els 3 possibles valors per aquest perfil, que incidiran en la forma de la cerca de notificacions.
+Opcionalment en cas de `<Rol>` _CIUTADA_ i de que l'usuari presenti el NIF de persona física i el d'empresa, ja sigui al generar la paraula de pas, en el certificat, o indicant-ho en els camps amb autenticació delegada, es podrà indicar un perfil que afectarà directament a les cerques de notificacions. Els possibles valors que pot pendre aquest camp:
+* *PERSONA_FISICA* : Cerca les notificacions per a la persona física.
+* *EMPRESA* : Cerca les notificacions per a l’empresa.
+* *PERSONA_JURIDICA* : Cerca les notificacions com a persona jurídica.
 
+### 3.2.3. Autenticació usuari
+
+En cas de `<Rol>` amb valor CIUTADA, s'haurà d'informar només un dels següents blocs en funció del mecanisme d'autenticació emprat per l'usuari.
+
+### 3.2.3.1. Certificat
 ```xml
-<xs:element name="Rol">
-	<xs:simpleType>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="EMPLEAT"/>
-			<xs:enumeration value="CIUTADA"/>
-		</xs:restriction>
-	</xs:simpleType>
-</xs:element>
+<xs:element name="CertificatCiutada" type="xs:base64Binary"/>
 ```
-* `/Usuari/Rol` Rol autoritzat de l’usuari.
+En cas d'autenticació amb certificat aquest camp contindrà el certificat del ciutadà que realitza l’operació.
 
+### 3.2.3.2. Paraula de pas
+```xml
+<xs:sequence>
+	<xs:element name="IdParaulaPas" type="xs:string"/>
+	<xs:element name="ParaulaPas" type="xs:string"/>
+</xs:sequence>
+```
+Identificador i paraula de pas respectivament, emprades com a mecanisme d'autenticació del ciutadà que realitza l'operació.
+
+### 3.2.3.3. Mecanisme d'autenticació extern (Valid o altres)
+```xml
+<xs:sequence>
+	<xs:choice minOccurs="0">
+		<xs:element name="NIF" type="NIF"/>
+		<xs:element name="PASSAPORT" type="NoEmptyString"/>
+	</xs:choice>
+	<xs:element name="CIF" type="CIF" minOccurs="0"/>
+	<xs:element name="IdAutenticacio" type="xs:string"/>
+</xs:sequence>
+```
+En aquest cas és l'aplicació integrada la que assumeix la responsabilitat d'autenticar el ciutadà utilizant p.e el servei de Valid o qualsevol altre servei extern. Els camps a informar són:
+
+* `/Usuari/NIF` NIF de l'usuari.
+* `/Usuari/PASSAPORT` Passaport de l'usuari.
+* `/Usuari/CIF` CIF del usuari
+* `/Usuari/IdAutenticacio` Identificador intern de l'aplicació integradad per al procés d'autenticació.
 
 ### 3.3. Emissor
 
