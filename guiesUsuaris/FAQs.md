@@ -20,3 +20,13 @@ A través de l'aplicació d'eNotum dins [_d'EACAT_](www.eacat.cat), anant a conf
 Aquest camp aplica sempre i quan sigui més restrictiu que els **2MB** en cas d'adjuntar via missatgeria, o de **6MB** per a les altres formes. En cas de setejar amb un valor superior no és tindrà en compte.
 
 **NOTA ADICIONAL**: Degut a una restricció futura de la _PCI_, proximament en cas d'ajuntar el/s document/s en _base64_ dins del missatge, el total del missatge (document/s i resta de contingut a excepció unicament dels tags) no podrà superar els **2MB**. Es recomana per tant utilitzar una dels altres mecanismes en cas de voler adjuntar document/s pesats.
+
+<h3> Es pot notificar a telefons estrangers? </h3>
+
+**eNotum** accepta números de telèfons estrangers. Els servei web concretament fa els següents passos amb aquest ordre per tal de validar els telèfons:
+* Normalitza el telèfon:
+  * Si el telèfon hi ha un caràcter `+` el remplaça per `00`.
+  * Si el telèfon comença per `0034` elimina aquests caràcters perquè és el prefix d'Espanya.
+* Valida el telèfon:
+  * Si el telèfon comença per `00` considerem que és un número internacional i l'acceptem sense fer cap més validació.
+  * Si el telèfon no comença per `00` considerem que és un telèfon nacional i validem tant sols que tingui 9 digits.
