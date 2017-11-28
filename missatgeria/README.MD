@@ -112,13 +112,13 @@ Opcionalment en cas de `<Rol>` _CIUTADA_ i de que l'usuari presenti el NIF de pe
 
 En cas de `<Rol>` amb valor CIUTADA, s'haurà d'informar només un dels següents blocs en funció del mecanisme d'autenticació emprat per l'usuari.
 
-### Certificat
+#### Certificat
 ```xml
 <xs:element name="CertificatCiutada" type="xs:base64Binary"/>
 ```
 En cas d'autenticació amb certificat aquest camp contindrà el certificat del ciutadà que realitza l’operació.
 
-### Paraula de pas
+#### Paraula de pas
 ```xml
 <xs:sequence>
 	<xs:element name="IdParaulaPas" type="xs:string"/>
@@ -127,7 +127,7 @@ En cas d'autenticació amb certificat aquest camp contindrà el certificat del c
 ```
 Identificador i paraula de pas respectivament, emprades com a mecanisme d'autenticació del ciutadà que realitza l'operació.
 
-### Mecanisme d'autenticació extern (Valid o altres)
+#### Mecanisme d'autenticació extern (Valid o altres)
 ```xml
 <xs:sequence>
 	<xs:choice minOccurs="0">
@@ -179,7 +179,7 @@ A continuació és detallaran els elements específics per a les diferents petic
 
 Aquesta petició permet la creació de notificacions dins del sistema. La definició d'aquesta petició exten la _peticioType_ afegint l'element `<Tramesa>` que es descriu a continuació.
 
-### Tramesa
+## Tramesa
 ```xml
 <xs:element name="Tramesa">
 	<xs:complexType>
@@ -195,7 +195,7 @@ Aquesta petició permet la creació de notificacions dins del sistema. La defini
 ```
 La tramesa és l'estructura que permet la creació de notificacions i/o comunicacions i permet agrupar-les. Està formada per els elements que es descriuen a continuació:
 
-#### DadesAvisos
+### DadesAvisos
 ```xml
 <xs:element name="DadesAvisos" minOccurs="0">
 	<xs:complexType>
@@ -211,13 +211,13 @@ La tramesa és l'estructura que permet la creació de notificacions i/o comunica
 ```	
 L'element `<DadesAvisos>` és opcional ja que **eNotum** disposa d'un comportament per defecte per als valors especificats en aquest element, en cas de que vinguin informats al missatge, aquests tindran prioritat per a ser utilitzats en comptes dels que hi hagi establers per defecte. `<DadesAvisos>` està format pels següents elements:
 	
-###### Plantilla
+##### Plantilla
 ```xml
 <xs:element name="Plantilla" type="xs:string" minOccurs="0"/>
 ```
 Identificador de plantilles de correu i SMS d'avis a utilitzar per a aquesta notificació. Es condició que a **eNotum** existeixi aquest identificador amb les plantilles creades.
 
-##### Email
+#### Email
 ```xml
 <xs:element name="Email" minOccurs="0">
 	<xs:complexType>
@@ -245,7 +245,7 @@ Assumpte que s'utilitzarà per a l'avís del correu electrònic.
 * `/Email/Missatge`
 Cos del missatge del avis per correu electrònic. El missatge ha de ser en format de text pla. Aquest missatge s'embolcallarà dins de les plantilles definides al sistema, concretament a les plantilles s'espeficarà l'element `@@EMAIL_BODY@@` ([per més informació podeu veure documentació plantilles](https://www.aoc.cat/knowledge-base/document-dintegracio-e-notum-generacio-de-plantilles-de-correu-electronic/idservei/enotum/)) que serà substituit per aquest missatge en cas d'existir.
 
-##### SMS
+#### SMS
 ```xml
 <xs:element name="SMS" minOccurs="0">
 	<xs:complexType>
@@ -264,7 +264,7 @@ Cos del missatge del avis per correu electrònic. El missatge ha de ser en forma
 * `/SMS/Missatge`
 Aquest element conté un únic camp amb el cos del missatge que s'enviarà com a avis de la notificació.
 
-##### DiesAvisos
+#### DiesAvisos
 ```xml
 <xs:element name="DiesAvisos" minOccurs="0"/>
 	<xs:complexType>
@@ -277,7 +277,7 @@ Aquest element conté un únic camp amb el cos del missatge que s'enviarà com a
 * `/DiesAvisos/DiaAvis`
 Llista d'elements d'aquest tipus amb els número de dies a comptar a partir del enviament per el qual s'enviaran recordatoris al/s destinatari/s de la notificació mentre aquesta no es trobi en un estat final.
 
-##### URLs
+#### URLs
 ```xml
 <xs:element name="URLs" minOccurs="0">
 	<xs:complexType>
@@ -292,9 +292,89 @@ Aquest element igual que la resta de tags de `<DadesAvisos>` són opcionals, ja 
 * `/URLs/AccesNotificacio` Permet informar l'enllaç d'accés directe que desprès es podrà utilitzar des de les plantilles d'avisos de notificacions.
 * `/URLs/AccesLlistat` Permet informar l'enllaç d'accés genèric al llistat de notificacions per a l'organisme i departament de la notificació en concret, que desprès igual que en el cas anterior es podrà utilitzar des de les plantilles d'avisos de notificacions.
 
-#### DadesOfici
+### DadesOfici
 
+```xml
+<xs:element name="DadesOfici">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="CosNotificacio" type="xs:string" nillable="false"/>
+				<xs:element name="IdCosNotificacio" type="xs:integer"/>
+			</xs:choice>
+			<xs:choice>
+				<xs:element name="PeuRecurs">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="4000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="IdPeuRecurs" type="xs:integer"/>
+			</xs:choice>
+			<xs:element name="OficinaRegistre" type="xs:string" minOccurs="0"/>
+			<xs:element name="UnitatOrganitzativa" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+```
+Aquest element permet específicar les dades d'ofici vinculades a la notificació:
 
+* `/DadesOfici/CosNotificacio`
+Cos de la notificació
+* `/DadesOfici/IdCosNotificacio`
+En comptes d'escriure el cos de la notificació, permet indicar l'identificador d'un cos de notificació predeterminat introduït previament al sistema.
+* `/DadesOfici/PeuRecurs`
+Peu de recurs.
+* `/DadesOfici/IdPeuRecurs`
+En comptes d'escriure el peu de recurs, permet indicar l'identificador d'un peu de recurs predeterminat introduït previament al sistema.
+* `/DadesOfici/OficinaRegistre`
+Codi d'oficina de registre a usar per registrar les notificacions. Aquest paràmetre no és obligatori ja que per defecte el sistema usarà la oficina de registre parametritzada per a l'entitat emissora de les notificacions (organisme\departament). Així, només cal informar aquest paràmetre en el cas que s'hagués de realitzar el registre contra una oficina diferent de la habitual.
+* `/DadesOfici/UnitatOrganitzativa`
+Codi d'unitat organitzativa a usar per registrar les notificacions. Aquest paràmetre no és obligatori ja que per defecte el sistema usarà la unitat organitzativa (codi organisme) parametritzada per a l'entitat emissora de les notificacions (organisme\departament). Així, només cal informar aquest paràmetre en el cas que s'hagués de realitzar el registre contra una oficina diferent de la habitual.
+
+### Documents
+
+`<Documents>` és una seqüencia de entre 1 i 5 elements de tipus `DocumentType`. Només un document de `<Tipus>Resolució</Tipus>` és obligatori, i opcionalment pot anar acompanyat de fins a 4 documents de `<Tipus>Annex</Tipus>`. La definició de `DocumentType` es pot veure a continuació:
+```xml
+<xs:complexType name="DocumentsType">
+	<xs:sequence>
+		<xs:element name="Document" maxOccurs="5">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="Nom" type="xs:string"/>
+					<xs:element name="SHA1Digest" type="xs:base64Binary" minOccurs="0"/>
+					<xs:choice>
+						<xs:element name="Dades" type="xs:base64Binary"/>
+						<xs:element name="Ruta" type="xs:string"/>
+						<xs:element name="IdFicheroPCI" type="xs:string"/>
+					</xs:choice>
+					<xs:element name="Tipus">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Resolució"/>
+								<xs:enumeration value="Annex"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+	</xs:sequence>
+</xs:complexType>
+```
+* `/Documents/Document/Nom`
+Nom del fitxer del document, amb extensió. E.g: _holaRepublica.pdf_
+* `/Documents/Document/SHA1Digest`
+Resum críptografic en [_SHA1_](https://en.wikipedia.org/wiki/SHA-1) del contingut del document com a string codificat en [_base64_](https://en.wikipedia.org/wiki/Base64).
+* `/Documents/Document/Dades`
+En cas que és vulgui incrustar el document dins del missatge en _base64_. S'ha de tenir en compte que per a documents on la mida superi **1MB**, no recomanem aquest mecanisme, donat que la _PCI_ té una restricció on el missatge _XML_ de la petició complet no pot superar els **2MB**. 
+* `/Documents/Document/Ruta`
+Ruta del document pujat al FTP. Aquesta ruta és la relativa dins el directori arrel de l’usuari que es connecta al FTP. Només disponible per als ens que s'han donat d'alta amb la integració per aquesta via. 
+* `/Documents/Document/IdFicheroPCI`
+Permet adjuntar un document mitjançant _MTOM_. Aquest identificador s'ha de correspondre amb el `<Id>` del `<Fichero>` de les `<DatosGenericos>` de la missatgeria de la _PCI_ per a que **eNotum** pugui recuperar correctament el document. En aquest cas el document s'adjunta en la petició _XML_ i s'ha d'específicar mitjançant el tag `<Contendio>` del `<Fichero>` en fromat _MTOM_ dins de la missatgeria de la _PCI_. Per a més informació podeu consultar [la guia d'integració de la _PCI_](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/)
+
+### Notificacio
 
 
 
