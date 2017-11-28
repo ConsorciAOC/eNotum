@@ -6,7 +6,7 @@ Els documents de resolució/annexos que és poden adjuntar a una tramesa de dive
 
 * Directament com a _base64_ dins del missatge.
 * Indicant una ruta FTP (els ens que estan integrats mitjançant aquesta via).
-* Adjuntant el document a través d'alguns dels mecanismes previstos per la _PCI_ (`MTOM`,...)
+* Adjuntant el document al missatge través de la _PCI_ fent ús de [`MTOM`](https://en.wikipedia.org/wiki/Message_Transmission_Optimization_Mechanism). Per a més informació respecte a l'ús d'aquest mecanisme podeu consultar [la guia d'integració de la _PCI_](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/)
 
 En una tramesa és obligatori adjuntar un document de tipus _Resolució_ i opcionalment és poden adjuntar fins a un màxim de 4 documents més de tipus _Annex_. Fent un total màxim de 5 documents.
 
@@ -19,4 +19,4 @@ A través de l'aplicació d'eNotum dins [_d'EACAT_](www.eacat.cat), anant a conf
 
 Aquest camp aplica sempre i quan sigui més restrictiu que els **2MB** en cas d'adjuntar via missatgeria, o de **6MB** per a les altres formes. En cas de setejar amb un valor superior no és tindrà en compte.
 
-**NOTA ADICIONAL**: Degut a una restricció futura de la PCI, proximament en cas d'ajuntar el/s document/s en _base64_ dins del missatge, el total del missatge (document/s i resta de tags inclosos) no podrà superar els **2MB**. Es recomana per tant utilitzar una dels altres mecanismes en cas de voler adjuntar document/s pesats.
+**NOTA ADICIONAL**: Degut a una restricció futura de la _PCI_, proximament en cas d'ajuntar el/s document/s en _base64_ dins del missatge, el total del missatge (document/s i resta de contingut a excepció unicament dels tags) no podrà superar els **2MB**. Es recomana per tant utilitzar una dels altres mecanismes en cas de voler adjuntar document/s pesats.
