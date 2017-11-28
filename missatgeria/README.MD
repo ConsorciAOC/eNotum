@@ -76,7 +76,7 @@ La definició de l'element _UsuariType_, [la podeu trobar a _Usuari.xsd_](https:
 
 El tipus usuari està format pels següents elements:
 
-### /Usuari/Rol
+#### Rol
 ```xml
 <xs:element name="Rol">
 	<xs:simpleType>
@@ -91,7 +91,7 @@ Aquest camp és obligatori i contindrà la etiqueta del rol autoritzat de l’us
 * *EMPLEAT* : L’empleat públic és el rol d'usuari autoritzat per a la creació de notificacions. A banda permet fer les operacions de modalitats de consum de Cerca, Consulta etc. A excepció de les operacions de Practicar i demanar Paraula de pas.
 * *CIUTADA* : El ciutadà és el rol d'usuari autoritzat a cercar i acceptar notificacions vinculades al propi usuari.
 
-### /Usuari/Perfil
+#### Perfil
 ```xml
 <xs:element name="Perfil" minOccurs="0">
 	<xs:simpleType>
@@ -195,7 +195,7 @@ Aquesta petició permet la creació de notificacions dins del sistema. La defini
 ```
 La tramesa és l'estructura que permet la creació de notificacions i/o comunicacions i permet agrupar-les. Està formada per els elements que es descriuen a continuació:
 
-### DadesAvisos
+#### DadesAvisos
 ```xml
 <xs:element name="DadesAvisos" minOccurs="0">
 	<xs:complexType>
@@ -209,16 +209,15 @@ La tramesa és l'estructura que permet la creació de notificacions i/o comunica
 	</xs:complexType>
 </xs:element>
 ```	
-
 L'element `<DadesAvisos>` és opcional ja que **eNotum** disposa d'un comportament per defecte per als valors especificats en aquest element, en cas de que vinguin informats al missatge, aquests tindran prioritat per a ser utilitzats en comptes dels que hi hagi establers per defecte. `<DadesAvisos>` està format pels següents elements:
 	
-#### Plantilla
+###### Plantilla
 ```xml
 <xs:element name="Plantilla" type="xs:string" minOccurs="0"/>
 ```
 Identificador de plantilles de correu i SMS d'avis a utilitzar per a aquesta notificació. Es condició que a **eNotum** existeixi aquest identificador amb les plantilles creades.
 
-#### Email
+##### Email
 ```xml
 <xs:element name="Email" minOccurs="0">
 	<xs:complexType>
@@ -246,7 +245,7 @@ Assumpte que s'utilitzarà per a l'avís del correu electrònic.
 * `/Email/Missatge`
 Cos del missatge del avis per correu electrònic. El missatge ha de ser en format de text pla. Aquest missatge s'embolcallarà dins de les plantilles definides al sistema, concretament a les plantilles s'espeficarà l'element `@@EMAIL_BODY@@` ([per més informació podeu veure documentació plantilles](https://www.aoc.cat/knowledge-base/document-dintegracio-e-notum-generacio-de-plantilles-de-correu-electronic/idservei/enotum/)) que serà substituit per aquest missatge en cas d'existir.
 
-#### SMS
+##### SMS
 ```xml
 <xs:element name="SMS" minOccurs="0">
 	<xs:complexType>
@@ -262,8 +261,10 @@ Cos del missatge del avis per correu electrònic. El missatge ha de ser en forma
 	</xs:complexType>
 </xs:element>
 ```
+* `/SMS/Missatge`
+Aquest element conté un únic camp amb el cos del missatge que s'enviarà com a avis de la notificació.
 
-#### DiesAvisos
+##### DiesAvisos
 ```xml
 <xs:element name="DiesAvisos" minOccurs="0"/>
 	<xs:complexType>
@@ -273,8 +274,10 @@ Cos del missatge del avis per correu electrònic. El missatge ha de ser en forma
 	</xs:complexType>
 </element>
 ```
+* `/DiesAvisos/DiaAvis`
+Llista d'elements d'aquest tipus amb els número de dies a comptar a partir del enviament per el qual s'enviaran recordatoris al/s destinatari/s de la notificació mentre aquesta no es trobi en un estat final.
 
-#### URLs
+##### URLs
 ```xml
 <xs:element name="URLs" minOccurs="0">
 	<xs:complexType>
@@ -285,8 +288,11 @@ Cos del missatge del avis per correu electrònic. El missatge ha de ser en forma
 	</xs:complexType>
 </xs:element>
 ```
+Aquest element igual que la resta de tags de `<DadesAvisos>` són opcionals, ja que **eNotum** disposa de configuració per entitat i per defecte per a aquests camps, només s'han d'usar en cas de voler modificar aquests valors per notificacions concretes.
+* `/URLs/AccesNotificacio` Permet informar l'enllaç d'accés directe que desprès es podrà utilitzar des de les plantilles d'avisos de notificacions.
+* `/URLs/AccesLlistat` Permet informar l'enllaç d'accés genèric al llistat de notificacions per a l'organisme i departament de la notificació en concret, que desprès igual que en el cas anterior es podrà utilitzar des de les plantilles d'avisos de notificacions.
 
-
+#### DadesOfici
 
 
 
