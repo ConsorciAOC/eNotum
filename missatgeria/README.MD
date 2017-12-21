@@ -35,7 +35,7 @@ Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a t
 
 # 2. Missatgeria
 
-Com es comenta en [el punt 1 d'aquest document](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#11-integració-pci) **eNotum** funciona com a servei dins de la _PCI_, serà per tant necessari treballar amb la missatgeria de la _PCI_, encapsulant la missatgeria específica de **eNotum** dins d’aquesta.
+Com es comenta en [el punt 1 d'aquest document](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#11-integració-pci) **eNotum** funciona com a servei dins de la _PCI_, serà per tant necessari treballar amb la missatgeria de la _PCI_, encapsulant la missatgeria específica de **eNotum** dins d'aquesta.
 
 Específicament per a fer ús del servei d'**eNotum** dins de la missatgeria de la _PCI_ és necessari informar els següents elements del missatge _XML_:
 
@@ -87,8 +87,8 @@ El tipus usuari està format pels següents elements:
 	</xs:simpleType>
 </xs:element>
 ```
-Aquest camp és obligatori i contindrà la etiqueta del rol autoritzat de l’usuari que realitza la operació. Hi ha dos rols definits que es descriuen a continuació:
-* *EMPLEAT* : L’empleat públic és el rol d'usuari autoritzat per a la creació de notificacions. A banda permet fer les operacions de modalitats de consum de Cerca, Consulta etc. A excepció de les operacions de Practicar i demanar Paraula de pas.
+Aquest camp és obligatori i contindrà la etiqueta del rol autoritzat de l'usuari que realitza la operació. Hi ha dos rols definits que es descriuen a continuació:
+* *EMPLEAT* : L'empleat públic és el rol d'usuari autoritzat per a la creació de notificacions. A banda permet fer les operacions de modalitats de consum de Cerca, Consulta etc. A excepció de les operacions de Practicar i demanar Paraula de pas.
 * *CIUTADA* : El ciutadà és el rol d'usuari autoritzat a cercar i acceptar notificacions vinculades al propi usuari.
 
 #### Perfil
@@ -105,7 +105,7 @@ Aquest camp és obligatori i contindrà la etiqueta del rol autoritzat de l’us
 ```
 Opcionalment en cas de `<Rol>` _CIUTADA_ i de que l'usuari presenti el NIF de persona física i el d'empresa, ja sigui al generar la paraula de pas, en el certificat, o indicant-ho en els camps amb autenticació delegada, es podrà indicar un perfil que afectarà directament a les cerques de notificacions. Els possibles valors que pot pendre aquest camp:
 * *PERSONA_FISICA* : Cerca les notificacions per a la persona física.
-* *EMPRESA* : Cerca les notificacions per a l’empresa.
+* *EMPRESA* : Cerca les notificacions per a l'empresa.
 * *PERSONA_JURIDICA* : Cerca les notificacions com a persona jurídica.
 
 ### Autenticació usuari
@@ -116,7 +116,7 @@ En cas de `<Rol>` amb valor CIUTADA, s'haurà d'informar només un dels següent
 ```xml
 <xs:element name="CertificatCiutada" type="xs:base64Binary"/>
 ```
-En cas d'autenticació amb certificat aquest camp contindrà el certificat del ciutadà que realitza l’operació.
+En cas d'autenticació amb certificat aquest camp contindrà el certificat del ciutadà que realitza l'operació.
 
 #### Paraula de pas
 ```xml
@@ -155,7 +155,7 @@ Els elements que conté el tipus Emissor són els següents:
 ```xml
 <xs:element name="CodiOrganisme" type="xs:string"/>
 ```
-Codi ENS de l’organisme emissor de la notificació
+Codi ENS de l'organisme emissor de la notificació
 
 ### CodiDepartament
 ```xml
@@ -167,7 +167,7 @@ Codi ENS del departament emissor de la notificació.
 ```xml
 <xs:element name="CodiBO" type="xs:string" minOccurs="0"/>
 ```
-Codi del Back Office de l’emissor
+Codi del Back Office de l'emissor
 
 ## Modalitats de consum del _WS_
 
@@ -370,21 +370,91 @@ Resum críptografic en [_SHA1_](https://en.wikipedia.org/wiki/SHA-1) del conting
 * `/Documents/Document/Dades`
 En cas que és vulgui incrustar el document dins del missatge en _base64_. S'ha de tenir en compte que per a documents on la mida superi **1MB**, no recomanem aquest mecanisme, donat que la _PCI_ té una restricció on el missatge _XML_ de la petició complet no pot superar els **2MB**. 
 * `/Documents/Document/Ruta`
-Ruta del document pujat al FTP. Aquesta ruta és la relativa dins el directori arrel de l’usuari que es connecta al FTP. Només disponible per als ens que s'han donat d'alta amb la integració per aquesta via. 
+Ruta del document pujat al FTP. Aquesta ruta és la relativa dins el directori arrel de l'usuari que es connecta al FTP. Només disponible per als ens que s'han donat d'alta amb la integració per aquesta via. 
 * `/Documents/Document/IdFicheroPCI`
 Permet adjuntar un document mitjançant _MTOM_. Aquest identificador s'ha de correspondre amb el `<Id>` del `<Fichero>` de les `<DatosGenericos>` de la missatgeria de la _PCI_ per a que **eNotum** pugui recuperar correctament el document. En aquest cas el document s'adjunta en la petició _XML_ i s'ha d'específicar mitjançant el tag `<Contendio>` del `<Fichero>` en fromat _MTOM_ dins de la missatgeria de la _PCI_. Per a més informació podeu consultar [la guia d'integració de la _PCI_](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/)
+* `/Documents/Document/Tipus`
+Indica el tipus de documents adjuntat. Els possibles valors són:
+* *Resolució* : És obligatori adjuntar un document d'aquest tipus per tramesa.
+* *Annex* : Opcionalment és poden adjuntar fins a quatre documents d'aquest tipus.
 
-### Notificacio
+### Notificació
 
+```xml
+<xs:complexType name="NotificacioType">
+	<xs:all>
+		<xs:element name="Titol">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+		<xs:element name="Referencia" type="xs:string"/>
+		<xs:element name="DadesRegistre" minOccurs="0">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="NumeroRegistre" type="NoEmptyString"/>
+					<xs:element name="DataRegistre" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="TipusObjecte" type="TipusObjecteType"/>
+		<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
+		<xs:element name="NivellCertificat" type="xs:string" minOccurs="0"/>
+		<xs:element name="DiesExpiracio" type="xs:positiveInteger" minOccurs="0"/>
+		<xs:element name="Destinataris" type="DestinatarisType"/>
+		<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+		<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+		<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+		<xs:element name="IdNotificacioEmissor" type="xs:string" minOccurs="0"/>
+		<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+		<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+		<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+		<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+	</xs:all>
+</xs:complexType>	
+```
 
+* `/Notificacio/Titol`
+Títol de la notificació, màxim 100 caràcters
+* `/Notificacio/Referencia`
+Cadena d'identificació de la notificació. Tot i que no cal que aquesta sigui única respecte a les demés notificacions existents al sistema, es recomanable utilitzar seqüències úniques de caràcters per facilitar la localització posterior a les cerques.
+* `/Notificacio/DadesRegistre/NumeroRegistre`
+Número de registre (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició.
+* `/Notificacio/DadesRegistre/DataRegistre`
+Data de l'assentament (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, junt amb el de número de registre, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició.
+* `/Notificacio/TipusObjecte`
+Indica si es tracta d'una notificació o d'una comunicació. Els valors possibles per aquest paràmetre son:
+* *NOTIFICACIO* : Indica que l'enviament serà de tipus notificació.
+* *COMUNICACIO* : Indica que l'enviament serà de tipus comunicació.
+* `/Notificacio/TipusAcces`
+Indica el tipus d'accés requerit al ciutadà per tal de poder accedir a la notificació. Els possibles valors són:
+* *PPAS*
+* *CERT*
+* `/Notificacio/NivellCertificat`
+En cas d'accés requerit amb certificat, és pot ajustar el nivell d'aquest per l'accés a la notificació.
+* `/Notificacio/DiesExpiracio`
+Dies a partir dels quals la notificació exiprarà, a contar a partir de la data de dipòsit.
+* `/Notificacio/Destinataris`
+Dades dels destinataris de la notificació.
+* `/Notificacio/Etiquetes`
+Etiquetes per a agrupar la notificació.
+* `/Notificacio/AmbitObjecte`
+Àmbit de la notificació.
+* `/Notificacio/Idioma`
+Idioma de la notificació. Els possibles valors són:
+TODO <<<<<<<
+* `/Notificacio/IdNotificacioEmissor`
+* `/Notificacio/Canal`
+* `/Notificacio/Expedient`
+* `/Notificacio/Tramit`
+* `/Notificacio/NumeroCas`
 
-ProcessarTramesa
-Consula
-Cerca 
+TODO: Desenvolupar /Notificacio/Destinataris
 
-....
+TODO: Desenvolupar /Notificacio/Etiquetes
 
+## Petició Resum
 
-
-
-
+[Aquí podeu veure la definició completa del esquema _PeticioResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioResum.xsd)
