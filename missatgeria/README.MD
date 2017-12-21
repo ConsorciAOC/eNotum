@@ -375,8 +375,8 @@ Ruta del document pujat al FTP. Aquesta ruta és la relativa dins el directori a
 Permet adjuntar un document mitjançant _MTOM_. Aquest identificador s'ha de correspondre amb el `<Id>` del `<Fichero>` de les `<DatosGenericos>` de la missatgeria de la _PCI_ per a que **eNotum** pugui recuperar correctament el document. En aquest cas el document s'adjunta en la petició _XML_ i s'ha d'específicar mitjançant el tag `<Contendio>` del `<Fichero>` en fromat _MTOM_ dins de la missatgeria de la _PCI_. Per a més informació podeu consultar [la guia d'integració de la _PCI_](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/)
 * `/Documents/Document/Tipus`
 Indica el tipus de documents adjuntat. Els possibles valors són:
-* *Resolució* : És obligatori adjuntar un document d'aquest tipus per tramesa.
-* *Annex* : Opcionalment és poden adjuntar fins a quatre documents d'aquest tipus.
+  * *Resolució* : És obligatori adjuntar un document d'aquest tipus per tramesa.
+  * *Annex* : Opcionalment és poden adjuntar fins a quatre documents d'aquest tipus.
 
 ### Notificació
 
@@ -426,12 +426,12 @@ Número de registre (opcional) pel cas de notificacions que vinguin pre-registra
 Data de l'assentament (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, junt amb el de número de registre, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició.
 * `/Notificacio/TipusObjecte`
 Indica si es tracta d'una notificació o d'una comunicació. Els valors possibles per aquest paràmetre son:
-* *NOTIFICACIO* : Indica que l'enviament serà de tipus notificació.
-* *COMUNICACIO* : Indica que l'enviament serà de tipus comunicació.
+  * *NOTIFICACIO* : Indica que l'enviament serà de tipus notificació.
+  * *COMUNICACIO* : Indica que l'enviament serà de tipus comunicació.
 * `/Notificacio/TipusAcces`
 Indica el tipus d'accés requerit al ciutadà per tal de poder accedir a la notificació. Els possibles valors són:
-* *PPAS*
-* *CERT*
+  * *PPAS*
+  * *CERT*
 * `/Notificacio/NivellCertificat`
 En cas d'accés requerit amb certificat, és pot ajustar el nivell d'aquest per l'accés a la notificació.
 * `/Notificacio/DiesExpiracio`
@@ -444,17 +444,41 @@ Etiquetes per a agrupar la notificació.
 Àmbit de la notificació.
 * `/Notificacio/Idioma`
 Idioma de la notificació. Els possibles valors són:
-TODO <<<<<<<
+  * *ca* : Indica que l'idioma de la notificació és català.
+  * *es* : Indica que l'idioma de la notificació és castellà.
+  * *oc* : Indica que l'idioma de la notificació és aranés.
+  * *en* : Indica que l'idioma de la notificació és anglés.
 * `/Notificacio/IdNotificacioEmissor`
+Identificador de la notificació propi del emissor. Serveix en les peticions de lots asíncrones per a que el emissor pugui associar el seu identificador intern amb l'identificador de notificació retornat per eNotum.
 * `/Notificacio/Canal`
+Canal d'enviament per al que s'envia originalment la notificació. Els possibles valors són:
+  * *DIGITAL* : La notificació s'envia únicament per via telemàtica.
+  * *PAPER* : La notificació s'envia per via telemàtica i pot ser enviada en format paper en cas de que no sigui accedida per via telemàtica.
 * `/Notificacio/Expedient`
+Opcionalment es pot indicar l'expedient amb el que està relacionada la notificació. 50 caràcters.
 * `/Notificacio/Tramit`
+Opcionalment es pot indicar el tràmit amb el que està relacionada la notificació. 50 caràcters.
 * `/Notificacio/NumeroCas`
+Opcionalment es pot indicar el numero de cas amb el que està relacionada la notificació. 50 caràcters.
 
+### Destinataris
 TODO: Desenvolupar /Notificacio/Destinataris
 
+### Etiquetes
 TODO: Desenvolupar /Notificacio/Etiquetes
 
 ## Petició Resum
 
 [Aquí podeu veure la definició completa del esquema _PeticioResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioResum.xsd)
+
+Aquesta petició permet recuperar el resum de totes les notificacions de l'usuari té per a ens diferents a l'actual. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
+
+```xml
+<xs:sequence>
+	<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
+	<xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
+	<xs:element name="MostrarTotesNotificacions" type="xs:boolean" default="false" minOccurs="0"/>
+</xs:sequence>
+```
+
+TODO: Descripció elements
