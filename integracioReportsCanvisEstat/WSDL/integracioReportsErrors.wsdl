@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:conv="http://www.openuri.org/2002/04/soap/conversation/"
+	xmlns:cw="http://www.openuri.org/2002/04/wsdl/conversation/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:jms="http://www.openuri.org/2002/04/wsdl/jms/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+	xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:s0="http://www.openuri.org/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	targetNamespace="http://www.openuri.org/">
+	<wsdl:types>
+		<s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" 
+			xmlns:v3="http://www.aocat.net/NT/v3.0" 
+			elementFormDefault="qualified" targetNamespace="http://www.openuri.org/">
+			<s:import namespace="http://www.aocat.net/NT/v3.0"/>
+			<s:element name="clientRequestwithReturn">
+				<s:complexType>
+					<s:sequence>
+						<s:element ref="v3:ReportError"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="clientRequestwithReturnResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element ref="v3:RespostaReport"/>
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+		</s:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns="http://www.aocat.net/NT/v3.0" targetNamespace="http://www.aocat.net/NT/v3.0" 
+			elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<xs:element name="ReportError" type="ErrorsType"/>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns="http://www.aocat.net/NT/v3.0" targetNamespace="http://www.aocat.net/NT/v3.0" 
+			elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<xs:element name="RespostaReport" type="RespostaReportType"/>
+			<xs:complexType name="RespostaReportType">
+				<xs:annotation>
+					<xs:documentation>Resposta indicant que el report s'ha rebut correctament.</xs:documentation>
+				</xs:annotation>
+				<xs:complexContent>
+					<xs:extension base="RespostaType">
+						<xs:sequence>
+							<xs:element name="Error" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:extension>
+				</xs:complexContent>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns="http://www.aocat.net/NT/v3.0" targetNamespace="http://www.aocat.net/NT/v3.0" 
+			elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<xs:complexType name="ErrorsType">
+				<xs:sequence>
+					<xs:element name="Error" maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:all>
+								<xs:element name="CodiError" type="xs:integer"/>
+								<xs:element name="MissatgeError" type="xs:string"/>
+								<xs:element name="DadesNotificacio" type="DadesNotificacioErrorType" minOccurs="0"/>
+								<xs:element name="FaseError" type="xs:string" minOccurs="0"/>
+								<xs:element name="TipusError" type="xs:string" minOccurs="0"/>
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="DadesNotificacioErrorType">
+				<xs:sequence>
+					<xs:element name="IdNotificacio" type="xs:integer"/>
+					<xs:element name="Organisme" type="xs:string"/>
+					<xs:element name="Departament" type="xs:string"/>
+					<xs:element name="BackOffice" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns="http://www.aocat.net/NT/v3.0" targetNamespace="http://www.aocat.net/NT/v3.0" 
+			elementFormDefault="qualified" attributeFormDefault="unqualified">
+			<xs:complexType name="RespostaType" abstract="true"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="clientRequestwithReturnSoapIn">
+		<wsdl:part name="parameters" element="s0:clientRequestwithReturn"/>
+	</wsdl:message>
+	<wsdl:message name="clientRequestwithReturnSoapOut">
+		<wsdl:part name="parameters" element="s0:clientRequestwithReturnResponse"/>
+	</wsdl:message>
+	<wsdl:portType name="ErrorReceiverv3Soap">
+		<wsdl:operation name="clientRequestwithReturn">
+			<wsdl:input message="s0:clientRequestwithReturnSoapIn"/>
+			<wsdl:output message="s0:clientRequestwithReturnSoapOut"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ErrorReceiverv3Soap" type="s0:ErrorReceiverv3Soap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<wsdl:operation name="clientRequestwithReturn">
+			<soap:operation soapAction="http://www.openuri.org/clientRequestwithReturn" style="document"/>
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ErrorReceiverv3">
+		<wsdl:port name="ErrorReceiverv3Soap" binding="s0:ErrorReceiverv3Soap">
+			<soap:address location="http://localhost:7001/NTCallbackRecvWeb/processes/ErrorReceiverv3.jpd"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
