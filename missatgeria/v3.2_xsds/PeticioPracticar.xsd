@@ -7,7 +7,7 @@
 	elementFormDefault="qualified"
 	attributeFormDefault="unqualified">
 
-    <xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
+	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
     
 	<xs:include schemaLocation="Peticio.xsd"/>
 
@@ -30,7 +30,6 @@
 								</xs:sequence>
 							</xs:complexType>
 						</xs:element>
-						<xs:element name="SignaturaValid" type="xs:base64Binary"/>
 						<xs:element name="DadesPracticarCanalPaper" type="DadesPracticarCanalPaperType"/>
 					</xs:choice>
 					<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0">
