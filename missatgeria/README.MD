@@ -173,7 +173,7 @@ Codi del Back Office de l'emissor
 
 A continuació és detallaran els elements específics per a les diferents peticions de les modalitats de consum que ofereix el _WS_ d'**eNotum**.
 
-## Petició ProcessarTramsea
+## Petició - PeticioProcessarTramesa
 
 [Aquí podeu veure la definició completa del esquema _ProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioProcessarTramesa.xsd)
 
@@ -651,7 +651,7 @@ Idioma de la etiqueta, els possibles valors són:
   * *es* : Indica que l'idioma de la notificació és castellà.
   * *oc* : Indica que l'idioma de la notificació és aranés.
 
-## Petició Resum
+## Petició - PeticioResum
 
 [Aquí podeu veure la definició completa del esquema _PeticioResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioResum.xsd)
 
@@ -676,7 +676,7 @@ Indica si es volen recuperar notificacions o comunicacions en la petició de res
 * `/PeticioResum/MostrarTotesNotificacions`
 Indica si s'han de mostrar o no totes les notificacions per a un usuari concret tenint en compte la combinació del seu NIF amb totes les seves possibles credencials (diferents tlfs/emails). Només aplica amb autenticació amb paraula de pas.
 
-## Petició Evidència
+## Petició - PeticioEvidencia
 
 [Aquí podeu veure la definició completa del esquema _PeticioEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioEvidencia.xsd)
 
@@ -698,3 +698,174 @@ Indica el tipus d'evidència a recuperar:
   * *PDF* : Retornarà la URL d'on descarregar el justificant electrònic de validesa en format _PDF_
 * `/PeticioEvidencia/IdiomaEvidenciaPDF`
 Idioma en el que es retornarà el document d’evidències, només aplica per a peticions amb `<Rol>` CIUTADA i quan el camp `<TipusEvidencia>` agafa el valor _PDF_. En caso de no venir informat o de peticions amb `<Rol>` EMPLEAT, el _PDF_ es retornarà en català.
+
+## Petició - PeticioPracticar
+
+[Aquí podeu veure la definició completa del esquema _PeticioPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioPracticar.xsd)
+
+Aquesta petició permet practicar una notificació per part del destinatari de la mateixa amb els diferents mètodes d'autenticació: _paraula de pas_, _certificat_ o mitjançant autenticació amb _valid_. En cas de peticions amb `<Rol>` EMPLEAT, permet indicar dades sobre l'acceptació en cas de notificacions acceptades en format _paper_. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
+
+```xml
+<xs:sequence>
+  <xs:element name="IdNotificacio" type="xs:integer"/>
+  <xs:element name="Operacio" type="OperacioPracticarType"/>
+  <xs:element name="Decisio" type="DecisioPracticarType"/>
+  <xs:choice minOccurs="0">
+    <xs:element name="Signatura">
+      <xs:annotation>
+        <xs:documentation>XML de la signatura.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element ref="ds:Signature"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="DadesPracticarCanalPaper" type="DadesPracticarCanalPaperType"/>
+  </xs:choice>
+  <xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0">
+  <xs:annotation>
+    <xs:documentation>Només aplica per a notificacions en canal "paper", per els quals es vol fer un canvi de canal. En cas de no aplicar, s'ignorarà l'element.</xs:documentation>
+  </xs:annotation>
+  </xs:element>
+</xs:sequence>
+```
+
+TODO: ACABAR
+
+## Petició - PeticioRecuperarReport
+
+```xml
+TODO: ACABAR
+```
+
+
+## Petició - PeticioConsulta
+
+```xml
+TODO: ACABAR
+```
+
+## Petició - PeticioParaulaPas
+
+```xml
+TODO: ACABAR
+```
+
+## Petició - PeticioCerca
+
+```xml
+TODO: ACABAR
+```
+
+## Resposta
+
+Totes les respostes a les modalitats de consum _WS_ que ofereix **eNotum** extenen el següent esquema de petició:
+
+```xml
+<xs:include schemaLocation="Errors.xsd"/>
+
+<xs:complexType name="RespostaType" abstract="true">
+</xs:complexType>
+```
+
+Per defecte en aquest cas, _RespostaType_ no incorpora cap element a la petició, però inclou els elements definits a [_Errors.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Errors.xsd) per tal de que per defecte, totes les respostes puguin incloure l'estructura definida en aquest esquema.
+
+[Aquí podeu veure la definició completa del esquema _Resposta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Resposta.xsd)
+
+## Errors
+
+[Aquí podeu veure la definició completa del esquema _Errors.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Errors.xsd)
+
+Tot i que l'estructura definida dins de l'esquema _Errors.xsd_ és més complexe, ja que s'utilitza internament per a altres operacions, l'esquema simplificat que s'usarà per afegir a qualsevol resposta en cas de detectar un error serà la següent. Totes les respostes de les modalitats de consum, seran un `choice` entre un element amb la seqüencia dels possibles errors o en cas de funcionar correctament els elements propis de la missatgeria d'aquella modalitat de consum:
+
+```xml
+<xs:complexContent>
+  <xs:extension base="RespostaType">
+    <xs:choice>
+      <xs:element name="Errors" type="ErrorsType" />
+      <xs:sequence>
+         <!-- Seqüencia pròpia de la resposta de la modalitat de consum -->
+      </xs:sequence>
+    </xs:choice>
+  </xs:extension>
+</xs:complexContent>
+```
+
+L'element `<Errors>` serà una seqüencia amb els possibles errors de la petició retornats:
+
+```xml
+<xs:complexType name="ErrorsType">
+  <xs:sequence>
+    <xs:element name="Error" maxOccurs="unbounded">
+      <xs:complexType>
+        <xs:all>
+          <xs:element name="CodiError" type="xs:integer"/>
+          <xs:element name="MissatgeError" type="xs:string"/>
+          <xs:element name="DadesNotificacio" type="DadesNotificacioErrorType" minOccurs="0"/>
+          <xs:element name="FaseError" type="xs:string" minOccurs="0"/>
+          <xs:element name="TipusError" type="xs:string" minOccurs="0"/>
+        </xs:all>
+      </xs:complexType>
+    </xs:element>
+  </xs:sequence>
+</xs:complexType>
+```
+
+Com comentavem, a la practica, les respostes de les modalitats de consum amb elements `<Error>`, només tindran informat els elements obligatoris: `<CodiError>` i `<MissatgeError>`. Els tres elements opcionals restants mai vindran informat en aquests casos. Podeu veure els possibles [codis i missatges d'error en aquest apartat]().
+
+## Resposta - RespostaProcessarTramesa
+
+```xml
+TODO!!!
+```
+
+## Resposta - RespostaResum
+
+```xml
+TODO!!!
+```
+
+## Resposta - RespostaEvidencia
+
+```xml
+TODO!!!
+```
+
+## Resposta - RespostaPracticar
+
+```xml
+TODO!!!
+```
+
+## Resposta - RespostaRecuperarReport
+
+```xml
+TODO!!!
+```
+
+## Resposta - RespostaConsulta
+
+```xml
+TODO!!!
+```
+
+## Resposta - RespostaParaulaPas
+
+```xml
+TODO!!!
+```
+
+## Resposta - RespostaCerca
+
+```xml
+TODO!!!
+```
+
+# 4. Codis d'error d'eNotum
+
+TODO: TAULA
+
+TODO: IDEA, actualment a la documentació actual no hi ha exemples de petició i resposta, potser fora bó afegir-ne un per cada cas.
+
+
