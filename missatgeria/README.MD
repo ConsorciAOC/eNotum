@@ -576,7 +576,27 @@ Persona vinculada de l'empresa destinataria
 ### PersonaVinculada
 
 ```xml
+<xs:complexType name="PersonaVinculadaType">
+    <xs:sequence>
+      <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+      <xs:element name="Nom" type="xs:string"/>
+      <xs:element name="PrimerCognom" type="xs:string"/>
+      <xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+</xs:complexType>
 ```
+
+Persona vinculada amb l'empresa, que podrà accedir a la notificació.
+* `/PersonaVinculada/DocumentIdentificatiu/NIF`
+NIF o NIE de la persona vinculada amb l'empresa receptora de la notificació.
+* `/PersonaVinculada/DocumentIdentificatiu/PASSPORT`
+PASSAPORT de la persona vinculada amb l'empresa receptora de la notificació en cas d'empresa estrangera
+* `/PersonaVinculada/Nom`
+Nom de la persona vinculada de l'empresa.
+* `/PersonaVinculada/PrimerCognom`
+Primer cognom de la persona vinculada de l'empresa.
+* `/PersonaVinculada/SegonCognom`
+Segon cognom de la persona vinculada de l'empresa.
 
 ### PersonesAvis
 
@@ -606,8 +626,30 @@ Telèfon de les persones que rebran l’avís.
 ### Etiquetes
 
 ```xml
+<xs:complexType name="EtiquetesType">
+  <xs:sequence>
+    <xs:element name="Etiqueta" type="EtiquetaType" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EtiquetaType">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="Idioma" type="Idioma"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
 ```
-TODO: Desenvolupar /Notificacio/Etiquetes
+
+Defineix etiquetes arbitraries que opcionalment es poden usar per a classificar la notificació.
+
+* `/Etiquetes/Etiqueta`
+Nom de l'etiqueta.
+* `/Etiquetes/Etiqueta@Idioma`
+Idioma de la etiqueta, els possibles valors són:
+  * *ca* : Indica que l'idioma de la notificació és català.
+  * *es* : Indica que l'idioma de la notificació és castellà.
+  * *oc* : Indica que l'idioma de la notificació és aranés.
 
 ## Petició Resum
 
@@ -623,4 +665,36 @@ Aquesta petició permet recuperar el resum de totes les notificacions de l'usuar
 </xs:sequence>
 ```
 
-TODO: Descripció elements
+* `/PeticioResum/TipusAcces` 
+Indica el mètode d'accés del ciutadà de les notificacions que es volen recuperar:
+  * *PPAS* : Paraula de pas.
+  * *CERT* : Certificat.
+* `/PeticioResum/TipusObjecte`
+Indica si es volen recuperar notificacions o comunicacions en la petició de resum:
+  * *NOTIFICACIO*
+  * *COMUNICACIO*
+* `/PeticioResum/MostrarTotesNotificacions`
+Indica si s'han de mostrar o no totes les notificacions per a un usuari concret tenint en compte la combinació del seu NIF amb totes les seves possibles credencials (diferents tlfs/emails). Només aplica amb autenticació amb paraula de pas.
+
+## Petició Evidència
+
+[Aquí podeu veure la definició completa del esquema _PeticioEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioEvidencia.xsd)
+
+Aquesta petició permet recuperar les evidencies de diposit i pràctica en format _XML_ així com el justificant en format _PDF_ d'una notificació. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
+
+```xml
+<xs:sequence>
+  <xs:element name="IdNotificacio" type="xs:integer"/>
+  <xs:element name="TipusEvidencia" type="TipusEvidenciaType"/>
+  <xs:element name="IdiomaEvidenciaPDF" type="Idioma" minOccurs="0" />
+</xs:sequence>
+```
+
+* `/PeticioEvidencia/IdNotificacio`
+Identificador de la notificació per la que es vol recuperar l'evidència.
+* `/PeticioEvidencia/TipusEvidencia`
+Indica el tipus d'evidència a recuperar:
+  * *XML* : Retornarà l'evidència de dipòsit i l'evidència d’acceptació o rebuig de la notificació en format _XML_
+  * *PDF* : Retornarà la URL d'on descarregar el justificant electrònic de validesa en format _PDF_
+* `/PeticioEvidencia/IdiomaEvidenciaPDF`
+Idioma en el que es retornarà el document d’evidències, només aplica per a peticions amb `<Rol>` CIUTADA i quan el camp `<TipusEvidencia>` agafa el valor _PDF_. En caso de no venir informat o de peticions amb `<Rol>` EMPLEAT, el _PDF_ es retornarà en català.
