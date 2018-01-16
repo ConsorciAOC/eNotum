@@ -462,9 +462,151 @@ Opcionalment es pot indicar el tràmit amb el que està relacionada la notificac
 Opcionalment es pot indicar el numero de cas amb el que està relacionada la notificació. 50 caràcters.
 
 ### Destinataris
-TODO: Desenvolupar /Notificacio/Destinataris
+
+```xml
+<xs:complexType name="DestinatarisType">
+  <xs:sequence>
+    <xs:element name="Destinatari" maxOccurs="unbounded">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="PersonaFisica" type="PersonaFisicaType"/>
+            <xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
+          </xs:choice>
+          <xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+  </xs:sequence>
+</xs:complexType>
+```
+
+Aquest element defineix els destinataris de les notificacions de la tramesa.
+
+* `/Destinatari/PersonaFisica`
+Dades del destinatari en cas de que es tracti d'una persona física.
+* `/Destinatari/PersonaJuridica`
+Dades del destinatari en cas de que es tracti d'una persona jurídica.
+* `/Destinatari/Idioma`
+Opcionalment permet indicar l'idioma específic de l'usuari entre del següents valors:
+  * *ca* : Indica que l'idioma de la notificació és català.
+  * *es* : Indica que l'idioma de la notificació és castellà.
+  * *oc* : Indica que l'idioma de la notificació és aranés.
+  * *en* : Indica que l'idioma de la notificació és anglés.
+
+### PersonaFisica
+
+```xml
+<xs:complexType name="PersonaType" abstract="true">
+  <xs:sequence>
+    <xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
+    <xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
+    <xs:element name="PersonesAvis" type="PersonesAvis" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="PersonaFisicaType">
+  <xs:complexContent>
+    <xs:extension base="PersonaType">
+      <xs:sequence>
+        <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+        <xs:element name="Nom" type="NoEmptyString"/>
+        <xs:element name="PrimerCognom" type="NoEmptyString"/>
+        <xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+```
+
+* `/PersonaFisica/BustiesCorreu/BustiaCorreu`
+Adreça de correu electrònic del destinatari.
+* `/PersonaFisica/Telefons/Telefon`
+Telefón mòbil del destinatari. A nivell de missatgeria no existeix restricció al respecte del camp, però al servidor es comprova i normalitza el format del telefón.
+* `/PersonaFisica/PersonesAvis`
+Dades de les persones que rebran l'avís de la notificació però que no podràn accedir a la mateixa.
+* `/PersonaFisica/DocumentIdentificatiu/NIF`
+NIF o NIE del destinatari de la notificació. A nivell de missatgeria es valida la següent expressió regular `[XYZ]?[0-9]{7,8}[A-Z]`. A nivell de servidor també es comprova el [codi de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_n%C3%BAmeros_de_DNI_o_NIE) del mateix.
+* `/PersonaFisica/DocumentIdentificatiu/PASSPORT`
+Si la notificació és per a un destinatari estranger en comptes del NIF o NIE es pot informar el passaport. L'única restricció d’aquest camp és que en cas de venir informat, no pot ser buit.
+* `/PersonaFisica/Nom`
+Nom del destinatari.
+* `/PersonaFisica/PrimerCognom`
+Primer cognom del destinatri.
+* `/PersonaFisica/SegonCognom`
+Segon cognom del destinatari.
+
+### PersonaJuridica
+
+```xml
+<xs:complexType name="PersonaType" abstract="true">
+  <xs:sequence>
+    <xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
+    <xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
+    <xs:element name="PersonesAvis" type="PersonesAvis" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="PersonaJuridicaType">
+  <xs:complexContent>
+    <xs:extension base="PersonaType">
+      <xs:sequence>
+        <xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+        <xs:element name="RaoSocial" type="NoEmptyString" nillable="false" />
+        <xs:element name="PersonaVinculada" type="PersonaVinculadaType" minOccurs="0"/>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+```
+
+* `/PersonaJuridica/BustiesCorreu/BustiaCorreu`
+* `/PersonaJuridica/Telefons/Telefon`
+* `/PersonaJuridica/PersonesAvis`
+Aquests tres camps, tenen la mateixa definició que els de `PersonaFisica`
+* `/PersonaJuridica/DocumentIdentificatiu/CIF`
+NIF de l'empresa destinataria de la notificació. A nivell de missatgeria es valida la següent expressió regular `[A-Z][0-9]{7}[A-J,0-9]`. A nivell de servidor també es comprova el [digit de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_otros_NIF).
+* `/PersonaJuridica/DocumentIdentificatiu/VAT`
+VAT de l'empresa estrangera destinataria de la notificació. L'única validació que es realitza sobre aquest camp és a nivell de missatgeria comprovant que en cas de ser informat, el camp no sigui buit.
+* `/PersonaJuridica/DocumentIdentificatiu/RaoSocial`
+Raó social de l'empresa.
+* `/PersonaJuridica/DocumentIdentificatiu/PersonaVinculada`
+Persona vinculada de l'empresa destinataria
+
+### PersonaVinculada
+
+```xml
+```
+
+### PersonesAvis
+
+```xml
+<xs:complexType name="PersonesAvis">
+  <xs:sequence>
+    <xs:element name="PersonaAvis" type="PersonaAvisType" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="PersonaAvisType">
+    <xs:sequence>
+      <xs:element name="NomComplet" type="xs:string"/>
+      <xs:element name="BustiaCorreu" type="xs:string"/>
+      <xs:element name="Telefon" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+</xs:complexType>
+```
+
+* `/PersonesAvis/PersonaAvis/NomComplet`
+Nom complet de les persones que rebran l’avís.
+* `/PersonesAvis/PersonaAvis/BustiaCorreu`
+Bústia de correu de les persones que rebran l’avís.
+* `/PersonesAvis/PersonaAvis/Telefon`
+Telèfon de les persones que rebran l’avís.
 
 ### Etiquetes
+
+```xml
+```
 TODO: Desenvolupar /Notificacio/Etiquetes
 
 ## Petició Resum
