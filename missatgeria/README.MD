@@ -829,6 +829,49 @@ Id de la notificació que es desitja consultar.
 
 ## Petició - PeticioParaulaPas
 
+[Aquí podeu veure la definició completa del esquema _PeticioParaulaPas.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioParaulaPas.xsd)
+
+Aquesta petició permet obtenir paraules de pas per a que el ciutadà pugui realitzar operacions de consulta/cerca etc., i paraula de pas per a practicar una notificació en concret. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
+
+```xml
+<xs:sequence>
+  <xs:choice minOccurs="0">
+    <xs:element name="IdNotificacio" type="xs:integer"/>
+    <xs:element name="NumeroRegistre" type="xs:string"/>
+  </xs:choice>
+  <xs:element name="DocumentIdentificatiuPersonaFisica" type="DocumentPersonaFisicaType" minOccurs="0"/>
+  <xs:element name="DocumentIdentificatiuPersonaJuridica" type="DocumentPersonaJuridicaType" minOccurs="0"/>
+  <xs:element name="DadesEnviament">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="BustiaCorreu" type="xs:string"/>
+        <xs:element name="Telefon" type="xs:string"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:sequence>
+```
+* `/PeticioParaulaPas/IdNotificacio`
+Camp opcional, en cas de voler practicar una notificació en concret, s'ha d'informar el id de la notificació mitjançant aquest camp.
+* `/PeticioParaulaPas/NumeroRegistre`
+Igual que en el cas de id notificació, però identificant la notificació mitjançant el seu número de registre.
+* `/PeticioParaulaPas/DocumentIdentificatiuPersonaFisica`
+Identificador de la persona física, que vol fer l'operació. El tipus d'aquest element es defineix amb més detall al següent punt.
+* `/PeticioParaulaPas/DocumentIdentificatiuPersonaJuridica`
+Identificador de la persona jurídica, que vol fer l'operació. El tipus d'aquest element es defineix amb més detall al següent punt.
+* `/PeticioParaulaPas/DadesEnviament/BustiaCorreu`
+Adreça correu electrònic vinculada al destinatari.
+* `/PeticioParaulaPas/DadesEnviament/Telefon`
+Número de telèfon mobil vinculat al destinatari.
+
+### DocumentIdentificatiuPersonaFisica
+
+```xml
+TODO: ACABAR
+```
+
+### DocumentIdentificatiuPersonaJuridica
+
 ```xml
 TODO: ACABAR
 ```
