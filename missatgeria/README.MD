@@ -808,14 +808,24 @@ Aquesta petició permet recuperar el report amb el resum de dades d'una notifica
 </xs:sequence>
 ```
 
-
-
+* `/PeticioRecuperarReport/IdNotificacio`
+Identificador de la notificació de la que es vol recuperar el report.
+* `/PeticioRecuperarReport/DataReport`
+Data del dia del qual es vol obtenir el report. El format de la data ha de ser: `yyyy '-' mm '-' dd zzzzzz?`. De manera que unes dates vàlides serien: _2002-10-10+05:00_ o _2002-10-09Z_ o _2002-10-09_.
 
 ## Petició - PeticioConsulta
 
+[Aquí podeu veure la definició completa del esquema _PeticioConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioConsulta.xsd)
+
+Aquesta petició permet consultar les dades d'una notificació concreta. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
+
 ```xml
-TODO: ACABAR
+<xs:sequence>
+  <xs:element name="IdNotificacio" type="xs:integer"/>
+</xs:sequence>
 ```
+* `/PeticioConsulta/IdNotificacio`
+Id de la notificació que es desitja consultar.
 
 ## Petició - PeticioParaulaPas
 
