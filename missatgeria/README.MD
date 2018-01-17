@@ -812,7 +812,7 @@ L'element `<Errors>` serà una seqüencia amb els possibles errors de la petici�
 </xs:complexType>
 ```
 
-Com comentavem, a la practica, les respostes de les modalitats de consum amb elements `<Error>`, només tindran informat els elements obligatoris: `<CodiError>` i `<MissatgeError>`. Els tres elements opcionals restants mai vindran informat en aquests casos. Podeu veure els possibles [codis i missatges d'error en aquest apartat]().
+Com comentavem, a la practica, les respostes de les modalitats de consum amb elements `<Error>`, només tindran informat els elements obligatoris: `<CodiError>` i `<MissatgeError>`. Els tres elements opcionals restants mai vindran informat en aquests casos. Podeu veure els possibles [codis i missatges d'error en aquest apartat](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#4-codis-derror-denotum).
 
 ## Resposta - RespostaProcessarTramesa
 
@@ -864,7 +864,217 @@ TODO!!!
 
 # 4. Codis d'error d'eNotum
 
-TODO: TAULA
+| Codi d'error  | Descripció |
+| ------------- | ---------- |
+|101|El xml no compleix l'esquema|
+|102|No s'han passat paràmetres a la operació|
+|103|Error executant l'operació|
+|104|L'organisme autoritzat per la PCI no té permisos sobre l'organisme especificat en la petició d'eNotum|
+|500|Error executant l'operació|
+|501|Operació desconeguda/no implementada|
+|502|Aquest rol no té privilegis suficients per realitzar aquesta operació|
+|503|El tipus d'accés no està autoritzat per aquest tipus de petició|
+|504|La entitat especificada no existeix|
+|505|La entitat pare especificada no existeix|
+|506|La entitat que es vol esborrar té notificacions associades|
+|507|Ja existeix un grup d'entitats amb aquest nom|
+|508|Els grups d'entitats tansols admeten entitats no arrel|
+|509|Ja existeix un tipus de peu de notificació predefinit amb aquesta descripció|
+|510|El tipus de peu de notificació predefinit especificat no existeix|
+|511|Ja existeix un tipus de cos de notificació predefinit amb aquesta descripció|
+|512|El tipus de cos de notificació predefinit especificat no existeix|
+|513|Ja existeix una entitat amb aquesta descripció d'ens|
+|514|El tipus de peu de notificació no correspon amb la entitat indicada|
+|515|El tipus de cos de notificació no correspon amb la entitat indicada|
+|601|L'adreça e-mail de l'entitat és obligatòria|
+|602|L'assumpte del missatge e-mail és obligatori|
+|603|El cos del missatge de e-mail és obligatori|
+|604|El text del missatge SMS és obligatori|
+|605|El certificat digital és obligatori|
+|606|El CIF és obligatori|
+|626|El INE10 és obligatori|
+|607|El fitxer de logo és obligatori|
+|608|El fitxer de logo amb títol és obligatori|
+|609|El fitxer d'estils (CSS) és obligatori|
+|610|El nom de l'entitat és obligatori|
+|611|L'identificador d'ens és obligatori|
+|612|L'identificador de la entitat és obligatori|
+|613|El format de l'adreça de la bústia de correu especificada no és correcte|
+|614|El CIF especificat no és correcte|
+|615|El NIF especificat no és correcte|
+|616|La mida del logo adjuntat supera el límit establert pel sistema|
+|617|La mida del logo+títol adjuntat supera el límit establert pel sistema|
+|618|La mida del la fulla d'estils adjuntada (css) supera el límit establert pel sistema|
+|619|La mida del certificat adjuntat supera el límit establert pel sistema|
+|620|L'entitat especificada no es troba dins de la branca corresponent als identificadors d'organisme i departament especificats|
+|621|El logo adjuntat no té un format en base 64 correcte|
+|622|El logo+títol adjuntat no té un format en base 64 correcte|
+|623|La fulla d'estils adjuntada no té un format en base 64 correcte|
+|624|El certificat adjuntat no és un certificat vàlid|
+|625|El INE10 especificat no és correcte|
+|626|El paràmetre CodiOrganisme és obligatori|
+|627|El paràmetre CodiDepartament és obligatori|
+|628|El codi departament no pertany al codi organisme indicat|
+|629|L'identificador de la notificació de l'emissor és obligatori|
+|630|El format del número de telèfon especificat no és correcte|
+|633|El tipus d'accés especificat en la notificació i el vinculat a l'àmbit, són contradictoris|
+|701|L'adreça e-mail del destinatari és obligatòria|
+|701|És obligatori com a mínim un mètode de contacte per al destinatari: e-mail o telèfon.|
+|702|El nom del destinatari és obligatori|
+|703|El primer cognom del destinatari és obligatori|
+|704|El segon cognom del destinatari és obligatori|
+|705|La raó social del destinatari és obligatori|
+|707|L'identificador de la tramesa és obligatori|
+|710|L'identificador del destinatari és obligatori|
+|711|L'element destinataris és obligatori|
+|712|El destinatari no existeix|
+|713|És obligatori omplir un dels camps CIF o NIF|
+|715|L'identificador de la notificació és obligatori|
+|716|La data de registre de la notificació és obligatòria|
+|717|El número de registre de la notificació és obligatori|
+|718|La referència de la notificació és obligatòria|
+|719|El destinatari de la notificació no es correspon amb el perfil especificat|
+|720|Aquesta notificació/comunicació no és acceptada per l'eNOTUM. Per a notificar/comunicar a qualsevol ens del sector públic català, cal utilitzar la plataforma EACAT|
+|721|Aquest ens no es pot autenticar a eNOTUM|
+|722|Les notificacions per a persona jurídica no poden ser amb Canal PAPER|
+|723|Les comunicacions no poden ser amb Canal PAPER|
+|801|La entitat no pot ser una entitat arrel|
+|802|El paràmetre Id entitat es obligatori|
+|803|El paràmetre nom fase motor es obligatori|
+|804|El paràmetre número de reintents màxim es obligatori|
+|805|El paràmetre id regla gestió d'errors es obligatori|
+|806|La regla de gestió d'errors especificada no existeix|
+|807|Ja existeix una regla de gestió d'errors especificada per aquesta entitat i fase de motor|
+|901|El tipus de document especificat no existeix|
+|902|Ja existeix un tipus de document amb la mateixa extensió|
+|903|El paràmetre Id tipus document es obligatori|
+|904|El paràmetre nom tipus document es obligatori|
+|905|El paràmetre extensió tipus document es obligatori|
+|906|El paràmetre extensió tipus document només pot contenir caràcters alfanumèrics|
+|907|El paràmetre Id document es obligatori|
+|908|El paramàtre document content en base64 es obligatori|
+|909|El paràmetre nom del document es obligatori|
+|910|El paràmetre tipus del document es obligatori|
+|911|El tipus de document enviat no està permès|
+|912|El document especificat no existeix|
+|913|El paràmetre codi de pujada del document es obligatori|
+|914|El document supera la mida màxima establerta|
+|915|No es poden inserir més documents per aquesta tramesa|
+|916|El codi per pujar el document especificat no existeix|
+|917|No es pot esborrar el tipus de document ja que hi ha documents d'aquest tipus|
+|918|El paràmetre hash del document és obligatori|
+|919|El paràmetre acció signatura és obligatori i ha de prendre els valors ACCEPTAR o REBUTJAR|
+|920|El paràmetre URLDescarrega del document té un format erroni|
+|921|No s'ha pogut descarregar el fitxer indicat al paràmetre URLDescarrega|
+|922|Ha d'haver un únic document amb el tipus 'Resolució'|
+|923|El paràmetre hash del document no coincideix amb el hash del document proporcionat|
+|924|El document supera la mida màxima establerta per a estar dins del missatge, provi d'adjuntar el document per una altre via|
+|925|El nom del document no pot excedir els 100 caràcters|
+|926|El document PDF d'evidència no es pot generar per a l'idioma especificat|
+|1000|L'identificador del tipus de notificació predefinit és obligatori|
+|1001|La descripció del tipus de notificació predefinit és obligatòria|
+|1002|El cos de missatge del tipus de notificació predefinit és obligatòria|
+|1003|El cos de la notificació en cas de estar informat no pot ser buït|
+|1003|La tramesa indicada no existeix|
+|1004|La tramesa indicada ja ha estat desplegada|
+|1005|La tramesa indicada no té destinataris associats|
+|1006|El paràmetre títol es obligatori|
+|1007|El paràmetre missatge es obligatori|
+|1008|El paràmetre peu recurs es obligatori|
+|1009|El format de l'adreça d'origen del correu es invàlida|
+|1010|La notificació indicada no existeix|
+|1011|El fitxer zip per a la notificació indicada no existeix. Probablement encara no hagi estat generat|
+|1012|El paràmetre acció signatura només pot prendre els valors ACCEPTAR o REBUTJAR|
+|1013|El signant de la notificació no és destinatari d'aquesta|
+|1014|El paràmetre document no té un format en base 64 vàlid|
+|1015|La notificació indicada no és visible des de l'entitat consultadora|
+|1016|El paràmetre de tipus de perfil de consulta del resum de notificacions és obligatori si s'especifiquen el NIF i el CIF|
+|1017|El paràmetre NIF és obligatori|
+|1018|La informació de canvi de canal quan s'accepta amb certificat o valid s'ha de proporcionar en l'operació OBTENIR_DADES|
+|1018|El paràmetre bústia de correu o telèfon mobil és obligatori|
+|1019|El paràmetre identificador de paraula de pas és obligatori|
+|1020|El paràmetre paraula de pas és obligatori|
+|1021|No existeix cap notificació amb aquest número de registre|
+|1022|Error generant paraula de pas|
+|1023|Error validant paraula de pas|
+|1024|Paraula de pas no registrada|
+|1025|Paraula de pas incorrecta|
+|1026|Paraula de pas caducada|
+|1027|Paraula de pas no associada a eNOTUM|
+|1028|Element DadesParaulaPas es obligatori per aquesta operació|
+|1029|El certificat del ciutadà no s'ha d'informar en aquesta operació|
+|1030|La paraula de pas no s'ha d'informar en aquesta operació|
+|1031|L'identificador de la paraula de pas no s'ha d'informar en aquesta operació|
+|1032|La notificació no és accessible amb paraula de pas|
+|1033|El ciutadà no té notificacions|
+|1034|El certificat del ciutadà no és vàlid|
+|1035|Error validant el certificat digital|
+|1036|El paràmetre NivellCertificat no té un valor vàlid|
+|1037|El certificat no té les dades necessàries per aquest perfil|
+|1038|La tramesa conté notificacions i comunicacions. Només en pot contenir d'un tipus|
+|1039|La tramesa conté documents amb accents al nom|
+|1040|El ciutadà no té notificacions accessibles amb paraula de pas|
+|1041|El canvi de mitja només és aplicable a les notificacions generades en paper|
+|1042|Si es vol realitzar un canvi de mitja a via digital és obligatori informar un email i/o telefon|
+|1044|No es pot registrar un canvi de mitjà per una notificació en estat final|
+|1045|La signatura realitzada amb valid no és de segon factor|
+|1046|La signatura no és valida|
+|1047|L'usuari no està autoritzat per a practicar la notificació|
+|1048|És obligatori informar l'element IdAutenticacio|
+|1100|L'etiqueta indicada no existeix|
+|1200|L'àmbit de la notificació no existeix|
+|1201|L'àmbit de la notificació no està actiu|
+|1202|El tipus de la notificació no és notificació|
+|1300|Error creant persona d'avís|
+|1400|Les dades signades no corresponen amb les dades a signar|
+|1401|Error validant la signatura electrònica|
+|1402|La signatura no és vàlida|
+|1403|El nivell del certificat és insuficient per practicar la notificació|
+|3001|Element Tramesa és obligatori per aquesta operació|
+|3002|El paràmetre CodiNotificacio és obligatori per aquesta operació|
+|3003|La notificació ja ha estat acceptada o rebutjada amb anterioritat|
+|3004|La notificació està en estat d'error|
+|3005|La notificació ha d'estar en estat publicada|
+|3006|El paràmetre dades signatura és obligatori|
+|3007|El paràmetre dades signades és obligatori|
+|3008|Element DadesSignatura és obligatori per aquesta operació|
+|3009|Element DadesCerca és obligatori per aquesta operació|
+|3010|La notificació no pertany al destinatari|
+|3011|Error signant la notificació|
+|3012|Error recuperant les dades signades del missatge|
+|3013|El paràmetre NomUsuari és obligatori|
+|3014|Element PersonaFisica i PersonaJuridica de CriterisDestinatari no ha de venir informat per al Rol ciutadà per aquesta operació|
+|3015|El paràmetre data del report és obligatori|
+|3016|El paràmetre CampOrdenacio no té un valor vàlid|
+|3017|El report no s'ha pogut enviar|
+|3020|L'estat de la notificació no permet generar les evidències|
+|3021|El Backoffice informat no existeix|
+|3022|La petició no conté cap paràmetre.|
+|3023|La operació no es pot dur a terme donat que el backoffice especificat té notificacions associades|
+|3024|El codi de backoffice és obligatori|
+|3025|El nom de backoffice és obligatori|
+|3026|Ja existeix un backoffice amb aquest identificador|
+|3027|L'adreça e-mail de remitent del backoffice és obligatòria|
+|3028|L'assumpte del missatge e-mail és obligatori|
+|3029|El cos del missatge de e-mail és obligatori|
+|3030|El text del missatge SMS és obligatori|
+|3031|El codi d'organisme del backoffice és obligatori|
+|3032|L'oficina de registre del backoffice és obligatòria|
+|3033|Heu d'informar un dels dos identificadors del backoffice ID_BO o bé CODI_BO|
+|3034|El organisme associat al backoffice és obligatori.|
+|3035|La notificació no ha estat practicada|
+|3036|En peticions de resum on no s'informa el codi d'organisme i departament el backoffice s'ha d'informar correctament|
+|3037|La notificació ha estat rebutjada automaticament pel sistema amb anterioritat|
+|3101|Element DadesConsulta és obligatori per aquesta operació|
+|3102|Element ResumNotificacions és obligatori per aquesta operació|
+|3103|El paràmetre de cerca Estat no té un valor vàlid|
+|3104|L'evidència en format PDF encara no ha estat generada|
+|3105|El paràmetre MostraTotes no es pot utilitzar en les cerques amb Rol EMPLEAT|
+|3106|El paràmetre MostraTotes no es compatible amb el filtrat per criteris de destinatari|
+|3107|No existeixen credencials per les dades especificades|
+|3108|El codi d'organisme no es correspón amb l'indicat|
+|3200|El tipus de document identificatiu a retornar no està suportat per la versió de missatgeria utilitzada|
+
 
 TODO: IDEA, actualment a la documentació actual no hi ha exemples de petició i resposta, potser fora bó afegir-ne un per cada cas.
 
