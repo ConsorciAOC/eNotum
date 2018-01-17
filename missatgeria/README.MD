@@ -731,7 +731,59 @@ Aquesta petició permet practicar una notificació per part del destinatari de l
 </xs:sequence>
 ```
 
-TODO: ACABAR
+* `/PeticioPracticar/IdNotificacio`
+Id de la notificació que es vol practicar.
+* `/PeticioPracticar/Operacio`
+Hi ha dues operacions possibles:
+  * *OBTENIR_DADES* : Serveix per obtenir el resum criptogràfic que haurà de signar el ciutadà, només aplica a operacions autenticades amb certificat.
+  * *SIGNAR* : Confirma l'operació d'acceptació o rebuig per part del ciutada.
+* `/PeticioPracticar/Decisio`
+Marca la decisió del ciutadà sobre la notificació, els possibles valors són:
+  * *ACCEPTAR* 
+  * *REBUTJAR*
+* `/PeticioPracticar/Signatura`
+Signatura en format [XAdES T detached](https://www.w3.org/TR/XAdES/) sobre el resum critpogràfic obtingut amb la `<Operacio>` _OBTENIR_DADES_. Només aplica en cas d'autenticació amb certificat. 
+* `/PeticioPracticar/DadesPracticarCanalPaper`
+En cas de notificacions complementaries, si aquestes s'han practicat en paper però és vol informar de dades relacionades amb aquesta acció, el funcionari amb `<Rol>` _EMPLEAT_ ho pot fer mitjançant aquest camp que es descriu en més detall en el següent punt.
+* `/PeticioPracticar/CanviCanal`
+En cas de notificacions complementaries, que l'usuari practica de forma activa en digital, pot donar el seu consentiment a ser notificat digitalment les pròperes notificacions així com la bústia i/o correu electrònic on fer les notificacions.
+
+### DadesPracticarCanalPaper
+
+```xml
+<xs:complexType name="DadesPracticarCanalPaperType">
+  <xs:sequence>
+    <xs:element name="NIF" type="NIF"/>
+    <xs:element name="Data" type="xs:dateTime"/>
+    <xs:element name="Referencia" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType>
+```
+* `/DadesPracticarCanalPaper/NIF`
+NIF del funcionari que informa que la notificació s'ha practicat en format paper.
+* `/DadesPracticarCanalPaper/Data`
+Data en la qual el ciutadà va practicar la notificació en format paper.
+* `/DadesPracticarCanalPaper/Referencia`
+Camp de text amb la referència de la practica en paper.
+
+
+### CanviCanal
+
+```xml
+<xs:complexType name="DadesCanviCanalType">
+  <xs:sequence>
+    <xs:element name="Canal" type="CanalType"/>
+    <xs:element name="BustiaCorreu" type="xs:string" minOccurs="0"/>
+    <xs:element name="Telefon" type="xs:string" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
+```
+
+En cas de practicar una notificació complementaria per part del ciutadà, permet indicar a l'usuari de forma opcional si desitja o no rebre les futures notificacions en paper.
+* `/CanviCanal/Canal`
+Indica com vol rebre les futures notificacions:
+  * *PAPER* : En format paper.
+  * *DIGITAL* : En format digital.
 
 ## Petició - PeticioRecuperarReport
 
