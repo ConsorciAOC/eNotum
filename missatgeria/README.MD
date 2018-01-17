@@ -787,9 +787,28 @@ Indica com vol rebre les futures notificacions:
 
 ## Petició - PeticioRecuperarReport
 
+[Aquí podeu veure la definició completa del esquema _PeticioRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioRecuperarReport.xsd)
+
+Aquesta petició permet recuperar el report amb el resum de dades d'una notificació concreta, o el report de totes les notificacions que han canviat d'estat per un departament en una data concreta. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
+
 ```xml
-TODO: ACABAR
+<xs:sequence>
+  <xs:choice>
+    <xs:element name="IdNotificacio" type="xs:integer">
+      <xs:annotation>
+        <xs:documentation>Identificador de la notificació a consultar.</xs:documentation>
+      </xs:annotation>
+    </xs:element>
+    <xs:element name="DataReport" type="xs:date">
+      <xs:annotation>
+        <xs:documentation>Data del dia del qual es vol obtenir el report.</xs:documentation>
+      </xs:annotation>
+    </xs:element>
+  </xs:choice>
+</xs:sequence>
 ```
+
+
 
 
 ## Petició - PeticioConsulta
