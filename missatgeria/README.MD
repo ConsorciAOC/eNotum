@@ -901,9 +901,66 @@ VAT number de l'empresa extrangera de la que la persona jurídica vol demanar la
 
 ## Petició - PeticioCerca
 
+[Aquí podeu veure la definició completa del esquema _PeticioCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioCerca.xsd)
+
+Aquesta petició permet realitzar cerques sobre les notificacions aplicant diferents criteris de cerca. A grans trets La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
+
 ```xml
-TODO: ACABAR
+<xs:sequence>
+  <xs:element name="DadesCerca">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="CriterisEntitat" minOccurs="0"/>
+        <xs:element name="CriterisDestinatari" minOccurs="0"/>
+        <xs:element name="CriterisNotificacio" minOccurs="0"/>
+        <xs:element name="CriterisData" minOccurs="0">
+        <xs:element name="Paginacio"/>
+    </xs:complexType>
+  </xs:element>
+</xs:sequence>
 ```
+
+* `/DadesCerca/CriterisEntitat` 
+Criteris de cerca relacionats amb l'entitat que ha emés les notificacions.
+* `/DadesCerca/CriterisDestinatari`
+Criteris de cerca relacionats amb els destinataris receptors de les notificacions.
+* `/DadesCerca/CriterisNotificacio`
+Criteris de cerca sobre les propietats de les notificacions creades.
+* `/DadesCerca/CriterisData`
+Criteris de dates de les diferents etapes del procés de notificació.
+* `/DadesCerca/Paginacio`
+Permet específicar la pàginació de la cerca.
+
+### CriterisEntitat
+
+```xml
+TODO
+```
+
+### CriterisDestinatari
+
+```xml
+TODO
+```
+
+### CriterisNotificacio
+
+```xml
+TODO
+```
+
+### CriterisData
+
+```xml
+TODO
+```
+
+### Paginacio
+
+```xml
+TODO
+```
+
 
 ## Resposta
 
