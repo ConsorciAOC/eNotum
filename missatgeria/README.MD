@@ -866,15 +866,38 @@ Número de telèfon mobil vinculat al destinatari.
 
 ### DocumentIdentificatiuPersonaFisica
 
+El DocumentIdentificatiuPersonaFisica és del tipus _DocumentPersonaFisicaType_ i permet identificar la persona física que vol demanar la paraula de pas, mitjançant el seu _NIF/NIE_ o el seu _passaport_
+
 ```xml
-TODO: ACABAR
+<xs:complexType name="DocumentPersonaFisicaType">
+  <xs:choice>
+    <xs:element name="NIF" type="NIF"/>
+    <xs:element name="PASSAPORT" type="NoEmptyString"/>
+  </xs:choice>
+</xs:complexType>
 ```
+* `/PeticioParaulaPas/DocumentIdentificatiuPersonaFisica/NIF`
+NIF o NIE del ciutadà que vol demanar la paraula de pas per tal d'interactuar amb **eNotum**
+* `/PeticioParaulaPas/DocumentIdentificatiuPersonaFisica/PASSAPORT`
+Passaport del ciutadà que vol demanar la paraula de pas per tal d'interactuar amb **eNotum**
 
 ### DocumentIdentificatiuPersonaJuridica
 
+El DocumentIdentificatiuPersonaJuridica és del tipus _DocumentPersonaJuridicaType_ i permet identificar la persona jurídica que vol demanar la paraula de pas, mitjançant el seu _NIF d'empresa_ o el seu _VAT number_ en cas d'empreses extrangeres.
+
 ```xml
-TODO: ACABAR
+<xs:complexType name="DocumentPersonaJuridicaType">
+  <xs:choice>
+    <xs:element name="CIF" type="CIF"/>
+    <xs:element name="VAT" type="NoEmptyString"/>
+  </xs:choice>
+</xs:complexType>
 ```
+
+* `/PeticioParaulaPas/DocumentIdentificatiuPersonaJuridica/CIF`
+NIF de l'empresa de la que la persona jurídica vol demanar la paraula de pas per tal d'interactuar amb **eNotum**
+* `/PeticioParaulaPas/DocumentIdentificatiuPersonaJuridica/VAT`
+VAT number de l'empresa extrangera de la que la persona jurídica vol demanar la paraula de pas per tal d'interactuar amb **eNotum**
 
 ## Petició - PeticioCerca
 
@@ -940,9 +963,24 @@ Com comentavem, a la practica, les respostes de les modalitats de consum amb ele
 
 ## Resposta - RespostaProcessarTramesa
 
+[Aquí podeu veure la definició completa del esquema _RespostaProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaProcessarTramesa.xsd)
+
+Aquest esquema de petició és la resposta a la creació de les notificacions que ens retorna els identificadors per a les notificacions creades, exten el tipus _RespostaType_ i fa un `<choice>` que permet triar entre retoranar una llista d'errors produïts durant l'execució de la petició o el següent element amb la resposta de l'operació:
+
 ```xml
-TODO!!!
+<xs:sequence>
+  <xs:element name="NotificacionsCreades">
+      <xs:complexType>
+          <xs:sequence>
+              <xs:element name="IdNotificacio" type="xs:integer" maxOccurs="unbounded"/>
+          </xs:sequence>
+      </xs:complexType>
+  </xs:element>
+</xs:sequence>
 ```
+
+* `/RespostaProcessarTramesa/NotificacionsCreades/IdNotificacio`
+Identificador/s de les notificacions creades.
 
 ## Resposta - RespostaResum
 
@@ -1198,8 +1236,3 @@ TODO!!!
 |3107|No existeixen credencials per les dades especificades|
 |3108|El codi d'organisme no es correspón amb l'indicat|
 |3200|El tipus de document identificatiu a retornar no està suportat per la versió de missatgeria utilitzada|
-
-
-TODO: IDEA, actualment a la documentació actual no hi ha exemples de petició i resposta, potser fora bó afegir-ne un per cada cas.
-
-
