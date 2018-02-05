@@ -20,13 +20,13 @@ Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a t
 ## 1.2. Cicle de vida de les notificacions
 
 Per tal de comprendre com utilitzar les operacions que estan publicades per a la integració amb
-eNOTUM és recomanable entendre el cicle de vida de les notificacions. Això ens permetrà saber en
-quins estats pot estar la notificació i l’efecte que tindrà l’execució de les operacions sobre l’estat
+**eNOTUM** és recomanable entendre el cicle de vida de les notificacions. Això ens permetrà saber en
+quins estats pot estar la notificació i l'efecte que tindrà l’execució de les operacions sobre l’estat
 d’aquesta.
 
 ### 1.2.1. Diagrama de cicle de vida
 
-En el següent diagrama d’estats es mostra els diferents estats possibles de la notificació i les
+En el següent diagrama d'estats es mostra els diferents estats possibles de la notificació i les
 transicions que es poden donar.
 
 ![Cicle de vida de les notificacions](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/imgs/eNotum_cicle_vida_diagrama2.png)
@@ -35,13 +35,40 @@ transicions que es poden donar.
 
 #### 1.2.2.1. Pendent de processar
 
+L'estat _Pendent de processar_ és l'estat inicial de la notificació. La notificació està en aquest estat just en el moment en que l'integrador ha llançat la operació [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) i el missatge de resposta de l'operació ha indicat un codi de notificació, o sigui, que no hi ha hagut cap error. En el cas que la petició de processar tramesa hagi produït algun error la notificació no es crea i, per tant, no està en aquest estat.
+Si en el missatge de [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) s'indica un número de registre i una data de registre la notificació passa directament a l'estat _Registrada_ sense passar per l'estat _Pendent de processar_.
+Un cop en aquest estat el motor de **eNOTUM** s'encarrega de registrar la notificació. Si el registre es fa correctament es passa a l'estat _Registrada_. Si el registre falla el motor de **eNOTUM** programa un nou intent de registre de la notificació al cap d'un cert temps. L'execució pot reintentar-se un nombre determinat de cops. Quan s'exhaureixen els reintents la notificació passa a l'estat _Error_.
+El temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNOTUM** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNOTUM** i per organisme/departament.
+
 #### 1.2.2.2. Registrada
 
-### TODO Resta estats...
+#### 1.2.2.3. Dipositada
+
+#### 1.2.2.4. Visualitzada
+
+#### 1.2.2.5. Acceptada
+
+#### 1.2.2.6. Rebutjada
+
+#### 1.2.2.7. Rebutjada sense acció
+
+#### 1.2.2.8. Rebutjada sense accés
+
+#### 1.2.2.9. Error
+
+#### 1.2.2.10. Descartada
 
 ## 1.3. Cicle de vida de les comunicacions
 
+### 1.3.1. Descripció dels estats de les comunicacions
+
+#### 1.3.1.1. Visualitzada
+
+#### 1.3.1.2. Altes estats
+
 ## 1.4. Codificació dels estats eNOTUM
+
+La codificació dels estats a **eNOTUM** es fa mitjançant una paraula d'estats que permet tenir constància de l'estat actual així com traça dels diferents estats pels que ha passat una notificació.
 
 # 2. Missatgeria
 
