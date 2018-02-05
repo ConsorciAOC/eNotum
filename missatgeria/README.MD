@@ -19,7 +19,17 @@ Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a t
 
 ## 1.2. Cicle de vida de les notificacions
 
+Per tal de comprendre com utilitzar les operacions que estan publicades per a la integració amb
+eNOTUM és recomanable entendre el cicle de vida de les notificacions. Això ens permetrà saber en
+quins estats pot estar la notificació i l’efecte que tindrà l’execució de les operacions sobre l’estat
+d’aquesta.
+
 ### 1.2.1. Diagrama de cicle de vida
+
+En el següent diagrama d’estats es mostra els diferents estats possibles de la notificació i les
+transicions que es poden donar.
+
+![Cicle de vida de les notificacions](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/imgs/eNotum_cicle_vida_diagrama2.png)
 
 ### 1.2.2. Descripció dels estats de les notificacions
 
