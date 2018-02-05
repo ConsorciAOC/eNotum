@@ -60,15 +60,29 @@ El temps d'espera entre intents d'execució així com el nombre de reintents és
 
 ## 1.3. Cicle de vida de les comunicacions
 
+En el cas de les comunicacions el cicle de vida és molt similar al de les notificacions excepte en el fet de que no es necessita validesa legal de que el destinatari ha practicat la notificació, i que a més a més les comunicacions no tenen un temps determinat de vigència i per tant no expiren, així doncs el cicle de vida es simplifica i queda de la següent manera:
+
+![Cicle de vida de les comunicacions](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/imgs/eNotum_cicle_vida_comunicacions_diagrama3.png)
+
 ### 1.3.1. Descripció dels estats de les comunicacions
+
+Com es pot observar en el diagrama anterior hi ha poques diferències en els estats de les comunicacions respecte els de les notificacions. Aquestes comparteixen els estats inicials fins que el ciutadà visualitza la notificació. Un cop en aquest estat, la diferencia radica en l'absència de l'estat _Rebutjada_ i en la manera de fer la transició cap a l'estat _Acceptada_ des de l'estat _Visualitzada_. També es pot observar que no hi ha l'estat d'expiració al final de la vida de la comunicació donat que no tenen data de caducitat.
 
 #### 1.3.1.1. Visualitzada
 
+Quan la comunicació està en aquest estat el ciutadà pot directament consultar el contingut de la comunicació. A diferència de la notificació, no es necessita validesa legal de l'acceptació o rebuig d'aquesta i per tant no cal que el ciutadà signi digitalment la seva decisió.
+Un cop consultada la comunicació amb l'operació [_Consultar_](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#petici%C3%B3---peticioconsulta) una notificació aquesta realitzarà automàticament la transició a l’estat _Acceptada_.
+
 #### 1.3.1.2. Altes estats
 
-## 1.4. Codificació dels estats eNOTUM
+La resta d'estats són els mateixos respecte les notificacions i s'han de fer servir les mateixes operacions que amb aquestes.
+Per crear-les s'ha d’informar el camp _TipusObjecte_ en el node `<Notificacio>` de l'operació  [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) amb el valor _COMUNICACIO_.
 
-La codificació dels estats a **eNOTUM** es fa mitjançant una paraula d'estats que permet tenir constància de l'estat actual així com traça dels diferents estats pels que ha passat una notificació.
+## 1.4. Codificació dels estats de les notificacions a eNOTUM
+
+La codificació dels estats de les notificacions a **eNOTUM** es fa mitjançant una paraula d'estats que permet tenir constància de l'estat actual així com traça dels diferents estats pels que ha passat una notificació.
+
+![Codificacio d'estats](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/imgs/eNotum_codificacio_estats_diagrama4.png)
 
 # 2. Missatgeria
 
