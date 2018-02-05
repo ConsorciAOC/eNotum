@@ -36,8 +36,11 @@ transicions que es poden donar.
 #### 1.2.2.1. Pendent de processar
 
 L'estat _Pendent de processar_ és l'estat inicial de la notificació. La notificació està en aquest estat just en el moment en que l'integrador ha llançat la operació [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) i el missatge de resposta de l'operació ha indicat un codi de notificació, o sigui, que no hi ha hagut cap error. En el cas que la petició de processar tramesa hagi produït algun error la notificació no es crea i, per tant, no està en aquest estat.
+
 Si en el missatge de [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) s'indica un número de registre i una data de registre la notificació passa directament a l'estat _Registrada_ sense passar per l'estat _Pendent de processar_.
+
 Un cop en aquest estat el motor de **eNOTUM** s'encarrega de registrar la notificació. Si el registre es fa correctament es passa a l'estat _Registrada_. Si el registre falla el motor de **eNOTUM** programa un nou intent de registre de la notificació al cap d'un cert temps. L'execució pot reintentar-se un nombre determinat de cops. Quan s'exhaureixen els reintents la notificació passa a l'estat _Error_.
+
 El temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNOTUM** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNOTUM** i per organisme/departament.
 
 #### 1.2.2.2. Registrada
