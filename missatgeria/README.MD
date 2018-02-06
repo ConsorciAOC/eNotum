@@ -65,11 +65,19 @@ Si el ciutadà no visualitza la notificació aquesta es manté en aquest estat d
 
 #### 1.2.2.4. Visualitzada
 
-Quan la notificació està en aquest estat el ciutadà pot decidir acceptar o rebutjar la notificació. Per tal que aquesta decisió tingui una validesa legal el ciutadà ha de signar l’acceptació o rebuig amb el seu certificat digital o, en el cas que s’hagi creat amb tipus d’accés paraula de pas, es pot realitzar també amb una paraula de pas.
-Les dades a signar seran proporcionades per eNOTUM mitjançant la operació Practicar notificació indicant que la modalitat de l’operació a realitzar es OBTENIR_DADES.
-La signatura del ciutadà ha de ser realitzada amb una eina de signatura que generi signatures digitals avançades en format XML (XAdES) com per exemple l’eina de signatura-e de CATCert. Per tal que la signatura sigui acceptada ha de tenir un format XAdES-T o més elevat ja que és a partir d’aquest nivell que es garanteix autenticació del signatari, integritat de les dades i validesa de la signatura a llarg termini.
-Un cop realitzada la signatura aquesta s’envia a eNOTUM amb l’operació Practicar notificació indicant que la modalitat de l’operació a realitzar es SIGNAR. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l’estat de la notificació passa a ser Acceptada o Rebutjada en funció del que s’especifiqui en l’operació.
-Es pot donar el cas que el ciutadà tot i que visualitzi la notificació no l’accepti ni la rebutgi. En aquest cas la notificació es manté en aquest estat fins la finalització del temps de vigència. Exhaurit aquest període el sistema rebutja la notificació i aquesta passa a l’estat Rebutjada sense acció. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s’exhaureixen els reintents la notificació passa a l’estat Error.
+Quan la notificació està en aquest estat el ciutadà pot decidir acceptar o rebutjar la notificació. Per tal que aquesta decisió tingui una validesa legal el ciutadà ha de realitzar una acció diferent en funció del tipus d'accés requerit per a la notificació. 
+* Per a notificacions creades amb `<TipusAcces>` _CERT_, s'ha de signar l'acceptació o rebuig amb el certificat digital vinculat a l'identitat de l'usuari. 
+* Per a notificacions creades amb `<TipusAcces>` _PPAS_, es poden acceptar o rebutjar de dues formes:
+  * Amb una _paraula de pas_ específica demanada per a realitzar la practica d'una notificació.
+  * O si es delega l'autenticació del usuari a [_Valid_](https://www.aoc.cat/serveis-aoc/valid/) o una altre plataforma d'un tercer, tant sols indicant el `/Usuari/IdAutenticacio` per identificar aquest procés d'autorització.
+
+En el cas d'accés amb _certificat digital_ Les dades a signar seran proporcionades per **eNOTUM** mitjançant la operació [_Practicar notificació_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _OBTENIR_DADES_.
+
+La signatura del ciutadà ha de ser realitzada amb una eina de signatura que generi signatures digitals avançades en format XML (XAdES) com per exemple el servei del [_signador del Consorci AOC_](https://signador.aoc.cat). Per tal que la signatura sigui acceptada ha de tenir un format _XAdES-T_ o més elevat ja que és a partir d'aquest nivell que es garanteix l'autenticació del signatari, integritat de les dades i validesa de la signatura a llarg termini.
+
+Un cop realitzada la signatura aquesta s'envia a **eNOTUM** amb l'operació [_Practicar notificació_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _SIGNAR_. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l'estat de la notificació passa a ser _Acceptada_ o _Rebutjada_ en funció del que s'hagi especificat en l'element `<Decisio>` de l'operació de practicar.
+
+Es pot donar el cas que el ciutadà tot i que visualitzi la notificació no l'accepti ni la rebutgi. En aquest cas la notificació es manté en l'estat _Visualitzada_ fins la finalització del temps de vigència. Exhaurit aquest període el sistema rebutja la notificació i aquesta passa a l'estat _Rebutjada sense acció_. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s'exhaureixen els reintents la notificació passa a l'estat _Error_.
 
 #### 1.2.2.5. Acceptada
 
