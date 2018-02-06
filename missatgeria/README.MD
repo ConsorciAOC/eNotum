@@ -1064,13 +1064,21 @@ Codi del backoffice emissor de les notificacions.
 ```
 
 * `/CriterisDestinatari/Persona`
-Aquest element permet filtrar bàsicament per les bústies de correu i/o telefons dels destinataris de les notificacions, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD# Persona)
-
-* `/CriterisDestinatari/`
-* `/CriterisDestinatari/`
-* `/CriterisDestinatari/`
-* `/CriterisDestinatari/`
-* `/CriterisDestinatari/`
+Aquest element permet filtrar bàsicament per les bústies de correu i/o telefons dels destinataris de les notificacions, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#persona)
+* `/CriterisDestinatari/PersonaFisica`
+Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona física destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#personafisica)
+* `/CriterisDestinatari/PersonaJuridica`
+Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona jurídica destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#personajuridica)
+* `/CriterisDestinatari/Idioma`
+Permet cerca les notificacions creades en un idioma concret. Els possibles valors d'aquest camp són:
+  * *ca* : Indica que l'idioma de les notificacions a cercar és català.
+  * *es* : Indica que l'idioma de les notificacions a cercar és castellà.
+  * *oc* : Indica que l'idioma de les notificacions a cercar és aranés.
+  * *en* : Indica que l'idioma de les notificacions a cercar és anglés.
+* `/CriterisDestinatari/CanviCanal`
+És un booleà que permet indicar si s'han de cercar notificacions que hagin canviat de canal, el camp és opcional i en cas de no venir informat no s'aplicarà cap criteri, es a dir no informar el camp és diferent que informar-lo amb el valor `false`. Els possibles valors són:
+  * *true* : Indica explicitament que s'han de cercar notificacions per les quals l'usuari hagi decidit fer un canvi de canal a digital i hagi donat les dades de contacte electrònic.
+  * *false* : Indica explicitament que s'han de cercar notificacions per les quals l'usuari no hagi demanat un canvi de canal.
 
 #### Persona
 
@@ -1082,6 +1090,68 @@ Aquest element permet filtrar bàsicament per les bústies de correu i/o telefon
   </xs:sequence>
 </xs:complexType>
 ```
+
+* `/Persona/BustiesCorreu/BustiaCorreu`
+Adreça de correu electrònic del destinatari que es vol cercar. Cercarà tots els destinataris llur adreça de correu contingui la cadena passada com a valor per aquest criteri de cerca.
+* `/Persona/Telefons/Telefon`
+Número de telèfon del destinatari que es vol cercar. Cercarà tots els destinataris llur número de telèfon contingui la cadena numèrica passada com a valor per aquest criteri de cerca.
+
+#### PersonaFisica
+
+```xml
+<xs:complexType name="FiltrePersonaFisicaType">
+  <xs:complexContent>
+    <xs:extension base="FiltrePersonaType">
+      <xs:sequence>
+        <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType" minOccurs="0"/>
+        <xs:element name="Nom" type="xs:string" minOccurs="0"/>
+        <xs:element name="PrimerCognom" type="xs:string" minOccurs="0"/>
+        <xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+```
+
+Aquest element extent de `FiltrePersonaType` per tant permet cercar per els mateixos camps que l'element [`FiltrePersonaType`](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#persona) però addicionalment cerca pels següents camps:
+
+* `/PersonaFisica/DocumentIdentificatiu/NIF`
+NIF/NIE del destinatari de les notificacions a cercar.
+* `/PersonaFisica/DocumentIdentificatiu/PASSPORT`
+Passaport del destinatari de les notificacions a cercar.
+* `/PersonaFisica/Nom`
+Nom de pila del destinatari de les notificacions a cercar. Cercarà tots els destinataris llur nom contingui la cadena passada com a valor per aquest criteri de cerca.
+* `/PersonaFisica/PrimerCognom`
+Primer cognom del destinatari de les notificacions a cercar. Cercarà tots els destinataris llur primer cognom contingui la cadena passada com a valor per quest criteri de cerca.
+* `/PersonaFisica/SegonCognom`
+Primer cognom del destinatari de les notificacions a cercar. Cercarà tots els destinataris llur primer cognom contingui la cadena passada com a valor per quest criteri de cerca.
+
+#### PersonaJuridica
+
+```xml
+<xs:complexType name="FiltrePersonaJuridicaType">
+  <xs:complexContent>
+    <xs:extension base="FiltrePersonaType">
+      <xs:sequence>
+        <xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType" minOccurs="0"/>
+        <xs:element name="RaoSocial" type="xs:string" minOccurs="0"/>
+        <xs:element name="PersonaVinculada" type="FiltrePersonaVinculadaType" minOccurs="0"/>
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+```
+
+Aquest element extent de `FiltrePersonaType` per tant permet cercar per els mateixos camps que l'element [`FiltrePersonaType`](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#persona) però addicionalment cerca pels següents camps:
+
+* `/PersonaJuridica/DocumentIdentificatiu/CIF`
+NIF d'empresa del destinatari de les notificacions a cercar.
+* `/PersonaJuridica/DocumentIdentificatiu/VAT`
+VAT number de l'empresa extrangera del destinatari de les notificacions a cercar.
+* `/PersonaJuridica/RaoSocial`
+Raó social, en el cas de perfils de persona jurídica, del destinatari que es vol cercar. Cercarà tots els destinataris que disposin de raó social informada que contingui la cadena passada com a valor per aquest criteri de cerca.
+* `/PersonaJuridica/PersonaVinculada`
+Permet filtrar per els mateixos camps que `FiltrePersonaFisicaType` (NIF/NIE,passaport,nom i cognoms) però en aquest cas de persona vinculada a la persona jurídica destinataria de la notificació.
 
 ### CriterisNotificacio
 
@@ -1106,6 +1176,8 @@ Aquest element permet filtrar bàsicament per les bústies de correu i/o telefon
   </xs:complexType>
 </xs:element>
 ```
+
+
 **TODO** DEFINIR
 
 ### CriterisData
