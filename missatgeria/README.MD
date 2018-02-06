@@ -79,17 +79,25 @@ Un cop realitzada la signatura aquesta s'envia a **eNOTUM** amb l'operació [_Pr
 
 Es pot donar el cas que el ciutadà tot i que visualitzi la notificació no l'accepti ni la rebutgi. En aquest cas la notificació es manté en l'estat _Visualitzada_ fins la finalització del temps de vigència. Exhaurit aquest període el sistema rebutja la notificació i aquesta passa a l'estat _Rebutjada sense acció_. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s'exhaureixen els reintents la notificació passa a l'estat _Error_.
 
-#### 1.2.2.5. Acceptada
+#### 1.2.2.5. Acceptada / Rebutjada / Rebutjada sense acció / Rebutjada sense accés
 
-#### 1.2.2.6. Rebutjada
+Un cop la notificació està en qualsevol d'aquests quatre estats - que es consideren tots estats finals ja que un cop la notificaciño asoleix un d'aquests estats el mateix ja no es modificarà - el ciutadà pot consultar les dades de la notificació. L'integrador pot recuperar aquestes dades amb la operació [_PeticióConsulta_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioconsulta). Aquesta operació només pot ser consultada amb el `<Rol>` _CIUTADA_ quan la notificació està en els estats _Acceptada_, _Rebutjada_, _Rebutjada sense acció_ o _Rebutjada sense accés_. 
 
-#### 1.2.2.7. Rebutjada sense acció
-
-#### 1.2.2.8. Rebutjada sense accés
+Un cop es pot fer la consulta per ciutada perquè la notificació es troba en un d'aquests estats, la informació retornada serà la mateixa, és a dir, la informació sobre la notificació retornada no serà més o menys restrictiva en funció de l'estat. Remarquem aquest fet ja que en versions anteriors d'**eNotum** les dades recuperades per la consulta en cas de que l'estat de la notificació fos _Acceptada_ eren més que per qualsevol dels altres tres estats de _Rebutjada_.
 
 #### 1.2.2.9. Error
 
+Arriben a aquest estat les notificacions que han estat involucrades en l'execució d'algun procés del sistema que ha produït repetidament errors.
+
+En aquest estat les notificacions no poden ser acceptades ni rebutjades ni pel ciutadà ni pel sistema.
+
+Per l'operació [_PeticioCerca_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiocerca) de ciutadà no es mostren les notificacions en aquest estat. En canvi per aquesta mateixa operació amb `<Rol>` _EMPLEAT_ sí es mostren aquestes notificacions per tal que l'empleat sigui conscient de que la notificació està en error.
+
+Quan una notificació està en aquest estat l'administrador del sistema pot rellançar manualment el procés on s'ha produït l'error.
+
 #### 1.2.2.10. Descartada
+
+Un cop en aquest estat la notificació no pot ser canviada d'estat a un estat anterior per intentar que es torni a executar la fase que ha fallat.
 
 ## 1.3. Cicle de vida de les comunicacions
 
