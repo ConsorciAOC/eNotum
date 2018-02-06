@@ -41,13 +41,35 @@ Si en el missatge de [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/
 
 Un cop en aquest estat el motor de **eNOTUM** s'encarrega de registrar la notificació. Si el registre es fa correctament es passa a l'estat _Registrada_. Si el registre falla el motor de **eNOTUM** programa un nou intent de registre de la notificació al cap d'un cert temps. L'execució pot reintentar-se un nombre determinat de cops. Quan s'exhaureixen els reintents la notificació passa a l'estat _Error_.
 
-El temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNOTUM** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNOTUM** i per organisme/departament.
+El temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNOTUM** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNOTUM** i per organisme/departament al que pertany la notificació.
 
 #### 1.2.2.2. Registrada
 
+La notificació està en aquest estat quan ja està registrada. S'arriba a aquest estat quan el motor registra una notificació en estat _Pendent de processar_ o quan s'envia un missatge a **eNOTUM** indicant que la tramesa ja està registrada. O sigui, informant la data de registre i el número de registre dins el node `/Notificacio/DadesRegistre` de la `<Tramesa>`.
+
+Quan estem en aquest estat el motor d'**eNOTUM** dipositarà la notificació i crearà la evidència de dipòsit. Si aquest procés s'executa sense problemes es passarà a l'estat _Dipositada_. Com en l'estat anterior, si falla el procés es reintentarà un nombre definit de cops i, si finalment cap acaba correctament, la notificació passa a l'estat _Error_.
+
+Igual que en el cas anterior el temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNOTUM** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNOTUM** i per organisme/departament al que pertany la notificació.
+
 #### 1.2.2.3. Dipositada
 
+La notificació passa a aquest estat quan s'ha efectuat el dipòsit de la notificació. Només s'arriba a aquest estat a partir de l'estat _Registrada_.
+
+En aquest estat s'avisa als destinataris de la notificació que han rebut una notificació i que poden accedir a l'aplicació per tal de poder consultar les seves notificacions. Aquesta informació s'envia per correu electrònic i/o via un SMS al telèfon del destinatari. Ambdós camps s'agafaran dels nodes `/BustiesCorreu/BustiaCorreu` i `/Telefons/Telefon` respectivament del node `<PersonaFisica>` o `<PersonaJuridica>` que ve informat dins el node `/Notificacio/Destinatari` de la `<Tramesa>`. En aquest estat també s'enviaran els correus electrònics i missatges de text a les persones d'avís associades a cada destinatari. Les persones d'avís es diferencien dels destinataris de la notificació en el fet que no poden accedir a la notificació i només s'assabenten a través d'aquest avís de que el destinatari al que estan associades ha rebut una notificació.
+
+L'integrador pot permetre que el ciutadà consulti les notificacions que ha rebut mitjançant l'operació de [_PeticióCerca_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiocerca). Les notificacions retornades per aquesta consulta passaran automàticament a l'estat _Visualitzada_.
+
+Per altra banda, l'integrador pot permetre que els empleats encarregats de crear/gestionar les notificacions puguin consultar l'estat en que es troben les notificacions i diversa informació addicional amb les operacions [_PeticióCerca_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiocerca) i [_PeticióConsulta_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioconsulta). Aquestes al ser executades per a un perfil d'empleat públic no canvien l'estat de la notificació a _Visualitzada_ ja que no és el ciutadà qui ha visualitzat la notificació.
+
+Si el ciutadà no visualitza la notificació aquesta es manté en aquest estat durant el temps de vigència de la notificació indicat al camp `<DiesExpiracio>`. Al expirar aquest període el sistema rebutja automàticament la notificació creant una evidència de rebuig i la notificació passa a l'estat _Rebutjada sense accés_. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s'exhaureixen els reintents la notificació passa a l'estat _Error_.
+
 #### 1.2.2.4. Visualitzada
+
+Quan la notificació està en aquest estat el ciutadà pot decidir acceptar o rebutjar la notificació. Per tal que aquesta decisió tingui una validesa legal el ciutadà ha de signar l’acceptació o rebuig amb el seu certificat digital o, en el cas que s’hagi creat amb tipus d’accés paraula de pas, es pot realitzar també amb una paraula de pas.
+Les dades a signar seran proporcionades per eNOTUM mitjançant la operació Practicar notificació indicant que la modalitat de l’operació a realitzar es OBTENIR_DADES.
+La signatura del ciutadà ha de ser realitzada amb una eina de signatura que generi signatures digitals avançades en format XML (XAdES) com per exemple l’eina de signatura-e de CATCert. Per tal que la signatura sigui acceptada ha de tenir un format XAdES-T o més elevat ja que és a partir d’aquest nivell que es garanteix autenticació del signatari, integritat de les dades i validesa de la signatura a llarg termini.
+Un cop realitzada la signatura aquesta s’envia a eNOTUM amb l’operació Practicar notificació indicant que la modalitat de l’operació a realitzar es SIGNAR. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l’estat de la notificació passa a ser Acceptada o Rebutjada en funció del que s’especifiqui en l’operació.
+Es pot donar el cas que el ciutadà tot i que visualitzi la notificació no l’accepti ni la rebutgi. En aquest cas la notificació es manté en aquest estat fins la finalització del temps de vigència. Exhaurit aquest període el sistema rebutja la notificació i aquesta passa a l’estat Rebutjada sense acció. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s’exhaureixen els reintents la notificació passa a l’estat Error.
 
 #### 1.2.2.5. Acceptada
 
