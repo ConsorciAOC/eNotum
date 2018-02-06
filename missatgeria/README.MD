@@ -1026,32 +1026,140 @@ Permet específicar la pàginació de la cerca.
 ### CriterisEntitat
 
 ```xml
-TODO
+<xs:element name="CriterisEntitat" minOccurs="0">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="CodiOrganisme" type="xs:string" minOccurs="0"/>
+      <xs:element name="CodiDepartament" type="xs:string" minOccurs="0"/>
+      <xs:element name="CodiBO" type="xs:string" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
 ```
+
+Aquest element permet filtrar les notificacions en funció de les següents elements vinculats a les entitats de les mateixes:
+* `/CriterisEntitat/CodiOrganime`
+Codi ENS de l'organisme emissor de les notificacions.
+* `/CriterisEntitat/CodiDepartament`
+Codi ENS del departament emissor de les notificacions.
+* `/CriterisEntitat/CodiBO`
+Codi del backoffice emissor de les notificacions.
 
 ### CriterisDestinatari
 
 ```xml
-TODO
+<xs:element name="CriterisDestinatari" minOccurs="0">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:choice minOccurs="0">
+        <xs:element name="Persona" type="FiltrePersonaType"/>
+        <xs:element name="PersonaFisica" type="FiltrePersonaFisicaType"/>
+        <xs:element name="PersonaJuridica" type="FiltrePersonaJuridicaType"/>
+      </xs:choice>
+      <xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+      <xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+```
+
+* `/CriterisDestinatari/Persona`
+Aquest element permet filtrar bàsicament per les bústies de correu i/o telefons dels destinataris de les notificacions, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD# Persona)
+
+* `/CriterisDestinatari/`
+* `/CriterisDestinatari/`
+* `/CriterisDestinatari/`
+* `/CriterisDestinatari/`
+* `/CriterisDestinatari/`
+
+#### Persona
+
+```xml
+<xs:complexType name="FiltrePersonaType">
+  <xs:sequence>
+    <xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
+    <xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
 ```
 
 ### CriterisNotificacio
 
 ```xml
-TODO
+<xs:element name="CriterisNotificacio" minOccurs="0">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="Titol" type="xs:string" minOccurs="0"/>
+      <xs:element name="IdNotificacio" type="IntervalValorsEnters" minOccurs="0"/>
+      <xs:element name="Referencia" type="IntervalValors" minOccurs="0"/>
+      <xs:element name="NumeroRegistre" type="IntervalValors" minOccurs="0"/>
+      <xs:element name="Estat" type="xs:string" minOccurs="0"/>
+      <xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
+      <xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+      <xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+      <xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
+      <xs:element name="Canal" type="CanalType" minOccurs="0"/>
+      <xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+      <xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+      <xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
 ```
+**TODO** DEFINIR
 
 ### CriterisData
 
 ```xml
-TODO
+<xs:element name="CriterisData" minOccurs="0">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="DataRegistre" type="PeriodeDataTemps" minOccurs="0"/>
+      <xs:element name="DataPublicacio" type="PeriodeDataTemps" minOccurs="0"/>
+      <xs:element name="DataAcceptacioRebuig" type="PeriodeDataTemps" minOccurs="0"/>
+      <xs:element name="DataExpiracio" type="PeriodeData" minOccurs="0"/>
+      <xs:element name="DiesPublicada" type="xs:integer" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
 ```
+**TODO** DEFINIR
 
 ### Paginacio
 
 ```xml
-TODO
+<xs:element name="Paginacio">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="NumeroPagina">
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minExclusive value="0"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ResultatsPerPagina">
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minExclusive value="0"/>
+            <xs:maxExclusive value="51"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CampOrdenacio" type="xs:string" minOccurs="0"/>
+      <xs:element name="SentitOrdenacio" minOccurs="0">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Ascendent"/>
+            <xs:enumeration value="Descendent"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
 ```
+**TODO** DEFINIR
 
 
 ## Resposta
