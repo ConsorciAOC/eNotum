@@ -1177,8 +1177,35 @@ Permet filtrar per els mateixos camps que `FiltrePersonaFisicaType` (NIF/NIE,pas
 </xs:element>
 ```
 
+Aquest element permet filtrar les notificacions en funció d'alguns dels valors informats a les mateixes:
+* `/CriterisNotificacio/Titol`
+Títol de la notificació que es vol cercar. Cercarà totes les notificacions llur títol contingui la cadena passada com a valor per aquest criteri de cerca.
+* `/CriterisNotificacio/IdNotificacio`
+Permet indicar un rang de cerca de identificadors de notificacions.
+  * `/CriterisNotificacio/IdNotificacio/ValorSuperior`
+  Valor de tall superior pel interval de cerca.
+  * `/CriterisNotificacio/IdNotificacio/ValorInferior`
+  Valor de tall inferior pel interval de cerca.
+  * En cas de voler buscar per un identificador de notificació en concret, s'ha d'indicar el mateix identificador per el valor inferior i el superior.
+* `/CriterisNotificacio/Referencia`
+Permet indicar un rang de cerca dels valors de la referencia, així com un valor absolut del mateix.
+  * `/CriterisNotificacio/Referencia/ValorSuperior`
+  Valor de tall superior pel interval de cerca.
+  * `/CriterisNotificacio/Referencia/ValorInferior`
+  Valor de tall inferior pel interval de cerca.
+  * `/CriterisNotificacio/Referencia/ValorAbsolut`
+  Cadena de text sobre la que es farà la cerca. Aquesta cadena es buscarà en qualsevol posició del número de referència.
 
-**TODO** DEFINIR
+* `/CriterisNotificacio/Referencia/NumeroRegistre`
+* `/CriterisNotificacio/Referencia/Estat`
+* `/CriterisNotificacio/Referencia/TipusAcces`
+* `/CriterisNotificacio/Referencia/Etiquetes`
+* `/CriterisNotificacio/Referencia/AmbitObjecte`
+* `/CriterisNotificacio/Referencia/TipusObjecte`
+* `/CriterisNotificacio/Referencia/Canal`
+* `/CriterisNotificacio/Referencia/Expedient`
+* `/CriterisNotificacio/Referencia/Tramit`
+* `/CriterisNotificacio/Referencia/NumeroCas`
 
 ### CriterisData
 
@@ -1313,11 +1340,19 @@ Identificador/s de les notificacions creades.
 
 ## Resposta - RespostaResum
 
+[Aquí podeu veure la definició completa del esquema _RespostaResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaResum.xsd)
+
+TODO: petit resum modalitat
+
 ```xml
 TODO!!!
 ```
 
 ## Resposta - RespostaEvidencia
+
+[Aquí podeu veure la definició completa del esquema _RespostaEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaEvidencia.xsd)
+
+TODO: petit resum modalitat
 
 ```xml
 TODO!!!
@@ -1325,11 +1360,19 @@ TODO!!!
 
 ## Resposta - RespostaPracticar
 
+[Aquí podeu veure la definició completa del esquema _RespostaPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaPracticar.xsd)
+
+TODO: petit resum modalitat
+
 ```xml
 TODO!!!
 ```
 
 ## Resposta - RespostaRecuperarReport
+
+[Aquí podeu veure la definició completa del esquema _RespostaRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaRecuperarReport.xsd)
+
+TODO: petit resum modalitat
 
 ```xml
 TODO!!!
@@ -1337,17 +1380,29 @@ TODO!!!
 
 ## Resposta - RespostaConsulta
 
+[Aquí podeu veure la definició completa del esquema _RespostaConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaConsulta.xsd)
+
+TODO: petit resum modalitat
+
 ```xml
 TODO!!!
 ```
 
 ## Resposta - RespostaParaulaPas
 
+[Aquí podeu veure la definició completa del esquema _RespostaParaulaPas.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaParaulaPas.xsd)
+
+TODO: petit resum modalitat
+
 ```xml
 TODO!!!
 ```
 
 ## Resposta - RespostaCerca
+
+[Aquí podeu veure la definició completa del esquema _RespostaCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaCerca.xsd)
+
+TODO: petit resum modalitat
 
 ```xml
 TODO!!!
