@@ -1197,8 +1197,31 @@ Permet indicar un rang de cerca dels valors de la referencia, així com un valor
   Cadena de text sobre la que es farà la cerca. Aquesta cadena es buscarà en qualsevol posició del número de referència.
 
 * `/CriterisNotificacio/Referencia/NumeroRegistre`
+Número de registre de la notificació a cerca, igual que en els casos anteriors permet indicar un rang de cerca de valors així com un valor absolut del mateix.
+  * `/CriterisNotificacio/Referencia/ValorSuperior`
+  Valor de tall superior pel interval de cerca.
+  * `/CriterisNotificacio/Referencia/ValorInferior`
+  Valor de tall inferior pel interval de cerca.
+  * `/CriterisNotificacio/Referencia/ValorAbsolut`
+  Valor absolut del número de registre.
+  
 * `/CriterisNotificacio/Referencia/Estat`
+Cerca per l'estat en el que es troben les notificacions. Els estats en el que es poden trobar són els següents:
+Pendent de processar: La notificació ha entrat al sistema i està pendent de començar a processar-se.
+  * _Registrada_: La notificació ha estat registrada. El registre el pot haver fet eNOTUM o bé es pot tractar d'una notificació registrada abans d'haver estat introduïda al sistema.
+  * _Dipositada_: La notificació ha estat dipositada i per tant ja és accessible als ciutadans.
+  * _Visualitzada_: El ciutadà ha visualitzat la notificació.
+  * _Rebutjada_: El ciutadà ha rebutjat la notificació.
+  * _Acceptada_: El ciutadà ha acceptat la notificació.
+  * _Rebutjada sense accés_: El sistema ha rebutjat la notificació sense que l'usuari l’hagi visualitzat.
+  * _Rebutjada sense acció_: El sistema ha rebutjat la notificació però l'usuari havia visualitzat la notificació.
+  * _Error_: S'ha produït un error irrecuperable en el tractament de la notificació i el seu processament ha quedat aturat.
+
 * `/CriterisNotificacio/Referencia/TipusAcces`
+Permet cercar per el tipus d'accés configurat a la notificació, els possibles valors són:
+  * _CERT_
+  * _PPAS_
+  
 * `/CriterisNotificacio/Referencia/Etiquetes`
 * `/CriterisNotificacio/Referencia/AmbitObjecte`
 * `/CriterisNotificacio/Referencia/TipusObjecte`
