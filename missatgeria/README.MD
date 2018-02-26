@@ -1249,7 +1249,7 @@ Cerca per camp numero de cas informat en la creació de la notificació.
 
 #### Etiquetes
 
-```
+```xml
 <xs:complexType name="EtiquetesType">
 	<xs:sequence>
 		<xs:element name="Etiqueta" type="EtiquetaType" maxOccurs="unbounded"/>
