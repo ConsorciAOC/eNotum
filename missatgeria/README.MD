@@ -1231,12 +1231,21 @@ Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l
 * `/CriterisNotificacio/Referencia/TipusObjecte`
 Tipus de les notificacions a cercar:
   * _NOTIFICACIO_
-	* _COMUNICACIO_
+  * _COMUNICACIO_
 
 * `/CriterisNotificacio/Referencia/Canal`
+Canal en el que s'ha generat la notificació:
+  * _PAPER_ Retorna només les notificacions complementaries generades en paper.
+  * _DIGITAL_ Retorna només les notificacions generades unicament en format digital.
+  
 * `/CriterisNotificacio/Referencia/Expedient`
+Cerca per camp expèdient informat en la creació de la notificació.
+
 * `/CriterisNotificacio/Referencia/Tramit`
+Cerca per camp tràmit informat en la creació de la notificació.
+
 * `/CriterisNotificacio/Referencia/NumeroCas`
+Cerca per camp numero de cas informat en la creació de la notificació.
 
 #### Etiquetes
 
@@ -1262,9 +1271,9 @@ Permet cercar les notificacions amb un o varis camps de tipus text amb l'idioma 
 Nom de la etiqueta.
 * `/Etiquestes/Etiqueta@Idioma`
 Possibles idiomes de l'etiqueta:
-  * _ca_ Català
-	* _es_ Castellà
-	* _oc_ Occità
+  * _ca_ Català 
+  * _es_ Castellà
+  * _oc_ Occità
 
 ### CriterisData
 
@@ -1281,7 +1290,15 @@ Possibles idiomes de l'etiqueta:
   </xs:complexType>
 </xs:element>
 ```
-**TODO** DEFINIR
+
+Aquest element permet filtrar per les diferents dates dels estats per els quals passa la notificació.
+* `/CriterisData/DataRegistre`
+* `/CriterisData/DataPublicacio`
+* `/CriterisData/DataAcceptacioRebuig`
+* `/CriterisData/DataExpiracio`
+* `/CriterisData/DiesPublicada`
+
+TODO: EXPLAIN SEARCH DATES!!!
 
 ### Paginacio
 
