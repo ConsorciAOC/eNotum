@@ -1223,12 +1223,48 @@ Permet cercar per el tipus d'accés configurat a la notificació, els possibles 
   * _PPAS_
   
 * `/CriterisNotificacio/Referencia/Etiquetes`
+Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l'hora de crear la notificació, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#etiquetes)
+
 * `/CriterisNotificacio/Referencia/AmbitObjecte`
+Àmbit per el que cercar la notificació.
+
 * `/CriterisNotificacio/Referencia/TipusObjecte`
+Tipus de les notificacions a cercar:
+  * _NOTIFICACIO_
+	* _COMUNICACIO_
+
 * `/CriterisNotificacio/Referencia/Canal`
 * `/CriterisNotificacio/Referencia/Expedient`
 * `/CriterisNotificacio/Referencia/Tramit`
 * `/CriterisNotificacio/Referencia/NumeroCas`
+
+#### Etiquetes
+
+```
+<xs:complexType name="EtiquetesType">
+	<xs:sequence>
+		<xs:element name="Etiqueta" type="EtiquetaType" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="EtiquetaType">
+	<xs:simpleContent>
+		<xs:extension base="xs:string">
+			<xs:attribute name="Idioma" type="Idioma"/>
+		</xs:extension>
+	</xs:simpleContent>
+</xs:complexType>
+```
+
+Permet cercar les notificacions amb un o varis camps de tipus text amb l'idioma vinculat, amb el mateix contingut que s'ha informat durant la creació de la notificació.
+
+* `/Etiquetes/Etiqueta`
+Nom de la etiqueta.
+* `/Etiquestes/Etiqueta@Idioma`
+Possibles idiomes de l'etiqueta:
+  * _ca_ Català
+	* _es_ Castellà
+	* _oc_ Occità
 
 ### CriterisData
 
