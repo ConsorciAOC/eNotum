@@ -7,6 +7,7 @@
 	attributeFormDefault="unqualified">
 
 	<xs:include schemaLocation="Resposta.xsd" />
+	<xs:include schemaLocation="Commons.xsd" />
 
 	<xs:element name="RespostaEvidencia" type="RespostaEvidenciaType" />
 	<xs:complexType name="RespostaEvidenciaType">
