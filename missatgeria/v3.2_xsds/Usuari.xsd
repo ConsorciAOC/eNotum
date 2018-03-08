@@ -5,6 +5,8 @@
 	targetNamespace="http://www.aocat.net/NT/v3.2"
 	elementFormDefault="qualified"
 	attributeFormDefault="unqualified">
+	
+	<xs:include schemaLocation="Commons.xsd" />
 
 	<xs:complexType name="UsuariType">
 		<xs:annotation>
