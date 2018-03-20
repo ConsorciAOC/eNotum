@@ -1642,9 +1642,109 @@ Tipus d'informe.
 
 ### Dades
 
+Cadascuna de les notificacions retornades per el report retorna un element del tipus `ReportDadesType`:
+
 ```xml
-TODO
+<xs:complexType name="ReportDadesType">
+  <xs:sequence>
+    <xs:element name="DadesEstat">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="Estat" type="xs:integer"/>
+          <xs:element name="DescripcioEstat" type="xs:string"/>
+          <xs:element name="DataActualitzacio" type="xs:dateTime"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="DadesNotificacio">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="Referencia" type="xs:string"/>
+          <xs:element name="IdNotificacio" type="xs:integer"/>
+          <xs:element name="TipusObjecte" type="TipusObjecteType"/>
+          <xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+          <xs:element name="DiesExpiracio" type="xs:integer" minOccurs="0"/>
+          <xs:element name="IdNotificacioEmissor" type="xs:string" minOccurs="0"/>
+          <xs:element name="Canal" type="CanalType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="DadesRegistre">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="DataRegistre" type="xs:dateTime" nillable="true"/>
+          <xs:element name="NumeroRegistreSortida" type="xs:string" nillable="true"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="DadesActor">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="PracticadaPaper" type="DadesPracticarCanalPaperType"/>
+            <xs:element name="PersonaFisica">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+                  <xs:element name="NomComplet" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="PersonaJuridica">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+                  <xs:element name="RaoSocial" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+          <xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="CodiBackOffice" type="xs:string" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
 ```
+
+* `/DadesEstat/Estat`
+Identificador de l'estat de la notificació.
+* `/DadesEstat/DescripcioEstat`
+Descripció de l'estat de la notificació.
+* `/DadesEstat/DataActualitzacio`
+Data de l'últim canvi d'estat de la notificació
+* `/DadesNotificacio/Referencia`
+Referència de la notificació. És el valor que s’ha introduït al crear la notificació.
+* `/DadesNotificacio/IdNotificacio`
+Identificador de la notificació.
+* `/DadesNotificacio/TipusObjecte`
+Indica si és una notificació o és una comunicació. Els valors que pot retornar són:
+  * _NOTIFICACIO_
+  * _COMUNICACIO_
+* `/DadesNotificacio/AmbitObjecte`
+Àmbit informat en el moment de creació d’una notificació. Aquest àmbit ha d'estar informat al sistema.
+* `/DadesNotificacio/DiesExpiracio`
+Dies per l'expiració a partir de la data de dipòsit.
+* `/DadesNotificacio/IdNotificacioEmissor`
+Codi de la notificació informat per l'emissor de la notificació
+* `/DadesNotificacio/Canal`
+Canal per al que s'ha generat la notificació:
+  * _PAPER_
+  * _DIGITAL_
+* `/DadesRegistre/DataRegistre`
+Data en que s'ha registrat la notificació.
+
+TODO!!!! >> QUEDA AQUESTA PART
+* `<xs:element name="PracticadaPaper" type="DadesPracticarCanalPaperType"/>`
+* `/DadesActor/PersonaFisica`
+Dades de la persona que ha causat el canvi d’estat de la notificació
+* `/DadesActor/PersonaJuridica`
+Dades de la persona jurídica que ha causat el canvi d’estat de la notificació
+* `/CodiBackOffice`
+L’identificador del backoffice que ha creat la notificació.
+* `<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>`
+
 
 ## Resposta - RespostaConsulta
 
