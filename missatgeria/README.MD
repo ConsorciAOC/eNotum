@@ -1294,16 +1294,16 @@ Tots els elements de cerca per data permeten fer-ho per un interval de temps, in
 
 ```xml
 <xs:complexType name="PeriodeDataTemps">
-	<xs:all>
-		<xs:element name="DataInferior" type="xs:dateTime"/>
-		<xs:element name="DataSuperior" type="xs:dateTime"/>
-	</xs:all>
+  <xs:all>
+   <xs:element name="DataInferior" type="xs:dateTime"/>
+   <xs:element name="DataSuperior" type="xs:dateTime"/>
+  </xs:all>
 </xs:complexType>
 <xs:complexType name="PeriodeData">
-	<xs:all>
-		<xs:element name="DataInferior" type="xs:date"/>
-		<xs:element name="DataSuperior" type="xs:date"/>
-	</xs:all>
+  <xs:all>
+    <xs:element name="DataInferior" type="xs:date"/>
+    <xs:element name="DataSuperior" type="xs:date"/>
+  </xs:all>
 </xs:complexType>
 ```
 
@@ -1586,10 +1586,36 @@ Digest _SHA-1_ de l'element `<DadesNotificacio>` que ha de ser utilitzat per rea
 
 [Aquí podeu veure la definició completa del esquema _RespostaRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaRecuperarReport.xsd)
 
-TODO: petit resum modalitat
+Retorna el report amb el resum de dades d'una notificació concreta, o el report de totes les notificacions que han canviat d'estat per un departament en una data concreta.
 
 ```xml
-TODO!!!
+<xs:sequence>
+  <xs:element name="Report" type="ReportType" minOccurs="0"/>
+</xs:sequence>
+
+<xs:complexType name="ReportType">
+  <xs:sequence>
+    <xs:element name="Capcalera" type="ReportCapcaleraType"/>
+    <xs:element name="Dades" type="ReportDadesType" maxOccurs="unbounded" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
+```
+
+* `/Report/Capcalera`
+Capçalera amb el resum de les dades del report. És descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#capcalera).
+* `/Report/Dades`
+Llistat de dades del report. És descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#dades).
+
+### Capcalera
+
+```xml
+TODO
+```
+
+### Dades
+
+```xml
+TODO
 ```
 
 ## Resposta - RespostaConsulta
