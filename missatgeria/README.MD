@@ -1292,13 +1292,34 @@ Possibles idiomes de l'etiqueta:
 ```
 
 Aquest element permet filtrar per les diferents dates dels estats per els quals passa la notificació.
-* `/CriterisData/DataRegistre`
-* `/CriterisData/DataPublicacio`
-* `/CriterisData/DataAcceptacioRebuig`
-* `/CriterisData/DataExpiracio`
-* `/CriterisData/DiesPublicada`
 
-TODO: EXPLAIN SEARCH DATES!!!
+Tots els elements de cerca per data permeten fer-ho per un interval de temps, indicant una data inferior i una data superior per als diferents criteris tal i com es pot veure pel tipus de l'element:
+
+```xml
+<xs:complexType name="PeriodeDataTemps">
+	<xs:all>
+		<xs:element name="DataInferior" type="xs:dateTime"/>
+		<xs:element name="DataSuperior" type="xs:dateTime"/>
+	</xs:all>
+</xs:complexType>
+<xs:complexType name="PeriodeData">
+	<xs:all>
+		<xs:element name="DataInferior" type="xs:date"/>
+		<xs:element name="DataSuperior" type="xs:date"/>
+	</xs:all>
+</xs:complexType>
+```
+
+* `/CriterisData/DataRegistre`
+Permet cercar per els intervals de la data de registre.
+* `/CriterisData/DataPublicacio`
+Permet cercar per els intervals de la data de publicació.
+* `/CriterisData/DataAcceptacioRebuig`
+Permet cercar per els intervals per la data de practicar.
+* `/CriterisData/DataExpiracio`
+Permet cercar per els intervals per la data d'expiració.
+* `/CriterisData/DiesPublicada`
+Aquest camp a diferència dels altres no funciona per intervals de dates, sinó que mitjançant un número sencer és busquen les notificacions/comunicacions que porten aquell número de dies indicat publicades.
 
 ### Paginacio
 
@@ -1334,9 +1355,24 @@ TODO: EXPLAIN SEARCH DATES!!!
   </xs:complexType>
 </xs:element>
 ```
-**TODO** DEFINIR
-
-
+Aquest element permet definir la pàginació de les cerques realitzades.
+* `/Paginacio/NumeroPagina`
+Camp obligatori que indica el número de pagina que retorna la cerca
+* `/Paginacio/ResultatsPerPagina`
+Camp obligatori entre 1 i 50 que permet indicar el número de registres que es tornen per cada pàgina.
+* `/Paginacio/CampOrdenacio`
+Permet indicar el camp d'ordenació per el qual es retornaran els resultats de la cerca, els valors permesos per a l'ordenació són els següent:
+  * _CodiNotificacio_
+  * _NumeroRegistre_
+  * _DataCreacio_
+  * _DataRegistre_
+  * _DataPublicacio_
+  * _DataVisualitzacio_
+  * _DataAcceptarRebutjar_
+  * _DataReintent_
+  * _Estat_
+  * _Titol_
+ 
 ## Resposta
 
 Totes les respostes a les modalitats de consum _WS_ que ofereix **eNotum** extenen el següent esquema de petició:
