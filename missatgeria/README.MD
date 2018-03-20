@@ -1372,6 +1372,11 @@ Permet indicar el camp d'ordenació per el qual es retornaran els resultats de l
   * _DataReintent_
   * _Estat_
   * _Titol_
+  
+* `/Paginacio/SentitOrdenacio`
+Indica el sentit de l'ordenació dels camps retornats en cas que s'hagi indicat un camp d'ordenació:
+  * _Ascendent_ Sentit d'ordenació ascendent.
+  * _Descendent_ Sentit d'ordenació descendent.
  
 ## Resposta
 
