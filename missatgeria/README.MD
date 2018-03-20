@@ -1547,11 +1547,40 @@ URL de descàrrega de l'evidència de la notificació en format _PDF_.
 
 [Aquí podeu veure la definició completa del esquema _RespostaPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaPracticar.xsd)
 
-TODO: petit resum modalitat
+Resposta a les peticions explícites de l'usuari vinculades amb la pràctica de les notificacions.
 
 ```xml
-TODO!!!
+<xs:sequence>
+  <xs:element name="IdNotificacio" type="xs:integer"/>
+  <xs:element name="Operacio" type="OperacioPracticarType"/>
+  <xs:element name="Decisio" type="DecisioPracticarType"/>
+  <xs:element name="DadesNotificacio" type="xs:anyType" minOccurs="0">
+    <xs:annotation>
+        <xs:documentation>Dades de la notificació per ser mostrades.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="DigestDades" type="xs:base64Binary" minOccurs="0">
+    <xs:annotation>
+        <xs:documentation>Digest SHA-1 de l'element DadesNotificacio que ha de ser utilitzat per realitzar una signatura XAdES-T Detached.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:sequence>
 ```
+
+* `/RespostaPracticar/IdNotificacio`
+Identificador de la notificació sobre la que s'està operant.
+* `/RespostaPracticar/Operacio`
+Identificador de la operació a realitzar:
+  * _OBTENIR_DADES_ : En el cas de notificacions que s'han de practicar amb certificat és la resposta a la primera crida on es retorna el hash a signar.
+  * _SIGNAR_ : Indica que l'operació ja era definitiva d'acceptació o rebuig.
+* `/RespostaPracticar/Decisio`
+Indica la decisió que ha prés l'usuari sobre la notificació:
+  * _Acceptar_ : L'usuari a acceptat la notificació.
+  * _Rebutjar_ : L'usuari a rebutjat la notificació.
+* `/RespostaPracticar/DadesNotificacio`
+Dades de la notificació per ser mostrades.
+* `/RespostaPracticar/DigestDades`
+Digest _SHA-1_ de l'element `<DadesNotificacio>` que ha de ser utilitzat per realitzar una signatura _XAdES-T Detached_, en cas de que la petició `<Operacio>OBTENIR_DADES</Operacio>` per a practicar amb certificat.
 
 ## Resposta - RespostaRecuperarReport
 
