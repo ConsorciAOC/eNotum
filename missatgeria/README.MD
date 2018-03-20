@@ -1467,7 +1467,7 @@ Aquesta modalitat de consum permet obtenir un resum de les notificacions pendent
 ```
 
 * `/RespostaResum/NotificacionsEntitat`
-Resum de notificacions pendents per aquest usuari agrupat per ens, a continuació s'explica aquest camp amb més detall.
+Resum de notificacions pendents per aquest usuari agrupat per ens, aquest element es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#notificacionsentitat)
 * `/RespostaResum/TotalNotificacionsPendents`
 Número total de notificacions pendents de l'usuari per a tots els ens.
 * `/RespostaResum/NotificacionsPendentsAmbCertificat`
