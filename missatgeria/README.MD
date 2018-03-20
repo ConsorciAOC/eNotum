@@ -1592,7 +1592,11 @@ Retorna el report amb el resum de dades d'una notificació concreta, o el report
 <xs:sequence>
   <xs:element name="Report" type="ReportType" minOccurs="0"/>
 </xs:sequence>
+```
 
+[El detall del _ReportType_ explicitament es troba en el següent esquema](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Report.xsd)
+
+```xml
 <xs:complexType name="ReportType">
   <xs:sequence>
     <xs:element name="Capcalera" type="ReportCapcaleraType"/>
@@ -1609,8 +1613,32 @@ Llistat de dades del report. És descriu amb més detall a [continuació](https:
 ### Capcalera
 
 ```xml
-TODO
+<xs:complexType name="ReportCapcaleraType">
+  <xs:sequence>
+    <xs:element name="CodiOrganisme" type="xs:string"/>
+    <xs:element name="CodiDepartament" type="xs:string"/>
+    <xs:element name="NomOrganisme" type="xs:string"/>
+    <xs:element name="NomDepartament" type="xs:string"/>
+    <xs:element name="DataInforme" type="xs:date"/>
+    <xs:element name="TipusInforme" type="TipusInformeType"/>
+  </xs:sequence>
+</xs:complexType>
 ```
+
+* `/Capcalera/CodiOrganisme`
+Codi de l'organisme al que pertanyen les notificacions pendents.
+* `/Capcalera/CodiDepartament`
+Codi del departament al que pertanyen les notificacions pendents.
+* `/Capcalera/NomOrganisme`
+Nom de l'organisme al que pertanyen les notificacions pendents.
+* `/Capcalera/NomDepartament`
+Nom del departament al que pertanyen les notificacions pendents.
+* `/Capcalera/DataInforme`
+Data de l'informe.
+* `/Capcalera/TipusInforme`
+Tipus d'informe.
+  * _Diari_
+  * _Online_
 
 ### Dades
 
