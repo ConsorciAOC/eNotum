@@ -1,6 +1,3 @@
-
-<h1> ESBORRANY </h1>
-
 # 1. Introducció
 
 A continuació és descriu el funcionament i les diferents modalitats de consum de la versió de missatgeria _3.2_ d'**eNotum**.
@@ -1459,11 +1456,51 @@ Identificador/s de les notificacions creades.
 
 [Aquí podeu veure la definició completa del esquema _RespostaResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaResum.xsd)
 
-TODO: petit resum modalitat
+Aquesta modalitat de consum permet obtenir un resum de les notificacions pendents (actives i no practicades per un usuari) agrupades per l'ens emissor de la notificació.
 
 ```xml
-TODO!!!
+<xs:sequence>
+  <xs:element name="NotificacionsEntitat" minOccurs="0" maxOccurs="unbounded"/>
+  <xs:element name="TotalNotificacionsPendents" type="xs:integer"/>
+  <xs:element name="NotificacionsPendentsAmbCertificat" type="xs:boolean" minOccurs="0"/>
+</xs:sequence>
 ```
+
+* `/RespostaResum/NotificacionsEntitat`
+Resum de notificacions pendents per aquest usuari agrupat per ens, a continuació s'explica aquest camp amb més detall.
+* `/RespostaResum/TotalNotificacionsPendents`
+Número total de notificacions pendents de l'usuari per a tots els ens.
+* `/RespostaResum/NotificacionsPendentsAmbCertificat`
+Indica si hi ha notificacions pendents per ser practicades amb certificat digital per part de l'usuari. Aquest camp només s'informa si la petició de resum de notificacions es fa amb tipus d'accés corresponent a paraula de pas.
+
+### NotificacionsEntitat
+
+```xml
+<xs:element name="NotificacionsEntitat" minOccurs="0" maxOccurs="unbounded">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="NomOrganisme" type="xs:string"/>
+      <xs:element name="CodiOrganisme" type="xs:string"/>
+      <xs:element name="NomDepartament" type="xs:string"/>
+      <xs:element name="CodiDepartament" type="xs:string"/>
+      <xs:element name="UrlAcces" type="xs:anyURI"/>
+      <xs:element name="NotificacionsPendents" type="xs:integer"/>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
+```
+* `/NotificacionsEntitat/NomOrganisme`
+Nom de l'organisme al que pertanyen les notificacions pendents.
+* `/NotificacionsEntitat/CodiOrganisme`
+Codi de l'organisme al que pertanyen les notificacions pendents.
+* `/NotificacionsEntitat/NomDepartament`
+Nom del departament al que pertanyen les notificacions pendents.
+* `/NotificacionsEntitat/CodiDepartament`
+Codi del departament al que pertanyen les notificacions pendents.
+* `/NotificacionsEntitat/UrlAcces`
+URL d'accés a la web de l'organisme de les notificacions pendents.
+* `/NotificacionsEntitat/NotificacionsPendents`
+Numero de notificacions pendents per part de l'usuari en aquesta entitat.
 
 ## Resposta - RespostaEvidencia
 
