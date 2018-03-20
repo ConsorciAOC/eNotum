@@ -1467,7 +1467,7 @@ Aquesta modalitat de consum permet obtenir un resum de les notificacions pendent
 ```
 
 * `/RespostaResum/NotificacionsEntitat`
-Resum de notificacions pendents per aquest usuari agrupat per ens, aquest element es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#notificacionsentitat)
+Resum de notificacions pendents per aquest usuari agrupat per ens, aquest element es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#notificacionsentitat).
 * `/RespostaResum/TotalNotificacionsPendents`
 Número total de notificacions pendents de l'usuari per a tots els ens.
 * `/RespostaResum/NotificacionsPendentsAmbCertificat`
@@ -1506,11 +1506,42 @@ Numero de notificacions pendents per part de l'usuari en aquesta entitat.
 
 [Aquí podeu veure la definició completa del esquema _RespostaEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaEvidencia.xsd)
 
-TODO: petit resum modalitat
+Retorna les evidències relacionades amb el procés de la notificació, tant els _XML_ amb l'evidència de dipósit i de practicar, com el PDF amb el justificant del procés de la notificació generat pel sistema.
 
 ```xml
-TODO!!!
+<xs:sequence>
+  <xs:element name="IdNotificacio" type="xs:integer" />
+  <xs:element name="TipusEvidencia" type="TipusEvidenciaType" />
+  <xs:element name="Diposit" type="xs:string" minOccurs="0">
+    <xs:annotation>
+      <xs:documentation>Evidència del dipòsit de la notificació.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="AcceptacioRebuig" type="xs:string" minOccurs="0">
+    <xs:annotation>
+      <xs:documentation>Evidència de l'acceptació o rebuig de la notificació.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="EvidenciaPDF" type="xs:anyURI" minOccurs="0">
+    <xs:annotation>
+      <xs:documentation>URL de descàrrega de l'evidència de la notificacio</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:sequence>
 ```
+
+* `/RespostaEvidenciaType/IdNotificacio`
+Identificador de la notificació per la qual es retorna l'evidència.
+* `/RespostaEvidenciaType/TipusEvidencia`
+Tipus d’evidència retornada:
+  * _XML_ : Per a les evidències de dipósit i practica.
+  * _PDF_ : Per al justificant en format PDF.
+* `/RespostaEvidenciaType/Diposit`
+Evidència del dipòsit de la notificació.
+* `/RespostaEvidenciaType/AcceptacioRebuig`
+Evidència de l'acceptació o rebuig de la notificació.
+* `/RespostaEvidenciaType/EvidenciaPDF`
+URL de descàrrega de l'evidència de la notificació en format _PDF_.
 
 ## Resposta - RespostaPracticar
 
