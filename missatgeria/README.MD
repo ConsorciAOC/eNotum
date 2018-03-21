@@ -1734,16 +1734,20 @@ Canal per al que s'ha generat la notificació:
   * _DIGITAL_
 * `/DadesRegistre/DataRegistre`
 Data en que s'ha registrat la notificació.
+* `/DadesActor/PracticadaPaper`
+Retorna la informació vinculada amb la practica de les notificacions en paper en cas que aquestes s'hagin omplert en la petició de practicar, per a més detall es pot veure la definició [aqui](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#dadespracticarcanalpaper)
 
-TODO!!!! >> QUEDA AQUESTA PART
-* `<xs:element name="PracticadaPaper" type="DadesPracticarCanalPaperType"/>`
+
+TODO!!
+
+
 * `/DadesActor/PersonaFisica`
 Dades de la persona que ha causat el canvi d’estat de la notificació
 * `/DadesActor/PersonaJuridica`
 Dades de la persona jurídica que ha causat el canvi d’estat de la notificació
+* `<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>`
 * `/CodiBackOffice`
 L’identificador del backoffice que ha creat la notificació.
-* `<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>`
 
 
 ## Resposta - RespostaConsulta
