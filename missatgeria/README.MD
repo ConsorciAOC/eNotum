@@ -1745,12 +1745,11 @@ Retorna la informació vinculada durant la practica de la notificació en cas qu
 * `/DadesActor/CodiBackOffice`
 L'identificador del backoffice que ha creat la notificació.
 
-
 ## Resposta - RespostaConsulta
 
 [Aquí podeu veure la definició completa del esquema _RespostaConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaConsulta.xsd)
 
-TODO: petit resum modalitat
+Aquesta modalitat retorna una resposta detallada de totes les dades vinculades amb una notificació concreta.
 
 ```xml
 TODO!!!
