@@ -1888,7 +1888,14 @@ Número de cas amb el que està relacionada la notificació.
 </xs:element>
 ```
 
-TODO: Define
+* `/DadesRegistre/OficinaRegistre`
+Oficina on s’ha registrat la notificació.
+* `/DadesRegistre/UnitatOrganitzativa`
+Unitat organitzativa de l'oficina de registre.
+* `/DadesRegistre/NumeroRegistre`
+Número de registre de la notificació.
+* `/DadesRegistre/DataRegistre`
+Data en que s'ha registrat la notificació.
 
 ### DadesSignador
 
