@@ -1780,9 +1780,9 @@ Dades de registre de la notificació consultada, es descriuen amb més detall a 
 * `/RespostaConsulta/DadesSignador`
 Dades del practicant de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadessignador)
 * `/RespostaConsulta/DadesAvisos`
-Dades dels avisos de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesavisos)
+Dades dels avisos de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesavisos-1)
 * `/RespostaConsulta/Destinataris`
-Dades dels destinataris de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#destinataris)
+Dades dels destinataris de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#destinataris-1)
 
 ### DadesOfici
 
