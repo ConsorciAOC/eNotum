@@ -2002,11 +2002,24 @@ Identificador de la notificació.
 
 [Aquí podeu veure la definició completa del esquema _RespostaCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaCerca.xsd)
 
-TODO: petit resum modalitat
+Retorna un seguit de notificacions que acompleixen els criteris de cerca fets en la petició.
 
 ```xml
-TODO!!!
+<xs:sequence>
+  <xs:element name="Resultats" type="ResultatsType" />
+  <xs:element name="DadesPaginacio" type="DadesPaginacioType" />
+</xs:sequence>
 ```
+
+* `/RespostaCerca/Resultats`
+* `/RespostaCerca/DadesPaginacio`
+
+TODO:
+
+### Resultats
+
+### DadesPaginacio
+
 
 # 4. Codis d'error d'eNotum
 
