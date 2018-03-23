@@ -1832,7 +1832,46 @@ Certificat digital de clau pública amb les que s'han signat les evidències de 
 </xs:element>
 ```
 
-TODO: Define
+Dades genèriques retornades en la consulta de la notificació:
+
+* `/DadesNotificacio/Titol`
+Títol de la notificació.
+* `/DadesNotificacio/Referencia`
+Referència de la notificació. Recordem que la referència ha estat donada pel emissor de la notificació en el moment de la seva creació.
+* `/DadesNotificacio/DataPublicacio`
+Data en la que la notificació ha estat dipositada. Aquesta data es correspon amb la data de segell de temps de la signatura d'evidència de dipòsit.
+* `/DadesNotificacio/DataAcceptacioRebuig`
+Data en que la notificació ha estat acceptada o rebutjada.
+* `/DadesNotificacio/Estat`
+Descripció de l'estat en el que es troba la notificació en el moment de la consulta.
+* `/DadesNotificacio/IdEstat`
+Identificador de l'estat en el que es troba la notificació en el moment de la consulta.
+* `/DadesNotificacio/TipusAcces`
+Tipus d'accés requerit a la notificació:
+  * _CERT_ : Certificat
+  * _PPAS_ : Paraula de pas
+* `/DadesNotificacio/TipusObjecte`
+Indica si és una notificació o és una comunicació. Els valors que pot retornar són:
+  * _NOTIFICACIO_ : Notificació. 
+  * _COMUNICACIO_ : Comunicació.
+* `/DadesNotificacio/AmbitObjecte`
+Àmbit informat en el moment de creació d'una notificació. Aquest àmbit ha d’estar informat al sistema.
+* `/DadesNotificacio/NivellCertificat`
+Indica el nivell de certificat mínim per practicar la notificació.
+* `/DadesNotificacio/DiesExpiracio`
+Número de dies fins que expiri la notificació des del moment de la consulta.
+* `/DadesNotificacio/Etiquetes`
+Etiqueta de la notificació. Una notificació pot tenir múltiples etiquetes, la definició d'aquest element la trobareu [aqui](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#etiquetes)
+* `/DadesNotificacio/Canal`
+Canal en el que s'ha generat la notificació:
+  * _PAPER_ : Retorna només les notificacions complementaries generades en paper.
+  * _DIGITAL_ : Retorna només les notificacions generades unicament en format digital.
+* `/DadesNotificacio/Expedient`
+Expedient amb el que està relacionada la notificació.
+* `/DadesNotificacio/Tramit`
+Tràmit amb el que està relacionada la notificació.
+* `/DadesNotificacio/NumeroCas`
+Número de cas amb el que està relacionada la notificació.
 
 ### DadesRegistre
 
