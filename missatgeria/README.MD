@@ -1770,7 +1770,7 @@ Identificador de la notificació consultada.
 * `/RespostaConsulta/Emissor`
 Dades de l'emissor de la notificació consultada, podeu consultar els detalls d'aquest element [aqui](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#emissor)
 * `/RespostaConsulta/DadesOfici`
-Dades d'ofici de la notficiació consulta, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesofici)
+Dades d'ofici de la notficiació consulta, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesofici-1)
 * `/RespostaConsulta/Documents`
 Documents vinculats amb la notificació consultada, aquest tipus d'element es descriu amb més detall [aqui](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#documents)
 * `/RespostaConsulta/DadesNotificacio`
