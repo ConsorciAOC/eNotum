@@ -1986,11 +1986,17 @@ TODO: Define
 
 [Aquí podeu veure la definició completa del esquema _RespostaParaulaPas.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaParaulaPas.xsd)
 
-TODO: petit resum modalitat
-
 ```xml
-TODO!!!
+<xs:sequence>
+    <xs:element name="IdParaulaPas" type="xs:string"/>
+    <xs:element name="IdNotificacio" type="xs:integer" minOccurs="0"/>
+</xs:sequence>
 ```
+
+* `/RespostaParaulaPas/IdParaulaPas`
+Identificador de la paraula de pas.
+* `/RespostaParaulaPas/IdNotificacio`
+Identificador de la notificació.
 
 ## Resposta - RespostaCerca
 
