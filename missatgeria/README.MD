@@ -1776,10 +1776,13 @@ Documents vinculats amb la notificació consultada, aquest tipus d'element es de
 * `/RespostaConsulta/DadesNotificacio`
 Dades de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesnotificacio)
 * `/RespostaConsulta/DadesRegistre`
+Dades de registre de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesregistre)
 * `/RespostaConsulta/DadesSignador`
+Dades del practicant de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadessignador)
 * `/RespostaConsulta/DadesAvisos`
+Dades dels avisos de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesavisos)
 * `/RespostaConsulta/Destinataris`
-
+Dades dels destinataris de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#destinataris)
 
 ### DadesOfici
 
@@ -1825,6 +1828,108 @@ Certificat digital de clau pública amb les que s'han signat les evidències de 
       <xs:element name="Tramit" type="xs:string" minOccurs="0"/>
       <xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
     </xs:all>
+  </xs:complexType>
+</xs:element>
+```
+
+TODO: Define
+
+### DadesRegistre
+
+```xml
+<xs:element name="DadesRegistre">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="OficinaRegistre" type="xs:string" minOccurs="0"/>
+      <xs:element name="UnitatOrganitzativa" type="xs:string" minOccurs="0"/>
+      <xs:element name="NumeroRegistre" type="xs:string" nillable="true"/>
+      <xs:element name="DataRegistre" type="xs:dateTime" nillable="true"/>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
+```
+
+TODO: Define
+
+### DadesSignador
+
+```xml
+<xs:element name="DadesSignador" minOccurs="0">
+  <xs:complexType>
+    <xs:choice>
+      <xs:element name="Fisic">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+            <xs:element name="NomComplet" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Juridic">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+            <xs:element name="RaoSocial" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+</xs:element>
+```
+TODO: Define
+
+### DadesAvisos
+
+```xml
+<xs:element name="DadesAvisos" minOccurs="0">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="Email">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Emissor" type="xs:string"/>
+            <xs:element name="Assumpte" type="xs:string"/>
+            <xs:element name="Missatge" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SMS">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Missatge" type="xs:string" minOccurs="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DiesAvisos" type="DiesAvisosType"/>
+      <xs:element name="Idioma" type="Idioma"/>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
+```
+
+TODO: Define
+
+### Destinataris
+
+```xml
+<xs:element name="Destinataris" minOccurs="0">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element name="Destinatari" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:choice>
+              <xs:element name="PersonaFisica" type="PersonaFisicaType"/>
+              <xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
+            </xs:choice>
+            <xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+            <xs:element name="HaSignat" type="xs:boolean"/>
+            <xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
 </xs:element>
 ```
