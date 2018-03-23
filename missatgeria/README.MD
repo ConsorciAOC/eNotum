@@ -1752,8 +1752,84 @@ L'identificador del backoffice que ha creat la notificació.
 Aquesta modalitat retorna una resposta detallada de totes les dades vinculades amb una notificació concreta.
 
 ```xml
-TODO!!!
+<xs:sequence>
+  <xs:element name="IdNotificacio" type="xs:integer"/>
+  <xs:element name="Emissor" type="EmissorType"/>
+  <xs:element name="DadesOfici" minOccurs="0"/>
+  <xs:element name="Documents" type="DocumentsType" minOccurs="0"/>
+  <xs:element name="DadesNotificacio"/>
+  <xs:element name="DadesRegistre"/>
+  <xs:element name="DadesSignador" minOccurs="0"/>
+  <xs:element name="DadesAvisos" minOccurs="0"/>
+  <xs:element name="Destinataris" minOccurs="0"/>
+</xs:sequence>
 ```
+
+* `/RespostaConsulta/IdNotificacio`
+Identificador de la notificació consultada.
+* `/RespostaConsulta/Emissor`
+Dades de l'emissor de la notificació consultada, podeu consultar els detalls d'aquest element [aqui](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#emissor)
+* `/RespostaConsulta/DadesOfici`
+Dades d'ofici de la notficiació consulta, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesofici)
+* `/RespostaConsulta/Documents`
+Documents vinculats amb la notificació consultada, aquest tipus d'element es descriu amb més detall [aqui](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#documents)
+* `/RespostaConsulta/DadesNotificacio`
+Dades de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesnotificacio)
+* `/RespostaConsulta/DadesRegistre`
+* `/RespostaConsulta/DadesSignador`
+* `/RespostaConsulta/DadesAvisos`
+* `/RespostaConsulta/Destinataris`
+
+
+### DadesOfici
+
+```xml  
+<xs:element name="DadesOfici" minOccurs="0">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="CosNotificacio" type="xs:string"/>
+      <xs:element name="PeuRecurs" type="xs:string"/>
+      <xs:element name="CertificatDigital" type="xs:string" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
+```
+
+* `/DadesOfici/CosNotificacio`
+Cos de la notificació.
+* `/DadesOfici/PeuRecurs`
+Peu de recurs de la notificació.
+* `/DadesOfici/CertificatDigital`
+Certificat digital de clau pública amb les que s'han signat les evidències de la notificació.
+
+### DadesNotificacio
+
+```xml
+<xs:element name="DadesNotificacio">
+  <xs:complexType>
+    <xs:all>
+      <xs:element name="Titol" type="xs:string"/>
+      <xs:element name="Referencia" type="xs:string" minOccurs="0"/>
+      <xs:element name="DataPublicacio" type="xs:dateTime" nillable="true"/>
+      <xs:element name="DataAcceptacioRebuig" type="xs:dateTime" nillable="true"/>
+      <xs:element name="Estat" type="xs:string"/>
+      <xs:element name="IdEstat" type="xs:integer" nillable="true"/>
+      <xs:element name="TipusAcces" type="TipusAccesType"/>
+      <xs:element name="TipusObjecte" type="TipusObjecteType"/>
+      <xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+      <xs:element name="NivellCertificat" type="xs:string" minOccurs="0"/>
+      <xs:element name="DiesExpiracio" type="xs:integer" minOccurs="0"/>
+      <xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+      <xs:element name="Canal" type="CanalType" minOccurs="0"/>
+      <xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+      <xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+      <xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+</xs:element>
+```
+
+TODO: Define
 
 ## Resposta - RespostaParaulaPas
 
