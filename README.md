@@ -7,11 +7,11 @@ Tota la documentació d'integració antiga així com altre tipus de documentaci�
 
 De moment aqui podeu trobar:
 
-[1. Manual d'estils personalitzats `CSS` de *WebCiutada*](/customCSSWebCiutada)
+[1. Manual d'estils personalitzats `CSS` de *WebCiutada*](/customCSSWebCiutada/README.md)
 
-[2. Integració callbacks canvis d'estat](/integracioReportsCanvisEstat)
+[2. Integració callbacks canvis d'estat](/integracioReportsCanvisEstat/README.md)
 
-[3. Integració missatgeria (en beta)](/missatgeria)
+[3. Integració missatgeria (en beta)](/missatgeria/README.md)
 
 # Altres
 
