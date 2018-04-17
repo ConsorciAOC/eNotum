@@ -32,7 +32,7 @@ transicions que es poden donar.
 
 #### 1.2.2.1. Pendent de processar
 
-L'estat _Pendent de processar_ és l'estat inicial de la notificació. La notificació està en aquest estat just en el moment en que l'integrador ha llançat la operació [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) i el missatge de resposta de l'operació ha indicat un codi de notificació, o sigui, que no hi ha hagut cap error. En el cas que la petició de processar tramesa hagi produït algun error la notificació no es crea i, per tant, no està en aquest estat.
+L'estat _Pendent de processar_ és l'estat inicial de la notificació. La notificació està en aquest estat just en el moment en que l'integrador ha llançat la operació [_ProcessarTramesa_](#petici%C3%B3---peticioprocessartramesa) i el missatge de resposta de l'operació ha indicat un codi de notificació, o sigui, que no hi ha hagut cap error. En el cas que la petició de processar tramesa hagi produït algun error la notificació no es crea i, per tant, no està en aquest estat.
 
 Si en el missatge de [_ProcessarTramesa_](#petici%C3%B3---peticioprocessartramesa) s'indica un número de registre i una data de registre la notificació passa directament a l'estat _Registrada_ sense passar per l'estat _Pendent de processar_.
 
@@ -54,9 +54,9 @@ La notificació passa a aquest estat quan s'ha efectuat el dipòsit de la notifi
 
 En aquest estat s'avisa als destinataris de la notificació que han rebut una notificació i que poden accedir a l'aplicació per tal de poder consultar les seves notificacions. Aquesta informació s'envia per correu electrònic i/o via un SMS al telèfon del destinatari. Ambdós camps s'agafaran dels nodes `/BustiesCorreu/BustiaCorreu` i `/Telefons/Telefon` respectivament del node `<PersonaFisica>` o `<PersonaJuridica>` que ve informat dins el node `/Notificacio/Destinatari` de la `<Tramesa>`. En aquest estat també s'enviaran els correus electrònics i missatges de text a les persones d'avís associades a cada destinatari. Les persones d'avís es diferencien dels destinataris de la notificació en el fet que no poden accedir a la notificació i només s'assabenten a través d'aquest avís de que el destinatari al que estan associades ha rebut una notificació.
 
-L'integrador pot permetre que el ciutadà consulti les notificacions que ha rebut mitjançant l'operació de [_PeticióCerca_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiocerca). Les notificacions retornades per aquesta consulta passaran automàticament a l'estat _Visualitzada_.
+L'integrador pot permetre que el ciutadà consulti les notificacions que ha rebut mitjançant l'operació de [_PeticióCerca_](#petici%C3%B3---peticiocerca). Les notificacions retornades per aquesta consulta passaran automàticament a l'estat _Visualitzada_.
 
-Per altra banda, l'integrador pot permetre que els empleats encarregats de crear/gestionar les notificacions puguin consultar l'estat en que es troben les notificacions i diversa informació addicional amb les operacions [_PeticióCerca_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiocerca) i [_PeticióConsulta_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioconsulta). Aquestes al ser executades per a un perfil d'empleat públic no canvien l'estat de la notificació a _Visualitzada_ ja que no és el ciutadà qui ha visualitzat la notificació.
+Per altra banda, l'integrador pot permetre que els empleats encarregats de crear/gestionar les notificacions puguin consultar l'estat en que es troben les notificacions i diversa informació addicional amb les operacions [_PeticióCerca_](#petici%C3%B3---peticiocerca) i [_PeticióConsulta_](#petici%C3%B3---peticioconsulta). Aquestes al ser executades per a un perfil d'empleat públic no canvien l'estat de la notificació a _Visualitzada_ ja que no és el ciutadà qui ha visualitzat la notificació.
 
 Si el ciutadà no visualitza la notificació aquesta es manté en aquest estat durant el temps de vigència de la notificació indicat al camp `<DiesExpiracio>`. Al expirar aquest període el sistema rebutja automàticament la notificació creant una evidència de rebuig i la notificació passa a l'estat _Rebutjada sense accés_. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s'exhaureixen els reintents la notificació passa a l'estat _Error_.
 
@@ -68,17 +68,17 @@ Quan la notificació està en aquest estat el ciutadà pot decidir acceptar o re
   * Amb una _paraula de pas_ específica demanada per a realitzar la practica d'una notificació.
   * O si es delega l'autenticació del usuari a [_Valid_](https://www.aoc.cat/serveis-aoc/valid/) o una altre plataforma d'un tercer, tant sols indicant el `/Usuari/IdAutenticacio` per identificar aquest procés d'autorització.
 
-En el cas d'accés amb _certificat digital_ Les dades a signar seran proporcionades per **eNOTUM** mitjançant la operació [_Practicar notificació_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _OBTENIR_DADES_.
+En el cas d'accés amb _certificat digital_ Les dades a signar seran proporcionades per **eNOTUM** mitjançant la operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _OBTENIR_DADES_.
 
 La signatura del ciutadà ha de ser realitzada amb una eina de signatura que generi signatures digitals avançades en format XML (XAdES) com per exemple el servei del [_signador del Consorci AOC_](https://signador.aoc.cat). Per tal que la signatura sigui acceptada ha de tenir un format _XAdES-T_ o més elevat ja que és a partir d'aquest nivell que es garanteix l'autenticació del signatari, integritat de les dades i validesa de la signatura a llarg termini.
 
-Un cop realitzada la signatura aquesta s'envia a **eNOTUM** amb l'operació [_Practicar notificació_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _SIGNAR_. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l'estat de la notificació passa a ser _Acceptada_ o _Rebutjada_ en funció del que s'hagi especificat en l'element `<Decisio>` de l'operació de practicar.
+Un cop realitzada la signatura aquesta s'envia a **eNOTUM** amb l'operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _SIGNAR_. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l'estat de la notificació passa a ser _Acceptada_ o _Rebutjada_ en funció del que s'hagi especificat en l'element `<Decisio>` de l'operació de practicar.
 
 Es pot donar el cas que el ciutadà tot i que visualitzi la notificació no l'accepti ni la rebutgi. En aquest cas la notificació es manté en l'estat _Visualitzada_ fins la finalització del temps de vigència. Exhaurit aquest període el sistema rebutja la notificació i aquesta passa a l'estat _Rebutjada sense acció_. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s'exhaureixen els reintents la notificació passa a l'estat _Error_.
 
 #### 1.2.2.5. Acceptada / Rebutjada / Rebutjada sense acció / Rebutjada sense accés
 
-Un cop la notificació està en qualsevol d'aquests quatre estats - que es consideren tots estats finals ja que un cop la notificaciño asoleix un d'aquests estats el mateix ja no es modificarà - el ciutadà pot consultar les dades de la notificació. L'integrador pot recuperar aquestes dades amb la operació [_PeticióConsulta_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioconsulta). Aquesta operació només pot ser consultada amb el `<Rol>` _CIUTADA_ quan la notificació està en els estats _Acceptada_, _Rebutjada_, _Rebutjada sense acció_ o _Rebutjada sense accés_. 
+Un cop la notificació està en qualsevol d'aquests quatre estats - que es consideren tots estats finals ja que un cop la notificaciño asoleix un d'aquests estats el mateix ja no es modificarà - el ciutadà pot consultar les dades de la notificació. L'integrador pot recuperar aquestes dades amb la operació [_PeticióConsulta_](#petici%C3%B3---peticioconsulta). Aquesta operació només pot ser consultada amb el `<Rol>` _CIUTADA_ quan la notificació està en els estats _Acceptada_, _Rebutjada_, _Rebutjada sense acció_ o _Rebutjada sense accés_. 
 
 Un cop es pot fer la consulta per ciutada perquè la notificació es troba en un d'aquests estats, la informació retornada serà la mateixa, és a dir, la informació sobre la notificació retornada no serà més o menys restrictiva en funció de l'estat. Remarquem aquest fet ja que en versions anteriors d'**eNotum** les dades recuperades per la consulta en cas de que l'estat de la notificació fos _Acceptada_ eren més que per qualsevol dels altres tres estats de _Rebutjada_.
 
@@ -88,7 +88,7 @@ Arriben a aquest estat les notificacions que han estat involucrades en l'execuci
 
 En aquest estat les notificacions no poden ser acceptades ni rebutjades ni pel ciutadà ni pel sistema.
 
-Per l'operació [_PeticioCerca_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticiocerca) de ciutadà no es mostren les notificacions en aquest estat. En canvi per aquesta mateixa operació amb `<Rol>` _EMPLEAT_ sí es mostren aquestes notificacions per tal que l'empleat sigui conscient de que la notificació està en error.
+Per l'operació [_PeticioCerca_](#petici%C3%B3---peticiocerca) de ciutadà no es mostren les notificacions en aquest estat. En canvi per aquesta mateixa operació amb `<Rol>` _EMPLEAT_ sí es mostren aquestes notificacions per tal que l'empleat sigui conscient de que la notificació està en error.
 
 Quan una notificació està en aquest estat l'administrador del sistema pot rellançar manualment el procés on s'ha produït l'error.
 
@@ -109,12 +109,12 @@ Com es pot observar en el diagrama anterior hi ha poques diferències en els est
 #### 1.3.1.1. Visualitzada
 
 Quan la comunicació està en aquest estat el ciutadà pot directament consultar el contingut de la comunicació. A diferència de la notificació, no es necessita validesa legal de l'acceptació o rebuig d'aquesta i per tant no cal que el ciutadà signi digitalment la seva decisió.
-Un cop consultada la comunicació amb l'operació [_Consultar_](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#petici%C3%B3---peticioconsulta) una notificació aquesta realitzarà automàticament la transició a l’estat _Acceptada_.
+Un cop consultada la comunicació amb l'operació [_Consultar_](#petici%C3%B3---peticioconsulta) una notificació aquesta realitzarà automàticament la transició a l’estat _Acceptada_.
 
 #### 1.3.1.2. Altes estats
 
 La resta d'estats són els mateixos respecte les notificacions i s'han de fer servir les mateixes operacions que amb aquestes.
-Per crear-les s'ha d’informar el camp _TipusObjecte_ en el node `<Notificacio>` de l'operació  [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) amb el valor _COMUNICACIO_.
+Per crear-les s'ha d’informar el camp _TipusObjecte_ en el node `<Notificacio>` de l'operació  [_ProcessarTramesa_](#petici%C3%B3---peticioprocessartramesa) amb el valor _COMUNICACIO_.
 
 ## 1.4. Codificació dels estats de les notificacions a eNOTUM
 
@@ -124,7 +124,7 @@ La codificació dels estats de les notificacions a **eNOTUM** es fa mitjançant 
 
 # 2. Missatgeria
 
-Com es comenta en [el punt 1 d'aquest document](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#11-integració-pci) **eNotum** funciona com a servei dins de la _PCI_, serà per tant necessari treballar amb la missatgeria de la _PCI_, encapsulant la missatgeria específica de **eNotum** dins d'aquesta.
+Com es comenta en [el punt 1 d'aquest document](#11-integració-pci) **eNotum** funciona com a servei dins de la _PCI_, serà per tant necessari treballar amb la missatgeria de la _PCI_, encapsulant la missatgeria específica de **eNotum** dins d'aquesta.
 
 Específicament per a fer ús del servei d'**eNotum** dins de la missatgeria de la _PCI_ és necessari informar els següents elements del missatge _XML_:
 
@@ -1061,11 +1061,11 @@ Codi del backoffice emissor de les notificacions.
 ```
 
 * `/CriterisDestinatari/Persona`
-Aquest element permet filtrar bàsicament per les bústies de correu i/o telefons dels destinataris de les notificacions, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#persona)
+Aquest element permet filtrar bàsicament per les bústies de correu i/o telefons dels destinataris de les notificacions, es descriu amb més detall a [continuació](#persona)
 * `/CriterisDestinatari/PersonaFisica`
-Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona física destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#personafisica)
+Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona física destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](#personafisica)
 * `/CriterisDestinatari/PersonaJuridica`
-Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona jurídica destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#personajuridica)
+Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona jurídica destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](#personajuridica)
 * `/CriterisDestinatari/Idioma`
 Permet cerca les notificacions creades en un idioma concret. Els possibles valors d'aquest camp són:
   * *ca* : Indica que l'idioma de les notificacions a cercar és català.
@@ -1110,7 +1110,7 @@ Número de telèfon del destinatari que es vol cercar. Cercarà tots els destina
 </xs:complexType>
 ```
 
-Aquest element extent de `FiltrePersonaType` per tant permet cercar per els mateixos camps que l'element [`FiltrePersonaType`](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#persona) però addicionalment cerca pels següents camps:
+Aquest element extent de `FiltrePersonaType` per tant permet cercar per els mateixos camps que l'element [`FiltrePersonaType`](#persona) però addicionalment cerca pels següents camps:
 
 * `/PersonaFisica/DocumentIdentificatiu/NIF`
 NIF/NIE del destinatari de les notificacions a cercar.
@@ -1139,7 +1139,7 @@ Primer cognom del destinatari de les notificacions a cercar. Cercarà tots els d
 </xs:complexType>
 ```
 
-Aquest element extent de `FiltrePersonaType` per tant permet cercar per els mateixos camps que l'element [`FiltrePersonaType`](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#persona) però addicionalment cerca pels següents camps:
+Aquest element extent de `FiltrePersonaType` per tant permet cercar per els mateixos camps que l'element [`FiltrePersonaType`](#persona) però addicionalment cerca pels següents camps:
 
 * `/PersonaJuridica/DocumentIdentificatiu/CIF`
 NIF d'empresa del destinatari de les notificacions a cercar.
@@ -1220,7 +1220,7 @@ Permet cercar per el tipus d'accés configurat a la notificació, els possibles 
   * _PPAS_
   
 * `/CriterisNotificacio/Referencia/Etiquetes`
-Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l'hora de crear la notificació, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#etiquetes)
+Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l'hora de crear la notificació, es descriu amb més detall a [continuació](#etiquetes)
 
 * `/CriterisNotificacio/Referencia/AmbitObjecte`
 Àmbit per el que cercar la notificació.
@@ -1429,7 +1429,7 @@ L'element `<Errors>` serà una seqüencia amb els possibles errors de la petici�
 </xs:complexType>
 ```
 
-Com comentavem, a la practica, les respostes de les modalitats de consum amb elements `<Error>`, només tindran informat els elements obligatoris: `<CodiError>` i `<MissatgeError>`. Els tres elements opcionals restants mai vindran informat en aquests casos. Podeu veure els possibles [codis i missatges d'error en aquest apartat](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#4-codis-derror-denotum).
+Com comentavem, a la practica, les respostes de les modalitats de consum amb elements `<Error>`, només tindran informat els elements obligatoris: `<CodiError>` i `<MissatgeError>`. Els tres elements opcionals restants mai vindran informat en aquests casos. Podeu veure els possibles [codis i missatges d'error en aquest apartat](#4-codis-derror-denotum).
 
 ## Resposta - RespostaProcessarTramesa
 
@@ -1467,7 +1467,7 @@ Aquesta modalitat de consum permet obtenir un resum de les notificacions pendent
 ```
 
 * `/RespostaResum/NotificacionsEntitat`
-Resum de notificacions pendents per aquest usuari agrupat per ens, aquest element es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#notificacionsentitat).
+Resum de notificacions pendents per aquest usuari agrupat per ens, aquest element es descriu amb més detall a [continuació](#notificacionsentitat).
 * `/RespostaResum/TotalNotificacionsPendents`
 Número total de notificacions pendents de l'usuari per a tots els ens.
 * `/RespostaResum/NotificacionsPendentsAmbCertificat`
@@ -1606,9 +1606,9 @@ Retorna el report amb el resum de dades d'una notificació concreta, o el report
 ```
 
 * `/Report/Capcalera`
-Capçalera amb el resum de les dades del report. És descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#capcalera).
+Capçalera amb el resum de les dades del report. És descriu amb més detall a [continuació](#capcalera).
 * `/Report/Dades`
-Llistat de dades del report. És descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#dades).
+Llistat de dades del report. És descriu amb més detall a [continuació](#dades).
 
 ### Capcalera
 
@@ -1735,13 +1735,13 @@ Canal per al que s'ha generat la notificació:
 * `/DadesRegistre/DataRegistre`
 Data en que s'ha registrat la notificació.
 * `/DadesActor/PracticadaPaper`
-Retorna la informació vinculada amb la practica de les notificacions en paper en cas que aquestes s'hagin omplert en la petició de practicar, per a més detall es pot veure la definició [aqui](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#dadespracticarcanalpaper).
+Retorna la informació vinculada amb la practica de les notificacions en paper en cas que aquestes s'hagin omplert en la petició de practicar, per a més detall es pot veure la definició [aqui](#dadespracticarcanalpaper).
 * `/DadesActor/PersonaFisica`
 Dades de la persona que ha causat el canvi d'estat de la notificació.
 * `/DadesActor/PersonaJuridica`
 Dades de la persona jurídica que ha causat el canvi d'estat de la notificació.
 * `/DadesActor/CanviCanal`
-Retorna la informació vinculada durant la practica de la notificació en cas que s'hagin omplert en la petició de practicar, per a més detall es pot veure la definició [aqui](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria#canvicanal).
+Retorna la informació vinculada durant la practica de la notificació en cas que s'hagin omplert en la petició de practicar, per a més detall es pot veure la definició [aqui](#canvicanal).
 * `/DadesActor/CodiBackOffice`
 L'identificador del backoffice que ha creat la notificació.
 
@@ -1768,21 +1768,21 @@ Aquesta modalitat retorna una resposta detallada de totes les dades vinculades a
 * `/RespostaConsulta/IdNotificacio`
 Identificador de la notificació consultada.
 * `/RespostaConsulta/Emissor`
-Dades de l'emissor de la notificació consultada, podeu consultar els detalls d'aquest element [aqui](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#emissor)
+Dades de l'emissor de la notificació consultada, podeu consultar els detalls d'aquest element [aqui](#emissor)
 * `/RespostaConsulta/DadesOfici`
-Dades d'ofici de la notficiació consulta, es descriu amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesofici-1)
+Dades d'ofici de la notficiació consulta, es descriu amb més detall a [continuació](#dadesofici-1)
 * `/RespostaConsulta/Documents`
-Documents vinculats amb la notificació consultada, aquest tipus d'element es descriu amb més detall [aqui](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#documents)
+Documents vinculats amb la notificació consultada, aquest tipus d'element es descriu amb més detall [aqui](#documents)
 * `/RespostaConsulta/DadesNotificacio`
-Dades de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesnotificacio)
+Dades de la notificació consultada, es descriuen amb més detall a [continuació](#dadesnotificacio)
 * `/RespostaConsulta/DadesRegistre`
-Dades de registre de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesregistre)
+Dades de registre de la notificació consultada, es descriuen amb més detall a [continuació](#dadesregistre)
 * `/RespostaConsulta/DadesSignador`
-Dades del practicant de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadessignador)
+Dades del practicant de la notificació consultada, es descriuen amb més detall a [continuació](#dadessignador)
 * `/RespostaConsulta/DadesAvisos`
-Dades dels avisos de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#dadesavisos-1)
+Dades dels avisos de la notificació consultada, es descriuen amb més detall a [continuació](#dadesavisos-1)
 * `/RespostaConsulta/Destinataris`
-Dades dels destinataris de la notificació consultada, es descriuen amb més detall a [continuació](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#destinataris-1)
+Dades dels destinataris de la notificació consultada, es descriuen amb més detall a [continuació](#destinataris-1)
 
 ### DadesOfici
 
@@ -1861,7 +1861,7 @@ Indica el nivell de certificat mínim per practicar la notificació.
 * `/DadesNotificacio/DiesExpiracio`
 Número de dies fins que expiri la notificació des del moment de la consulta.
 * `/DadesNotificacio/Etiquetes`
-Etiqueta de la notificació. Una notificació pot tenir múltiples etiquetes, la definició d'aquest element la trobareu [aqui](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#etiquetes)
+Etiqueta de la notificació. Una notificació pot tenir múltiples etiquetes, la definició d'aquest element la trobareu [aqui](#etiquetes)
 * `/DadesNotificacio/Canal`
 Canal en el que s'ha generat la notificació:
   * _PAPER_ : Retorna només les notificacions complementaries generades en paper.
