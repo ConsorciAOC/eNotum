@@ -12,7 +12,7 @@ Tal i com es reflecteix a la següent figura, el Backend d'**eNotum** s'integra 
 
 Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a través de la missatgeria de la _PCI_ utilitzant l'element `<DatosEspecificos>` d'aquesta, per a més informació podeu consultar [el document d'integració de la _PCI_ aqui](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/idservei/enotum/)
 
-![eNotum_integracio_pci](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/imgs/eNotum_arquitectura_pci.png)
+![eNotum_integracio_pci](imgs/eNotum_arquitectura_pci.png)
 
 ## 1.2. Cicle de vida de les notificacions
 
@@ -26,7 +26,7 @@ d’aquesta.
 En el següent diagrama d'estats es mostra els diferents estats possibles de la notificació i les
 transicions que es poden donar.
 
-![Cicle de vida de les notificacions](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/imgs/eNotum_cicle_vida_diagrama2.png)
+![Cicle de vida de les notificacions](imgs/eNotum_cicle_vida_diagrama2.png)
 
 ### 1.2.2. Descripció dels estats de les notificacions
 
@@ -34,7 +34,7 @@ transicions que es poden donar.
 
 L'estat _Pendent de processar_ és l'estat inicial de la notificació. La notificació està en aquest estat just en el moment en que l'integrador ha llançat la operació [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) i el missatge de resposta de l'operació ha indicat un codi de notificació, o sigui, que no hi ha hagut cap error. En el cas que la petició de processar tramesa hagi produït algun error la notificació no es crea i, per tant, no està en aquest estat.
 
-Si en el missatge de [_ProcessarTramesa_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/README.MD#petici%C3%B3---peticioprocessartramesa) s'indica un número de registre i una data de registre la notificació passa directament a l'estat _Registrada_ sense passar per l'estat _Pendent de processar_.
+Si en el missatge de [_ProcessarTramesa_](#petici%C3%B3---peticioprocessartramesa) s'indica un número de registre i una data de registre la notificació passa directament a l'estat _Registrada_ sense passar per l'estat _Pendent de processar_.
 
 Un cop en aquest estat el motor de **eNOTUM** s'encarrega de registrar la notificació. Si el registre es fa correctament es passa a l'estat _Registrada_. Si el registre falla el motor de **eNOTUM** programa un nou intent de registre de la notificació al cap d'un cert temps. L'execució pot reintentar-se un nombre determinat de cops. Quan s'exhaureixen els reintents la notificació passa a l'estat _Error_.
 
@@ -100,7 +100,7 @@ Un cop en aquest estat la notificació no pot ser canviada d'estat a un estat an
 
 En el cas de les comunicacions el cicle de vida és molt similar al de les notificacions excepte en el fet de que no es necessita validesa legal de que el destinatari ha practicat la notificació, i que a més a més les comunicacions no tenen un temps determinat de vigència i per tant no expiren, així doncs el cicle de vida es simplifica i queda de la següent manera:
 
-![Cicle de vida de les comunicacions](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/imgs/eNotum_cicle_vida_comunicacions_diagrama3.png)
+![Cicle de vida de les comunicacions](imgs/eNotum_cicle_vida_comunicacions_diagrama3.png)
 
 ### 1.3.1. Descripció dels estats de les comunicacions
 
@@ -120,7 +120,7 @@ Per crear-les s'ha d’informar el camp _TipusObjecte_ en el node `<Notificacio>
 
 La codificació dels estats de les notificacions a **eNOTUM** es fa mitjançant una paraula d'estats que permet tenir constància de l'estat actual així com traça dels diferents estats pels que ha passat una notificació.
 
-![Codificacio d'estats](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/imgs/eNotum_codificacio_estats_diagrama4.png)
+![Codificacio d'estats](imgs/eNotum_codificacio_estats_diagrama4.png)
 
 # 2. Missatgeria
 
