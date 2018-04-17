@@ -13,9 +13,9 @@ En una tramesa és obligatori adjuntar un document de tipus _Resolució_ i opcio
 En el cas d'adjuntar el/s document/s directament dins del missatge, la mida màxima permesa per un document és de **2MB**.
 Per a la resta de casos la mida màxima permesa per un document és de **6MB**.
 Aquesta és la restricció màxima. A nivell d'ens és pot configurar un límit més restrictiu.
-A través de l'aplicació d'eNotum dins [_d'EACAT_](www.eacat.cat), anant a configuració i seleccionant l'ens en qüestió:
+A través de l'aplicació d'eNotum dins [_d'EACAT_](https://www.eacat.cat), anant a configuració i seleccionant l'ens en qüestió:
 
-![grandariaMaximaEnsPortletEACAT](https://github.com/ConsorciAOC/eNotum/blob/master/guiesUsuaris/imgs/grandariaMaximaEnsPortletEACAT.png)
+![grandariaMaximaEnsPortletEACAT](imgs/grandariaMaximaEnsPortletEACAT.png)
 
 Aquest camp aplica sempre i quan sigui més restrictiu que els **2MB** en cas d'adjuntar via missatgeria, o de **6MB** per a les altres formes. En cas de setejar amb un valor superior no és tindrà en compte.
 
