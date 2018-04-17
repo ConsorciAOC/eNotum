@@ -17,7 +17,7 @@ Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a t
 ## 1.2. Cicle de vida de les notificacions
 
 Per tal de comprendre com utilitzar les operacions que estan publicades per a la integració amb
-**eNOTUM** és recomanable entendre el cicle de vida de les notificacions. Això ens permetrà saber en
+**eNotum** és recomanable entendre el cicle de vida de les notificacions. Això ens permetrà saber en
 quins estats pot estar la notificació i l'efecte que tindrà l’execució de les operacions sobre l’estat
 d’aquesta.
 
@@ -36,17 +36,17 @@ L'estat _Pendent de processar_ és l'estat inicial de la notificació. La notifi
 
 Si en el missatge de [_ProcessarTramesa_](#petici%C3%B3---peticioprocessartramesa) s'indica un número de registre i una data de registre la notificació passa directament a l'estat _Registrada_ sense passar per l'estat _Pendent de processar_.
 
-Un cop en aquest estat el motor de **eNOTUM** s'encarrega de registrar la notificació. Si el registre es fa correctament es passa a l'estat _Registrada_. Si el registre falla el motor de **eNOTUM** programa un nou intent de registre de la notificació al cap d'un cert temps. L'execució pot reintentar-se un nombre determinat de cops. Quan s'exhaureixen els reintents la notificació passa a l'estat _Error_.
+Un cop en aquest estat el motor de **eNotum** s'encarrega de registrar la notificació. Si el registre es fa correctament es passa a l'estat _Registrada_. Si el registre falla el motor de **eNotum** programa un nou intent de registre de la notificació al cap d'un cert temps. L'execució pot reintentar-se un nombre determinat de cops. Quan s'exhaureixen els reintents la notificació passa a l'estat _Error_.
 
-El temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNOTUM** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNOTUM** i per organisme/departament al que pertany la notificació.
+El temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNotum** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNotum** i per organisme/departament al que pertany la notificació.
 
 #### 1.2.2.2. Registrada
 
-La notificació està en aquest estat quan ja està registrada. S'arriba a aquest estat quan el motor registra una notificació en estat _Pendent de processar_ o quan s'envia un missatge a **eNOTUM** indicant que la tramesa ja està registrada. O sigui, informant la data de registre i el número de registre dins el node `/Notificacio/DadesRegistre` de la `<Tramesa>`.
+La notificació està en aquest estat quan ja està registrada. S'arriba a aquest estat quan el motor registra una notificació en estat _Pendent de processar_ o quan s'envia un missatge a **eNotum** indicant que la tramesa ja està registrada. O sigui, informant la data de registre i el número de registre dins el node `/Notificacio/DadesRegistre` de la `<Tramesa>`.
 
-Quan estem en aquest estat el motor d'**eNOTUM** dipositarà la notificació i crearà la evidència de dipòsit. Si aquest procés s'executa sense problemes es passarà a l'estat _Dipositada_. Com en l'estat anterior, si falla el procés es reintentarà un nombre definit de cops i, si finalment cap acaba correctament, la notificació passa a l'estat _Error_.
+Quan estem en aquest estat el motor d'**eNotum** dipositarà la notificació i crearà la evidència de dipòsit. Si aquest procés s'executa sense problemes es passarà a l'estat _Dipositada_. Com en l'estat anterior, si falla el procés es reintentarà un nombre definit de cops i, si finalment cap acaba correctament, la notificació passa a l'estat _Error_.
 
-Igual que en el cas anterior el temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNOTUM** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNOTUM** i per organisme/departament al que pertany la notificació.
+Igual que en el cas anterior el temps d'espera entre intents d'execució així com el nombre de reintents és configurable mitjançant l'aplicació **eNotum** al portal EACATPL. Aquests camps es poden definir per fase del motor d'**eNotum** i per organisme/departament al que pertany la notificació.
 
 #### 1.2.2.3. Dipositada
 
@@ -68,11 +68,11 @@ Quan la notificació està en aquest estat el ciutadà pot decidir acceptar o re
   * Amb una _paraula de pas_ específica demanada per a realitzar la practica d'una notificació.
   * O si es delega l'autenticació del usuari a [_Valid_](https://www.aoc.cat/serveis-aoc/valid/) o una altre plataforma d'un tercer, tant sols indicant el `/Usuari/IdAutenticacio` per identificar aquest procés d'autorització.
 
-En el cas d'accés amb _certificat digital_ Les dades a signar seran proporcionades per **eNOTUM** mitjançant la operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _OBTENIR_DADES_.
+En el cas d'accés amb _certificat digital_ Les dades a signar seran proporcionades per **eNotum** mitjançant la operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _OBTENIR_DADES_.
 
 La signatura del ciutadà ha de ser realitzada amb una eina de signatura que generi signatures digitals avançades en format XML (XAdES) com per exemple el servei del [_signador del Consorci AOC_](https://signador.aoc.cat). Per tal que la signatura sigui acceptada ha de tenir un format _XAdES-T_ o més elevat ja que és a partir d'aquest nivell que es garanteix l'autenticació del signatari, integritat de les dades i validesa de la signatura a llarg termini.
 
-Un cop realitzada la signatura aquesta s'envia a **eNOTUM** amb l'operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _SIGNAR_. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l'estat de la notificació passa a ser _Acceptada_ o _Rebutjada_ en funció del que s'hagi especificat en l'element `<Decisio>` de l'operació de practicar.
+Un cop realitzada la signatura aquesta s'envia a **eNotum** amb l'operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _SIGNAR_. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l'estat de la notificació passa a ser _Acceptada_ o _Rebutjada_ en funció del que s'hagi especificat en l'element `<Decisio>` de l'operació de practicar.
 
 Es pot donar el cas que el ciutadà tot i que visualitzi la notificació no l'accepti ni la rebutgi. En aquest cas la notificació es manté en l'estat _Visualitzada_ fins la finalització del temps de vigència. Exhaurit aquest període el sistema rebutja la notificació i aquesta passa a l'estat _Rebutjada sense acció_. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s'exhaureixen els reintents la notificació passa a l'estat _Error_.
 
@@ -118,7 +118,7 @@ Per crear-les s'ha d’informar el camp _TipusObjecte_ en el node `<Notificacio>
 
 ## 1.4. Codificació dels estats de les notificacions a eNOTUM
 
-La codificació dels estats de les notificacions a **eNOTUM** es fa mitjançant una paraula d'estats que permet tenir constància de l'estat actual així com traça dels diferents estats pels que ha passat una notificació.
+La codificació dels estats de les notificacions a **eNotum** es fa mitjançant una paraula d'estats que permet tenir constància de l'estat actual així com traça dels diferents estats pels que ha passat una notificació.
 
 ![Codificacio d'estats](imgs/eNotum_codificacio_estats_diagrama4.png)
 
@@ -1923,7 +1923,15 @@ Data en que s'ha registrat la notificació.
   </xs:complexType>
 </xs:element>
 ```
-TODO: Define
+
+* `/DadesSignador/Fisic/DocumentIdentificatiu`
+Document identificatiu de la persona física que ha practicat la notificació, el tipus `DocumentPersonaFisicaType` és descriu amb més detall [aquí](#documentidentificatiupersonafisica).
+* `/DadesSignador/Fisic/NomComplert`
+Nom complert de la persona física que ha practicat la notificació.
+* `/DadesSignador/Juridic/DocumentIdentificatiu`
+Document identificatiu de la persona jurídica que ha practicat la notificació. el tipus `DocumentPersonaJuridicaType` és descriu amb més detall [aquí](#documentidentificatiupersonajuridica)
+* `/DadesSignador/Juridic/RaoSocial`
+Raó social de la persona jurídica que ha practicat la notificació.
 
 ### DadesAvisos
 
@@ -1954,7 +1962,21 @@ TODO: Define
 </xs:element>
 ```
 
-TODO: Define
+Aquest element conte les dades relacionades amb els avisos que s'han enviat per a aquesta notificació.
+
+* `/DadesAvisos/Email/Emissor`
+Aquest camp conté l'adreça de correu electrònic que **eNotum** ha usat com a remitent pels avisos als destinataris de les notificacions.
+En el moment del enviament **eNotum** concatenael prefix *NORESPONEU_* a aquesta per indicar al destinatari que no s'espera resposta de la seva part.
+* `/DadesAvisos/Email/Assumpte`
+Assumpte de l'avís enviat per correu electrònic.
+* `/DadesAvisos/Email/Missatge`
+Cos del missatge del correu electrònic enviat. Aquest missatge redactat en text pla, s'ha incrustat en la plantilla _html_ definida al sistema.
+* `/DadesAvisos/SMS/Missatge`
+Missatge breu de text enviat al mòbil del destinatari.
+* `/DadesAvisos/DiesAvisos`
+Numero de dies a partir del dipòsit en el qual s'envien recordatoris als destinataris i persones d'avis.
+* `/DadesAvisos/Idioma`
+Identificador de l'idioma en que el destinatari ha rebut els avisos.
 
 ### Destinataris
 
@@ -1980,7 +2002,13 @@ TODO: Define
 </xs:element>
 ```
 
-TODO: Define
+TODO: Definir!
+
+* `/Destinataris/PersonaFisica`
+* `/Destinataris/PersonaJuridica`
+* `/Destinataris/Idioma`
+* `/Destinataris/HaSignat`
+* `/Destinataris/CanviCanal`
 
 ## Resposta - RespostaParaulaPas
 
