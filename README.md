@@ -7,14 +7,14 @@ Tota la documentació d'integració antiga així com altre tipus de documentaci�
 
 De moment aqui podeu trobar:
 
-[1. Manual d'estils personalitzats `CSS` de *WebCiutada*](https://github.com/ConsorciAOC/eNotum/tree/master/customCSSWebCiutada)
+[1. Manual d'estils personalitzats `CSS` de *WebCiutada*](/customCSSWebCiutada)
 
-[2. Integració callbacks canvis d'estat](https://github.com/ConsorciAOC/eNotum/tree/master/integracioReportsCanvisEstat)
+[2. Integració callbacks canvis d'estat](/integracioReportsCanvisEstat)
 
-[3. Integració missatgeria (en beta)](https://github.com/ConsorciAOC/eNotum/tree/master/missatgeria)
+[3. Integració missatgeria (en beta)](/missatgeria)
 
 # Altres
 
 També hem afegit un nou document de FAQs que anirem informant en funció de les queixes/consultes que anem rebent:
 
-[FAQs](https://github.com/ConsorciAOC/eNotum/blob/master/guiesUsuaris/FAQs.md)
+[FAQs](/guiesUsuaris/FAQs.md)
