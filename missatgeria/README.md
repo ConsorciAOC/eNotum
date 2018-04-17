@@ -2045,14 +2045,149 @@ Retorna un seguit de notificacions que acompleixen els criteris de cerca fets en
 ```
 
 * `/RespostaCerca/Resultats`
+Conté la seqüència de notificacions que compleixen el criteri de cerca. L'element es descriu amb més detall [aquí](#Resultats)
 * `/RespostaCerca/DadesPaginacio`
-
-TODO:
+Conté les dades de paginació dels resultats de cerca. L'element es descriu amb més detall [aquí](#DadesPaginacio)
 
 ### Resultats
 
+```xml
+<xs:complexType name="ResultatsType">
+  <xs:sequence>
+    <xs:element name="Notificacio" minOccurs="0" maxOccurs="unbounded">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="TipusObjecte" type="TipusObjecteType" />
+          <xs:element name="IdNotificacio" type="xs:integer" />
+          <xs:element name="Referencia" type="xs:string" />
+          <xs:element name="Titol" type="xs:string" />
+          <xs:element name="DataCreacio" type="xs:dateTime" nillable="true" />
+          <xs:element name="DadesRegistre">
+            <xs:complexType>
+              <xs:all>
+                <xs:element name="DataRegistre" type="xs:dateTime" nillable="true" />
+                <xs:element name="NumeroRegistre" type="xs:string" nillable="true" />
+              </xs:all>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="DataPublicacio" type="xs:dateTime" nillable="true" />
+          <xs:element name="DataVisualitzacio" type="xs:dateTime" nillable="true" />
+          <xs:element name="DataAcceptarRebutjar" type="xs:dateTime" nillable="true" />
+          <xs:element name="Estat" type="xs:string" />
+          <xs:element name="IdEstat" type="xs:integer" />
+          <xs:element name="DiesExpiracio" type="xs:integer" nillable="true" minOccurs="0"/>
+          <xs:element name="DiesResten" type="xs:integer" nillable="true" minOccurs="0" />
+          <xs:element name="DataLimit" type="xs:dateTime" nillable="true" minOccurs="0" />
+          <xs:element name="TipusAcces" type="TipusAccesType" />
+          <xs:element name="AmbitObjecte" type="xs:string" minOccurs="0" />
+          <xs:element name="Idioma" type="Idioma" />
+          <xs:element name="CodiDepartament" type="xs:string" nillable="true" />
+          <xs:element name="NomDepartament" type="xs:string" nillable="true" />
+          <xs:element name="CodiBO" type="xs:string" nillable="true" minOccurs="0" />
+          <xs:element name="NumeroReintents" type="xs:integer" nillable="true" />
+          <xs:element name="DataReintent" type="xs:dateTime" nillable="true" />
+          <xs:element name="BustiesCorreu" type="BustiesCorreuType" nillable="true" minOccurs="0" />
+          <xs:element name="Telefons" type="TelefonsType" nillable="true" minOccurs="0" />
+          <xs:element name="Consultada" type="ConsultadaType" minOccurs="0"/>
+          <xs:element name="Canal" type="CanalType" minOccurs="0"/>
+          <xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+          <xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+          <xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+  </xs:sequence>
+</xs:complexType>
+```
+
+* `/Resultats/Notificacio/TipusObjecte`
+Indica si és una notificació o és una comunicació. Els valors que pot retornar són
+  * _NOTIFICACIO_ 
+  * _COMUNICACIO_
+* `/Resultats/Notificacio/IdNotificacio`
+Identificador de BD de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/Referencia`
+Referència de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/Titol`
+Títol de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/DataCreacio`
+Data d'entrada de la notificació al sistema dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/DadesRegistre/NumeroRegistre`
+Número d'assentament de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/DadesRegistre/DataRegistre`
+Data d'assentament de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/DataPublicacio`
+Data de dipòsit de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/DataVisualitzacio`
+Data en que la notificació ha estat visualitzada pel ciutadà dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/DataAcceptarRebutjar`
+Data d'acceptació o rebuig de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/Estat`
+Descripció de l'estat de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/IdEstat`
+Identificador de l'estat de la notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/DiesExpiracio`
+Dies que falten fins que expiri la notificació.
+* `/Resultats/Notificacio/DiesResten`
+Número de dies que resten fins que la notificació expiri. Aquest valor no vindrà informat en el cas que la notificació encara no estigui dipositada.
+* `/Resultats/Notificacio/DataLimit`
+Data en que expirarà la notificació. Pot ser que aquest camp no vingui informat si la notificació no ha estat dipositada.
+* `/Resultats/Notificacio/TipusAcces`
+Modalitat d'accés a la notificació per part del ciutadà. Els possibles valors són:
+  * _PPAS_ 
+  * _CERT_
+* `/Resultats/Notificacio/AmbitObjecte`
+Àmbit de la notificació, si s'ha informat en el moment de creació de la notificació.
+* `/Resultats/Notificacio/Idioma`
+Idioma del contingut de la notificació.
+* `/Resultats/Notificacio/CodiDepartament`
+Identificador del departament que ha creat la notificació.
+* `/Resultats/Notificacio/NomDepartament`
+Nom del departament que ha creat la notificació.
+* `/Resultats/Notificacio/CodiBO`
+Identificador del BackOffice que ha creat la notificació.
+* `/Resultats/Notificacio/NumeroReintents`
+Número de cops que s'ha intentat executar la fase del motor per aquesta notificació dins de la llista de resultats obtinguts de la cerca.
+* `/Resultats/Notificacio/DataReintent`
+Data en que es reintentarà executar la fase del motor per aquesta notificació o la data de la última execució de la fase del motor pel cas en que la notificació estigui en estat error.
+* `/Resultats/Notificacio/Busties`
+Element que encapsula fins a 5 elements `<Bustia>` que contenen les adreces dels correus electrònics on s'han enviat els avisos de notificació al seu destinatari.
+* `/Resultats/Notificacio/Telefons`
+Element que encapsula fins a 5 elements `<Telefon>` que contenen els números de telèfon mòbil als que s'ha enviat els avisos de notificació.
+* `/Resultats/Notificacio/Consultada`
+Indica si la notificació ha estat consultada.
+* `/Resultats/Notificacio/Canal`
+Indica el tipus de canal per al qual s'ha enviat la notificació. Els possibles valors són:
+  * _DIGITAL_
+  * _PAPER_
+* `/Resultats/Notificacio/Expedient`
+Identificador de l'expedient informat a la notificació durant la seva creació.
+* `/Resultats/Notificacio/Tramit`
+Identificador del tràmit informat a la notificació durant la seva creació.
+* `/Resultats/Notificacio/NumeroCas`
+Identificador del número de cas informat a la notificació durant la seva creació.
+
 ### DadesPaginacio
 
+```xml
+<xs:complexType name="DadesPaginacioType">
+  <xs:sequence>
+    <xs:element name="NumeroPagina" type="xs:integer" />
+    <xs:element name="ResultatsPerPagina" type="xs:integer" />
+    <xs:element name="TotalResultats" type="xs:integer" />
+    <xs:element name="TotalPagines" type="xs:integer" />
+  </xs:sequence>
+</xs:complexType>
+```
+
+* `/DadesPaginacio/NumeroPagina`
+Número de pàgina actual del llistat de resultats de la cerca.
+* `/DadesPaginacio/ResultatsPerPagina`
+Número de registres retornats per pàgina.
+* `/DadesPaginacio/TotalResultats`
+Número total de resultats de la cerca.
+* `/DadesPaginacio/TotalPagines`
+Número total de pàgines de la cerca.
 
 # 4. Codis d'error d'eNotum
 
