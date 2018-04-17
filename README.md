@@ -11,7 +11,7 @@ De moment aqui podeu trobar:
 
 [2. Integració callbacks canvis d'estat](/integracioReportsCanvisEstat/README.md)
 
-[3. Integració missatgeria (en beta)](/missatgeria/README.md)
+[3. Integració missatgeria](/missatgeria/README.md)
 
 # Altres
 
