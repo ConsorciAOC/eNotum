@@ -10,7 +10,7 @@ Tots els estils que ara veureu estàn definits al [webCiutadaPlantilla.css](http
 
 La modificació dels estils dins d'aquest apartat, afectarà als elements dins del _cos_ de la web, no afectarà ni la _capçalera_ ni el _peu_:
 
-![headerBodyFooter](/customCSSWebCiutada/img/headerBodyFooter.jpg)
+![headerBodyFooter](/img/headerBodyFooter.jpg)
 
 ### Color dels enllaços
 
@@ -23,7 +23,7 @@ a:hover {color: #0d8ed1;}
 ```
 Com hem comentat abans això tindrà afectació per a tots els enllaços del _cos_ de la web, com a exemple mostrarem el enllaços del llistat de notificacions:
 
-![ColorLinkBase](/customCSSWebCiutada/img/ColorLinkBase.png)
+![ColorLinkBase](/img/ColorLinkBase.png)
 
 Si es modifiquen el valor del _color_ en el `CSS` per exemple per:
 
@@ -34,11 +34,11 @@ a:hover {color:green;}
 ```
 El resultat en aquests mateixos enllaços de la notificació seria:
 
-![ColorLinkModificat](/customCSSWebCiutada/img/ColorLinkModificat.png)
+![ColorLinkModificat](/img/ColorLinkModificat.png)
 
 I amb el cursor a sobre:
 
-![ColorLinkHoverModificat](/customCSSWebCiutada/img/ColorLinkHoverModificat.png)
+![ColorLinkHoverModificat](/img/ColorLinkHoverModificat.png)
 
 ### Color de fons
 
@@ -48,7 +48,7 @@ Aquesta és la propietat que s'aplica com a base per al color de fons:
 /* Color fons pàgina */
 body {background: #f1f1f1;}
 ```
-![BackgroundColorBase](/customCSSWebCiutada/img/BackgroundColorBase.png)
+![BackgroundColorBase](/img/BackgroundColorBase.png)
 
 Si es modifica per exemple per el següent:
 
@@ -57,7 +57,7 @@ Si es modifica per exemple per el següent:
 body {background: greenyellow;}
 ```
 
-![BackgroundColorModificat](/customCSSWebCiutada/img/BackgroundColorModificat.png)
+![BackgroundColorModificat](/img/BackgroundColorModificat.png)
 
 ### Tipus de lletra
 
@@ -82,7 +82,7 @@ Els següent estil permet modificar el color de fons de la part de la capçalera
 #header { background-color: #FFF;}  /* Color fons */
 ```
 
-![HeaderColorDefecte](/customCSSWebCiutada/img/HeaderColorDefecte.png)
+![HeaderColorDefecte](/img/HeaderColorDefecte.png)
 
 Si es modifica per:
 
@@ -90,7 +90,7 @@ Si es modifica per:
 /* Barra blanca logotip */
 #header { background-color: rebeccapurple;}  /* Color fons */
 ```
-![HeaderColorModificat](/customCSSWebCiutada/img/HeaderColorModificat.png)
+![HeaderColorModificat](/img/HeaderColorModificat.png)
 
 ### Enapçalament
 
@@ -105,7 +105,7 @@ h2 {color: #fff;} /* Color títol */
 }
 ```
 
-![HeaderColorDefecte](/customCSSWebCiutada/img/HeaderColorDefecte.png)
+![HeaderColorDefecte](/img/HeaderColorDefecte.png)
 
 Si es modifica per:
 
@@ -118,7 +118,7 @@ h2 {color: blue;} /* Color títol */
 }
 ```
 
-![BarNotificacionsModificat](/customCSSWebCiutada/img/BarNotificacionsModificat.png)
+![BarNotificacionsModificat](/img/BarNotificacionsModificat.png)
 
 # Notificacions
 
@@ -132,9 +132,9 @@ Els següent estil permet modificar el color del títol en la plana de detall de
 /* Títol detall i del llistat de notificacions */
 .box_mid_header h3 { color: #000; }
 ```
-![TitleColorLlistatNoti](/customCSSWebCiutada/img/TitleColorLlistatNoti.png)
-![TitleColorDetallNoti](/customCSSWebCiutada/img/TitleColorDetallNoti.png)
-![TitleColorPreviNoti](/customCSSWebCiutada/img/TitleColorPreviNoti.png)
+![TitleColorLlistatNoti](/img/TitleColorLlistatNoti.png)
+![TitleColorDetallNoti](/img/TitleColorDetallNoti.png)
+![TitleColorPreviNoti](/img/TitleColorPreviNoti.png)
 
 I si es modifica per:
 
@@ -143,9 +143,9 @@ I si es modifica per:
 .box_mid_header h3 { color: violet; }
 ```
 
-![TitleColorLlistatNotiModificat](/customCSSWebCiutada/img/TitleColorLlistatNotiModificat.png)
-![TitleColorDetallNotiModificat](/customCSSWebCiutada/img/TitleColorDetallNotiModificat.png)
-![TitleColorPreviNotiModificat](/customCSSWebCiutada/img/TitleColorPreviNotiModificat.png)
+![TitleColorLlistatNotiModificat](/img/TitleColorLlistatNotiModificat.png)
+![TitleColorDetallNotiModificat](/img/TitleColorDetallNotiModificat.png)
+![TitleColorPreviNotiModificat](/img/TitleColorPreviNotiModificat.png)
 
 ### Títol cerca
 
@@ -155,7 +155,7 @@ El següent estil permet modificar el color dels titol del camp de cerca:
 /* Títol Cerca */
 .box_small_header h3 {color: #4b4b4b;} /* Color text */
 ```
-![TitleCercaColor](/customCSSWebCiutada/img/TitleCercaColor.png)
+![TitleCercaColor](/img/TitleCercaColor.png)
 
 I si es modifica per:
 
@@ -164,7 +164,7 @@ I si es modifica per:
 .box_small_header h3 {color: violet;} /* Color text */
 ```
 
-![TitleCercaColorModificat](/customCSSWebCiutada/img/TitleCercaColorModificat.png)
+![TitleCercaColorModificat](/img/TitleCercaColorModificat.png)
 
 ### Filtres
 
@@ -175,7 +175,7 @@ El següent estil defineix el color de fons i el color del text dels filtres apl
 .etiqueta {background-color: #333;} /* Color fons*/
 .etiqueta a {color: #fff;} /* Color text */
 ```
-![Filtre](/customCSSWebCiutada/img/Filtre.png)
+![Filtre](/img/Filtre.png)
 
 I si es modifica per:
 
@@ -185,7 +185,7 @@ I si es modifica per:
 .etiqueta a {color: yellow;} /* Color text */
 ```
 
-![FiltresModificats](/customCSSWebCiutada/img/FiltresModificats.png)
+![FiltresModificats](/img/FiltresModificats.png)
 
 ### Barra torneu a la bústia
 
@@ -199,7 +199,7 @@ Aquests estils defineixen el color de fons, i la mida, tipus i color del marge i
 }
 ```
 
-![BarraTornar](/customCSSWebCiutada/img/BarraTornar.png)
+![BarraTornar](/img/BarraTornar.png)
 
 I si es modifica per:
 
@@ -210,7 +210,7 @@ I si es modifica per:
 }
 ```
 
-![BarraTornarModificat](/customCSSWebCiutada/img/BarraTornarModificat.png)
+![BarraTornarModificat](/img/BarraTornarModificat.png)
 
 ### Filtres
 
@@ -222,7 +222,7 @@ Els següents estils permeten cambiar el color de fons del formulari de filtres,
 .menu label {color: #000000;} /* Color text dels filtres */
 ```
 
-![FormFiltre](/customCSSWebCiutada/img/FormFiltre.png)
+![FormFiltre](/img/FormFiltre.png)
 
 Si es modifica per:
 
@@ -231,5 +231,5 @@ Si es modifica per:
 .menus {background-color:beige;} /* Color fons filtres */
 .menu label {color: brown;} /* Color text dels filtres */
 ```
-![FormFiltreModificat](/customCSSWebCiutada/img/FormFiltreModificat.png)
+![FormFiltreModificat](/img/FormFiltreModificat.png)
 
