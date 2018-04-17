@@ -10,7 +10,7 @@ Tots els estils que ara veureu estàn definits al [webCiutadaPlantilla.css](http
 
 La modificació dels estils dins d'aquest apartat, afectarà als elements dins del _cos_ de la web, no afectarà ni la _capçalera_ ni el _peu_:
 
-![headerBodyFooter](/img/headerBodyFooter.jpg)
+![headerBodyFooter](/customCSSWebCiutada/img/headerBodyFooter.jpg)
 
 ### Color dels enllaços
 
