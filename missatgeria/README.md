@@ -2002,13 +2002,18 @@ Identificador de l'idioma en que el destinatari ha rebut els avisos.
 </xs:element>
 ```
 
-TODO: Definir!
+Aquest element descriu la seqüència de destinataris d'aquesta notificació.
 
-* `/Destinataris/PersonaFisica`
-* `/Destinataris/PersonaJuridica`
-* `/Destinataris/Idioma`
-* `/Destinataris/HaSignat`
-* `/Destinataris/CanviCanal`
+* `/Destinataris/Destinatari/PersonaFisica`
+Dades de la persona física destinataria de la notificació. El tipus `PersonaFisicaType` està descrit amb més detall [aqui](#personafisica).
+* `/Destinataris/Destinatari/PersonaJuridica`
+Dades de la persona jurídica destinataria de la notificació. El tipus `PersonaJuridicaType` està descrit amb més detall [aqui](#personajuridica).
+* `/Destinataris/Destinatari/Idioma`
+Idioma en que el destinatari ha rebut l'avís de la notificació.
+* `/Destinataris/Destinatari/HaSignat`
+Atribut booleà que indica si el destinatari ha realitzat l'acció d’acceptació o rebuig de la notificació.
+* `/Destinataris/Destinatari/CanviCanal`
+Dades relacionades amb el canvi de canal, en cas que la notificació fos en format _paper_ i el destinatari hagués aportat informació al respecte de canviar el format de recepció de les notificacions (només aplica a persones físiques ja que les persones jurídiques només poden rebre notificacions en format digital). El tipus `DadesCanviCanalType` està descrit amb més detall [aquí](#canvicanal)
 
 ## Resposta - RespostaParaulaPas
 
