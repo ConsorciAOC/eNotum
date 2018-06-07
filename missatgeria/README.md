@@ -63,6 +63,10 @@ Si el ciutadà no visualitza la notificació aquesta es manté en aquest estat d
 #### 1.2.2.4. Visualitzada
 
 Quan la notificació està en aquest estat el ciutadà pot decidir acceptar o rebutjar la notificació. Per tal que aquesta decisió tingui una validesa legal el ciutadà ha de realitzar una acció diferent en funció del tipus d'accés requerit per a la notificació. 
+
+La practica de la notificació es pot realitzar:
+
+1. Amb signatura del ciutadà:
 * Per a notificacions creades amb `<TipusAcces>` _CERT_, s'ha de signar l'acceptació o rebuig amb el certificat digital vinculat a l'identitat de l'usuari. 
 * Per a notificacions creades amb `<TipusAcces>` _PPAS_, es poden acceptar o rebutjar de dues formes:
   * Amb una _paraula de pas_ específica demanada per a realitzar la practica d'una notificació.
@@ -74,7 +78,13 @@ La signatura del ciutadà ha de ser realitzada amb una eina de signatura que gen
 
 Un cop realitzada la signatura aquesta s'envia a **eNotum** amb l'operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _SIGNAR_. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l'estat de la notificació passa a ser _Acceptada_ o _Rebutjada_ en funció del que s'hagi especificat en l'element `<Decisio>` de l'operació de practicar.
 
-Es pot donar el cas que el ciutadà tot i que visualitzi la notificació no l'accepti ni la rebutgi. En aquest cas la notificació es manté en l'estat _Visualitzada_ fins la finalització del temps de vigència. Exhaurit aquest període el sistema rebutja la notificació i aquesta passa a l'estat _Rebutjada sense acció_. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s'exhaureixen els reintents la notificació passa a l'estat _Error_.
+2. Sense signatura per part del ciutadà
+
+Utilitzant l’operació Practicar notificació indicant que la modalitat de l’operació a realitzar es SIGNAR. L’estat de la notificació passa a ser Acceptada o Rebutjada en funció del que s’hagi especificat en l’element <Decisio> de l’operació de practicar.
+
+Es pot donar el cas que el ciutadà tot i que visualitzi la notificació no l'accepti ni la rebutgi amb cap dels dos mecanismes. En aquest cas la notificació es manté en l'estat _Visualitzada_ fins la finalització del temps de vigència. Exhaurit aquest període el sistema rebutja la notificació i aquesta passa a l'estat _Rebutjada sense acció_. Com en els casos anteriors, si aquest procés falla es reintenta en funció dels paràmetres de configuració del gestor d’errors i si s'exhaureixen els reintents la notificació passa a l'estat _Error_.
+
+**Comentar també que la modalitat 1 és manté per compatibilitat amb clients ja integrats però que és susceptible de desapareixer en un futur, per tant totes les noves integracions que vulguin realitzar l'acceptació ho hauran de fer amb el segon mecanisme**
 
 #### 1.2.2.5. Acceptada / Rebutjada / Rebutjada sense acció / Rebutjada sense accés
 
