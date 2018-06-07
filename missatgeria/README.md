@@ -740,7 +740,7 @@ Telèfon de les persones que rebran l’avís.
 </xs:complexType>
 ```
 
-Defineix etiquetes arbitraries que opcionalment es poden usar per a classificar la notificació.
+Cada ens pot definir-se etiquetes per al seu organisme. Aquestes etiquetes es gestionen a través de l'aplicació d'eNotum dins d'*EACAT*. Aquestes etiquetes no són obligatories i estàn a disposició de tots els ens que vulguin o necessitin crear algun concepte d'agrupació de notificacions per tal de desprès poder-les recuperar a partir d'aquest concepte. En definitiva aquestes etiquetes són arbitraries i opcionalment es poden usar per a classificar la notificació. L'únic requeriment per tal de poder-les utilitzar a la petició de `processarTramesa` és que s'hagin creat previament per l'ens en particular, en cas que l'etiqueta informada no existeixi es tornarà el codi _1100_ amb el corresponent missatge d'error *L'etiqueta indicada no existeix*. Addicionalment comentar que es permeten les cerques per a aquest concepte.
 
 * `/Etiquetes/Etiqueta`
 Nom de l'etiqueta.
