@@ -445,6 +445,7 @@ Codi d'unitat organitzativa a usar per registrar les notificacions. Aquest parà
 					<xs:element name="SHA1Digest" type="xs:base64Binary" minOccurs="0"/>
 					<xs:choice>
 						<xs:element name="Dades" type="xs:base64Binary"/>
+						<xs:element name="URLDescarrega" type="xs:anyURI"/>
 						<xs:element name="Ruta" type="xs:string"/>
 						<xs:element name="IdFicheroPCI" type="xs:string"/>
 					</xs:choice>
@@ -466,6 +467,8 @@ Codi d'unitat organitzativa a usar per registrar les notificacions. Aquest parà
 Nom del fitxer del document, amb extensió. E.g: _holaRepublica.pdf_
 * `/Documents/Document/SHA1Digest`
 Resum críptografic en [_SHA1_](https://en.wikipedia.org/wiki/SHA-1) del contingut del document com a string codificat en [_base64_](https://en.wikipedia.org/wiki/Base64).
+* `/Documents/Document/URLDescarrega`
+S'informa en les respostes de consulta amb la URL de descarrega d'on obtenir el document.
 * `/Documents/Document/Dades`
 En cas que és vulgui incrustar el document dins del missatge en _base64_. S'ha de tenir en compte que per a documents on la mida superi **1MB**, no recomanem aquest mecanisme, donat que la _PCI_ té una restricció on el missatge _XML_ de la petició complet no pot superar els **2MB**. 
 * `/Documents/Document/Ruta`
