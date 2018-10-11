@@ -129,9 +129,27 @@
 			<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
 			<xs:element name="IdNotificacioEmissor" type="xs:string" minOccurs="0"/>
 			<xs:element name="Canal" type="CanalType" minOccurs="0"/>
-			<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
-			<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
-			<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+			<xs:element name="Expedient" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Tramit" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NumeroCas" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
 		</xs:all>
 	</xs:complexType>
 
