@@ -1222,7 +1222,7 @@ Permet indicar un rang de cerca dels valors de la referencia, així com un valor
   * `/CriterisNotificacio/Referencia/ValorInferior`
   Valor de tall inferior pel interval de cerca.
   * `/CriterisNotificacio/Referencia/ValorAbsolut`
-  Cadena de text sobre la que es farà la cerca. Aquesta cadena es buscarà en qualsevol posició del número de referència.
+  Cadena de text sobre la que es farà la cerca. Aquesta cadena es buscarà com a prefix de qualsevol referència existent, en mode case insensitive. Per example el valor "Ref" retornarà "referència","Referència","referendum","Reflexió" o "referència dia 27/10/2017".
 
 * `/CriterisNotificacio/Referencia/NumeroRegistre`
 Número de registre de la notificació a cerca, igual que en els casos anteriors permet indicar un rang de cerca de valors així com un valor absolut del mateix.
