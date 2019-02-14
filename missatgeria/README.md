@@ -1234,8 +1234,8 @@ Número de registre de la notificació a cerca, igual que en els casos anteriors
   Valor absolut del número de registre.
   
 * `/CriterisNotificacio/Estat`
-Cerca per l'estat en el que es troben les notificacions. Els estats en el que es poden trobar són els següents:
-Pendent de processar: La notificació ha entrat al sistema i està pendent de començar a processar-se.
+Cerca per l'estat en el que es troben les notificacions. Els estats en el que es poden trobar i pels quals es pot cercar són els següents:
+  * _Pendent de registrar_ : La notificació ha entrat al sistema i està pendent de començar a processar-se.
   * _Registrada_: La notificació ha estat registrada. El registre el pot haver fet eNOTUM o bé es pot tractar d'una notificació registrada abans d'haver estat introduïda al sistema.
   * _Dipositada_: La notificació ha estat dipositada i per tant ja és accessible als ciutadans.
   * _Visualitzada_: El ciutadà ha visualitzat la notificació.
@@ -1244,7 +1244,13 @@ Pendent de processar: La notificació ha entrat al sistema i està pendent de co
   * _Rebutjada sense accés_: El sistema ha rebutjat la notificació sense que l'usuari l’hagi visualitzat.
   * _Rebutjada sense acció_: El sistema ha rebutjat la notificació però l'usuari havia visualitzat la notificació.
   * _Error_: S'ha produït un error irrecuperable en el tractament de la notificació i el seu processament ha quedat aturat.
-
+  
+Ha més d'aquests estats, existeixen un seguits de meta estats de cerca no directament relacionats amb un estat de la notificació, però que permet cercar per aquest valor:
+  * _Transit_: La notificació és troba pendent de la fase de registre.
+  * _Oberta_: Es troba en un estat no final, és a dir encara no està practicada per el ciutadà i no ha expirat.
+  * _Rebutjada jurídicament_: La notificació ha estat rebutjada, ja sigui per el ciutadà o per el sistema al haver expirat.
+  * _Tancada_: Es troba en un estat final, ja sigui per que el ciutadà l'ha practicat o perquè la notifiació ha expirat.
+ 
 * `/CriterisNotificacio/TipusAcces`
 Permet cercar per el tipus d'accés configurat a la notificació, els possibles valors són:
   * _CERT_
