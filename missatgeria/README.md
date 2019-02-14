@@ -1245,7 +1245,7 @@ Cerca per l'estat en el que es troben les notificacions. Els estats en el que es
   * _Rebutjada sense acció_: El sistema ha rebutjat la notificació però l'usuari havia visualitzat la notificació.
   * _Error_: S'ha produït un error irrecuperable en el tractament de la notificació i el seu processament ha quedat aturat.
   
-Ha més d'aquests estats, existeixen un seguits de meta estats de cerca no directament relacionats amb un estat de la notificació, però que permet cercar per aquest valor:
+  Ha més d'aquests estats, existeixen un seguits de meta estats de cerca no directament relacionats amb un estat de la notificació, però que permet cercar per aquest valor:
   * _Transit_: La notificació és troba pendent de la fase de registre.
   * _Oberta_: Es troba en un estat no final, és a dir encara no està practicada per el ciutadà i no ha expirat.
   * _Rebutjada jurídicament_: La notificació ha estat rebutjada, ja sigui per el ciutadà o per el sistema al haver expirat.
