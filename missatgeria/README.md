@@ -1224,16 +1224,16 @@ Permet indicar un rang de cerca dels valors de la referencia, així com un valor
   * `/CriterisNotificacio/Referencia/ValorAbsolut`
   Cadena de text sobre la que es farà la cerca. Aquesta cadena es buscarà com a prefix de qualsevol referència existent, en mode case insensitive. Per example el valor "Ref" retornarà "referència","Referència","referendum","Reflexió" o "referència dia 27/10/2017".
 
-* `/CriterisNotificacio/Referencia/NumeroRegistre`
+* `/CriterisNotificacio/NumeroRegistre`
 Número de registre de la notificació a cerca, igual que en els casos anteriors permet indicar un rang de cerca de valors així com un valor absolut del mateix.
-  * `/CriterisNotificacio/Referencia/ValorSuperior`
+  * `/CriterisNotificacio/NumeroRegistre/ValorSuperior`
   Valor de tall superior pel interval de cerca.
-  * `/CriterisNotificacio/Referencia/ValorInferior`
+  * `/CriterisNotificacio/NumeroRegistre/ValorInferior`
   Valor de tall inferior pel interval de cerca.
-  * `/CriterisNotificacio/Referencia/ValorAbsolut`
+  * `/CriterisNotificacio/NumeroRegistre/ValorAbsolut`
   Valor absolut del número de registre.
   
-* `/CriterisNotificacio/Referencia/Estat`
+* `/CriterisNotificacio/Estat`
 Cerca per l'estat en el que es troben les notificacions. Els estats en el que es poden trobar són els següents:
 Pendent de processar: La notificació ha entrat al sistema i està pendent de començar a processar-se.
   * _Registrada_: La notificació ha estat registrada. El registre el pot haver fet eNOTUM o bé es pot tractar d'una notificació registrada abans d'haver estat introduïda al sistema.
@@ -1245,34 +1245,34 @@ Pendent de processar: La notificació ha entrat al sistema i està pendent de co
   * _Rebutjada sense acció_: El sistema ha rebutjat la notificació però l'usuari havia visualitzat la notificació.
   * _Error_: S'ha produït un error irrecuperable en el tractament de la notificació i el seu processament ha quedat aturat.
 
-* `/CriterisNotificacio/Referencia/TipusAcces`
+* `/CriterisNotificacio/TipusAcces`
 Permet cercar per el tipus d'accés configurat a la notificació, els possibles valors són:
   * _CERT_
   * _PPAS_
   
-* `/CriterisNotificacio/Referencia/Etiquetes`
+* `/CriterisNotificacio/Etiquetes`
 Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l'hora de crear la notificació, es descriu amb més detall a [continuació](#etiquetes)
 
-* `/CriterisNotificacio/Referencia/AmbitObjecte`
+* `/CriterisNotificacio/AmbitObjecte`
 Àmbit per el que cercar la notificació.
 
-* `/CriterisNotificacio/Referencia/TipusObjecte`
+* `/CriterisNotificacio/TipusObjecte`
 Tipus de les notificacions a cercar:
   * _NOTIFICACIO_
   * _COMUNICACIO_
 
-* `/CriterisNotificacio/Referencia/Canal`
+* `/CriterisNotificacio/Canal`
 Canal en el que s'ha generat la notificació:
   * _PAPER_ Retorna només les notificacions complementaries generades en paper.
   * _DIGITAL_ Retorna només les notificacions generades unicament en format digital.
   
-* `/CriterisNotificacio/Referencia/Expedient`
+* `/CriterisNotificacio/Expedient`
 Cerca per camp expèdient informat en la creació de la notificació.
 
-* `/CriterisNotificacio/Referencia/Tramit`
+* `/CriterisNotificacio/Tramit`
 Cerca per camp tràmit informat en la creació de la notificació.
 
-* `/CriterisNotificacio/Referencia/NumeroCas`
+* `/CriterisNotificacio/NumeroCas`
 Cerca per camp numero de cas informat en la creació de la notificació.
 
 #### Etiquetes
