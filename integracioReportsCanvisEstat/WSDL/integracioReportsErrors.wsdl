@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:conv="http://www.openuri.org/2002/04/soap/conversation/"
-	xmlns:cw="http://www.openuri.org/2002/04/wsdl/conversation/"
-	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
-	xmlns:jms="http://www.openuri.org/2002/04/wsdl/jms/"
-	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
-	xmlns:s="http://www.w3.org/2001/XMLSchema"
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema"
 	xmlns:s0="http://www.openuri.org/" 
 	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
 	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
 	targetNamespace="http://www.openuri.org/">
 	<wsdl:types>
 		<s:schema xmlns:s="http://www.w3.org/2001/XMLSchema" 
-			xmlns:v3="http://www.aocat.net/NT/v3.0" 
+			xmlns:v3="http://www.aocat.net/NT/v3.2" 
 			elementFormDefault="qualified" targetNamespace="http://www.openuri.org/">
-			<s:import namespace="http://www.aocat.net/NT/v3.0"/>
+			<s:import namespace="http://www.aocat.net/NT/v3.2"/>
 			<s:element name="clientRequestwithReturn">
 				<s:complexType>
 					<s:sequence>
@@ -31,12 +25,12 @@
 			</s:element>
 		</s:schema>
 		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-			xmlns="http://www.aocat.net/NT/v3.0" targetNamespace="http://www.aocat.net/NT/v3.0" 
+			xmlns="http://www.aocat.net/NT/v3.2" targetNamespace="http://www.aocat.net/NT/v3.2" 
 			elementFormDefault="qualified" attributeFormDefault="unqualified">
 			<xs:element name="ReportError" type="ErrorsType"/>
 		</xs:schema>
-		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-			xmlns="http://www.aocat.net/NT/v3.0" targetNamespace="http://www.aocat.net/NT/v3.0" 
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns="http://www.aocat.net/NT/v3.2" targetNamespace="http://www.aocat.net/NT/v3.2"
 			elementFormDefault="qualified" attributeFormDefault="unqualified">
 			<xs:element name="RespostaReport" type="RespostaReportType"/>
 			<xs:complexType name="RespostaReportType">
@@ -53,7 +47,7 @@
 			</xs:complexType>
 		</xs:schema>
 		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-			xmlns="http://www.aocat.net/NT/v3.0" targetNamespace="http://www.aocat.net/NT/v3.0" 
+			xmlns="http://www.aocat.net/NT/v3.2" targetNamespace="http://www.aocat.net/NT/v3.2" 
 			elementFormDefault="qualified" attributeFormDefault="unqualified">
 			<xs:complexType name="ErrorsType">
 				<xs:sequence>
@@ -80,9 +74,10 @@
 			</xs:complexType>
 		</xs:schema>
 		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-			xmlns="http://www.aocat.net/NT/v3.0" targetNamespace="http://www.aocat.net/NT/v3.0" 
+			xmlns="http://www.aocat.net/NT/v3.2" targetNamespace="http://www.aocat.net/NT/v3.2" 
 			elementFormDefault="qualified" attributeFormDefault="unqualified">
-			<xs:complexType name="RespostaType" abstract="true"/>
+			<xs:complexType name="RespostaType" abstract="true">
+		</xs:complexType>
 		</xs:schema>
 	</wsdl:types>
 	<wsdl:message name="clientRequestwithReturnSoapIn">
