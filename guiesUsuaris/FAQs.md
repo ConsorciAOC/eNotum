@@ -28,5 +28,4 @@ Aquest camp aplica sempre i quan sigui més restrictiu que els **2MB** en cas d'
   * Si el telèfon hi ha un caràcter `+` el remplaça per `00`.
   * Si el telèfon comença per `0034` elimina aquests caràcters perquè és el prefix d'Espanya.
 * Valida el telèfon:
-  * Si el telèfon comença per `00` considerem que és un número internacional i l'acceptem sense fer cap més validació.
-  * Si el telèfon no comença per `00` considerem que és un telèfon nacional i validem tant sols que tingui 9 digits.
+  * Validem la correctesa de qualsevol número de teléfon de país o regió del mon mitjançant la llibreria https://github.com/googlei18n/libphonenumber
