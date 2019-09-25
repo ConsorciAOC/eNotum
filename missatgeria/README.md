@@ -555,7 +555,7 @@ Indica el tipus d'accés requerit al ciutadà per tal de poder accedir a la noti
 * `/Notificacio/NivellCertificat`
 En cas d'accés requerit amb certificat, és pot ajustar el nivell d'aquest per l'accés a la notificació.
 * `/Notificacio/DiesExpiracio`
-Dies a partir dels quals la notificació exiprarà, a contar a partir de la data de dipòsit.
+Dies a partir dels quals la notificació exiprarà, a contar a partir de la data de dipòsit. El màxim valor establert per a aquest camp és de _500_ dies.  
 * `/Notificacio/Destinataris`
 Dades dels destinataris de la notificació.
 * `/Notificacio/Etiquetes`
@@ -2011,7 +2011,7 @@ Cos del missatge del correu electrònic enviat. Aquest missatge redactat en text
 * `/DadesAvisos/SMS/Missatge`
 Missatge breu de text enviat al mòbil del destinatari.
 * `/DadesAvisos/DiesAvisos`
-Numero de dies a partir del dipòsit en el qual s'envien recordatoris als destinataris i persones d'avis.
+Numero de dies a partir del dipòsit en el qual s'envien recordatoris als destinataris i persones d'avis. Hi ha un límit establert a nivell de plataforma, per al qual es pot enviar un màxim del 40% d'avisos durant el temps de vida de la notificació. És a dir, si per exemple la notificació te una via de 20 dies, com a màxim es podran indicar 8 dies d'avisos (`8 avisos/20 dies=0,4`).
 * `/DadesAvisos/Idioma`
 Identificador de l'idioma en que el destinatari ha rebut els avisos.
 
@@ -2343,9 +2343,8 @@ Número total de pàgines de la cerca.
 |1004|La tramesa indicada ja ha estat desplegada|
 |1005|La tramesa indicada no té destinataris associats|
 |1006|El paràmetre títol es obligatori|
-|1007|El paràmetre missatge es obligatori|
-|1008|El paràmetre peu recurs es obligatori|
-|1009|El format de l'adreça d'origen del correu es invàlida|
+|1007|S'ha excedit el màxim de dies d'expiració|
+|1008|S'ha excedit el màxim de recordatoris|
 |1010|La notificació indicada no existeix|
 |1011|El fitxer zip per a la notificació indicada no existeix. Probablement encara no hagi estat generat|
 |1012|El paràmetre acció signatura només pot prendre els valors ACCEPTAR o REBUTJAR|
