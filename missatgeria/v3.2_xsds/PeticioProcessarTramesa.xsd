@@ -119,6 +119,13 @@
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
+			<xs:element name="SenseRegistre" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
 			<xs:element name="TipusObjecte" type="TipusObjecteType"/>
 			<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
 			<xs:element name="NivellCertificat" type="xs:string" minOccurs="0"/>
