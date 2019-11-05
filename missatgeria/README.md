@@ -501,6 +501,13 @@ Indica el tipus de documents adjuntat. Els possibles valors són:
 				</xs:sequence>
 			</xs:complexType>
 		</xs:element>
+		<xs:element name="SenseRegistre" minOccurs="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
 		<xs:element name="TipusObjecte" type="TipusObjecteType"/>
 		<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
 		<xs:element name="NivellCertificat" type="xs:string" minOccurs="0"/>
@@ -544,6 +551,8 @@ Cadena d'identificació de la notificació. Tot i que no cal que aquesta sigui �
 Número de registre (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició.
 * `/Notificacio/DadesRegistre/DataRegistre`
 Data de l'assentament (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, junt amb el de número de registre, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició.
+* `/Notificacio/SenseRegistre`
+De forma també opcional, només en el cas d'estar creant una COMUNICACIO, mitjançant aquest element es pot indicar que no es vol crear registre de sortida per a aquest enviament concret.
 * `/Notificacio/TipusObjecte`
 Indica si es tracta d'una notificació o d'una comunicació. Els valors possibles per aquest paràmetre son:
   * *NOTIFICACIO* : Indica que l'enviament serà de tipus notificació.
@@ -2346,8 +2355,8 @@ Número total de pàgines de la cerca.
 |1007|S'ha excedit el màxim de dies d'expiració|
 |1008|S'ha excedit el màxim de recordatoris|
 |1010|La notificació indicada no existeix|
-|1011|El fitxer zip per a la notificació indicada no existeix. Probablement encara no hagi estat generat|
-|1012|El paràmetre acció signatura només pot prendre els valors ACCEPTAR o REBUTJAR|
+|1011|No es poden indicar simultàniament els paràmetres SenseRegistre i DadesRegistre|
+|1012|El paràmetre SenseRegistre només s'admet per a comunicacions|
 |1013|El signant de la notificació no és destinatari d'aquesta|
 |1014|El paràmetre document no té un format en base 64 vàlid|
 |1015|La notificació indicada no és visible des de l'entitat consultadora|
