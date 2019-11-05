@@ -2011,7 +2011,7 @@ Cos del missatge del correu electrònic enviat. Aquest missatge redactat en text
 * `/DadesAvisos/SMS/Missatge`
 Missatge breu de text enviat al mòbil del destinatari.
 * `/DadesAvisos/DiesAvisos`
-Numero de dies a partir del dipòsit en el qual s'envien recordatoris als destinataris i persones d'avis. Hi ha un límit establert a nivell de plataforma, per al qual es pot enviar un màxim del 40% d'avisos durant el temps de vida de la notificació. És a dir, si per exemple la notificació te una via de 20 dies, com a màxim es podran indicar 8 dies d'avisos (`8 avisos/20 dies=0,4`).
+Numero de dies a partir del dipòsit en el qual s'envien recordatoris als destinataris i persones d'avis. Hi ha un límit establert a nivell de plataforma, per al qual es pot enviar un màxim del 40% d'avisos durant el temps de vida de la notificació. És a dir, si per exemple la notificació te una vida de 20 díes, com a màxim es podran indicar 8 dies d'avisos (`8 avisos/20 dies=0,4`).
 * `/DadesAvisos/Idioma`
 Identificador de l'idioma en que el destinatari ha rebut els avisos.
 
