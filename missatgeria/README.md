@@ -1,5 +1,3 @@
-{:toc}
-
 # 1. Introducció
 
 A continuació és descriu el funcionament i les diferents modalitats de consum de la versió de missatgeria _3.2_ d'**eNotum**.
