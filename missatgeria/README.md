@@ -467,8 +467,8 @@ Codi d'unitat organitzativa a usar per registrar les notificacions. Aquest parà
 Nom del fitxer del document, amb extensió. E.g: _holaRepublica.pdf_
 * `/Documents/Document/SHA1Digest`
 Resum críptografic en [_SHA1_](https://en.wikipedia.org/wiki/SHA-1) del contingut del document com a string codificat en [_base64_](https://en.wikipedia.org/wiki/Base64).
-* `/Documents/Document/URLDescarrega`
-S'informa en les respostes de consulta amb la URL de descarrega d'on obtenir el document.
+* `/Documents/Document/URLDescarrega` >> :warning: ENCARA NO DISPONIBLE
+Permet informar una URL on l'ens té penjada la resolució. Aquesta URL no hauria de ser pública i tenir accés securitzat per IP (TODO: parlar amb el CAOC per generar connectivitats per a la descàrrega + text formal per l'organisme en cas d'error)
 * `/Documents/Document/Dades`
 En cas que és vulgui incrustar el document dins del missatge en _base64_. S'ha de tenir en compte que per a documents on la mida superi **1MB**, no recomanem aquest mecanisme, donat que la _PCI_ té una restricció on el missatge _XML_ de la petició complet no pot superar els **2MB**. 
 * `/Documents/Document/Ruta`
