@@ -13,6 +13,8 @@ De moment aqui podeu trobar:
 
 [3. Integració missatgeria](/missatgeria/README.md)
 
+[4. Plantilles de correu electrònic per a l'enviament d'avisos als destinataris](/plantilles/README.md)
+
 # Altres
 
 També hem afegit un nou document de FAQs que anirem informant en funció de les queixes/consultes que anem rebent:
