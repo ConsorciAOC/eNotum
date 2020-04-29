@@ -134,7 +134,24 @@ D'aquesta forma el format de la data per el dia 03/03/2016 seria: **03.mar.2016*
 
 :warning: Aquesta nova forma de generar plantilles dona més flexibilitat, però també pot provocar més errors degut a expressions que s'avaluïn de forma incorrecta, per tant es recomanable que davant de modificacions susceptibles d'aportar molts canvis a les plantilles **es provin primer aquestes a l'entorn de PRE abans de fer el canvi a l’entorn de PRO.**
 
-## 3.4	Restriccions de sistema
+## 3.4
+
+A tall d'exemple, a continuació podeu trobar el 4 tipus de plantilles customitzables per idioma i tipus que actualment s'utilitzen com a plantilles per defecte a l'aplicació:
+
+* Català
+ * [Comunicació](ca/comunicacio)
+ * [Notificació](ca/notificacio)
+* Aranés occità 
+ * [Comunicació](oc/comunicacio)
+ * [Notificació](oc/notificacio)
+* Castellà
+ * [Comunicació](es/comunicacio)
+ * [Notificació](es/notificacio)
+* Anglès
+ * [Comunicació](en/comunicacio)
+ * [Notificació](en/notificacio)
+ 
+## 3.5	Restriccions de sistema
 
 Les plantilles han de complir els següents requisits:
 
