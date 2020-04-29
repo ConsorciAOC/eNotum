@@ -33,74 +33,81 @@ Opcionalment en cas de que l'ens tingui configurades diverses plantilles és pod
 a emprar i del idioma de la mateixa que rebrà el destinatari a través de l'operació de [_processarTramesa_](../missatgeria/README.md#petició---peticioprocessartramesa), amb la incorporació dels camps
 plantilla i idioma. 
 
-El camp idioma és sensible a majúscules, els possibles valors que pot agafar l’ idioma són : 
-*	ca : Idioma català
-*	es : Idioma castellà
-*	oc : Idioma aranès
-*	en: Idioma anglès
+El camp `<Idioma>` el podeu trobar en l'objecte [`<Notificacio>`](../missatgeria/README.md#notificació) aquest aplicaria a tots els destinataris de la mateixa, a nivell de [`<Destinatari>`](../missatgeria/README.md#destinataris) també existeix i permet sobreescriure el de la `<Notificacio>` en cas que per exemple una notificació tingui varis destinataris en un mateix idioma i un en un idioma diferent. Per defecte si no s'especifica idioma, la plataforma utilitza el català.
 
-El camp Plantilla permet especificar l’id específic de la plantilla que es vol utilitzar.
+El camp `<Plantilla>` dins de les [`<DadesAvisos>`](../missatgeria/README.md#dadesavisos) permet especificar l'identificador específic de la plantilla que es vol utilitzar.
  
+Aquests valors no s'incorporen als resultats de les cerques, consultes i reports dels enviaments.
+ 
+# 3. Generació de plantilla HTML
+La plantilla HTML per correu electrònic és de lliure definició dins de unes restriccions de sistema. Dins aquesta plantilla es podran incloure una sèrie de camps, que seran substituïts pels seus valors corresponents en el moment de enviar el correu electrònic al destinatari. 
 
-Aquests valors no s’incorporen als resultats ni a les peticions de cerques, consultes i reports de notificacions.
- 
-3	Generació de plantilla HTML
-La plantilla HTML per mail és de lliure definició dins de unes restriccions de sistema. Dins aquesta plantilla es podran incloure una sèrie de camps, que seran substituïts pels seus valors corresponents en el moment de enviar el mail al destinatari. 
-3.1	Aplicació de la plantilla
-Les plantilles apliquen als correus de dipòsit de notificació, de recordatori de notificació i a les persones d’avis. Les plantilles poden tenir el mateix format, però han de estar separades.
-Als missatges d’avis i recordatori de notificació via SMS també apliquen les plantilles, la diferència és que en aquest cas no es poden utilitzar elements HTML però si que es podrà utilitzar la nomenclatura necessària per a la traducció dels valors dels camps
-3.2	Nomenclatura de camps
-En les versions anteriors els camps que es volien utilitzar s’especificaven amb el prefix i el sufix @@, amb el nom en majúscules. 
-Exemple : @@ID_NOTIFICACIO@@
-Per temes de retrocompatibilitat el camp @@EMAIL_BODY@@ seguirà funcionant d’aquesta forma, la resta s’ha modificat el comportament com s’explica a continuació.
-En el cas del tag @@EMAIL_BODY@@ es traduirà per el camp definit pel següent XPath //*:Tramesa/DadesAvisos/Email/Missatge de la petició XML de processar tramesa o en el cas que no vingui informat al missatge (el camp es opcional) s’omplirà amb el camp missatge configurat a nivell d’entitat.
-3.2.1	Avaluació d’expressions a la nova plantilla
-En aquesta nova versió s’ha volgut afegir funcionalitats a les plantilles per dotar-les de la possibilitat d’incorporar més lògica fent així les plantilles més expressives i donant més flexibilitat al integrador a l’hora de definir-les. El cas és que ara les expressions s’hauran d’escriure de la següent forma:
-${ expressio }
-La nova forma a diferència de l’anterior no només permet simplement reemplaçar els tags pel valor sinó que ens permet afegir lògica avaluable en temps de generació de plantilles. Per exemple podem afegir condicions de la següent forma, p.e utilitzant l’operador ternari per a fer una condició:
-${ condicio ? “compleix la condició” : “ooohhhh no” }
-En aquest cas si la condició es compleix a la plantilla quedarà el text: compleix la condició si no la compleix a la plantilla s’afegirà el text: ooohhhh no.
-Dins d’aquests tags el codi que s’avalua és Groovy (o Java), amb el que dona flexibilitat a l’integrador per a fer coses com podria ser per exemple aplicar mascares a l’hora d’ensenyar informació sensible, com per exemple podria ser mostrar només els 3 últims dígits del NIF:
-${ String nif = "12345678Z";"******"+nif.substring(nif.length()-3); }
-Aquesta expressió a la plantilla un cop avaluada quedaria com ******78Z
-Dins del context de les expressions s’afegeixen els següents objectes per accedir a les seves propietats:
-•	notificacio
-•	destinatari
-•	entitat
-3.3	Camps accessibles
-EXPRESSIÓ	DESCRIPCIÓ
-${notificacio.id}	Identificador de la notificació.
-${notificacio.idNotificacioEmissor}	Identificador de la notificació creat per l’emissor de la mateixa.
-${notificacio.titol}	Títol de la notificació.
-${notificacio.referencia}	Referència de la notificació de l’emissor.
-${notificacio.numeroRegistre}	Número de registre de la notificació.
-${notificacio.dataCreacio}	Data de creació de la notificació.
-${notificacio.dataRegistre}	Data de registre de entrada de la notificació.
-${notificacio.dataPublicacio}	Data de publicació de la notificació (ja és accessible per el destinatari).
-${notificacio.dataExpiracio}	Data en la qual expira la notificació.
-${notificacio.diesExpiracio}	Número de dies de vida de la notificació.
-${notificacio.tipusAcces}	El tipus d’accés permès per a la notificació. 0 = accés amb certificat. 1 = accés amb paraula de pas.
-${notificacio.tipus}	Tipus de notificació.0 = notificació.1 = comunicació.
-${notificacio.idioma}	Idioma de la notificació amb el que s’ha enviat al client. ca = català, es = castellà, oc = aranès, en = anglès.
-${notificacio.nivellCertificat}	Text descriptiu sobre el nivell requerit del certificat per accedir a la notificació (camp informat en cas que el tipus d’accés sigui 1).
-${notificacio.msgTipusAcces}	Missatge ja traduït en funció del idioma de la notificació per a definir l’accés a la notificació.
-${notificacio.msgTipusEnviament}	Missatge ja traduït en funció del idioma de la notificació per a definir el tipus d’aquesta.
-${notificacio.linkAccesBustia}	Enllaç per a accedir a la bústia de l’entitat a la que pertany la notificació.
-${notificacio.linkAccesNotificacio}	Enllaç per a accedir directament a la notificació.
-${destinatari.email}	Correu electrònic del destinatari al que s’ha enviat la notificació.
-${destinatari.mobil}	Telèfon mòbil del destinatari al que s’ha enviat la notificació. És opcional i per tant pot ser buit.
-${destinatari.nomDestinatari}	Nom del destinatari de la notificació.
-${destinatari.cognom1}	Primer cognom del destinatari de la notificació.
-${destinatari.cognom2}	Segon cognom del destinatari de la notificació.
-${destinatari.raoSocial}	Raó social de l’empresa a la que pertany el destinatari en cas de que sigui una persona jurídica.
-${destinatari.idDocumentPF}	Identificador del document de la persona física.
-${destinatari.tipusDocumentPF}	Tipus del document de la persona física. 0 = NIF, 1 = Passaport.
-${destinatari.idDocumentPJ}	Identificador del document de la persona jurídica.
-${destinatari.tipusDocumentPJ}	Tipus del document de persona jurídica. 0 = CIF, 1 = VAT Number.
-${entitat.nomEntitat}	Nom de l’organisme i el nom del departament que han enviat la notificació separats per un slash.
-${entitat.departament}	Nom del departament que ha enviat la notificació.
-${entitat.organisme}	Nom de l’organisme que ha enviat la notificació.
-${entitat.idEns}	Identificador del ens que ha enviat la notificació.
+## 3.1.	Aplicació de la plantilla
+S'han de generar 4 plantilles per tipus i idioma. La plantilla d'avís de notificació i de recordatori per al destinatari, i les plantilles d'avís i recordatori per a les persones d'avís. 
+
+Els missatges d'avis i recordatori de notificació via SMS també apliquen les plantilles, la diferència és que en aquest cas no es poden utilitzar elements HTML però si que es podrà utilitzar la nomenclatura necessària per a la traducció dels valors dels camps.
+
+## 3.2.	Nomenclatura de camps
+
+En les versions anteriors els camps que es volien utilitzar s’especificaven amb el prefix i el sufix `@@`, amb el nom en majúscules, com per exemple `@@ID_NOTIFICACIO@@`
+
+Per temes de retrocompatibilitat el camp @@EMAIL_BODY@@ seguirà funcionant d’aquesta forma, la resta s’ha modificat el comportament com s'explica a continuació.
+
+En el cas del tag @@EMAIL_BODY@@ es traduirà per el camp [`//*:Tramesa/DadesAvisos/Email/Missatge`](../missatgeria/README.md#dadesavisos) de la petició de [_processarTramesa_](../missatgeria/README.md#petició---peticioprocessartramesa) o en el cas que no vingui informat al missatge (el camp es opcional) s'omplirà amb el camp missatge configurat a nivell d’entitat.
+
+### 3.2.1	Avaluació d’expressions a la nova plantilla
+
+En aquesta nova versió s'ha volgut afegir funcionalitats a les plantilles per dotar-les de la possibilitat d’incorporar més lògica fent així les plantilles més expressives i donant més flexibilitat al integrador a l'hora de definir-les. El cas és que ara les expressions s'hauran d'escriure de la següent forma: `${ expressio }`
+
+La nova forma a diferència de l'anterior no només permet simplement reemplaçar els tags pel valor concret de l'enviament sinó que ens permet afegir lògica avaluable en temps de generació de plantilles. Per exemple podem afegir condicions de la següent forma, utilitzant l'operador ternari per a fer una condició: `${ condicio ? “compleix la condició” : “ooohhhh no” }`
+
+En el cas de l'exemple si la condició es compleix, a la plantilla quedarà el text: **compleix la condició** si la condició no és certa a la plantilla s’afegirà el text: **ooohhhh no**.
+
+Dins d'aquests tags el codi que s'avalua potser *java* o *groovy*, amb el que dona flexibilitat a l'integrador per a fer coses com podria ser aplicar mascares a l’hora d'ensenyar informació sensible, com per exemple mostrar només els 3 últims dígits del NIF: 
+
+`${ String nif = "12345678Z";"******"+nif.substring(nif.length()-3); }`
+
+Aquesta expressió a la plantilla un cop avaluada quedaria com `******78Z`
+
+Dins del context de les expressions s'afegeixen els següents objectes per accedir a les seves propietats amb dot notation:
+*	notificacio
+*	destinatari
+*	entitat
+
+## 3.3	Camps accessibles
+
+|EXPRESSIÓ	 | DESCRIPCIÓ ||`${notificacio.id}`|	Identificador de la notificació.|
+|`${notificacio.idNotificacioEmissor}`|	Identificador de la notificació creat per l’emissor de la mateixa.|
+|`${notificacio.titol}`|	Títol de la notificació.|
+|`${notificacio.referencia}`|	Referència de la notificació de l’emissor.|
+|`${notificacio.numeroRegistre}`|	Número de registre de la notificació.|
+|`${notificacio.dataCreacio}`|	Data de creació de la notificació.|
+|`${notificacio.dataRegistre}`|	Data de registre de entrada de la notificació.|
+|`${notificacio.dataPublicacio}`|	Data de publicació de la notificació (ja és accessible per el destinatari).|
+|`${notificacio.dataExpiracio}`|	Data en la qual expira la notificació.|
+|`${notificacio.diesExpiracio}`|	Número de dies de vida de la notificació.|
+|`${notificacio.tipusAcces}`|	El tipus d’accés permès per a la notificació. 0 = accés amb certificat. 1 = accés amb paraula de pas.|
+|`${notificacio.tipus}`|	Tipus de notificació.0 = notificació.1 = comunicació.|
+|`${notificacio.idioma}`|	Idioma de la notificació amb el que s’ha enviat al client. ca = català, es = castellà, oc = aranès, en = anglès.|
+|`${notificacio.nivellCertificat}`|	Text descriptiu sobre el nivell requerit del certificat per accedir a la notificació (camp informat en cas que el tipus d’accés sigui 1).|
+|`${notificacio.msgTipusAcces}`|	Missatge ja traduït en funció del idioma de la notificació per a definir l’accés a la notificació.|
+|`${notificacio.msgTipusEnviament}`|	Missatge ja traduït en funció del idioma de la notificació per a definir el tipus d’aquesta.|
+|`${notificacio.linkAccesBustia}`|	Enllaç per a accedir a la bústia de l’entitat a la que pertany la notificació.|
+|`${notificacio.linkAccesNotificacio}`|	Enllaç per a accedir directament a la notificació.|
+|`${destinatari.email}`|	Correu electrònic del destinatari al que s’ha enviat la notificació.|
+|`${destinatari.mobil}`|	Telèfon mòbil del destinatari al que s’ha enviat la notificació. És opcional i per tant pot ser buit.|
+|`${destinatari.nomDestinatari}`|	Nom del destinatari de la notificació.|
+|`${destinatari.cognom1}`|	Primer cognom del destinatari de la notificació.|
+|`${destinatari.cognom2}`|	Segon cognom del destinatari de la notificació.|
+|`${destinatari.raoSocial}`|	Raó social de l’empresa a la que pertany el destinatari en cas de que sigui una persona jurídica.|
+|`${destinatari.idDocumentPF}`|	Identificador del document de la persona física.|
+|`${destinatari.tipusDocumentPF}`|	Tipus del document de la persona física. 0 = NIF, 1 = Passaport.|
+|`${destinatari.idDocumentPJ}`|	Identificador del document de la persona jurídica.|
+|`${destinatari.tipusDocumentPJ}`|	Tipus del document de persona jurídica. 0 = CIF, 1 = VAT Number.|
+|`${entitat.nomEntitat}`|	Nom de l’organisme i el nom del departament que han enviat la notificació separats per un slash.|
+|`${entitat.departament}`|	Nom del departament que ha enviat la notificació.|
+|`${entitat.organisme}`|	Nom de l’organisme que ha enviat la notificació.|
+|`${entitat.idEns}`|	Identificador del ens que ha enviat la notificació.|
 
 A banda d’aquesta objectes dins del context de les plantilles hi ha carregats aquests altres dos objectes un per aplicar si es desitja mascares a dades sensibles com poden ser el documents identificatius, telèfons o les adreces de correu. L’altre és per a donar format a les dates.
 •	utils
