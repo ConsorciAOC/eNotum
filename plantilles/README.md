@@ -19,7 +19,7 @@ nivell d'aplicació per tipus de notificació e idioma, aquestes plantilles esta
 les dades més importants del enviament així com el resum de les dades necessaries per al seu accés, per això si no teniu unes
 necessitats molt concretes **us recomenem sempre l'ús de les plantilles per defecte**.
 
-## 1.2.	Requeriments
+## 1.3.	Requeriments
 A través del frontal d'empleat públic accessible via [EACAT](https://www.eacat.cat/) es crea un nou manteniment de plantilla, on 
 l'usuari pot introduir la seva plantilla, fer una previsualització i comprovar la seva correctesa. 
 
@@ -30,7 +30,7 @@ plantilla no es trobés es cercarà la plantilla per defecte de l’aplicació.
 
 # 2.	Missatgeria
 Opcionalment en cas de que l'ens tingui configurades diverses plantilles és podra fer la especificació de la plantilla de correu electrònic 
-a emprar i del idioma de la mateixa que rebrà el destinatari a través de l'operació de [_processarTramesa_](/../missatgeria/README.md#petició---peticioprocessartramesa), amb la incorporació dels camps
+a emprar i del idioma de la mateixa que rebrà el destinatari a través de l'operació de [_processarTramesa_](../missatgeria/README.md#petició---peticioprocessartramesa), amb la incorporació dels camps
 plantilla i idioma. 
 
 El camp idioma és sensible a majúscules, els possibles valors que pot agafar l’ idioma són : 
