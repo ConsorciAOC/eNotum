@@ -51,9 +51,9 @@ Els missatges d'avis i recordatori de notificació via SMS també apliquen les p
 
 En les versions anteriors els camps que es volien utilitzar s’especificaven amb el prefix i el sufix `@@`, amb el nom en majúscules, com per exemple `@@ID_NOTIFICACIO@@`
 
-Per temes de retrocompatibilitat el camp @@EMAIL_BODY@@ seguirà funcionant d’aquesta forma, la resta s’ha modificat el comportament com s'explica a continuació.
+Per temes de retrocompatibilitat el camp `@@EMAIL_BODY@@` seguirà funcionant d’aquesta forma, la resta s’ha modificat el comportament com s'explica a continuació.
 
-En el cas del tag @@EMAIL_BODY@@ es traduirà per el camp [`//*:Tramesa/DadesAvisos/Email/Missatge`](../missatgeria/README.md#dadesavisos) de la petició de [_processarTramesa_](../missatgeria/README.md#petició---peticioprocessartramesa) o en el cas que no vingui informat al missatge (el camp es opcional) s'omplirà amb el camp missatge configurat a nivell d’entitat.
+En el cas del tag `@@EMAIL_BODY@@` es traduirà per el camp [`//*:Tramesa/DadesAvisos/Email/Missatge`](../missatgeria/README.md#dadesavisos) de la petició de [_processarTramesa_](../missatgeria/README.md#petició---peticioprocessartramesa) o en el cas que no vingui informat al missatge (el camp es opcional) s'omplirà amb el camp missatge configurat a nivell d’entitat.
 
 ### 3.2.1	Avaluació d’expressions a la nova plantilla
 
@@ -76,67 +76,75 @@ Dins del context de les expressions s'afegeixen els següents objectes per acced
 
 ## 3.3	Camps accessibles
 
-|EXPRESSIÓ	 | DESCRIPCIÓ ||`${notificacio.id}`|	Identificador de la notificació.|
-|`${notificacio.idNotificacioEmissor}`|	Identificador de la notificació creat per l’emissor de la mateixa.|
+
+| EXPRESSIÓ | DESCRIPCIÓ |
+| --------- | ---------- |
+|`${notificacio.id}`|	Identificador de la notificació.|
+|`${notificacio.idNotificacioEmissor}`|	Identificador de la notificació creat per l'emissor de la mateixa.|
 |`${notificacio.titol}`|	Títol de la notificació.|
-|`${notificacio.referencia}`|	Referència de la notificació de l’emissor.|
+|`${notificacio.referencia}`|	Referència de la notificació de l'emissor.|
 |`${notificacio.numeroRegistre}`|	Número de registre de la notificació.|
 |`${notificacio.dataCreacio}`|	Data de creació de la notificació.|
 |`${notificacio.dataRegistre}`|	Data de registre de entrada de la notificació.|
 |`${notificacio.dataPublicacio}`|	Data de publicació de la notificació (ja és accessible per el destinatari).|
 |`${notificacio.dataExpiracio}`|	Data en la qual expira la notificació.|
 |`${notificacio.diesExpiracio}`|	Número de dies de vida de la notificació.|
-|`${notificacio.tipusAcces}`|	El tipus d’accés permès per a la notificació. 0 = accés amb certificat. 1 = accés amb paraula de pas.|
+|`${notificacio.tipusAcces}`|	El tipus d'accés per als enviaments són BAIX, SUBS, ALT per als nous tipus EIDAS, i PPAS o CERT per a als antics. Els antics acabaran quedant obsolets, però encara estan suportats.|
 |`${notificacio.tipus}`|	Tipus de notificació.0 = notificació.1 = comunicació.|
-|`${notificacio.idioma}`|	Idioma de la notificació amb el que s’ha enviat al client. ca = català, es = castellà, oc = aranès, en = anglès.|
-|`${notificacio.nivellCertificat}`|	Text descriptiu sobre el nivell requerit del certificat per accedir a la notificació (camp informat en cas que el tipus d’accés sigui 1).|
-|`${notificacio.msgTipusAcces}`|	Missatge ja traduït en funció del idioma de la notificació per a definir l’accés a la notificació.|
-|`${notificacio.msgTipusEnviament}`|	Missatge ja traduït en funció del idioma de la notificació per a definir el tipus d’aquesta.|
-|`${notificacio.linkAccesBustia}`|	Enllaç per a accedir a la bústia de l’entitat a la que pertany la notificació.|
+|`${notificacio.idioma}`|	Idioma de la notificació amb el que s'ha enviat al client. ca = català, es = castellà, oc = aranès, en = anglès.|
+|`${notificacio.nivellCertificat}`|	Text descriptiu sobre el nivell requerit del certificat per accedir a la notificació (camp informat en cas que el tipus d'accés sigui CERT).|
+|`${notificacio.msgTipusAcces}`|	Missatge ja traduït en funció del idioma de la notificació per a definir l'accés a la notificació.|
+|`${notificacio.msgTipusEnviament}`|	Missatge ja traduït en funció del idioma de la notificació per a definir el tipus d'aquesta.|
+|`${notificacio.linkAccesBustia}`|	Enllaç per a accedir a la bústia de l'entitat a la que pertany la notificació.|
 |`${notificacio.linkAccesNotificacio}`|	Enllaç per a accedir directament a la notificació.|
-|`${destinatari.email}`|	Correu electrònic del destinatari al que s’ha enviat la notificació.|
-|`${destinatari.mobil}`|	Telèfon mòbil del destinatari al que s’ha enviat la notificació. És opcional i per tant pot ser buit.|
+|`${destinatari.email}`|	Correu electrònic del destinatari al que s'ha enviat la notificació.|
+|`${destinatari.mobil}`|	Telèfon mòbil del destinatari al que s'ha enviat la notificació. És opcional i per tant pot ser buit.|
 |`${destinatari.nomDestinatari}`|	Nom del destinatari de la notificació.|
 |`${destinatari.cognom1}`|	Primer cognom del destinatari de la notificació.|
 |`${destinatari.cognom2}`|	Segon cognom del destinatari de la notificació.|
-|`${destinatari.raoSocial}`|	Raó social de l’empresa a la que pertany el destinatari en cas de que sigui una persona jurídica.|
+|`${destinatari.raoSocial}`|	Raó social de l'empresa a la que pertany el destinatari en cas de que sigui una persona jurídica.|
 |`${destinatari.idDocumentPF}`|	Identificador del document de la persona física.|
 |`${destinatari.tipusDocumentPF}`|	Tipus del document de la persona física. 0 = NIF, 1 = Passaport.|
 |`${destinatari.idDocumentPJ}`|	Identificador del document de la persona jurídica.|
 |`${destinatari.tipusDocumentPJ}`|	Tipus del document de persona jurídica. 0 = CIF, 1 = VAT Number.|
-|`${entitat.nomEntitat}`|	Nom de l’organisme i el nom del departament que han enviat la notificació separats per un slash.|
+|`${entitat.nomEntitat}`|	Nom de l'organisme i el nom del departament que han enviat la notificació separats per un slash.|
 |`${entitat.departament}`|	Nom del departament que ha enviat la notificació.|
 |`${entitat.organisme}`|	Nom de l’organisme que ha enviat la notificació.|
 |`${entitat.idEns}`|	Identificador del ens que ha enviat la notificació.|
 
-A banda d’aquesta objectes dins del context de les plantilles hi ha carregats aquests altres dos objectes un per aplicar si es desitja mascares a dades sensibles com poden ser el documents identificatius, telèfons o les adreces de correu. L’altre és per a donar format a les dates.
-•	utils
-•	dateFormat
+A banda d'aquesta objectes dins del context de les plantilles hi ha carregats aquests altres dos objectes un per aplicar si es desitja mascares a dades sensibles com poden ser el documents identificatius, telèfons o les adreces de correu. L'altre és per a donar format a les dates:
+* utils
+* dateFormat
 
-EXPRESSIÓ	DESCRIPCIÓ
-${utils.getNumberMask(<Numero>) }	Aplica la mascarà al ‘<numero>’. Es pot aplicar a nif, telèfons, passaports; retorna el número substituint tots els números per * deixant només visibles els 3 últims. Per exemple: 666777888 retorna ******888, Q0801175A retorna ******75A.
-${utils.getEmailMask(<email>)}	Aplica la mascara per al ‘<email>’. Deixa el primer caràcter, el caràcter ‘@’ i el domini. Del primer caràcter a la ‘@’ sempre substitueix per cinc ‘*’. Exemple: localpart@domain.cat retorna l*****@domain.cat
-${dateFormat.format(<date)}	Formata la data en el format dd/MM/yyyy HH:mm:ss
-3.3.1	Altres
-Els mètodes addicionals de l’objecte utils i el dateFormat s’han afegit només per a facilitar les tasques que creiem més comuns a l’hora de generar les plantilles, però com s’explica al principi del document la nova forma de tractar les plantilles ens permet afegir codi dins de les expressions i generar per exemple els nostres propis formats per a la data (o per la mascara com s’explica al punt 3.2), per exemple si volem generar un format diferent ho podríem fer de la següent forma:
-${ new java.text.SimpleDateFormat(\"dd.MMM.yyyy\").format(new Date())}
-D’aquesta forma el format de la data per el dia 03/03/2016 seria: 03.mar.2016
-3.3.2	Consideracions addicionals
-Aquesta nova forma de generar plantilles dona més flexibilitat, però també pot provocar més errors degut a expressions que s’avaluïn de forma incorrecta, per tant es recomanable que davant de modificacions susceptibles d’aportar molts canvis a les plantilles es provin primer aquestes a l’entorn de PRE abans de fer el canvi a l’entorn de PRO.
+| EXPRESSIÓ |	DESCRIPCIÓ |
+| --------- | ---------- |
+|`${utils.getNumberMask(<Numero>) }`|	Aplica la mascarà al ‘<numero>’. Es pot aplicar a nif, telèfons, passaports; retorna el número substituint tots els números per * deixant només visibles els 3 últims. Per exemple: 666777888 retorna ******888, Q0801175A retorna ******75A.|
+|`${utils.getEmailMask(<email>)}`|	Aplica la mascara per al ‘<email>’. Deixa el primer caràcter, el caràcter ‘@’ i el domini. Del primer caràcter a la ‘@’ sempre substitueix per cinc ‘*’. Exemple: localpart@domain.cat retorna l*****@domain.cat |
+|`${dateFormat.format(<date)}`|	Formata la data en el format dd/MM/yyyy HH:mm:ss |
+                            
+### 3.3.1	Altres
 
- 
+Els mètodes addicionals de l'objecte `utils` i el `dateFormat` s’han afegit només per a facilitar les tasques que creiem més comuns a l’hora de generar les plantilles, però com s’explica al principi del document la nova forma de tractar les plantilles ens permet afegir codi dins de les expressions i generar per exemple els nostres propis formats per a la data (o per la mascara com s'explica al punt 3.2), per exemple si volem generar un format diferent ho podríem fer de la següent forma:
 
-3.4	Restriccions de sistema
-o	Grandària màxima  : 64Kb
-o	Sense enllaços externs a javascript o css. Tot element necessari haurà de ser autocontingut a la plantilla
-o	No es permeten accents ni caràcters propis de codificacions. Tota codificació serà estàndard HTML (http://www.w3.org/MarkUp/html-spec/html-spec_13.html) i el missatge estarà codificat en UTF-8.
-o	Addicionalment, es recomana passar el comprovant de pàgina de W3C http://validator.w3.org/. 
-o	Aquesta nomenclatura afecta a les plantilles de notificacions i de missatges SMS, i pot ser utilitzada també dins de la petició de procesarTramesa en els següents camps del XML definits pel seu XPath:
-	//*:Tramesa/DadesAvisos/Email/Missatge
-	//*:Tramesa/DadesAvisos/SMS/Missatge
-o	Els enllaços d’accés a la bústia i notificació, tant els definits a la configuració de l’entitat com els que es poden enviar a través de la missatgeria als camps:
-	//*:Tramesa/DadesAvisos/URLs/AccesNotificacio
-	//*:Tramesa/DadesAvisos/URLs/AccesLlistat
-No estan afectats per aquest canvi i en ells s’ha de seguir utilitzant els antics tags amb la notació @@TAG@@
+```${ new java.text.SimpleDateFormat(\"dd.MMM.yyyy\").format(new Date())}```
 
- 
+D'aquesta forma el format de la data per el dia 03/03/2016 seria: **03.mar.2016**
+
+### 3.3.2	Consideracions addicionals
+
+:warning: Aquesta nova forma de generar plantilles dona més flexibilitat, però també pot provocar més errors degut a expressions que s'avaluïn de forma incorrecta, per tant es recomanable que davant de modificacions susceptibles d'aportar molts canvis a les plantilles **es provin primer aquestes a l'entorn de PRE abans de fer el canvi a l’entorn de PRO.**
+
+## 3.4	Restriccions de sistema
+
+Les plantilles han de complir els següents requisits:
+
+*	Grandària màxima  : 64Kb
+*	Sense enllaços externs a javascript o css. Tot element necessari haurà de ser autocontingut a la plantilla.
+*	Tota codificació serà estàndard HTML (http://www.w3.org/MarkUp/html-spec/html-spec_13.html) i el missatge estarà codificat en UTF-8, d'altre manera i poden haver errors en el renderitzat d'accents i d'altres caràcters especials.
+*	Addicionalment, es recomana passar el comprovant de pàgina de [*W3C*](http://validator.w3.org/).
+*	Aquesta nomenclatura afecta a les plantilles de correu electrònic i de missatges SMS, i pot ser utilitzada també dins de la petició de procesarTramesa en els següents camps del XML definits pel seu XPath:
+ *	`//*:Tramesa/DadesAvisos/Email/Missatge`
+ * `//*:Tramesa/DadesAvisos/SMS/Missatge`
+*	Els enllaços d´accés a la bústia i notificació, s'ha de seguir utilitzant els antics tags amb la notació `@@TAG@@` per a fer ús del identificador de l'enviament o del codi del ens per exemple, tant els definits a la configuració de l'entitat com els que es poden enviar a través de la missatgeria als camps:
+ * `//*:Tramesa/DadesAvisos/URLs/AccesNotificacio`
+ *	`//*:Tramesa/DadesAvisos/URLs/AccesLlistat` 
