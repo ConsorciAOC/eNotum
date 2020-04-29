@@ -136,7 +136,7 @@ D'aquesta forma el format de la data per el dia 03/03/2016 seria: **03.mar.2016*
 
 ## 3.4
 
-A tall d'exemple, a continuació podeu trobar el 4 tipus de plantilles customitzables per idioma i tipus que actualment s'utilitzen com a plantilles per defecte a l'aplicació:
+A tall d'exemple, a continuació podeu trobar els 4 tipus de plantilles customitzables per idioma i tipus que actualment s'utilitzen com a plantilles per defecte a l'aplicació:
 
 * Català
   * [Comunicació](ca/comunicacio)
@@ -159,9 +159,9 @@ Les plantilles han de complir els següents requisits:
 *	Sense enllaços externs a javascript o css. Tot element necessari haurà de ser autocontingut a la plantilla.
 *	Tota codificació serà estàndard HTML (http://www.w3.org/MarkUp/html-spec/html-spec_13.html) i el missatge estarà codificat en UTF-8, d'altre manera i poden haver errors en el renderitzat d'accents i d'altres caràcters especials.
 *	Addicionalment, es recomana passar el comprovant de pàgina de [*W3C*](http://validator.w3.org/).
-*	Aquesta nomenclatura afecta a les plantilles de correu electrònic i de missatges SMS, i pot ser utilitzada també dins de la petició de procesarTramesa en els següents camps del XML definits pel seu XPath:
-   *	`//*:Tramesa/DadesAvisos/Email/Missatge`
-   * `//*:Tramesa/DadesAvisos/SMS/Missatge`
+*	Aquesta nomenclatura afecta a les plantilles de correu electrònic i de missatges SMS, i pot ser utilitzada també dins de la petició de procesarTramesa en els següents camps:
+     *	`//*:Tramesa/DadesAvisos/Email/Missatge`
+     * `//*:Tramesa/DadesAvisos/SMS/Missatge`
 *	Els enllaços d´accés a la bústia i notificació, s'ha de seguir utilitzant els antics tags amb la notació `@@TAG@@` per a fer ús del identificador de l'enviament o del codi del ens per exemple, tant els definits a la configuració de l'entitat com els que es poden enviar a través de la missatgeria als camps:
-   * `//*:Tramesa/DadesAvisos/URLs/AccesNotificacio`
-   *	`//*:Tramesa/DadesAvisos/URLs/AccesLlistat` 
+     * `//*:Tramesa/DadesAvisos/URLs/AccesNotificacio`
+     *	`//*:Tramesa/DadesAvisos/URLs/AccesLlistat` 
