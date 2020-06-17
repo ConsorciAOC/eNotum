@@ -650,11 +650,12 @@ Camp opcional, que permet indicar en cas de notificacions en `<Canal>Paper</Cana
   </xs:complexContent>
 </xs:complexType>
 ```
+Per a l'element `PersonaFisica` si el `/Notificacio/Canal` és DIGITAL, serà obligatori informar una bústia de correu o un telèfon, si per el contrari el `/Notificacio/Canal` és PAPER no es realitzarà aquesta comprovació i aquests camps seran opcionals.
 
 * `/PersonaFisica/BustiesCorreu/BustiaCorreu`
 Adreça de correu electrònic del destinatari.
 * `/PersonaFisica/Telefons/Telefon`
-Telefón mòbil del destinatari. A nivell de missatgeria no existeix restricció al respecte del camp, però al servidor es comprova i normalitza el format del telefón.
+Telèfon mòbil del destinatari. A nivell de missatgeria no existeix restricció al respecte del camp, però al servidor es comprova i normalitza el format del telèfon.
 * `/PersonaFisica/PersonesAvis`
 Dades de les persones que rebran l'avís de la notificació però que no podràn accedir a la mateixa.
 * `/PersonaFisica/DocumentIdentificatiu/NIF`
@@ -669,7 +670,6 @@ Primer cognom del destinatri.
 Segon cognom del destinatari.
 
 ### PersonaJuridica
-
 ```xml
 <xs:complexType name="PersonaType" abstract="true">
   <xs:sequence>
@@ -691,11 +691,14 @@ Segon cognom del destinatari.
   </xs:complexContent>
 </xs:complexType>
 ```
+Per a l'element `PersonaJuridica` informar la bústia de correu o el telèfon serà opcional.
 
 * `/PersonaJuridica/BustiesCorreu/BustiaCorreu`
+Aquests camp, té la mateixa definició que l'equivalent de `PersonaFisica`
 * `/PersonaJuridica/Telefons/Telefon`
+Aquests camp, té la mateixa definició que l'equivalent de `PersonaFisica`
 * `/PersonaJuridica/PersonesAvis`
-Aquests tres camps, tenen la mateixa definició que els de `PersonaFisica`
+Aquests camp, té la mateixa definició que l'equivalent de `PersonaFisica`
 * `/PersonaJuridica/DocumentIdentificatiu/CIF`
 NIF de l'empresa destinataria de la notificació. A nivell de missatgeria es valida la següent expressió regular `[A-Z][0-9]{7}[A-J,0-9]`. A nivell de servidor també es comprova el [digit de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_otros_NIF).
 * `/PersonaJuridica/DocumentIdentificatiu/VAT`
@@ -994,7 +997,7 @@ Identificador de la persona jurídica, que vol fer l'operació. El tipus d'aques
 * `/PeticioParaulaPas/DadesEnviament/BustiaCorreu`
 Adreça correu electrònic vinculada al destinatari.
 * `/PeticioParaulaPas/DadesEnviament/Telefon`
-Número de telèfon mobil vinculat al destinatari.
+Número de telèfon mòbil vinculat al destinatari.
 
 ### DocumentIdentificatiuPersonaFisica
 
@@ -2370,7 +2373,7 @@ Número total de pàgines de la cerca.
 |1016|El paràmetre de tipus de perfil de consulta del resum de notificacions és obligatori si s'especifiquen el NIF i el CIF|
 |1017|El paràmetre NIF és obligatori|
 |1018|La informació de canvi de canal quan s'accepta amb certificat o valid s'ha de proporcionar en l'operació OBTENIR_DADES|
-|1018|El paràmetre bústia de correu o telèfon mobil és obligatori|
+|1018|El paràmetre bústia de correu o telèfon mòbil és obligatori|
 |1019|El paràmetre identificador de paraula de pas és obligatori|
 |1020|El paràmetre paraula de pas és obligatori|
 |1021|No existeix cap notificació amb aquest número de registre|
