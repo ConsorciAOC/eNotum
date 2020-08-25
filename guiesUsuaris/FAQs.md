@@ -15,11 +15,11 @@ Per a la resta de casos la mida màxima permesa per un document és de **6MB**.
 Aquesta és la restricció màxima. A nivell d'ens es pot configurar un límit més restrictiu.
 Es pot configurar a través del frontal d'empleat públic d'eNotum accedint via [_d'EACAT_](https://www.eacat.cat), des de l'apartat `Configuració > Organisme`, seleccionant l'organisme o departament a configurar:
 
-![configOrganismeEACAT](imgs/configOrganismeEACAT.png)
+<img src="imgs/configOrganismeEACAT.png" width="300"/>
 
 A l'apartat `6 Altres`:
 
-![grandariaMaximaDocOrganismeEACAT](imgs/grandariaMaximaDocOrganismeEACAT.png)
+<img src="imgs/grandariaMaximaDocOrganismeEACAT.png" width="300"/>
 
 Aquest camp aplica sempre i quan sigui més restrictiu que els **2MB** en cas d'adjuntar via missatgeria, o de **6MB** per a les altres vies d'adjuntar documents.
 
