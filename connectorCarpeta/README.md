@@ -55,13 +55,26 @@ A continuació podeu veure l'esquema de la petició de notificacions detallades:
 Aquesta és la petició que recupera el detall de les notificacions i està format pels següents elements:
 
 * `documentIdentitatDestinatari` : Es tracta d'un `xsd:choice` que ens permet espeficiar el NIF o el CIF del destinatari de les notificacions a cercar.
-* `cognomDestinatari`: Camp *opcional* per indicar el cognom del destinatari
-* `idp`: Especifica dins de l'enumeració `idpType` del mateix esquema un dels següents valors que es correspon al nivell d'accés requerit per a les notificacions a cercar:
-** *certificat*
-** *idcat-mobil*
-** *valid*
-** *clave-pin24*
-** *clave-segsoc*
+* `cognomDestinatari`: Permet indicar el cognom del destinatari. *Opcional*
+* `idp`: Especifica dins de l'enumeració `idpType` del mateix esquema un dels següents valors que es correspon al nivell d'accés utilitzat per l'usuari.
+  * *certificat*
+  * *idcat-mobil*
+  * *valid*
+  * *clave-pin24*
+  * *clave-segsoc*
+* `nivellSeguretatAccess`: Especifica el nivell d'accés requerit de les notificacions que es volen cercar amb els valors del 1 al 4 definits per de la següent forma:
+  * *1*: Baix
+  * *2*: Baix amb registre
+  * *3*: Substancial
+  * *4*: Alt
+* `dataDisposicioInici`: Data mínima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit superior a l'especificada. *Opcional*
+* `dataDisposicioFi`: Data màxima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit inferior a l'especificada. *Opcional*
+* `tipusEnviament`: Enumeració que permet especificar el tipus d'enviaments a cercar:
+ * *NOTIFICACIO* : Enviaments de tipus notificació
+ * *COMUNICACIO* : Enviaments de tipus comunicació
+* `estat`:. *Opcional*
+* `ambit`:. *Opcional*
+* `organisme`:. *Opcional*
 
 
 
