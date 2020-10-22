@@ -138,6 +138,10 @@ En cas que la petició s'hagi processat correctament ens trobarem amb la següen
   <element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
 </sequence>
 ```
+* `\\mesResultats`: Valor boolea, que indica que en el cas que els filtres especificats a la cerca retornin més de 100 enviaments, només es retorna la informació dels 100 primers i s'indica mitjançant el valor `true` que hi ha més resultats.
+* `\\missatges`: Missatges retornats per el connector d'AGE. Només pot aplicar en peticions on s'hagi informat `<ambit>ESTATAL</ambit>`.
+
+La resta d'elements es descriuren a continuació:
 
 #### Enviaments
 
@@ -172,11 +176,32 @@ En cas que la petició s'hagi processat correctament ens trobarem amb la següen
   * *COMUNICACIO* : Enviaments de tipus comunicació
 * `\Enviament\canalEnviament`: Mitja per el qual es va realitzar l'enviament, enumeració d'un dels següents valors:
   * *ELECTRONIC* : Enviament es va realitzar a través de mitjants electronics (email o telefon)
-	* *POSTAL* : Enviament es va realitzar via correu postal.
-	* *SEUE* : Enviament es va posar a disposició a través de la seu electrònica de l'organisme emissor.
+  * *POSTAL* : Enviament es va realitzar via correu postal.
+  * *SEUE* : Enviament es va posar a disposició a través de la seu electrònica de l'organisme emissor.
 * `\Enviament\linkAcces` : Enllaç web que permet al destinatari accedir al contingut del enviament.
   
-### EnviamentsEspecials
+#### EnviamentsEspecials
+
+Aquests elements no existeixen a **eNotum** i només es tornaran en respostes a peticions no hi hagi informat `<ambit>ESTATAL</ambit>`.
+
+```xml
+<complexType name="EnviamentEspecial">
+    <sequence>
+        <element name="codiOrganismo" type="pciage:Organisme"/>
+        <element name="descripcioOrganismo" type="pciage:Descripcio"/>
+        <element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
+        <element name="tipusEnviament" type="pciage:TipusEnviament"/>
+        <element name="existeixEnviament" type="boolean"/>
+        <element name="linkAcces" type="anyURI"/>
+    </sequence>
+</complexType>
+```
+
+* `\EnviamentsEspecial\existeixEnviament`: Camp propi de la missatgeria del AGE.
+
+Els camps del element `enviamentsEspecials` tenen el mateix significat que els camps de l'element `enviament`.
+
+
 
 
 
