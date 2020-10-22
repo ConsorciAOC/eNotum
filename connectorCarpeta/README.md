@@ -72,18 +72,111 @@ Aquesta és la petició que recupera el detall de les notificacions i està form
   * *COMUNICACIO* : Enviaments de tipus comunicació
 * `estat`: Enumeració que permet especificar l'estat en el que és troba la notificació a cercar. *Opcional*
   * *EN TERMINI* : L'enviament és troba dins del termini i encara es pot practicar per part de l'usuari.
-	* *FINAL* : L'enviament ha finalitzat el seu cicle de vida i es troba en un estat final.
+  * *FINAL* : L'enviament ha finalitzat el seu cicle de vida i es troba en un estat final.
 * `ambit`: Enumeració per especificar l'ambit de l'enviament. *Opcional*
   * *GENERALITAT* : Notificacions enviades per alguns dels organismes vinculats a la generalitat, que es troben a **eNotum**
-	* *ENS LOCALS* : Notificacions enviades per a la resta d'ens dins d'**eNotum** que no són generalitat.
-	* *ESTATAL* : Cerca a les notificacions que no és troben a **eNotum** contra el connector que ofereix l'AGE **(:warning: de moment no disponible)**
+  * *ENS LOCALS* : Notificacions enviades per a la resta d'ens dins d'**eNotum** que no són generalitat.
+  * *ESTATAL* : Cerca a les notificacions que no és troben a **eNotum** contra el connector que ofereix l'AGE **(:warning: de moment no disponible)**
 * `organisme`: Permet filtar per el INE10 (el camp té una longitud màxima de 9 caràcters) del organisme per el qual es volen recuperar les notificacions. *Opcional*
 
 [Aquí podeu veure la definició completa del esquema _peticioNotificacionsDetallades.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/peticioNotificacionsDetallades.xsd)
 
 ## RespostaNotificacionsDetallades
 
+A continuació podeu veure l'esquema de la resposta de notificacions detallades:
+
+```xml
+<element name="RespostaNotificacionsDetallades">
+  <complexType>
+    <choice>
+      <element name="Errors" type="pciage:ErrorsType" /> 
+      <sequence>
+        <element name="enviaments" type="pciage:Enviaments"/>
+        <element name="enviamentsEspecials" type="pciage:EnviamentsEspecials"/>
+        <element name="mesResultats" type="boolean"/>
+        <element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
+      </sequence>
+    </choice>
+  </complexType>
+</element>
+```
+La RespostaNotificacionsDetallades és l'estructura que retorna l'informació dels enviaments o un error en cas que hi hagi algun problema amb el tractament de la petició, està formada per els elements que es descriuen a continuació:
+
 [Aquí podeu veure la definició completa del esquema _respostaNotificacionsDetallades.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/respostaNotificacionsDetallades.xsd)
+
+### Errors
+
+En cas que hi hagi hagut un problema en el tractament de la petició, és retornara només l'element error sense cap detall sobre els enviaments, l'element té la següent forma:
+
+```xml
+<complexType name="ErrorsType">
+  <sequence>
+    <element name="Error">
+      <complexType>
+        <all>
+          <element name="Codi" type="integer"/>
+          <element name="Descripcio" type="string"/>
+        </all>
+      </complexType>
+    </element>
+  </sequence>
+</complexType>
+```
+
+* `\\Error\Codi`: Valor númeric amb el codi de l'error (TODO: Veure apartat amb els codis d'error)
+* `\\Error\Descripcio`: Descripció de la causa de l'error.
+
+### Resposta correcte
+
+En cas que la petició s'hagi processat correctament ens trobarem amb la següent `<xsd:sequence>`:
+
+```xml
+<sequence>
+  <element name="enviaments" type="pciage:Enviaments"/>
+  <element name="enviamentsEspecials" type="pciage:EnviamentsEspecials"/>
+  <element name="mesResultats" type="boolean"/>
+  <element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
+</sequence>
+```
+
+#### Enviaments
+
+```xml
+<complexType name="Enviament">
+  <sequence>
+    <element name="codiOrganisme" type="pciage:Organisme"/>
+    <element name="descripcioOrganisme" type="pciage:Descripcio"/>
+    <element name="identificador" type="pciage:Identificador"/>
+    <element name="concepte" type="pciage:Concepte"/>
+    <element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
+    <element name="dataDisposicioInici" type="dateTime"/>
+    <element name="dataDisposicioFi" type="dateTime"/>
+    <element name="tipusEnviament" type="pciage:TipusEnviament"/>
+    <element maxOccurs="1" minOccurs="0" name="canalEnviament" type="pciage:Canal"/>
+    <element name="linkAcces" type="anyURI"/>
+  </sequence>
+</complexType>
+```
+
+* `\Enviament\codiOrganisme`: Contindrà dos subelements amb el codi ine10 i dir3 de l'emissor de l'enviament.
+* `\Enviament\descripcioOrganisme`: Camp de text amb la descripció o nom de l'organisme
+* `\Enviament\identificador`: Identificador de l'enviament.
+* `\Enviament\concepte`: Titol o concepte descriptiu de l'enviament
+* `\Enviament\estat`: Estat en el que és troba l'enviament, és una enumeració entre els següents valors:
+  * *EN TERMINI* : L'enviament es troba dins del termini.
+  * *FINAL* : L'enviament ha finalitzat.
+* `\Enviament\dataDisposicioInici`: Data en que l'enviament es va posar a diposició de l'usuari.
+* `\Enviament\dataDisposicioFi`: Data en que l'enviament finalitza el termini.
+* `\Enviament\tipusEnviament`: Enumeració del tipus d'enviament retornat.
+  * *NOTIFICACIO* : Enviaments de tipus notificació
+  * *COMUNICACIO* : Enviaments de tipus comunicació
+* `\Enviament\canalEnviament`: Mitja per el qual es va realitzar l'enviament, enumeració d'un dels següents valors:
+  * *ELECTRONIC* : Enviament es va realitzar a través de mitjants electronics (email o telefon)
+	* *POSTAL* : Enviament es va realitzar via correu postal.
+	* *SEUE* : Enviament es va posar a disposició a través de la seu electrònica de l'organisme emissor.
+* `\Enviament\linkAcces` : Enllaç web que permet al destinatari accedir al contingut del enviament.
+  
+### EnviamentsEspecials
 
 
 
