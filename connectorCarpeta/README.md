@@ -50,8 +50,6 @@ A continuació podeu veure l'esquema de la petició de notificacions detallades:
 </element>
 ```
 
-[Aquí podeu veure la definició completa del esquema _Peticio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/peticioNotificacionsDetallades.xsd)
-
 Aquesta és la petició que recupera el detall de les notificacions i està format pels següents elements:
 
 * `documentIdentitatDestinatari` : Es tracta d'un `xsd:choice` que ens permet espeficiar el NIF o el CIF del destinatari de les notificacions a cercar.
@@ -70,11 +68,22 @@ Aquesta és la petició que recupera el detall de les notificacions i està form
 * `dataDisposicioInici`: Data mínima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit superior a l'especificada. *Opcional*
 * `dataDisposicioFi`: Data màxima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit inferior a l'especificada. *Opcional*
 * `tipusEnviament`: Enumeració que permet especificar el tipus d'enviaments a cercar:
- * *NOTIFICACIO* : Enviaments de tipus notificació
- * *COMUNICACIO* : Enviaments de tipus comunicació
-* `estat`:. *Opcional*
-* `ambit`:. *Opcional*
-* `organisme`:. *Opcional*
+  * *NOTIFICACIO* : Enviaments de tipus notificació
+  * *COMUNICACIO* : Enviaments de tipus comunicació
+* `estat`: Enumeració que permet especificar l'estat en el que és troba la notificació a cercar. *Opcional*
+  * *EN TERMINI* : L'enviament és troba dins del termini i encara es pot practicar per part de l'usuari.
+	* *FINAL* : L'enviament ha finalitzat el seu cicle de vida i es troba en un estat final.
+* `ambit`: Enumeració per especificar l'ambit de l'enviament. *Opcional*
+  * *GENERALITAT* : Notificacions enviades per alguns dels organismes vinculats a la generalitat, que es troben a **eNotum**
+	* *ENS LOCALS* : Notificacions enviades per a la resta d'ens dins d'**eNotum** que no són generalitat.
+	* *ESTATAL* : Cerca a les notificacions que no és troben a **eNotum** contra el connector que ofereix l'AGE **(:warning: de moment no disponible)**
+* `organisme`: Permet filtar per el INE10 (el camp té una longitud màxima de 9 caràcters) del organisme per el qual es volen recuperar les notificacions. *Opcional*
+
+[Aquí podeu veure la definició completa del esquema _peticioNotificacionsDetallades.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/peticioNotificacionsDetallades.xsd)
+
+## RespostaNotificacionsDetallades
+
+[Aquí podeu veure la definició completa del esquema _respostaNotificacionsDetallades.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/respostaNotificacionsDetallades.xsd)
 
 
 
