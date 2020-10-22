@@ -15,6 +15,13 @@ De moment aqui podeu trobar:
 
 [4. Plantilles de correu electrònic per a l'enviament d'avisos als destinataris](/plantilles/README.md)
 
+# Documentació integradors - eNotum connector carpeta ciutadana
+
+Documentació específica  del connector de carpeta ciutadana del servei d'eNotum:
+
+[1. Integració missatgeria](/connectorCarpeta/README.md)
+
+
 # Documentació portal d'empleat públic
 
 Documentació específica i manuals d'usuari relacionats amb el portlet d'empleat públic:
