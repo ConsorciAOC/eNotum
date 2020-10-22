@@ -29,3 +29,39 @@ El connector només disposa d'una modalitat de consum que és detalla a continua
 
 ## PeticioNotificacionsDetallades
 
+A continuació podeu veure l'esquema de la petició de notificacions detallades:
+
+```xml
+<element name="PeticioNotificacionsDetallades">
+  <complexType>
+    <sequence>
+      <element name="documentIdentitatDestinatari" type="pciage:DocumentIdentitatDestinatariType"/>
+      <element maxOccurs="1" minOccurs="0" name="cognomDestinatari" type="pciage:Cognom"/>
+      <element name="idp" type="pciage:idpType"/>
+      <element name="nivellSeguretatAccess" type="pciage:Qaa"/>
+      <element maxOccurs="1" minOccurs="0" name="dataDisposicioInici" type="dateTime"/>
+      <element maxOccurs="1" minOccurs="0" name="dataDisposicioFi" type="dateTime"/>
+      <element name="tipusEnviament" type="pciage:TipusEnviament"/>
+      <element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
+      <element maxOccurs="1" minOccurs="0" name="ambit" type="pciage:Ambit"/>	
+      <element maxOccurs="1" minOccurs="0" name="codiOrganisme" type="pciage:Organisme"/>							
+    </sequence>
+  </complexType>
+</element>
+```
+
+[Aquí podeu veure la definició completa del esquema _Peticio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/peticioNotificacionsDetallades.xsd)
+
+Aquesta és la petició que recupera el detall de les notificacions i està format pels següents elements:
+
+* `documentIdentitatDestinatari` : Es tracta d'un `xsd:choice` que ens permet espeficiar el NIF o el CIF del destinatari de les notificacions a cercar.
+* `cognomDestinatari`: Camp *opcional* per indicar el cognom del destinatari
+* `idp`: Especifica dins de l'enumeració `idpType` del mateix esquema un dels següents valors que es correspon al nivell d'accés requerit per a les notificacions a cercar:
+** *certificat*
+** *idcat-mobil*
+** *valid*
+** *clave-pin24*
+** *clave-segsoc*
+
+
+
