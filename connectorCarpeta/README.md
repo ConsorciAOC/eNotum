@@ -201,7 +201,12 @@ Aquests elements no existeixen a **eNotum** i només es tornaran en respostes a 
 
 Els camps del element `enviamentsEspecials` tenen el mateix significat que els camps de l'element `enviament`.
 
+# 4. Codis i missatges d'error
 
 
-
-
+| CODI   | DESCRIPCIO                        | 
+| ------ | --------------------------------- | 
+| 101    | El xml no compleix l'esquema      |
+| 102    | Error executant l'operació        |
+| 103    | Error en la cerca                 |
+| 104    | Error en la petició a l'AGE       |
