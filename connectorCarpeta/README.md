@@ -25,7 +25,7 @@ Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requi
 
 # 3. Missatgeria específica connector carpeta ciutadana d'eNotum
 
-El connector només disposa d'una modalitat de consum que és detalla a continuació:
+El connector disposa de dues modalitats de consum que es detallen a continuació:
 
 ## PeticioNotificacionsDetallades
 
@@ -178,7 +178,7 @@ La resta d'elements es descriuren a continuació:
   * *ELECTRONIC* : Enviament es va realitzar a través de mitjants electronics (email o telefon)
   * *POSTAL* : Enviament es va realitzar via correu postal.
   * *SEUE* : Enviament es va posar a disposició a través de la seu electrònica de l'organisme emissor.
-* `\Enviament\linkAcces` : Enllaç web que permet al destinatari accedir al contingut del enviament.
+* `\Enviament\linkAcces` : Enllaç web que permet al destinatari accedir al contingut de l'enviament.
   
 #### EnviamentsEspecials
 
@@ -200,6 +200,167 @@ Aquests elements no existeixen a **eNotum** i només es tornaran en respostes a 
 * `\EnviamentsEspecial\existeixEnviament`: Camp propi de la missatgeria del AGE.
 
 Els camps del element `enviamentsEspecials` tenen el mateix significat que els camps de l'element `enviament`.
+
+## PeticioNotificacionsAgrupades
+
+A continuació podeu veure l'esquema de la petició de notificacions detallades:
+
+```xml
+<element name="PeticioNotificacionsAgrupades">
+  <complexType>
+    <sequence>
+      <element name="documentIdentitatDestinatari" type="pciage:DocumentIdentitatDestinatariType"/>
+      <element maxOccurs="1" minOccurs="0" name="cognomDestinatari" type="pciage:Cognom"/>
+      <element name="idp" type="pciage:idpType"/>
+      <element name="nivellSeguretatAccess" type="pciage:Qaa"/>
+      <element maxOccurs="1" minOccurs="0" name="dataDisposicioInici" type="dateTime"/>
+      <element maxOccurs="1" minOccurs="0" name="dataDisposicioFi" type="dateTime"/>
+      <element name="tipusEnviament" type="pciage:TipusEnviament"/>
+      <element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
+      <element maxOccurs="1" minOccurs="0" name="ambit" type="pciage:Ambit"/>
+      <element maxOccurs="1" minOccurs="0" name="codiOrganisme" type="pciage:Organisme"/>
+    </sequence>
+  </complexType>
+</element>
+```
+
+Aquesta és la petició que recupera el detall de les notificacions i està format pels següents elements:
+
+* `documentIdentitatDestinatari` : Es tracta d'un `xsd:choice` que ens permet espeficiar el NIF o el CIF del destinatari de les notificacions a cercar.
+* `cognomDestinatari`: Permet indicar el cognom del destinatari. *Opcional*
+* `idp`: Especifica dins de l'enumeració `idpType` del mateix esquema un dels següents valors que es correspon al nivell d'accés utilitzat per l'usuari.
+  * *certificat*
+  * *idcat-mobil*
+  * *valid*
+  * *clave-pin24*
+  * *clave-segsoc*
+* `nivellSeguretatAccess`: Especifica el nivell d'accés requerit de les notificacions que es volen cercar amb els valors del 1 al 4 definits per de la següent forma:
+  * *1*: Baix
+  * *2*: Baix amb registre
+  * *3*: Substancial
+  * *4*: Alt
+* `dataDisposicioInici`: Data mínima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit superior a l'especificada. *Opcional*
+* `dataDisposicioFi`: Data màxima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit inferior a l'especificada. *Opcional*
+* `tipusEnviament`: Enumeració que permet especificar el tipus d'enviaments a cercar:
+  * *NOTIFICACIO* : Enviaments de tipus notificació
+  * *COMUNICACIO* : Enviaments de tipus comunicació
+* `estat`: Enumeració que permet especificar l'estat en el que és troba la notificació a cercar. *Opcional*
+  * *EN TERMINI* : L'enviament és troba dins del termini i encara es pot practicar per part de l'usuari.
+  * *FINAL* : L'enviament ha finalitzat el seu cicle de vida i es troba en un estat final.
+* `ambit`: Enumeració per especificar l'ambit de l'enviament. *Opcional*
+  * *GENERALITAT* : Notificacions enviades per alguns dels organismes vinculats a la generalitat, que es troben a **eNotum**
+  * *ENS LOCALS* : Notificacions enviades per a la resta d'ens dins d'**eNotum** que no són generalitat.
+  * *ESTATAL* : Cerca a les notificacions que no és troben a **eNotum** contra el connector que ofereix l'AGE **(:warning: de moment no disponible)**
+* `organisme`: Permet filtar per el INE10 (el camp té una longitud màxima de 9 caràcters) del organisme per el qual es volen recuperar les notificacions. *Opcional*
+
+[Aquí podeu veure la definició completa del esquema _peticioNotificacionsAgrupades.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/peticioNotificacionsAgrupades.xsd)
+
+## RespostaNotificacionsAgrupades
+
+A continuació podeu veure l'esquema de la resposta de notificacions agrupades:
+
+```xml
+<element name="RespostaNotificacionsAgrupades">
+  <complexType>
+    <choice>
+      <element name="Errors" type="pciage:ErrorsType" />
+      <sequence>
+        <element maxOccurs="1" minOccurs="1" name="organismesEmisors" type="pciage:OrganismesEmisors"/>
+        <element maxOccurs="1" minOccurs="1" name="estats" type="pciage:Estats"/>
+        <element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
+      </sequence>
+    </choice>
+  </complexType>
+</element>
+```
+La RespostaNotificacionsAgrupades és l'estructura que retorna l'informació dels enviaments o un error en cas que hi hagi algun problema amb el tractament de la petició, està formada per els elements que es descriuen a continuació:
+
+[Aquí podeu veure la definició completa del esquema _respostaNotificacionsAgrupades.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/respostaNotificacionsAgrupades.xsd)
+
+### Errors
+
+En cas que hi hagi hagut un problema en el tractament de la petició, és retornara només l'element error sense cap detall sobre els enviaments, l'element té la següent forma:
+
+```xml
+<complexType name="ErrorsType">
+  <sequence>
+    <element name="Error">
+      <complexType>
+        <all>
+          <element name="Codi" type="integer"/>
+          <element name="Descripcio" type="string"/>
+        </all>
+      </complexType>
+    </element>
+  </sequence>
+</complexType>
+```
+
+* `\\Error\Codi`: Valor númeric amb el codi de l'error (TODO: Veure apartat amb els codis d'error)
+* `\\Error\Descripcio`: Descripció de la causa de l'error.
+
+### Resposta correcte
+
+En cas que la petició s'hagi processat correctament ens trobarem amb la següent `<xsd:sequence>`:
+
+```xml
+<sequence>
+  <element maxOccurs="1" minOccurs="1" name="organismesEmisors" type="pciage:OrganismesEmisors"/>
+  <element maxOccurs="1" minOccurs="1" name="estats" type="pciage:Estats"/>
+  <element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
+</sequence>
+```
+* `\\organismesEmissors`: Llista en la que es mostren agrupades per organisme emissor les notificacions i comunicacions que té el destinatari.
+* `\\estats`: Llista en la que es mostren per estats les notificacions i comunicacions que té el destinatari.
+* `\\missatges`: Missatges retornats per el connector d'AGE. Només pot aplicar en peticions on s'hagi informat `<ambit>ESTATAL</ambit>`.
+
+##### OrganismesEmisors
+```xml
+<complexType name="OrganismeEmisor">
+  <sequence>
+    <element maxOccurs="1" minOccurs="1" name="codiOrganisme" type="pciage:Organisme"/>
+    <element maxOccurs="1" minOccurs="1" name="descripcioOrganisme" type="pciage:Descripcio"/>
+    <element maxOccurs="1" minOccurs="0" name="notificacionsPendents" type="pciage:Enviament"/>
+    <element maxOccurs="1" minOccurs="0" name="notificacionsFinalitzades" type="pciage:Enviament"/>
+    <element maxOccurs="1" minOccurs="0" name="comunicacions" type="pciage:Enviament"/>
+  </sequence>
+</complexType>
+```
+* `\\codiOrganisme`: Contindrà el codi INE10 de l'organisme emissor.
+* `\\descripcioOrganisme`: Camp de text amb la descripció o nom de l'organisme.
+* `\\notificacionsPendents`: Contindrà els enviaments de les notificacions en estat pendent. No s'informa si no n'hi ha.
+* `\\notificacionsFinalitzades`: Contindrà els enviaments de les notificacions que ja han estat finalitzades. No s'informa si no n'hi ha.
+* `\\comunicacions`: Contindrà els enviaments de les comunicacions. No s'informa si no n'hi ha.
+
+##### Estats
+```xml
+<complexType name="Estats">
+  <sequence>
+    <element maxOccurs="1" minOccurs="0" name="notificacionsPendents" type="pciage:Enviament"/>
+    <element maxOccurs="1" minOccurs="0" name="notificacionsFinalitzades" type="pciage:Enviament"/>
+    <element maxOccurs="1" minOccurs="0" name="comunicacions" type="pciage:Enviament"/>
+  </sequence>
+</complexType>
+```
+* `\\notificacionsPendents`: Contindrà el total dels enviaments de les notificacions en estat pendent. No s'informa si no hi ha enviaments.
+* `\\notificacionsFinalitzades`: Contindrà el total dels enviaments de les notificacions que ja han estat finalitzades. No s'informa si no hi ha enviaments.
+* `\\comunicacions`: Contindrà el total dels enviaments de les comunicacions. No s'informa si no hi ha enviaments.
+
+##### Enviament
+```xml
+<complexType name="Enviament">
+  <sequence>
+    <element maxOccurs="1" minOccurs="1" name="existeixenEnviament" type="boolean"/>
+    <element maxOccurs="1" minOccurs="0" name="numeroEnviaments" type="integer"/>
+    <element maxOccurs="1" minOccurs="1" name="mesResultats" type="boolean"/>
+    <element maxOccurs="1" minOccurs="1" name="linkAcces" type="anyURI"/>
+  </sequence>
+</complexType>
+```
+* `\\existeixenEnviament`: Booleà indicant si hi ha enviaments per l'organisme o l'estat.
+* `\\numeroEnviaments`: Indica el número d'enviaments. Només s'informa si el camp `existeixenEnviament` és cert.
+* `\\mesResultats`: Indica si hi ha més resultats a banda dels que indica el número d'enviaments.
+* `\\linkAcces`: Enllaç web que permet al destinatari accedir al contingut de l'enviament.
 
 # 4. Codis i missatges d'error
 
