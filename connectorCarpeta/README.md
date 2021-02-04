@@ -36,15 +36,15 @@ A continuació podeu veure l'esquema de la petició de notificacions detallades:
   <complexType>
     <sequence>
       <element name="documentIdentitatDestinatari" type="pciage:DocumentIdentitatDestinatariType"/>
-      <element maxOccurs="1" minOccurs="0" name="cognomDestinatari" type="pciage:Cognom"/>
+      <element name="cognomDestinatari" type="pciage:Cognom" minOccurs="0" />
       <element name="idp" type="pciage:idpType"/>
       <element name="nivellSeguretatAccess" type="pciage:Qaa"/>
-      <element maxOccurs="1" minOccurs="0" name="dataDisposicioInici" type="dateTime"/>
-      <element maxOccurs="1" minOccurs="0" name="dataDisposicioFi" type="dateTime"/>
-      <element name="tipusEnviament" type="pciage:TipusEnviament"/>
-      <element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
-      <element maxOccurs="1" minOccurs="0" name="ambit" type="pciage:Ambit"/>	
-      <element maxOccurs="1" minOccurs="0" name="codiOrganisme" type="pciage:Organisme"/>							
+      <element name="dataDisposicioInici" type="dateTime" minOccurs="0" />
+      <element name="dataDisposicioFi" type="dateTime" minOccurs="0" />
+      <element name="tipusEnviament" type="pciage:TipusEnviament" minOccurs="0" />
+      <element name="estat" type="pciage:Estat" minOccurs="0" />
+      <element name="ambit" type="pciage:Ambit" minOccurs="0" />
+      <element name="codiOrganisme" type="pciage:Organisme" minOccurs="0" />
     </sequence>
   </complexType>
 </element>
@@ -52,7 +52,7 @@ A continuació podeu veure l'esquema de la petició de notificacions detallades:
 
 Aquesta és la petició que recupera el detall de les notificacions i està format pels següents elements:
 
-* `documentIdentitatDestinatari` : Es tracta d'un `xsd:choice` que ens permet espeficiar el NIF o el CIF del destinatari de les notificacions a cercar.
+* `documentIdentitatDestinatari` : Permet espeficiar el NIF i/o CIF del destinatari de les notificacions a cercar.
 * `cognomDestinatari`: Permet indicar el cognom del destinatari. *Opcional*
 * `idp`: Especifica dins de l'enumeració `idpType` del mateix esquema un dels següents valors que es correspon al nivell d'accés utilitzat per l'usuari.
   * *certificat*
@@ -67,7 +67,7 @@ Aquesta és la petició que recupera el detall de les notificacions i està form
   * *4*: Alt
 * `dataDisposicioInici`: Data mínima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit superior a l'especificada. *Opcional*
 * `dataDisposicioFi`: Data màxima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit inferior a l'especificada. *Opcional*
-* `tipusEnviament`: Enumeració que permet especificar el tipus d'enviaments a cercar:
+* `tipusEnviament`: Enumeració que permet especificar el tipus d'enviaments a cercar. *Opcional*
   * *NOTIFICACIO* : Enviaments de tipus notificació
   * *COMUNICACIO* : Enviaments de tipus comunicació
 * `estat`: Enumeració que permet especificar l'estat en el que és troba la notificació a cercar. *Opcional*
@@ -77,7 +77,7 @@ Aquesta és la petició que recupera el detall de les notificacions i està form
   * *GENERALITAT* : Notificacions enviades per alguns dels organismes vinculats a la generalitat, que es troben a **eNotum**
   * *ENS LOCALS* : Notificacions enviades per a la resta d'ens dins d'**eNotum** que no són generalitat.
   * *ESTATAL* : Cerca a les notificacions que no és troben a **eNotum** contra el connector que ofereix l'AGE **(:warning: de moment no disponible)**
-* `organisme`: Permet filtar per el INE10 (el camp té una longitud màxima de 9 caràcters) del organisme per el qual es volen recuperar les notificacions. *Opcional*
+* `organisme`: Permet filtar per el INE10 de l'organisme pel qual es volen recuperar les notificacions. *Opcional*
 
 [Aquí podeu veure la definició completa del esquema _peticioNotificacionsDetallades.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/connectorCarpeta/xsds/peticioNotificacionsDetallades.xsd)
 
@@ -91,10 +91,10 @@ A continuació podeu veure l'esquema de la resposta de notificacions detallades:
     <choice>
       <element name="Errors" type="pciage:ErrorsType" /> 
       <sequence>
-        <element name="enviaments" type="pciage:Enviaments"/>
-        <element name="enviamentsEspecials" type="pciage:EnviamentsEspecials"/>
-        <element name="mesResultats" type="boolean"/>
-        <element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
+        <element name="enviaments" type="pciage:Enviaments" />
+        <element name="enviamentsEspecials" type="pciage:EnviamentsEspecials" />
+        <element name="mesResultats" type="boolean" />
+        <element name="missatges" type="pciage:Missatges" minOccurs="0" />
       </sequence>
     </choice>
   </complexType>
@@ -132,10 +132,10 @@ En cas que la petició s'hagi processat correctament ens trobarem amb la següen
 
 ```xml
 <sequence>
-  <element name="enviaments" type="pciage:Enviaments"/>
-  <element name="enviamentsEspecials" type="pciage:EnviamentsEspecials"/>
-  <element name="mesResultats" type="boolean"/>
-  <element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
+  <element name="enviaments" type="pciage:Enviaments" />
+  <element name="enviamentsEspecials" type="pciage:EnviamentsEspecials" />
+  <element name="mesResultats" type="boolean" />
+  <element name="missatges" type="pciage:Missatges" minOccurs="0" />
 </sequence>
 ```
 * `\\mesResultats`: Valor boolea, que indica que en el cas que els filtres especificats a la cerca retornin més de 100 enviaments, només es retorna la informació dels 100 primers i s'indica mitjançant el valor `true` que hi ha més resultats.
@@ -148,16 +148,16 @@ La resta d'elements es descriuren a continuació:
 ```xml
 <complexType name="Enviament">
   <sequence>
-    <element name="codiOrganisme" type="pciage:Organisme"/>
-    <element name="descripcioOrganisme" type="pciage:Descripcio"/>
-    <element name="identificador" type="pciage:Identificador"/>
-    <element name="concepte" type="pciage:Concepte"/>
-    <element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
-    <element name="dataDisposicioInici" type="dateTime"/>
-    <element name="dataDisposicioFi" type="dateTime"/>
-    <element name="tipusEnviament" type="pciage:TipusEnviament"/>
-    <element maxOccurs="1" minOccurs="0" name="canalEnviament" type="pciage:Canal"/>
-    <element name="linkAcces" type="anyURI"/>
+    <element name="codiOrganisme" type="pciage:Organisme" />
+    <element name="descripcioOrganisme" type="pciage:Descripcio" />
+    <element name="identificador" type="pciage:Identificador" />
+    <element name="concepte" type="pciage:Concepte" />
+    <element name="estat" type="pciage:Estat" minOccurs="0" />
+    <element name="dataDisposicioInici" type="dateTime" />
+    <element name="dataDisposicioFi" type="dateTime" />
+    <element name="tipusEnviament" type="pciage:TipusEnviament" />
+    <element name="canalEnviament" type="pciage:Canal" minOccurs="0" />
+    <element name="linkAcces" type="anyURI" />
   </sequence>
 </complexType>
 ```
@@ -186,14 +186,14 @@ Aquests elements no existeixen a **eNotum** i només es tornaran en respostes a 
 
 ```xml
 <complexType name="EnviamentEspecial">
-    <sequence>
-        <element name="codiOrganismo" type="pciage:Organisme"/>
-        <element name="descripcioOrganismo" type="pciage:Descripcio"/>
-        <element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
-        <element name="tipusEnviament" type="pciage:TipusEnviament"/>
-        <element name="existeixEnviament" type="boolean"/>
-        <element name="linkAcces" type="anyURI"/>
-    </sequence>
+  <sequence>
+    <element name="codiOrganismo" type="pciage:Organisme" />
+    <element name="descripcioOrganismo" type="pciage:Descripcio" />
+    <element name="estat" type="pciage:Estat" minOccurs="0" />
+    <element name="tipusEnviament" type="pciage:TipusEnviament" />
+    <element name="existeixEnviament" type="boolean" />
+    <element name="linkAcces" type="anyURI" />
+  </sequence>
 </complexType>
 ```
 
@@ -210,15 +210,15 @@ A continuació podeu veure l'esquema de la petició de notificacions detallades:
   <complexType>
     <sequence>
       <element name="documentIdentitatDestinatari" type="pciage:DocumentIdentitatDestinatariType"/>
-      <element maxOccurs="1" minOccurs="0" name="cognomDestinatari" type="pciage:Cognom"/>
+      <element name="cognomDestinatari" type="pciage:Cognom" minOccurs="0" />
       <element name="idp" type="pciage:idpType"/>
       <element name="nivellSeguretatAccess" type="pciage:Qaa"/>
-      <element maxOccurs="1" minOccurs="0" name="dataDisposicioInici" type="dateTime"/>
-      <element maxOccurs="1" minOccurs="0" name="dataDisposicioFi" type="dateTime"/>
-      <element name="tipusEnviament" type="pciage:TipusEnviament"/>
-      <element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
-      <element maxOccurs="1" minOccurs="0" name="ambit" type="pciage:Ambit"/>
-      <element maxOccurs="1" minOccurs="0" name="codiOrganisme" type="pciage:Organisme"/>
+      <element name="dataDisposicioInici" type="dateTime" minOccurs="0" />
+      <element name="dataDisposicioFi" type="dateTime" minOccurs="0" />
+      <element name="tipusEnviament" type="pciage:TipusEnviament" minOccurs="0" />
+      <element name="estat" type="pciage:Estat" minOccurs="0" />
+      <element name="ambit" type="pciage:Ambit" minOccurs="0" />
+      <element name="codiOrganisme" type="pciage:Organisme" minOccurs="0" />
     </sequence>
   </complexType>
 </element>
@@ -226,7 +226,7 @@ A continuació podeu veure l'esquema de la petició de notificacions detallades:
 
 Aquesta és la petició que recupera el detall de les notificacions i està format pels següents elements:
 
-* `documentIdentitatDestinatari` : Es tracta d'un `xsd:choice` que ens permet espeficiar el NIF o el CIF del destinatari de les notificacions a cercar.
+* `documentIdentitatDestinatari` : Permet espeficiar el NIF i/o CIF del destinatari de les notificacions a cercar.
 * `cognomDestinatari`: Permet indicar el cognom del destinatari. *Opcional*
 * `idp`: Especifica dins de l'enumeració `idpType` del mateix esquema un dels següents valors que es correspon al nivell d'accés utilitzat per l'usuari.
   * *certificat*
@@ -241,7 +241,7 @@ Aquesta és la petició que recupera el detall de les notificacions i està form
   * *4*: Alt
 * `dataDisposicioInici`: Data mínima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit superior a l'especificada. *Opcional*
 * `dataDisposicioFi`: Data màxima de diposit de les notificacions a cercar. Només és tornaran les notificacions amb data de dipósit inferior a l'especificada. *Opcional*
-* `tipusEnviament`: Enumeració que permet especificar el tipus d'enviaments a cercar:
+* `tipusEnviament`: Enumeració que permet especificar el tipus d'enviaments a cercar. *Opcional*
   * *NOTIFICACIO* : Enviaments de tipus notificació
   * *COMUNICACIO* : Enviaments de tipus comunicació
 * `estat`: Enumeració que permet especificar l'estat en el que és troba la notificació a cercar. *Opcional*
@@ -265,9 +265,9 @@ A continuació podeu veure l'esquema de la resposta de notificacions agrupades:
     <choice>
       <element name="Errors" type="pciage:ErrorsType" />
       <sequence>
-        <element maxOccurs="1" minOccurs="1" name="organismesEmisors" type="pciage:OrganismesEmisors"/>
-        <element maxOccurs="1" minOccurs="1" name="estats" type="pciage:Estats"/>
-        <element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
+        <element name="organismesEmisors" type="pciage:OrganismesEmisors" />
+        <element name="estats" type="pciage:Estats" />
+        <element name="missatges" type="pciage:Missatges" minOccurs="0" />
       </sequence>
     </choice>
   </complexType>
@@ -318,11 +318,11 @@ En cas que la petició s'hagi processat correctament ens trobarem amb la següen
 ```xml
 <complexType name="OrganismeEmisor">
   <sequence>
-    <element maxOccurs="1" minOccurs="1" name="codiOrganisme" type="pciage:Organisme"/>
-    <element maxOccurs="1" minOccurs="1" name="descripcioOrganisme" type="pciage:Descripcio"/>
-    <element maxOccurs="1" minOccurs="0" name="notificacionsPendents" type="pciage:Enviament"/>
-    <element maxOccurs="1" minOccurs="0" name="notificacionsFinalitzades" type="pciage:Enviament"/>
-    <element maxOccurs="1" minOccurs="0" name="comunicacions" type="pciage:Enviament"/>
+    <element name="codiOrganisme" type="pciage:Organisme" />
+    <element name="descripcioOrganisme" type="pciage:Descripcio" />
+    <element name="notificacionsPendents" type="pciage:Enviament" minOccurs="0" />
+    <element name="notificacionsFinalitzades" type="pciage:Enviament" minOccurs="0" />
+    <element name="comunicacions" type="pciage:Enviament" minOccurs="0" />
   </sequence>
 </complexType>
 ```
@@ -336,11 +336,11 @@ En cas que la petició s'hagi processat correctament ens trobarem amb la següen
 ```xml
 <complexType name="Estats">
   <sequence>
-    <element maxOccurs="1" minOccurs="0" name="notificacionsPendents" type="pciage:Enviament"/>
-    <element maxOccurs="1" minOccurs="0" name="notificacionsFinalitzades" type="pciage:Enviament"/>
-    <element maxOccurs="1" minOccurs="0" name="comunicacions" type="pciage:Enviament"/>
+    <element name="notificacionsPendents" type="pciage:Enviament" minOccurs="0" />
+    <element name="notificacionsFinalitzades" type="pciage:Enviament" minOccurs="0" />
+    <element name="comunicacions" type="pciage:Enviament" minOccurs="0" />
   </sequence>
-</complexType>
+</complexType> 
 ```
 * `\\notificacionsPendents`: Contindrà el total dels enviaments de les notificacions en estat pendent. No s'informa si no hi ha enviaments.
 * `\\notificacionsFinalitzades`: Contindrà el total dels enviaments de les notificacions que ja han estat finalitzades. No s'informa si no hi ha enviaments.
@@ -350,10 +350,10 @@ En cas que la petició s'hagi processat correctament ens trobarem amb la següen
 ```xml
 <complexType name="Enviament">
   <sequence>
-    <element maxOccurs="1" minOccurs="1" name="existeixenEnviament" type="boolean"/>
-    <element maxOccurs="1" minOccurs="0" name="numeroEnviaments" type="integer"/>
-    <element maxOccurs="1" minOccurs="1" name="mesResultats" type="boolean"/>
-    <element maxOccurs="1" minOccurs="1" name="linkAcces" type="anyURI"/>
+    <element name="existeixenEnviament" type="boolean" />
+    <element name="numeroEnviaments" type="integer" minOccurs="0" />
+    <element name="mesResultats" type="boolean" />
+    <element name="linkAcces" type="anyURI" />
   </sequence>
 </complexType>
 ```

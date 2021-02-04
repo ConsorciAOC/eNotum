@@ -7,15 +7,15 @@
 		<complexType>
 			<sequence>
 				<element name="documentIdentitatDestinatari" type="pciage:DocumentIdentitatDestinatariType"/>
-				<element maxOccurs="1" minOccurs="0" name="cognomDestinatari" type="pciage:Cognom"/>
+				<element name="cognomDestinatari" type="pciage:Cognom" minOccurs="0" />
 				<element name="idp" type="pciage:idpType"/>
 				<element name="nivellSeguretatAccess" type="pciage:Qaa"/>
-				<element maxOccurs="1" minOccurs="0" name="dataDisposicioInici" type="dateTime"/>
-				<element maxOccurs="1" minOccurs="0" name="dataDisposicioFi" type="dateTime"/>
-				<element name="tipusEnviament" type="pciage:TipusEnviament"/>
-				<element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
-				<element maxOccurs="1" minOccurs="0" name="ambit" type="pciage:Ambit"/>	
-				<element maxOccurs="1" minOccurs="0" name="codiOrganisme" type="pciage:Organisme"/>							
+				<element name="dataDisposicioInici" type="dateTime" minOccurs="0" />
+				<element name="dataDisposicioFi" type="dateTime" minOccurs="0" />
+				<element name="tipusEnviament" type="pciage:TipusEnviament" minOccurs="0" />
+				<element name="estat" type="pciage:Estat" minOccurs="0" />
+				<element name="ambit" type="pciage:Ambit" minOccurs="0" />
+				<element name="codiOrganisme" type="pciage:Organisme" minOccurs="0" />
 			</sequence>
 		</complexType>
 	</element>
@@ -30,10 +30,10 @@
 		</restriction>
 	</simpleType> 
 	<complexType name="DocumentIdentitatDestinatariType">
-		<choice>
-			<element name="NIF" type="pciage:NIF"/>
-			<element name="CIF" type="pciage:CIF"/>
-		</choice>
+		<sequence>
+			<element name="NIF" type="pciage:NIF" minOccurs="0" />
+			<element name="CIF" type="pciage:CIF" minOccurs="0" />
+		</sequence>
 	</complexType>
 	<simpleType name="NIF">
 		<restriction base="string">
@@ -70,7 +70,7 @@
 	</simpleType>
 	<simpleType name="Organisme">
 		<restriction base="string">
-			<maxLength value="9"/>
+			<maxLength value="10"/>
 		</restriction>
 	</simpleType>
 	<simpleType name="Ambit">
@@ -80,4 +80,5 @@
 			<enumeration value="ESTATAL"/>
 		</restriction>
 	</simpleType>
+	
 </schema> 

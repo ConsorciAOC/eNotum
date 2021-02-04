@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" 
-	xmlns:pciage="http://www.aocat.net/NT/AGE/respostaNotificacionsDetallades"   targetNamespace="http://www.aocat.net/NT/AGE/respostaNotificacionsDetallades"
+	xmlns:pciage="http://www.aocat.net/NT/AGE/respostaNotificacionsDetallades"
+	targetNamespace="http://www.aocat.net/NT/AGE/respostaNotificacionsDetallades"
 	elementFormDefault="qualified" attributeFormDefault="unqualified">
+
 	<element name="RespostaNotificacionsDetallades">
 		<complexType>
 			<choice>
 				<element name="Errors" type="pciage:ErrorsType" /> 
 				<sequence>
-					<element name="enviaments" type="pciage:Enviaments"/>
-					<element name="enviamentsEspecials" type="pciage:EnviamentsEspecials"/>
-					<element name="mesResultats" type="boolean"/>
-					<element maxOccurs="1" minOccurs="0" name="missatges" type="pciage:Missatges"/>
+					<element name="enviaments" type="pciage:Enviaments" />
+					<element name="enviamentsEspecials" type="pciage:EnviamentsEspecials" />
+					<element name="mesResultats" type="boolean" />
+					<element name="missatges" type="pciage:Missatges" minOccurs="0" />
 				</sequence>
 			</choice>
 		</complexType>
@@ -20,8 +22,8 @@
 			<element name="Error">
 				<complexType>
 					<all>
-						<element name="Codi" type="integer"/>
-						<element name="Descripcio" type="string"/>
+						<element name="Codi" type="integer" />
+						<element name="Descripcio" type="string" />
 					</all>
 				</complexType>
 			</element>
@@ -29,102 +31,102 @@
 	</complexType>
 	<complexType name="Enviaments">
 		<sequence>
-			<element maxOccurs="unbounded" minOccurs="1" name="enviament" type="pciage:Enviament"/>
+			<element name="enviament" type="pciage:Enviament" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 	<complexType name="Enviament">
 		<sequence>
-			<element name="codiOrganisme" type="pciage:Organisme"/>
-			<element name="descripcioOrganisme" type="pciage:Descripcio"/>
-			<element name="identificador" type="pciage:Identificador"/>
-			<element name="concepte" type="pciage:Concepte"/>
-			<element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
-			<element name="dataDisposicioInici" type="dateTime"/>
-			<element name="dataDisposicioFi" type="dateTime"/>
-			<element name="tipusEnviament" type="pciage:TipusEnviament"/>
-			<element maxOccurs="1" minOccurs="0" name="canalEnviament" type="pciage:Canal"/>
-			<element name="linkAcces" type="anyURI"/>
+			<element name="codiOrganisme" type="pciage:Organisme" />
+			<element name="descripcioOrganisme" type="pciage:Descripcio" />
+			<element name="identificador" type="pciage:Identificador" />
+			<element name="concepte" type="pciage:Concepte" />
+			<element name="estat" type="pciage:Estat" minOccurs="0" />
+			<element name="dataDisposicioInici" type="dateTime" />
+			<element name="dataDisposicioFi" type="dateTime" />
+			<element name="tipusEnviament" type="pciage:TipusEnviament" />
+			<element name="canalEnviament" type="pciage:Canal" minOccurs="0" />
+			<element name="linkAcces" type="anyURI" />
 		</sequence>
 	</complexType>
 	<complexType name="EnviamentsEspecials">
 		<sequence>
-			<element maxOccurs="unbounded" minOccurs="1" name="enviamentEspecial" type="pciage:EnviamentEspecial"/>
+			<element maxOccurs="unbounded" name="enviamentEspecial" type="pciage:EnviamentEspecial" />
 		</sequence>
 	</complexType>
 	<complexType name="EnviamentEspecial">
 		<sequence>
-			<element name="codiOrganismo" type="pciage:Organisme"/>
-			<element name="descripcioOrganismo" type="pciage:Descripcio"/>
-			<element maxOccurs="1" minOccurs="0" name="estat" type="pciage:Estat"/>
-			<element name="tipusEnviament" type="pciage:TipusEnviament"/>
-			<element name="existeixEnviament" type="boolean"/>
-			<element name="linkAcces" type="anyURI"/>
+			<element name="codiOrganismo" type="pciage:Organisme" />
+			<element name="descripcioOrganismo" type="pciage:Descripcio" />
+			<element name="estat" type="pciage:Estat" minOccurs="0" />
+			<element name="tipusEnviament" type="pciage:TipusEnviament" />
+			<element name="existeixEnviament" type="boolean" />
+			<element name="linkAcces" type="anyURI" />
 		</sequence>
 	</complexType>
 	<complexType name="Missatges">
 		<sequence>
-			<element maxOccurs="unbounded" minOccurs="1" name="missatge" type="pciage:Missatge"/>
+			<element name="missatge" type="pciage:Missatge" maxOccurs="unbounded" />
 		</sequence>
 	</complexType>
 	<simpleType name="Missatge">
 		<restriction base="string">
-			<whiteSpace value="preserve"/>
+			<whiteSpace value="preserve" />
 		</restriction>
 	</simpleType>
 	<simpleType name="Identificador"> 
 		<restriction base="string">
-			<maxLength value="52"/>
+			<maxLength value="52" />
 		</restriction>
 	</simpleType>
 	<simpleType name="Concepte">
 		<restriction base="string">
-			<whiteSpace value="preserve"/>
+			<whiteSpace value="preserve" />
 		</restriction>
 	</simpleType>
 	<simpleType name="Estat">
 		<restriction base="string">
-			<enumeration value="EN TERMINI"/>
-			<enumeration value="FINAL"/>
+			<enumeration value="EN TERMINI" />
+			<enumeration value="FINAL" />
 		</restriction>
 	</simpleType>
 	<complexType name="Organisme">
 		<sequence>
-			<element name="ine10" type="pciage:Ine10"/>
-			<element name="dir3" type="pciage:Dir3"/>
+			<element name="ine10" type="pciage:Ine10" />
+			<element name="dir3" type="pciage:Dir3" />
 		</sequence>
 	</complexType>
 	<simpleType name="Ine10">
 		<restriction base="string">
-			<maxLength value="10"/>
+			<maxLength value="10" />
 		</restriction>
 	</simpleType>
 	<simpleType name="Dir3">
 		<restriction base="string">
-			<maxLength value="15"/>
+			<maxLength value="15" />
 		</restriction>
 	</simpleType>
 	<simpleType name="Descripcio">
 		<restriction base="string">
-			<whiteSpace value="preserve"/>
+			<whiteSpace value="preserve" />
 		</restriction>
 	</simpleType>
 	<simpleType name="TipusEnviament">
 		<restriction base="string">
-			<enumeration value="NOTIFICACIO"/>
-			<enumeration value="COMUNICACIO"/>
+			<enumeration value="NOTIFICACIO" />
+			<enumeration value="COMUNICACIO" />
 		</restriction>
 	</simpleType> 
 	<simpleType name="Vinculo">
 		<restriction base="string">
-			<enumeration value="1"/>
-			<enumeration value="2"/>
+			<enumeration value="1" />
+			<enumeration value="2" />
 		</restriction>
 	</simpleType>
 	<simpleType name="Canal">
 		<restriction base="string">
-			<enumeration value="ELECTRONIC"/>
-			<enumeration value="POSTAL"/>
-			<enumeration value="SEUE"/>
+			<enumeration value="ELECTRONIC" />
+			<enumeration value="POSTAL" />
+			<enumeration value="SEUE" />
 		</restriction>
 	</simpleType> 
 </schema> 
