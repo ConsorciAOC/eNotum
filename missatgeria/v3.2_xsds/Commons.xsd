@@ -21,8 +21,11 @@
 	
 	<xs:simpleType name="TipusAccesType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="PPAS"/>
 			<xs:enumeration value="CERT"/>
+			<xs:enumeration value="PPAS"/>
+			<xs:enumeration value="BAIX"/>
+			<xs:enumeration value="SUBSTANCIAL"/>
+			<xs:enumeration value="ALT"/>
 		</xs:restriction>
 	</xs:simpleType>
 	

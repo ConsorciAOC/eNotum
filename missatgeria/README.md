@@ -558,9 +558,12 @@ Indica si es tracta d'una notificació o d'una comunicació. Els valors possible
   * *NOTIFICACIO* : Indica que l'enviament serà de tipus notificació.
   * *COMUNICACIO* : Indica que l'enviament serà de tipus comunicació.
 * `/Notificacio/TipusAcces`
-Indica el tipus d'accés requerit al ciutadà per tal de poder accedir a la notificació. Els possibles valors són:
-  * *PPAS*
-  * *CERT*
+Indica el nivell d'autenticació requerit al ciutadà per tal de poder accedir a la notificació. Els possibles valors són:
+  * *BAIX*
+  * *SUBSTANCIAL*
+  * *ALT*
+  * *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+  * *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/Notificacio/NivellCertificat`
 En cas d'accés requerit amb certificat, és pot ajustar el nivell d'aquest per l'accés a la notificació.
 * `/Notificacio/DiesExpiracio`
@@ -801,9 +804,12 @@ Aquesta petició permet recuperar el resum de totes les notificacions de l'usuar
 ```
 
 * `/PeticioResum/TipusAcces` 
-Indica el mètode d'accés del ciutadà de les notificacions que es volen recuperar:
-  * *PPAS* : Paraula de pas.
-  * *CERT* : Certificat.
+Indica el nivell d'autenticació requerit al ciutadà per les notificacions que es volen recuperar:
+  * *BAIX*
+  * *SUBSTANCIAL*
+  * *ALT*
+  * *PPAS*: Paraula de pas. _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+  * *CERT*: Certificat. _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/PeticioResum/TipusObjecte`
 Indica si es volen recuperar notificacions o comunicacions en la petició de resum:
   * *NOTIFICACIO*
@@ -1268,8 +1274,11 @@ Cerca per l'estat en el que es troben les notificacions. Els estats en el que es
  
 * `/CriterisNotificacio/TipusAcces`
 Permet cercar per el tipus d'accés configurat a la notificació, els possibles valors són:
-  * _CERT_
-  * _PPAS_
+  * *BAIX*
+  * *SUBSTANCIAL*
+  * *ALT*
+  * *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+  * *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
   
 * `/CriterisNotificacio/Etiquetes`
 Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l'hora de crear la notificació, es descriu amb més detall a [continuació](#etiquetes)
@@ -1899,9 +1908,12 @@ Descripció de l'estat en el que es troba la notificació en el moment de la con
 * `/DadesNotificacio/IdEstat`
 Identificador de l'estat en el que es troba la notificació en el moment de la consulta.
 * `/DadesNotificacio/TipusAcces`
-Tipus d'accés requerit a la notificació:
-  * _CERT_ : Certificat
-  * _PPAS_ : Paraula de pas
+Nivell d'autenticació requerit al ciutadà a la notificació:
+  * *BAIX*
+  * *SUBSTANCIAL*
+  * *ALT*
+  * *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+  * *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/DadesNotificacio/TipusObjecte`
 Indica si és una notificació o és una comunicació. Els valors que pot retornar són:
   * _NOTIFICACIO_ : Notificació. 
@@ -2189,8 +2201,11 @@ Número de dies que resten fins que la notificació expiri. Aquest valor no vind
 Data en que expirarà la notificació. Pot ser que aquest camp no vingui informat si la notificació no ha estat dipositada.
 * `/Resultats/Notificacio/TipusAcces`
 Modalitat d'accés a la notificació per part del ciutadà. Els possibles valors són:
-  * _PPAS_ 
-  * _CERT_
+  * *BAIX*
+  * *SUBSTANCIAL*
+  * *ALT*
+  * *PPAS*:_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+  * *CERT*:_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/Resultats/Notificacio/AmbitObjecte`
 Àmbit de la notificació, si s'ha informat en el moment de creació de la notificació.
 * `/Resultats/Notificacio/Idioma`
