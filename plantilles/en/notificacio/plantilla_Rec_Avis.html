@@ -1,4 +1,5 @@
- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> <html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>eNOTUM</title>
@@ -29,13 +30,15 @@ ul li { margin: 1px;}
 							<tr>
 								<td width="50">&nbsp;</td>
 								<td width="500" align="left" style="padding:30px 0 20px 0; font-size:12px;">
-								<p><strong><font size="+1" color="#999999">REMINDER</font></strong></p>
-								<p>Dear Sir/Madam,</p>
-								<p>We are writing to inform you that Mr/Mrs ${destinatari.nomDestinatari} ${destinatari.cognom1} has received an electronic notification ${if(destinatari.raoSocial){'addressed to ' + destinatari.raoSocial }else{''}} and has until the "access deadline" to view its content. If the notification is not accessed within this period, it will be taken as rejected.</p>
+									<p><strong><font size="+1" color="#999999">REMINDER</font></strong></p>
+									<p>Dear Sir/Madam,</p>
+									<p>We are writing to inform you that Mr/Mrs ${destinatari.nomDestinatari} ${destinatari.cognom1} has received an electronic notification ${if(destinatari.raoSocial){'addressed to ' + destinatari.raoSocial }else{''}} and has until the "access deadline" to view its content. If the notification is not accessed within this period, it will be taken as rejected.</p>
 									<table class="cuadro" style="color:#333; font-size:11px; margin:10px 0; padding:0;border-radius:7px 7px 7px 7px;" width="100%" border="0" cellpadding="3" cellspacing="2" bgcolor="#F5F5F5">
 										<tr>
 											<td width="2%">&nbsp;</td>
-											<td colspan="2" valign="top" style="font-size:12px;padding-top:15px;padding-bottom:10px;"><p><strong>${notificacio.titol}</strong></p></td>
+											<td colspan="2" valign="top" style="font-size:12px;padding-top:15px;padding-bottom:10px;">
+												<p><strong>${notificacio.titol}</strong></p>
+											</td>
 										</tr>
 										<tr>
 											<td>&nbsp;</td>
@@ -99,7 +102,7 @@ ul li { margin: 1px;}
 											<td colspan="3" align="center" valign="middle">&nbsp;</td>
 										</tr>
 									</table>              
-									<p>Mr/Mrs ${destinatari.nomDestinatari} ${destinatari.cognom1} may also view the content of this notification from our <a href="${notificacio.linkAccesBustia}" target="_blank" style="color:#0d8ed1;text-decoration:none;"> electronic notifications area</a></p>
+									<p>Mr/Mrs ${destinatari.nomDestinatari} ${destinatari.cognom1} may also view the content of this notification from our <a href="${notificacio.linkAccesBustia}" target="_blank" style="color:#0d8ed1;text-decoration:none;"> electronic notifications and communications area</a></p>
 									<p>Sincerely,</p>
 									<p style="color:#9a9a9a;padding:10px 0 30px 0"><strong>${entitat.organisme}</strong></p>
 								</td>
@@ -124,4 +127,4 @@ ul li { margin: 1px;}
 	</tr>
 </table>
 </body>
-</html> 
+</html>

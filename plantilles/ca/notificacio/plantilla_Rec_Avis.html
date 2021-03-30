@@ -35,7 +35,7 @@ ul li { margin: 1px;}
 									<p>Us comuniquem que el Sr./Sra. ${destinatari.nomDestinatari} ${destinatari.cognom1} t&eacute; a la seva disposici&oacute; una notificaci&oacute; electr&ograve;nica ${if(destinatari.raoSocial){'adre&ccedil;ada a ' + destinatari.raoSocial }else{''}}, i que disposa fins a la &quot;Data l&iacute;mit d'acc&eacute;s&quot; per accedir al seu contingut. Transcorregut aquest termini sense haver accedit a la notificaci&oacute;, aquesta s'entendr&agrave; com a rebutjada.</p>
 									<table class="cuadro" style="color:#333; font-size:11px; margin:10px 0; padding:0;border-radius:7px 7px 7px 7px;" width="100%" border="0" cellpadding="3" cellspacing="2" bgcolor="#F5F5F5">
 										<tr>
-										<td width="2%">&nbsp;</td>
+											<td width="2%">&nbsp;</td>
 											<td colspan="2" valign="top" style="font-size:12px;padding-top:15px;padding-bottom:10px;">
 												<p><strong>${notificacio.titol}</strong></p>
 											</td>
@@ -92,7 +92,8 @@ ul li { margin: 1px;}
 												<table cellpadding="4" cellspacing="6" style="background-color:#DFDFDF; border-radius:5px; font-size:13px">
 													<tr>
 														<th scope="col">
-															<p><a href="${notificacio.linkAccesNotificacio}" target="_blank" style="padding:10px;color:#0d8ed1;">Acc&eacute;s a la notificaci&oacute;</a></p></th>
+															<p><a href="${notificacio.linkAccesNotificacio}" target="_blank" style="padding:10px;color:#0d8ed1;">Acc&eacute;s a la notificaci&oacute;</a></p>
+														</th>
 													</tr>
 												</table>
 											</td>
@@ -101,9 +102,7 @@ ul li { margin: 1px;}
 											<td colspan="3" align="center" valign="middle">&nbsp;</td>
 										</tr>
 									</table>              
-									<p>El  Sr./Sra. ${destinatari.nomDestinatari} ${destinatari.cognom1} tamb&eacute; pot accedir al contingut  de la notificaci&oacute; des del nostre
-										<a href="${notificacio.linkAccesBustia}" target="_blank"  style="color:#0d8ed1;text-decoration:none;"> espai de notificacions electr&ograve;niques</a>
-									</p>
+									<p>El Sr./Sra. ${destinatari.nomDestinatari} ${destinatari.cognom1} tamb&eacute; pot accedir al contingut de la notificaci&oacute; des del nostre <a href="${notificacio.linkAccesBustia}" target="_blank" style="color:#0d8ed1;text-decoration:none;"> espai de notificacions i comunicacions electr&ograve;niques</a></p>
 									<p>Cordialment,</p>
 									<p style="color:#9a9a9a;padding:10px 0 30px 0"><strong>${entitat.organisme}</strong></p>
 								</td>

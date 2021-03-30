@@ -1,4 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"> <html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>eNOTUM</title>
@@ -31,11 +32,13 @@ ul li { margin: 1px;}
 								<td width="500" align="left" style="padding:30px 0 20px 0; font-size:12px;">
 									<p><strong><font size="+1" color="#999999">REMINDER</font></strong></p>
 									<p>Dear Sir/Madam,</p>
-									<p>We are writing to inform you that you have received an electronic communication. You have until the "access deadline" to view its content. Following this deadline, the communication will automatically expire. </p>
+									<p>@@EMAIL_BODY@@</p>
 									<table class="cuadro" style="color:#333; font-size:11px; margin:10px 0; padding:0;border-radius:7px 7px 7px 7px;" width="100%" border="0" cellpadding="3" cellspacing="2" bgcolor="#F5F5F5">
 										<tr>
 											<td width="2%">&nbsp;</td>
-											<td colspan="2" valign="top" style="font-size:12px;padding-top:15px;padding-bottom:10px;"><p><strong>${notificacio.titol}</strong></p></td>
+											<td colspan="2" valign="top" style="font-size:12px;padding-top:15px;padding-bottom:10px;">
+												<p><strong>${notificacio.titol}</strong></p>
+											</td>
 										</tr>
 										<tr>
 											<td>&nbsp;</td>
@@ -46,11 +49,6 @@ ul li { margin: 1px;}
 											<td>&nbsp;</td>
 											<td valign="top"><p><strong>Date delivered</strong></p></td>
 											<td valign="top"><p>${dateFormat.format(notificacio.dataPublicacio)}</p></td>
-										</tr>
-										<tr>
-											<td>&nbsp;</td>
-											<td valign="top"><p><strong>Access deadline</strong></p></td>
-											<td valign="top"><p>${dateFormat.format(notificacio.dataExpiracio)}</p></td>
 										</tr>
 										<tr>
 											<td>&nbsp;</td>
@@ -124,4 +122,4 @@ ul li { margin: 1px;}
 	</tr>
 </table>
 </body>
-</html> 
+</html>
