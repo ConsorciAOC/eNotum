@@ -70,18 +70,19 @@ ul li { margin: 1px;}
 											<td valign="top"><p><strong>Accessible with: </strong></p></td>
 											<td valign="top">
 												<p><b>
-												${('ALT'.equals(notificacio.tipusAcces.toString()) || ('CERT'.equals(notificacio.tipusAcces.toString()) && notificacio?.nivellCertificat?.indexOf('reconeguda') >= 0)) ? 'Certificate' : ''}
-												${('SUBS'.equals(notificacio.tipusAcces.toString()) || ('CERT'.equals(notificacio.tipusAcces.toString()) && !(notificacio?.nivellCertificat?.indexOf('reconeguda') >= 0))) ? 'You can access with: Certificate or idCAT mòbil ( if it was obtained in person)' : ''}
-												${(['BAIX','PPAS'].contains(notificacio.tipusAcces.toString())) ? 'You can access with: Certificate, idCAT mòbil or password using this credencials:' : ''}
+												${('ALT'.equals(notificacio.tipusAcces.toString()))?  'Certificate' : ''}
+												${('SUBS'.equals(notificacio.tipusAcces.toString()))? 'You can access with: Certificate or idCAT mòbil (if it was obtained in person)' : ''}
+												${('BAIX'.equals(notificacio.tipusAcces.toString()))? 'You can access with: Certificate, idCAT mòbil or password using this credencials:' : ''}
 												</b><br/><br/></p>
-												${if(['BAIX','PPAS'].contains(notificacio.tipusAcces.toString())) { '<p>To access you must use ' + (destinatari.idDocumentPJ ? '<b>VAT/ID</b>: ' + utils.getNumberMask(destinatari.idDocumentPJ) + (destinatari.idDocumentPF ? ',and <b>Passport/ID</b> related to this enterprise ' + utils.getNumberMask(destinatari.idDocumentPF) : '') : '<b>Passport/ID</b>' + utils.getNumberMask(destinatari.idDocumentPF)) + '</p>' } else {''} }
+												${('BAIX'.equals(notificacio.tipusAcces.toString()))? '<p>To access you must use ' + (destinatari.idDocumentPJ ? '<b>VAT/ID</b>: ' + destinatari.idDocumentPJ + (destinatari.idDocumentPF ? ', and <b>Passport/ID</b> related to this enterprise: ' + destinatari.idDocumentPF : '') : '<b>Passport/ID:</b> ' + destinatari.idDocumentPF) + '</p>' : ''}
 												<p><ul>
-												${if(['BAIX','PPAS'].contains(notificacio.tipusAcces.toString())){ '<li><b>EMAIL:</b> ' + utils.getEmailMask(destinatari.email) + '</li>' }else{''}}
-												${if(['BAIX','PPAS'].contains(notificacio.tipusAcces.toString()) && destinatari.mobil ){   '<i><b>-------------- or --------------</b></i><li><b>PHONE:</b> ' + utils.getNumberMask(destinatari.mobil) + '</li>'}else{''}}
-												${if(['SUBS','ALT','CERT'].contains(notificacio.tipusAcces.toString()) && destinatari?.nomDestinatari){'<li>Subject name: ' + destinatari.nomDestinatari + ' ' +destinatari.cognom1 +'</li>'} else {''}}
-												${if(['SUBS','ALT','CERT'].contains(notificacio.tipusAcces.toString()) && destinatari?.raoSocial){'<li>Company name: ' + destinatari.raoSocial + '</li>'} else {''}}
-												${if('ALT'.equals(notificacio.tipusAcces.toString()) || ('CERT'.equals(notificacio.tipusAcces.toString()) && notificacio?.nivellCertificat?.indexOf('reconeguda') >= 0)){ '<li>Smartcard certificate</li>'}else{''}}
-												</p></ul>
+												${('BAIX'.equals(notificacio.tipusAcces.toString()) && destinatari.email)? '<li><b>EMAIL:</b> ' + destinatari.email + '</li>' : ''}
+												${('BAIX'.equals(notificacio.tipusAcces.toString()) && destinatari.email && destinatari.mobil)? '<i><b>-------------- or --------------</b></i>' : ''}
+												${('BAIX'.equals(notificacio.tipusAcces.toString()) && destinatari.mobil)? '<li><b>PHONE:</b> ' + destinatari.mobil + '</li>' : ''}
+												${(['SUBS','ALT'].contains(notificacio.tipusAcces.toString()) && destinatari.nomDestinatari)? '<li>Subject name: ' + destinatari.nomDestinatari + ' ' + destinatari.cognom1 +'</li>' : ''}
+												${(['SUBS','ALT'].contains(notificacio.tipusAcces.toString()) && destinatari.raoSocial)? '<li>Company name: ' + destinatari.raoSocial + '</li>' : ''}
+												${('ALT'.equals(notificacio.tipusAcces.toString()))? '<li>Smartcard certificate</li>' : ''}
+												</ul></p>
 											</td>
 										</tr>
 										<tr>

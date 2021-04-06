@@ -70,18 +70,19 @@ ul li { margin: 1px;}
 											<td valign="top"><p><strong>Accesible con: </strong></p></td>
 											<td valign="top">
 												<p><b>
-												${('ALT'.equals(notificacio.tipusAcces.toString()) || ('CERT'.equals(notificacio.tipusAcces.toString()) && notificacio?.nivellCertificat?.indexOf('reconeguda') >= 0)) ? 'Certificado' : ''}
-												${('SUBS'.equals(notificacio.tipusAcces.toString()) || ('CERT'.equals(notificacio.tipusAcces.toString()) && !(notificacio?.nivellCertificat?.indexOf('reconeguda') >= 0))) ? 'Puede acceder con: Certificado o idCAT mòbil ( si lo ha obtenido de forma presencial)' : ''}
-												${(['BAIX','PPAS'].contains(notificacio.tipusAcces.toString())) ? 'Acceda con: Certificado, idCAT mòbil o contrase&ntilde;a utilitzando estos datos:' : ''}
+												${('ALT'.equals(notificacio.tipusAcces.toString()))?  'Certificado' : ''}
+												${('SUBS'.equals(notificacio.tipusAcces.toString()))? 'Puede acceder con: Certificado o idCAT mòbil ( si lo ha obtenido de forma presencial)' : ''}
+												${('BAIX'.equals(notificacio.tipusAcces.toString()))? 'Acceda con: Certificado, idCAT mòbil o contrase&ntilde;a utilitzando estos datos:' : ''}
 												</b><br/><br/></p>
-												${if(['BAIX','PPAS'].contains(notificacio.tipusAcces.toString())) { '<p>Para acceder debe usar el ' + (destinatari.idDocumentPJ ? '<b>NIF de empresa</b>: ' + utils.getNumberMask(destinatari.idDocumentPJ) + (destinatari.idDocumentPF ? ',y el <b>NIF de la persona vinculada</b> a esta empresa: ' + utils.getNumberMask(destinatari.idDocumentPF) : '') : '<b>NIF:</b>' + utils.getNumberMask(destinatari.idDocumentPF)) + '</p>' } else {''} }
+												${('BAIX'.equals(notificacio.tipusAcces.toString()))? '<p>Para acceder debe usar el ' + (destinatari.idDocumentPJ ? '<b>NIF de empresa</b>: ' + destinatari.idDocumentPJ + (destinatari.idDocumentPF ? ', y el <b>NIF de la persona vinculada</b> a esta empresa: ' + destinatari.idDocumentPF : '') : '<b>NIF:</b> ' + destinatari.idDocumentPF) + '</p>' : ''}
 												<p><ul>
-												${if(['BAIX','PPAS'].contains(notificacio.tipusAcces.toString())){ '<li><b>EMAIL:</b> ' + utils.getEmailMask(destinatari.email) + '</li>' }else{''}}
-												${if(['BAIX','PPAS'].contains(notificacio.tipusAcces.toString()) && destinatari.mobil ){   '<i><b>-------------- o --------------</b></i><li><b>M&Oacute;VIL:</b> ' + utils.getNumberMask(destinatari.mobil) + '</li>'}else{''}}
-												${if(['SUBS','ALT','CERT'].contains(notificacio.tipusAcces.toString()) && destinatari?.nomDestinatari){'<li>Nombre destinatario: ' + destinatari.nomDestinatari + ' ' +destinatari.cognom1 +'</li>'} else {''}}
-												${if(['SUBS','ALT','CERT'].contains(notificacio.tipusAcces.toString()) && destinatari?.raoSocial){'<li>Raz&oacute;n social: ' + destinatari.raoSocial + '</li>'} else {''}}
-												${if('ALT'.equals(notificacio.tipusAcces.toString()) || ('CERT'.equals(notificacio.tipusAcces.toString()) && notificacio?.nivellCertificat?.indexOf('reconeguda') >= 0)){ '<li>Certificado en tarjeta</li>'}else{''}}
-												</p></ul>
+												${('BAIX'.equals(notificacio.tipusAcces.toString()) && destinatari.email)? '<li><b>EMAIL:</b> ' + destinatari.email + '</li>' : ''}
+												${('BAIX'.equals(notificacio.tipusAcces.toString()) && destinatari.email && destinatari.mobil)? '<i><b>-------------- o --------------</b></i>' : ''}
+												${('BAIX'.equals(notificacio.tipusAcces.toString()) && destinatari.mobil)? '<li><b>M&Oacute;VIL:</b> ' + destinatari.mobil + '</li>' : ''}
+												${(['SUBS','ALT'].contains(notificacio.tipusAcces.toString()) && destinatari.nomDestinatari)? '<li>Nombre destinatario: ' + destinatari.nomDestinatari + ' ' + destinatari.cognom1 +'</li>' : ''}
+												${(['SUBS','ALT'].contains(notificacio.tipusAcces.toString()) && destinatari.raoSocial)? '<li>Raz&oacute;n social: ' + destinatari.raoSocial + '</li>' : ''}
+												${('ALT'.equals(notificacio.tipusAcces.toString()))? '<li>Certificado en tarjeta</li>' : ''}
+												</ul></p>
 											</td>
 										</tr>
 										<tr>
