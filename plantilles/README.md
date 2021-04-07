@@ -89,10 +89,9 @@ Dins del context de les expressions s'afegeixen els següents objectes per acced
 |`${notificacio.dataPublicacio}`|	Data de publicació de la notificació (ja és accessible per el destinatari).|
 |`${notificacio.dataExpiracio}`|	Data en la qual expira la notificació.|
 |`${notificacio.diesExpiracio}`|	Número de dies de vida de la notificació.|
-|`${notificacio.tipusAcces}`|	El tipus d'accés per als enviaments són BAIX, SUBS, ALT per als nous tipus EIDAS, i PPAS o CERT per a als antics. Els antics acabaran quedant obsolets, però encara estan suportats.|
+|`${notificacio.tipusAcces}`|	El tipus d'accés per als enviaments són BAIX, SUBS, ALT.|
 |`${notificacio.tipus}`|	Tipus de notificació.0 = notificació.1 = comunicació.|
 |`${notificacio.idioma}`|	Idioma de la notificació amb el que s'ha enviat al client. ca = català, es = castellà, oc = aranès, en = anglès.|
-|`${notificacio.nivellCertificat}`|	Text descriptiu sobre el nivell requerit del certificat per accedir a la notificació (camp informat en cas que el tipus d'accés sigui CERT).|
 |`${notificacio.msgTipusAcces}`|	Missatge ja traduït en funció del idioma de la notificació per a definir l'accés a la notificació.|
 |`${notificacio.msgTipusEnviament}`|	Missatge ja traduït en funció del idioma de la notificació per a definir el tipus d'aquesta.|
 |`${notificacio.linkAccesBustia}`|	Enllaç per a accedir a la bústia de l'entitat a la que pertany la notificació.|
@@ -103,9 +102,9 @@ Dins del context de les expressions s'afegeixen els següents objectes per acced
 |`${destinatari.cognom1}`|	Primer cognom del destinatari de la notificació.|
 |`${destinatari.cognom2}`|	Segon cognom del destinatari de la notificació.|
 |`${destinatari.raoSocial}`|	Raó social de l'empresa a la que pertany el destinatari en cas de que sigui una persona jurídica.|
-|`${destinatari.idDocumentPF}`|	Identificador del document de la persona física.|
+|`${destinatari.idDocumentPF}`|	Identificador del document de la persona física **anonimitzat**. Per exemple: per un NIF amb número 12345678A mostrarà ******78A.|
 |`${destinatari.tipusDocumentPF}`|	Tipus del document de la persona física. 0 = NIF, 1 = Passaport.|
-|`${destinatari.idDocumentPJ}`|	Identificador del document de la persona jurídica.|
+|`${destinatari.idDocumentPJ}`|	Identificador del document de la persona jurídica **anonimitzat**. Per exemple: per un NIF amb número Q0801175A mostrarà ******75A.|
 |`${destinatari.tipusDocumentPJ}`|	Tipus del document de persona jurídica. 0 = CIF, 1 = VAT Number.|
 |`${entitat.nomEntitat}`|	Nom de l'organisme i el nom del departament que han enviat la notificació separats per un slash.|
 |`${entitat.departament}`|	Nom del departament que ha enviat la notificació.|
@@ -157,11 +156,11 @@ Les plantilles han de complir els següents requisits:
 
 *	Grandària màxima  : 64Kb
 *	Sense enllaços externs a javascript o css. Tot element necessari haurà de ser autocontingut a la plantilla.
-*	Tota codificació serà estàndard HTML (http://www.w3.org/MarkUp/html-spec/html-spec_13.html) i el missatge estarà codificat en UTF-8, d'altre manera i poden haver errors en el renderitzat d'accents i d'altres caràcters especials.
+*	Tota codificació serà estàndard HTML (http://www.w3.org/MarkUp/html-spec/html-spec_13.html) i el missatge estarà codificat en UTF-8, d'altre manera hi poden haver errors en el renderitzat d'accents i d'altres caràcters especials.
 *	Addicionalment, es recomana passar el comprovant de pàgina de [*W3C*](http://validator.w3.org/).
 *	Aquesta nomenclatura afecta a les plantilles de correu electrònic i de missatges SMS, i pot ser utilitzada també dins de la petició de procesarTramesa en els següents camps:
-     *	`//*:Tramesa/DadesAvisos/Email/Missatge`
+     * `//*:Tramesa/DadesAvisos/Email/Missatge`
      * `//*:Tramesa/DadesAvisos/SMS/Missatge`
 *	Els enllaços d´accés a la bústia i notificació, s'ha de seguir utilitzant els antics tags amb la notació `@@TAG@@` per a fer ús del identificador de l'enviament o del codi del ens per exemple, tant els definits a la configuració de l'entitat com els que es poden enviar a través de la missatgeria als camps:
      * `//*:Tramesa/DadesAvisos/URLs/AccesNotificacio`
-     *	`//*:Tramesa/DadesAvisos/URLs/AccesLlistat` 
+     * `//*:Tramesa/DadesAvisos/URLs/AccesLlistat` 
