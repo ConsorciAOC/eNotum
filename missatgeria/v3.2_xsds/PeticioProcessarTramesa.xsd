@@ -71,7 +71,13 @@
                   <xs:complexType>
                     <xs:sequence>
                       <xs:choice>
-                        <xs:element name="CosNotificacio" type="xs:string" nillable="false"/>
+                        <xs:element name="CosNotificacio">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:maxLength value="4000"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:element>
                         <xs:element name="IdCosNotificacio" type="xs:integer"/>
                       </xs:choice>
                       <xs:choice>
@@ -110,7 +116,13 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
-      <xs:element name="Referencia" type="xs:string"/>
+      <xs:element name="Referencia">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
       <xs:element name="DadesRegistre" minOccurs="0">
         <xs:complexType>
           <xs:sequence>
@@ -162,7 +174,7 @@
 
   <xs:complexType name="DestinatarisType">
     <xs:sequence>
-      <xs:element name="Destinatari" maxOccurs="unbounded">
+      <xs:element name="Destinatari" maxOccurs="100">
         <xs:complexType>
           <xs:sequence>
             <xs:choice>

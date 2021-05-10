@@ -69,8 +69,8 @@ La practica de la notificació es pot realitzar:
 1. Amb signatura del ciutadà:
 * Per a notificacions creades amb `<TipusAcces>` _CERT_, s'ha de signar l'acceptació o rebuig amb el certificat digital vinculat a l'identitat de l'usuari. 
 * Per a notificacions creades amb `<TipusAcces>` _PPAS_, es poden acceptar o rebutjar de dues formes:
-  * Amb una _paraula de pas_ específica demanada per a realitzar la practica d'una notificació.
-  * O si es delega l'autenticació del usuari a [_Valid_](https://www.aoc.cat/serveis-aoc/valid/) o una altre plataforma d'un tercer, tant sols indicant el `/Usuari/IdAutenticacio` per identificar aquest procés d'autorització.
+	* Amb una _paraula de pas_ específica demanada per a realitzar la practica d'una notificació.
+	* O si es delega l'autenticació del usuari a [_Valid_](https://www.aoc.cat/serveis-aoc/valid/) o una altre plataforma d'un tercer, tant sols indicant el `/Usuari/IdAutenticacio` per identificar aquest procés d'autorització.
 
 En el cas d'accés amb _certificat digital_ Les dades a signar seran proporcionades per **eNotum** mitjançant la operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _OBTENIR_DADES_.
 
@@ -124,7 +124,7 @@ Un cop consultada la comunicació amb l'operació [_Consultar_](#petici%C3%B3---
 #### 1.3.1.2. Altes estats
 
 La resta d'estats són els mateixos respecte les notificacions i s'han de fer servir les mateixes operacions que amb aquestes.
-Per crear-les s'ha d’informar el camp _TipusObjecte_ en el node `<Notificacio>` de l'operació  [_ProcessarTramesa_](#petici%C3%B3---peticioprocessartramesa) amb el valor _COMUNICACIO_.
+Per crear-les s'ha d’informar el camp _TipusObjecte_ en el node `<Notificacio>` de l'operació	[_ProcessarTramesa_](#petici%C3%B3---peticioprocessartramesa) amb el valor _COMUNICACIO_.
 
 ## 1.4. Codificació dels estats de les notificacions a eNOTUM
 
@@ -398,7 +398,13 @@ Aquest element igual que la resta de tags de `<DadesAvisos>` són opcionals, ja 
 	<xs:complexType>
 		<xs:sequence>
 			<xs:choice>
-				<xs:element name="CosNotificacio" type="xs:string" nillable="false"/>
+				<xs:element name="CosNotificacio">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="4000"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
 				<xs:element name="IdCosNotificacio" type="xs:integer"/>
 			</xs:choice>
 			<xs:choice>
@@ -477,8 +483,8 @@ Ruta del document pujat al FTP. Aquesta ruta és la relativa dins el directori a
 Permet adjuntar un document mitjançant _MTOM_. Aquest identificador s'ha de correspondre amb el `<Id>` del `<Fichero>` de les `<DatosGenericos>` de la missatgeria de la _PCI_ per a que **eNotum** pugui recuperar correctament el document. En aquest cas el document s'adjunta en la petició _XML_ i s'ha d'específicar mitjançant el tag `<Contendio>` del `<Fichero>` en fromat _MTOM_ dins de la missatgeria de la _PCI_. Per a més informació podeu consultar [la guia d'integració de la _PCI_](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/)
 * `/Documents/Document/Tipus`
 Indica el tipus de documents adjuntat. Els possibles valors són:
-  * *Resolució* : És obligatori adjuntar un document d'aquest tipus per tramesa.
-  * *Annex* : Opcionalment és poden adjuntar fins a quatre documents d'aquest tipus.
+	* *Resolució* : És obligatori adjuntar un document d'aquest tipus per tramesa.
+	* *Annex* : Opcionalment és poden adjuntar fins a quatre documents d'aquest tipus.
 
 ### Notificació
 
@@ -492,7 +498,13 @@ Indica el tipus de documents adjuntat. Els possibles valors són:
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:element>
-		<xs:element name="Referencia" type="xs:string"/>
+		<xs:element name="Referencia">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="250"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
 		<xs:element name="DadesRegistre" minOccurs="0">
 			<xs:complexType>
 				<xs:sequence>
@@ -555,19 +567,19 @@ Data de l'assentament (opcional) pel cas de notificacions que vinguin pre-regist
 De forma també opcional, només en el cas d'estar creant una COMUNICACIO, mitjançant aquest element es pot indicar que no es vol crear registre de sortida per a aquest enviament concret.
 * `/Notificacio/TipusObjecte`
 Indica si es tracta d'una notificació o d'una comunicació. Els valors possibles per aquest paràmetre son:
-  * *NOTIFICACIO* : Indica que l'enviament serà de tipus notificació.
-  * *COMUNICACIO* : Indica que l'enviament serà de tipus comunicació.
+	* *NOTIFICACIO* : Indica que l'enviament serà de tipus notificació.
+	* *COMUNICACIO* : Indica que l'enviament serà de tipus comunicació.
 * `/Notificacio/TipusAcces`
 Indica el nivell d'autenticació requerit al ciutadà per tal de poder accedir a la notificació. Els possibles valors són:
-  * *BAIX*
-  * *SUBSTANCIAL*
-  * *ALT*
-  * *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-  * *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *BAIX*
+	* *SUBSTANCIAL*
+	* *ALT*
+	* *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/Notificacio/NivellCertificat`
 En cas d'accés requerit amb certificat, és pot ajustar el nivell d'aquest per l'accés a la notificació.
 * `/Notificacio/DiesExpiracio`
-Dies a partir dels quals la notificació exiprarà, a contar a partir de la data de dipòsit. El màxim valor establert per a aquest camp és de _500_ dies.  
+Dies a partir dels quals la notificació exiprarà, a contar a partir de la data de dipòsit. El màxim valor establert per a aquest camp és de _500_ dies.	
 * `/Notificacio/Destinataris`
 Dades dels destinataris de la notificació.
 * `/Notificacio/Etiquetes`
@@ -576,16 +588,16 @@ Etiquetes per a agrupar la notificació.
 Àmbit de la notificació.
 * `/Notificacio/Idioma`
 Idioma de la notificació. Els possibles valors són:
-  * *ca* : Indica que l'idioma de la notificació és català.
-  * *es* : Indica que l'idioma de la notificació és castellà.
-  * *oc* : Indica que l'idioma de la notificació és aranés.
-  * *en* : Indica que l'idioma de la notificació és anglés.
+	* *ca* : Indica que l'idioma de la notificació és català.
+	* *es* : Indica que l'idioma de la notificació és castellà.
+	* *oc* : Indica que l'idioma de la notificació és aranés.
+	* *en* : Indica que l'idioma de la notificació és anglés.
 * `/Notificacio/IdNotificacioEmissor`
 Identificador de la notificació propi del emissor. Serveix en les peticions de lots asíncrones per a que el emissor pugui associar el seu identificador intern amb l'identificador de notificació retornat per eNotum.
 * `/Notificacio/Canal`
 Canal d'enviament per al que s'envia originalment la notificació. Els possibles valors són:
-  * *DIGITAL* : La notificació s'envia únicament per via telemàtica.
-  * *PAPER* : La notificació s'envia per via telemàtica i pot ser enviada en format paper en cas de que no sigui accedida per via telemàtica.
+	* *DIGITAL* : La notificació s'envia únicament per via telemàtica.
+	* *PAPER* : La notificació s'envia per via telemàtica i pot ser enviada en format paper en cas de que no sigui accedida per via telemàtica.
 * `/Notificacio/Expedient`
 Opcionalment es pot indicar l'expedient amb el que està relacionada la notificació. 50 caràcters.
 * `/Notificacio/Tramit`
@@ -597,20 +609,20 @@ Opcionalment es pot indicar el numero de cas amb el que està relacionada la not
 
 ```xml
 <xs:complexType name="DestinatarisType">
-  <xs:sequence>
-    <xs:element name="Destinatari" maxOccurs="unbounded">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:choice>
-            <xs:element name="PersonaFisica" type="PersonaFisicaType"/>
-            <xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
-          </xs:choice>
-          <xs:element name="Idioma" type="Idioma" minOccurs="0"/>
-		  <xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="Destinatari" maxOccurs="100">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="PersonaFisica" type="PersonaFisicaType"/>
+						<xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
+					</xs:choice>
+					<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+			<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+	</xs:sequence>
 </xs:complexType>
 ```
 
@@ -622,10 +634,10 @@ Dades del destinatari en cas de que es tracti d'una persona física.
 Dades del destinatari en cas de que es tracti d'una persona jurídica.
 * `/Destinatari/Idioma`
 Opcionalment permet indicar l'idioma específic de l'usuari entre del següents valors:
-  * *ca* : Indica que l'idioma de la notificació és català.
-  * *es* : Indica que l'idioma de la notificació és castellà.
-  * *oc* : Indica que l'idioma de la notificació és aranés.
-  * *en* : Indica que l'idioma de la notificació és anglés.
+	* *ca* : Indica que l'idioma de la notificació és català.
+	* *es* : Indica que l'idioma de la notificació és castellà.
+	* *oc* : Indica que l'idioma de la notificació és aranés.
+	* *en* : Indica que l'idioma de la notificació és anglés.
 * `/Destinatari/Obligat`
 Camp opcional, que permet indicar en cas de notificacions en `<Canal>Paper</Canal>`, si el destinatari en cas de ser persona física, està obligat a relacionar-se amb l'administració per via electrònica.
 
@@ -633,24 +645,24 @@ Camp opcional, que permet indicar en cas de notificacions en `<Canal>Paper</Cana
 
 ```xml
 <xs:complexType name="PersonaType" abstract="true">
-  <xs:sequence>
-    <xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
-    <xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
-    <xs:element name="PersonesAvis" type="PersonesAvis" minOccurs="0"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
+		<xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
+		<xs:element name="PersonesAvis" type="PersonesAvis" minOccurs="0"/>
+	</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="PersonaFisicaType">
-  <xs:complexContent>
-    <xs:extension base="PersonaType">
-      <xs:sequence>
-        <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
-        <xs:element name="Nom" type="NoEmptyString"/>
-        <xs:element name="PrimerCognom" type="NoEmptyString"/>
-        <xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
+	<xs:complexContent>
+		<xs:extension base="PersonaType">
+			<xs:sequence>
+				<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+				<xs:element name="Nom" type="NoEmptyString"/>
+				<xs:element name="PrimerCognom" type="NoEmptyString"/>
+				<xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:extension>
+	</xs:complexContent>
 </xs:complexType>
 ```
 Per a l'element `PersonaFisica` si el `/Notificacio/Canal` és DIGITAL, serà obligatori informar una bústia de correu o un telèfon, si per el contrari el `/Notificacio/Canal` és PAPER no es realitzarà aquesta comprovació i aquests camps seran opcionals.
@@ -675,23 +687,23 @@ Segon cognom del destinatari.
 ### PersonaJuridica
 ```xml
 <xs:complexType name="PersonaType" abstract="true">
-  <xs:sequence>
-    <xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
-    <xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
-    <xs:element name="PersonesAvis" type="PersonesAvis" minOccurs="0"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
+		<xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
+		<xs:element name="PersonesAvis" type="PersonesAvis" minOccurs="0"/>
+	</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="PersonaJuridicaType">
-  <xs:complexContent>
-    <xs:extension base="PersonaType">
-      <xs:sequence>
-        <xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
-        <xs:element name="RaoSocial" type="NoEmptyString" nillable="false" />
-        <xs:element name="PersonaVinculada" type="PersonaVinculadaType" minOccurs="0"/>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
+	<xs:complexContent>
+		<xs:extension base="PersonaType">
+			<xs:sequence>
+				<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+				<xs:element name="RaoSocial" type="NoEmptyString" nillable="false" />
+				<xs:element name="PersonaVinculada" type="PersonaVinculadaType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:extension>
+	</xs:complexContent>
 </xs:complexType>
 ```
 Per a l'element `PersonaJuridica` informar la bústia de correu o el telèfon serà opcional.
@@ -715,12 +727,12 @@ Persona vinculada de l'empresa destinataria
 
 ```xml
 <xs:complexType name="PersonaVinculadaType">
-    <xs:sequence>
-      <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
-      <xs:element name="Nom" type="xs:string"/>
-      <xs:element name="PrimerCognom" type="xs:string"/>
-      <xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
+		<xs:sequence>
+			<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+			<xs:element name="Nom" type="xs:string"/>
+			<xs:element name="PrimerCognom" type="xs:string"/>
+			<xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
 </xs:complexType>
 ```
 
@@ -740,17 +752,17 @@ Segon cognom de la persona vinculada de l'empresa.
 
 ```xml
 <xs:complexType name="PersonesAvis">
-  <xs:sequence>
-    <xs:element name="PersonaAvis" type="PersonaAvisType" maxOccurs="unbounded"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="PersonaAvis" type="PersonaAvisType" maxOccurs="unbounded"/>
+	</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="PersonaAvisType">
-    <xs:sequence>
-      <xs:element name="NomComplet" type="xs:string"/>
-      <xs:element name="BustiaCorreu" type="xs:string"/>
-      <xs:element name="Telefon" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
+		<xs:sequence>
+			<xs:element name="NomComplet" type="xs:string"/>
+			<xs:element name="BustiaCorreu" type="xs:string"/>
+			<xs:element name="Telefon" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
 </xs:complexType>
 ```
 
@@ -765,17 +777,17 @@ Telèfon de les persones que rebran l’avís.
 
 ```xml
 <xs:complexType name="EtiquetesType">
-  <xs:sequence>
-    <xs:element name="Etiqueta" type="EtiquetaType" maxOccurs="unbounded"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="Etiqueta" type="EtiquetaType" maxOccurs="unbounded"/>
+	</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="EtiquetaType">
-  <xs:simpleContent>
-    <xs:extension base="xs:string">
-      <xs:attribute name="Idioma" type="Idioma"/>
-    </xs:extension>
-  </xs:simpleContent>
+	<xs:simpleContent>
+		<xs:extension base="xs:string">
+			<xs:attribute name="Idioma" type="Idioma"/>
+		</xs:extension>
+	</xs:simpleContent>
 </xs:complexType>
 ```
 
@@ -785,9 +797,9 @@ Cada ens pot definir-se etiquetes per al seu organisme. Aquestes etiquetes es ge
 Nom de l'etiqueta.
 * `/Etiquetes/Etiqueta@Idioma`
 Idioma de la etiqueta, els possibles valors són:
-  * *ca* : Indica que l'idioma de la notificació és català.
-  * *es* : Indica que l'idioma de la notificació és castellà.
-  * *oc* : Indica que l'idioma de la notificació és aranés.
+	* *ca* : Indica que l'idioma de la notificació és català.
+	* *es* : Indica que l'idioma de la notificació és castellà.
+	* *oc* : Indica que l'idioma de la notificació és aranés.
 
 ## Petició - PeticioResum
 
@@ -805,15 +817,15 @@ Aquesta petició permet recuperar el resum de totes les notificacions de l'usuar
 
 * `/PeticioResum/TipusAcces` 
 Indica el nivell d'autenticació requerit al ciutadà per les notificacions que es volen recuperar:
-  * *BAIX*
-  * *SUBSTANCIAL*
-  * *ALT*
-  * *PPAS*: Paraula de pas. _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-  * *CERT*: Certificat. _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *BAIX*
+	* *SUBSTANCIAL*
+	* *ALT*
+	* *PPAS*: Paraula de pas. _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *CERT*: Certificat. _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/PeticioResum/TipusObjecte`
 Indica si es volen recuperar notificacions o comunicacions en la petició de resum:
-  * *NOTIFICACIO*
-  * *COMUNICACIO*
+	* *NOTIFICACIO*
+	* *COMUNICACIO*
 * `/PeticioResum/MostrarTotesNotificacions`
 Indica si s'han de mostrar o no totes les notificacions per a un usuari concret tenint en compte la combinació del seu NIF amb totes les seves possibles credencials (diferents tlfs/emails). Només aplica amb autenticació amb paraula de pas.
 
@@ -825,9 +837,9 @@ Aquesta petició permet recuperar les evidencies de diposit i pràctica en forma
 
 ```xml
 <xs:sequence>
-  <xs:element name="IdNotificacio" type="xs:integer"/>
-  <xs:element name="TipusEvidencia" type="TipusEvidenciaType"/>
-  <xs:element name="IdiomaEvidenciaPDF" type="Idioma" minOccurs="0" />
+	<xs:element name="IdNotificacio" type="xs:integer"/>
+	<xs:element name="TipusEvidencia" type="TipusEvidenciaType"/>
+	<xs:element name="IdiomaEvidenciaPDF" type="Idioma" minOccurs="0" />
 </xs:sequence>
 ```
 
@@ -835,8 +847,8 @@ Aquesta petició permet recuperar les evidencies de diposit i pràctica en forma
 Identificador de la notificació per la que es vol recuperar l'evidència.
 * `/PeticioEvidencia/TipusEvidencia`
 Indica el tipus d'evidència a recuperar:
-  * *XML* : Retornarà l'evidència de dipòsit i l'evidència d’acceptació o rebuig de la notificació en format _XML_
-  * *PDF* : Retornarà la URL d'on descarregar el justificant electrònic de validesa en format _PDF_
+	* *XML* : Retornarà l'evidència de dipòsit i l'evidència d’acceptació o rebuig de la notificació en format _XML_
+	* *PDF* : Retornarà la URL d'on descarregar el justificant electrònic de validesa en format _PDF_
 * `/PeticioEvidencia/IdiomaEvidenciaPDF`
 Idioma en el que es retornarà el document d’evidències, només aplica per a peticions amb `<Rol>` CIUTADA i quan el camp `<TipusEvidencia>` agafa el valor _PDF_. En caso de no venir informat o de peticions amb `<Rol>` EMPLEAT, el _PDF_ es retornarà en català.
 
@@ -848,27 +860,27 @@ Aquesta petició permet practicar una notificació per part del destinatari de l
 
 ```xml
 <xs:sequence>
-  <xs:element name="IdNotificacio" type="xs:integer"/>
-  <xs:element name="Operacio" type="OperacioPracticarType"/>
-  <xs:element name="Decisio" type="DecisioPracticarType"/>
-  <xs:choice minOccurs="0">
-    <xs:element name="Signatura">
-      <xs:annotation>
-        <xs:documentation>XML de la signatura.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element ref="ds:Signature"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-    <xs:element name="DadesPracticarCanalPaper" type="DadesPracticarCanalPaperType"/>
-  </xs:choice>
-  <xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0">
-  <xs:annotation>
-    <xs:documentation>Només aplica per a notificacions en canal "paper", per els quals es vol fer un canvi de canal. En cas de no aplicar, s'ignorarà l'element.</xs:documentation>
-  </xs:annotation>
-  </xs:element>
+	<xs:element name="IdNotificacio" type="xs:integer"/>
+	<xs:element name="Operacio" type="OperacioPracticarType"/>
+	<xs:element name="Decisio" type="DecisioPracticarType"/>
+	<xs:choice minOccurs="0">
+		<xs:element name="Signatura">
+			<xs:annotation>
+				<xs:documentation>XML de la signatura.</xs:documentation>
+			</xs:annotation>
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element ref="ds:Signature"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="DadesPracticarCanalPaper" type="DadesPracticarCanalPaperType"/>
+	</xs:choice>
+	<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0">
+	<xs:annotation>
+		<xs:documentation>Només aplica per a notificacions en canal "paper", per els quals es vol fer un canvi de canal. En cas de no aplicar, s'ignorarà l'element.</xs:documentation>
+	</xs:annotation>
+	</xs:element>
 </xs:sequence>
 ```
 
@@ -876,12 +888,12 @@ Aquesta petició permet practicar una notificació per part del destinatari de l
 Id de la notificació que es vol practicar.
 * `/PeticioPracticar/Operacio`
 Hi ha dues operacions possibles:
-  * *OBTENIR_DADES* : Serveix per obtenir el resum criptogràfic que haurà de signar el ciutadà, només aplica a operacions autenticades amb certificat.
-  * *SIGNAR* : Confirma l'operació d'acceptació o rebuig per part del ciutada.
+	* *OBTENIR_DADES* : Serveix per obtenir el resum criptogràfic que haurà de signar el ciutadà, només aplica a operacions autenticades amb certificat.
+	* *SIGNAR* : Confirma l'operació d'acceptació o rebuig per part del ciutada.
 * `/PeticioPracticar/Decisio`
 Marca la decisió del ciutadà sobre la notificació, els possibles valors són:
-  * *ACCEPTAR* 
-  * *REBUTJAR*
+	* *ACCEPTAR* 
+	* *REBUTJAR*
 * `/PeticioPracticar/Signatura`
 Signatura en format [XAdES T detached](https://www.w3.org/TR/XAdES/) sobre el resum critpogràfic obtingut amb la `<Operacio>` _OBTENIR_DADES_. Només aplica en cas d'autenticació amb certificat. 
 * `/PeticioPracticar/DadesPracticarCanalPaper`
@@ -893,11 +905,11 @@ En cas de notificacions complementaries, que l'usuari practica de forma activa e
 
 ```xml
 <xs:complexType name="DadesPracticarCanalPaperType">
-  <xs:sequence>
-    <xs:element name="NIF" type="NIF"/>
-    <xs:element name="Data" type="xs:dateTime"/>
-    <xs:element name="Referencia" type="xs:string"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="NIF" type="NIF"/>
+		<xs:element name="Data" type="xs:dateTime"/>
+		<xs:element name="Referencia" type="xs:string"/>
+	</xs:sequence>
 </xs:complexType>
 ```
 * `/DadesPracticarCanalPaper/NIF`
@@ -912,19 +924,19 @@ Camp de text amb la referència de la practica en paper.
 
 ```xml
 <xs:complexType name="DadesCanviCanalType">
-  <xs:sequence>
-    <xs:element name="Canal" type="CanalType"/>
-    <xs:element name="BustiaCorreu" type="xs:string" minOccurs="0"/>
-    <xs:element name="Telefon" type="xs:string" minOccurs="0"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="Canal" type="CanalType"/>
+		<xs:element name="BustiaCorreu" type="xs:string" minOccurs="0"/>
+		<xs:element name="Telefon" type="xs:string" minOccurs="0"/>
+	</xs:sequence>
 </xs:complexType>
 ```
 
 En cas de practicar una notificació complementaria per part del ciutadà, permet indicar a l'usuari de forma opcional si desitja o no rebre les futures notificacions en paper.
 * `/CanviCanal/Canal`
 Indica com vol rebre les futures notificacions:
-  * *PAPER* : En format paper.
-  * *DIGITAL* : En format digital.
+	* *PAPER* : En format paper.
+	* *DIGITAL* : En format digital.
 
 ## Petició - PeticioRecuperarReport
 
@@ -934,18 +946,18 @@ Aquesta petició permet recuperar el report amb el resum de dades d'una notifica
 
 ```xml
 <xs:sequence>
-  <xs:choice>
-    <xs:element name="IdNotificacio" type="xs:integer">
-      <xs:annotation>
-        <xs:documentation>Identificador de la notificació a consultar.</xs:documentation>
-      </xs:annotation>
-    </xs:element>
-    <xs:element name="DataReport" type="xs:date">
-      <xs:annotation>
-        <xs:documentation>Data del dia del qual es vol obtenir el report.</xs:documentation>
-      </xs:annotation>
-    </xs:element>
-  </xs:choice>
+	<xs:choice>
+		<xs:element name="IdNotificacio" type="xs:integer">
+			<xs:annotation>
+				<xs:documentation>Identificador de la notificació a consultar.</xs:documentation>
+			</xs:annotation>
+		</xs:element>
+		<xs:element name="DataReport" type="xs:date">
+			<xs:annotation>
+				<xs:documentation>Data del dia del qual es vol obtenir el report.</xs:documentation>
+			</xs:annotation>
+		</xs:element>
+	</xs:choice>
 </xs:sequence>
 ```
 
@@ -962,7 +974,7 @@ Aquesta petició permet consultar les dades d'una notificació concreta. La defi
 
 ```xml
 <xs:sequence>
-  <xs:element name="IdNotificacio" type="xs:integer"/>
+	<xs:element name="IdNotificacio" type="xs:integer"/>
 </xs:sequence>
 ```
 * `/PeticioConsulta/IdNotificacio`
@@ -976,20 +988,20 @@ Aquesta petició permet obtenir paraules de pas per a que el ciutadà pugui real
 
 ```xml
 <xs:sequence>
-  <xs:choice minOccurs="0">
-    <xs:element name="IdNotificacio" type="xs:integer"/>
-    <xs:element name="NumeroRegistre" type="xs:string"/>
-  </xs:choice>
-  <xs:element name="DocumentIdentificatiuPersonaFisica" type="DocumentPersonaFisicaType" minOccurs="0"/>
-  <xs:element name="DocumentIdentificatiuPersonaJuridica" type="DocumentPersonaJuridicaType" minOccurs="0"/>
-  <xs:element name="DadesEnviament">
-    <xs:complexType>
-      <xs:choice>
-        <xs:element name="BustiaCorreu" type="xs:string"/>
-        <xs:element name="Telefon" type="xs:string"/>
-      </xs:choice>
-    </xs:complexType>
-  </xs:element>
+	<xs:choice minOccurs="0">
+		<xs:element name="IdNotificacio" type="xs:integer"/>
+		<xs:element name="NumeroRegistre" type="xs:string"/>
+	</xs:choice>
+	<xs:element name="DocumentIdentificatiuPersonaFisica" type="DocumentPersonaFisicaType" minOccurs="0"/>
+	<xs:element name="DocumentIdentificatiuPersonaJuridica" type="DocumentPersonaJuridicaType" minOccurs="0"/>
+	<xs:element name="DadesEnviament">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="BustiaCorreu" type="xs:string"/>
+				<xs:element name="Telefon" type="xs:string"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
 </xs:sequence>
 ```
 * `/PeticioParaulaPas/IdNotificacio`
@@ -1011,10 +1023,10 @@ El DocumentIdentificatiuPersonaFisica és del tipus _DocumentPersonaFisicaType_ 
 
 ```xml
 <xs:complexType name="DocumentPersonaFisicaType">
-  <xs:choice>
-    <xs:element name="NIF" type="NIF"/>
-    <xs:element name="PASSAPORT" type="NoEmptyString"/>
-  </xs:choice>
+	<xs:choice>
+		<xs:element name="NIF" type="NIF"/>
+		<xs:element name="PASSAPORT" type="NoEmptyString"/>
+	</xs:choice>
 </xs:complexType>
 ```
 * `/PeticioParaulaPas/DocumentIdentificatiuPersonaFisica/NIF`
@@ -1028,10 +1040,10 @@ El DocumentIdentificatiuPersonaJuridica és del tipus _DocumentPersonaJuridicaTy
 
 ```xml
 <xs:complexType name="DocumentPersonaJuridicaType">
-  <xs:choice>
-    <xs:element name="CIF" type="CIF"/>
-    <xs:element name="VAT" type="NoEmptyString"/>
-  </xs:choice>
+	<xs:choice>
+		<xs:element name="CIF" type="CIF"/>
+		<xs:element name="VAT" type="NoEmptyString"/>
+	</xs:choice>
 </xs:complexType>
 ```
 
@@ -1048,16 +1060,16 @@ Aquesta petició permet realitzar cerques sobre les notificacions aplicant difer
 
 ```xml
 <xs:sequence>
-  <xs:element name="DadesCerca">
-    <xs:complexType>
-      <xs:all>
-        <xs:element name="CriterisEntitat" minOccurs="0"/>
-        <xs:element name="CriterisDestinatari" minOccurs="0"/>
-        <xs:element name="CriterisNotificacio" minOccurs="0"/>
-        <xs:element name="CriterisData" minOccurs="0">
-        <xs:element name="Paginacio"/>
-    </xs:complexType>
-  </xs:element>
+	<xs:element name="DadesCerca">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="CriterisEntitat" minOccurs="0"/>
+				<xs:element name="CriterisDestinatari" minOccurs="0"/>
+				<xs:element name="CriterisNotificacio" minOccurs="0"/>
+				<xs:element name="CriterisData" minOccurs="0">
+				<xs:element name="Paginacio"/>
+		</xs:complexType>
+	</xs:element>
 </xs:sequence>
 ```
 
@@ -1076,13 +1088,13 @@ Permet específicar la pàginació de la cerca.
 
 ```xml
 <xs:element name="CriterisEntitat" minOccurs="0">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="CodiOrganisme" type="xs:string" minOccurs="0"/>
-      <xs:element name="CodiDepartament" type="xs:string" minOccurs="0"/>
-      <xs:element name="CodiBO" type="xs:string" minOccurs="0"/>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="CodiOrganisme" type="xs:string" minOccurs="0"/>
+			<xs:element name="CodiDepartament" type="xs:string" minOccurs="0"/>
+			<xs:element name="CodiBO" type="xs:string" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -1098,17 +1110,17 @@ Codi del backoffice emissor de les notificacions.
 
 ```xml
 <xs:element name="CriterisDestinatari" minOccurs="0">
-  <xs:complexType>
-    <xs:sequence>
-      <xs:choice minOccurs="0">
-        <xs:element name="Persona" type="FiltrePersonaType"/>
-        <xs:element name="PersonaFisica" type="FiltrePersonaFisicaType"/>
-        <xs:element name="PersonaJuridica" type="FiltrePersonaJuridicaType"/>
-      </xs:choice>
-      <xs:element name="Idioma" type="Idioma" minOccurs="0"/>
-      <xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
-    </xs:sequence>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:choice minOccurs="0">
+				<xs:element name="Persona" type="FiltrePersonaType"/>
+				<xs:element name="PersonaFisica" type="FiltrePersonaFisicaType"/>
+				<xs:element name="PersonaJuridica" type="FiltrePersonaJuridicaType"/>
+			</xs:choice>
+			<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+			<xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
+		</xs:sequence>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -1120,23 +1132,23 @@ Aquest element permet cercar per els mateixos camps que el camp anterior `/Perso
 Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona jurídica destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](#personajuridica)
 * `/CriterisDestinatari/Idioma`
 Permet cerca les notificacions creades en un idioma concret. Els possibles valors d'aquest camp són:
-  * *ca* : Indica que l'idioma de les notificacions a cercar és català.
-  * *es* : Indica que l'idioma de les notificacions a cercar és castellà.
-  * *oc* : Indica que l'idioma de les notificacions a cercar és aranés.
-  * *en* : Indica que l'idioma de les notificacions a cercar és anglés.
+	* *ca* : Indica que l'idioma de les notificacions a cercar és català.
+	* *es* : Indica que l'idioma de les notificacions a cercar és castellà.
+	* *oc* : Indica que l'idioma de les notificacions a cercar és aranés.
+	* *en* : Indica que l'idioma de les notificacions a cercar és anglés.
 * `/CriterisDestinatari/CanviCanal`
 És un booleà que permet indicar si s'han de cercar notificacions que hagin canviat de canal, el camp és opcional i en cas de no venir informat no s'aplicarà cap criteri, es a dir no informar el camp és diferent que informar-lo amb el valor `false`. Els possibles valors són:
-  * *true* : Indica explicitament que s'han de cercar notificacions per les quals l'usuari hagi decidit fer un canvi de canal a digital i hagi donat les dades de contacte electrònic.
-  * *false* : Indica explicitament que s'han de cercar notificacions per les quals l'usuari no hagi demanat un canvi de canal.
+	* *true* : Indica explicitament que s'han de cercar notificacions per les quals l'usuari hagi decidit fer un canvi de canal a digital i hagi donat les dades de contacte electrònic.
+	* *false* : Indica explicitament que s'han de cercar notificacions per les quals l'usuari no hagi demanat un canvi de canal.
 
 #### Persona
 
 ```xml
 <xs:complexType name="FiltrePersonaType">
-  <xs:sequence>
-    <xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
-    <xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
+		<xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
+	</xs:sequence>
 </xs:complexType>
 ```
 
@@ -1149,16 +1161,16 @@ Número de telèfon del destinatari que es vol cercar. Cercarà tots els destina
 
 ```xml
 <xs:complexType name="FiltrePersonaFisicaType">
-  <xs:complexContent>
-    <xs:extension base="FiltrePersonaType">
-      <xs:sequence>
-        <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType" minOccurs="0"/>
-        <xs:element name="Nom" type="xs:string" minOccurs="0"/>
-        <xs:element name="PrimerCognom" type="xs:string" minOccurs="0"/>
-        <xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
+	<xs:complexContent>
+		<xs:extension base="FiltrePersonaType">
+			<xs:sequence>
+				<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType" minOccurs="0"/>
+				<xs:element name="Nom" type="xs:string" minOccurs="0"/>
+				<xs:element name="PrimerCognom" type="xs:string" minOccurs="0"/>
+				<xs:element name="SegonCognom" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:extension>
+	</xs:complexContent>
 </xs:complexType>
 ```
 
@@ -1179,15 +1191,15 @@ Primer cognom del destinatari de les notificacions a cercar. Cercarà tots els d
 
 ```xml
 <xs:complexType name="FiltrePersonaJuridicaType">
-  <xs:complexContent>
-    <xs:extension base="FiltrePersonaType">
-      <xs:sequence>
-        <xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType" minOccurs="0"/>
-        <xs:element name="RaoSocial" type="xs:string" minOccurs="0"/>
-        <xs:element name="PersonaVinculada" type="FiltrePersonaVinculadaType" minOccurs="0"/>
-      </xs:sequence>
-    </xs:extension>
-  </xs:complexContent>
+	<xs:complexContent>
+		<xs:extension base="FiltrePersonaType">
+			<xs:sequence>
+				<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType" minOccurs="0"/>
+				<xs:element name="RaoSocial" type="xs:string" minOccurs="0"/>
+				<xs:element name="PersonaVinculada" type="FiltrePersonaVinculadaType" minOccurs="0"/>
+			</xs:sequence>
+		</xs:extension>
+	</xs:complexContent>
 </xs:complexType>
 ```
 
@@ -1206,23 +1218,23 @@ Permet filtrar per els mateixos camps que `FiltrePersonaFisicaType` (NIF/NIE,pas
 
 ```xml
 <xs:element name="CriterisNotificacio" minOccurs="0">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="Titol" type="xs:string" minOccurs="0"/>
-      <xs:element name="IdNotificacio" type="IntervalValorsEnters" minOccurs="0"/>
-      <xs:element name="Referencia" type="IntervalValors" minOccurs="0"/>
-      <xs:element name="NumeroRegistre" type="IntervalValors" minOccurs="0"/>
-      <xs:element name="Estat" type="xs:string" minOccurs="0"/>
-      <xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
-      <xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
-      <xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
-      <xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
-      <xs:element name="Canal" type="CanalType" minOccurs="0"/>
-      <xs:element name="Expedient" type="xs:string" minOccurs="0"/>
-      <xs:element name="Tramit" type="xs:string" minOccurs="0"/>
-      <xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="Titol" type="xs:string" minOccurs="0"/>
+			<xs:element name="IdNotificacio" type="IntervalValorsEnters" minOccurs="0"/>
+			<xs:element name="Referencia" type="IntervalValors" minOccurs="0"/>
+			<xs:element name="NumeroRegistre" type="IntervalValors" minOccurs="0"/>
+			<xs:element name="Estat" type="xs:string" minOccurs="0"/>
+			<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
+			<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+			<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+			<xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
+			<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+			<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+			<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+			<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -1231,55 +1243,55 @@ Aquest element permet filtrar les notificacions en funció d'alguns dels valors 
 Títol de la notificació que es vol cercar. Cercarà totes les notificacions llur títol contingui la cadena passada com a valor per aquest criteri de cerca.
 * `/CriterisNotificacio/IdNotificacio`
 Permet indicar un rang de cerca de identificadors de notificacions.
-  * `/CriterisNotificacio/IdNotificacio/ValorSuperior`
-  Valor de tall superior pel interval de cerca.
-  * `/CriterisNotificacio/IdNotificacio/ValorInferior`
-  Valor de tall inferior pel interval de cerca.
-  * En cas de voler buscar per un identificador de notificació en concret, s'ha d'indicar el mateix identificador per el valor inferior i el superior.
+	* `/CriterisNotificacio/IdNotificacio/ValorSuperior`
+	Valor de tall superior pel interval de cerca.
+	* `/CriterisNotificacio/IdNotificacio/ValorInferior`
+	Valor de tall inferior pel interval de cerca.
+	* En cas de voler buscar per un identificador de notificació en concret, s'ha d'indicar el mateix identificador per el valor inferior i el superior.
 * `/CriterisNotificacio/Referencia`
 Permet indicar un rang de cerca dels valors de la referencia, així com un valor absolut del mateix.
-  * `/CriterisNotificacio/Referencia/ValorSuperior`
-  Valor de tall superior pel interval de cerca.
-  * `/CriterisNotificacio/Referencia/ValorInferior`
-  Valor de tall inferior pel interval de cerca.
-  * `/CriterisNotificacio/Referencia/ValorAbsolut`
-  Cadena de text sobre la que es farà la cerca. Aquesta cadena es buscarà com a prefix de qualsevol referència existent, en mode case insensitive. Per example el valor "Ref" retornarà "referència","Referència","referendum","Reflexió" o "referència dia 27/10/2017".
+	* `/CriterisNotificacio/Referencia/ValorSuperior`
+	Valor de tall superior pel interval de cerca.
+	* `/CriterisNotificacio/Referencia/ValorInferior`
+	Valor de tall inferior pel interval de cerca.
+	* `/CriterisNotificacio/Referencia/ValorAbsolut`
+	Cadena de text sobre la que es farà la cerca. Aquesta cadena es buscarà com a prefix de qualsevol referència existent, en mode case insensitive. Per example el valor "Ref" retornarà "referència","Referència","referendum","Reflexió" o "referència dia 27/10/2017".
 
 * `/CriterisNotificacio/NumeroRegistre`
 Número de registre de la notificació a cerca, igual que en els casos anteriors permet indicar un rang de cerca de valors així com un valor absolut del mateix.
-  * `/CriterisNotificacio/NumeroRegistre/ValorSuperior`
-  Valor de tall superior pel interval de cerca.
-  * `/CriterisNotificacio/NumeroRegistre/ValorInferior`
-  Valor de tall inferior pel interval de cerca.
-  * `/CriterisNotificacio/NumeroRegistre/ValorAbsolut`
-  Valor absolut del número de registre.
-  
+	* `/CriterisNotificacio/NumeroRegistre/ValorSuperior`
+	Valor de tall superior pel interval de cerca.
+	* `/CriterisNotificacio/NumeroRegistre/ValorInferior`
+	Valor de tall inferior pel interval de cerca.
+	* `/CriterisNotificacio/NumeroRegistre/ValorAbsolut`
+	Valor absolut del número de registre.
+	
 * `/CriterisNotificacio/Estat`
 Cerca per l'estat en el que es troben les notificacions. Els estats en el que es poden trobar i pels quals es pot cercar són els següents:
-  * _Pendent de registrar_ : La notificació ha entrat al sistema i està pendent de començar a processar-se.
-  * _Registrada_: La notificació ha estat registrada. El registre el pot haver fet eNOTUM o bé es pot tractar d'una notificació registrada abans d'haver estat introduïda al sistema.
-  * _Dipositada_: La notificació ha estat dipositada i per tant ja és accessible als ciutadans.
-  * _Visualitzada_: El ciutadà ha visualitzat la notificació.
-  * _Rebutjada_: El ciutadà ha rebutjat la notificació.
-  * _Acceptada_: El ciutadà ha acceptat la notificació.
-  * _Rebutjada sense accés_: El sistema ha rebutjat la notificació sense que l'usuari l’hagi visualitzat.
-  * _Rebutjada sense acció_: El sistema ha rebutjat la notificació però l'usuari havia visualitzat la notificació.
-  * _Error_: S'ha produït un error irrecuperable en el tractament de la notificació i el seu processament ha quedat aturat.
-  
-  Ha més d'aquests estats, existeixen un seguits de meta estats de cerca no directament relacionats amb un estat de la notificació, però que permet cercar per aquest valor:
-  * _Transit_: La notificació és troba pendent de la fase de registre.
-  * _Oberta_: Es troba en un estat no final, és a dir encara no està practicada per el ciutadà i no ha expirat.
-  * _Rebutjada jurídicament_: La notificació ha estat rebutjada, ja sigui per el ciutadà o per el sistema al haver expirat.
-  * _Tancada_: Es troba en un estat final, ja sigui per que el ciutadà l'ha practicat o perquè la notifiació ha expirat.
+	* _Pendent de registrar_ : La notificació ha entrat al sistema i està pendent de començar a processar-se.
+	* _Registrada_: La notificació ha estat registrada. El registre el pot haver fet eNOTUM o bé es pot tractar d'una notificació registrada abans d'haver estat introduïda al sistema.
+	* _Dipositada_: La notificació ha estat dipositada i per tant ja és accessible als ciutadans.
+	* _Visualitzada_: El ciutadà ha visualitzat la notificació.
+	* _Rebutjada_: El ciutadà ha rebutjat la notificació.
+	* _Acceptada_: El ciutadà ha acceptat la notificació.
+	* _Rebutjada sense accés_: El sistema ha rebutjat la notificació sense que l'usuari l’hagi visualitzat.
+	* _Rebutjada sense acció_: El sistema ha rebutjat la notificació però l'usuari havia visualitzat la notificació.
+	* _Error_: S'ha produït un error irrecuperable en el tractament de la notificació i el seu processament ha quedat aturat.
+	
+	Ha més d'aquests estats, existeixen un seguits de meta estats de cerca no directament relacionats amb un estat de la notificació, però que permet cercar per aquest valor:
+	* _Transit_: La notificació és troba pendent de la fase de registre.
+	* _Oberta_: Es troba en un estat no final, és a dir encara no està practicada per el ciutadà i no ha expirat.
+	* _Rebutjada jurídicament_: La notificació ha estat rebutjada, ja sigui per el ciutadà o per el sistema al haver expirat.
+	* _Tancada_: Es troba en un estat final, ja sigui per que el ciutadà l'ha practicat o perquè la notifiació ha expirat.
  
 * `/CriterisNotificacio/TipusAcces`
 Permet cercar per el tipus d'accés configurat a la notificació, els possibles valors són:
-  * *BAIX*
-  * *SUBSTANCIAL*
-  * *ALT*
-  * *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-  * *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-  
+	* *BAIX*
+	* *SUBSTANCIAL*
+	* *ALT*
+	* *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	
 * `/CriterisNotificacio/Etiquetes`
 Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l'hora de crear la notificació, es descriu amb més detall a [continuació](#etiquetes)
 
@@ -1288,14 +1300,14 @@ Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l
 
 * `/CriterisNotificacio/TipusObjecte`
 Tipus de les notificacions a cercar:
-  * _NOTIFICACIO_
-  * _COMUNICACIO_
+	* _NOTIFICACIO_
+	* _COMUNICACIO_
 
 * `/CriterisNotificacio/Canal`
 Canal en el que s'ha generat la notificació:
-  * _PAPER_ Retorna només les notificacions complementaries generades en paper.
-  * _DIGITAL_ Retorna només les notificacions generades unicament en format digital.
-  
+	* _PAPER_ Retorna només les notificacions complementaries generades en paper.
+	* _DIGITAL_ Retorna només les notificacions generades unicament en format digital.
+	
 * `/CriterisNotificacio/Expedient`
 Cerca per camp expèdient informat en la creació de la notificació.
 
@@ -1329,23 +1341,23 @@ Permet cercar les notificacions amb un o varis camps de tipus text amb l'idioma 
 Nom de la etiqueta.
 * `/Etiquestes/Etiqueta@Idioma`
 Possibles idiomes de l'etiqueta:
-  * _ca_ Català 
-  * _es_ Castellà
-  * _oc_ Occità
+	* _ca_ Català 
+	* _es_ Castellà
+	* _oc_ Occità
 
 ### CriterisData
 
 ```xml
 <xs:element name="CriterisData" minOccurs="0">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="DataRegistre" type="PeriodeDataTemps" minOccurs="0"/>
-      <xs:element name="DataPublicacio" type="PeriodeDataTemps" minOccurs="0"/>
-      <xs:element name="DataAcceptacioRebuig" type="PeriodeDataTemps" minOccurs="0"/>
-      <xs:element name="DataExpiracio" type="PeriodeData" minOccurs="0"/>
-      <xs:element name="DiesPublicada" type="xs:integer" minOccurs="0"/>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="DataRegistre" type="PeriodeDataTemps" minOccurs="0"/>
+			<xs:element name="DataPublicacio" type="PeriodeDataTemps" minOccurs="0"/>
+			<xs:element name="DataAcceptacioRebuig" type="PeriodeDataTemps" minOccurs="0"/>
+			<xs:element name="DataExpiracio" type="PeriodeData" minOccurs="0"/>
+			<xs:element name="DiesPublicada" type="xs:integer" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -1355,16 +1367,16 @@ Tots els elements de cerca per data permeten fer-ho per un interval de temps, in
 
 ```xml
 <xs:complexType name="PeriodeDataTemps">
-  <xs:all>
-   <xs:element name="DataInferior" type="xs:dateTime"/>
-   <xs:element name="DataSuperior" type="xs:dateTime"/>
-  </xs:all>
+	<xs:all>
+	 <xs:element name="DataInferior" type="xs:dateTime"/>
+	 <xs:element name="DataSuperior" type="xs:dateTime"/>
+	</xs:all>
 </xs:complexType>
 <xs:complexType name="PeriodeData">
-  <xs:all>
-    <xs:element name="DataInferior" type="xs:date"/>
-    <xs:element name="DataSuperior" type="xs:date"/>
-  </xs:all>
+	<xs:all>
+		<xs:element name="DataInferior" type="xs:date"/>
+		<xs:element name="DataSuperior" type="xs:date"/>
+	</xs:all>
 </xs:complexType>
 ```
 
@@ -1383,34 +1395,34 @@ Aquest camp a diferència dels altres no funciona per intervals de dates, sinó 
 
 ```xml
 <xs:element name="Paginacio">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="NumeroPagina">
-        <xs:simpleType>
-          <xs:restriction base="xs:integer">
-            <xs:minExclusive value="0"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element name="ResultatsPerPagina">
-        <xs:simpleType>
-          <xs:restriction base="xs:integer">
-            <xs:minExclusive value="0"/>
-            <xs:maxExclusive value="51"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element name="CampOrdenacio" type="xs:string" minOccurs="0"/>
-      <xs:element name="SentitOrdenacio" minOccurs="0">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="Ascendent"/>
-            <xs:enumeration value="Descendent"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="NumeroPagina">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minExclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ResultatsPerPagina">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minExclusive value="0"/>
+						<xs:maxExclusive value="51"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="CampOrdenacio" type="xs:string" minOccurs="0"/>
+			<xs:element name="SentitOrdenacio" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Ascendent"/>
+						<xs:enumeration value="Descendent"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 Aquest element permet definir la pàginació de les cerques realitzades.
@@ -1420,21 +1432,21 @@ Camp obligatori que indica el número de pagina que retorna la cerca
 Camp obligatori entre 1 i 50 que permet indicar el número de registres que es tornen per cada pàgina.
 * `/Paginacio/CampOrdenacio`
 Permet indicar el camp d'ordenació per el qual es retornaran els resultats de la cerca, els valors permesos per a l'ordenació són els següent:
-  * _CodiNotificacio_
-  * _NumeroRegistre_
-  * _DataCreacio_
-  * _DataRegistre_
-  * _DataPublicacio_
-  * _DataVisualitzacio_
-  * _DataAcceptarRebutjar_
-  * _DataReintent_
-  * _Estat_
-  * _Titol_
-  
+	* _CodiNotificacio_
+	* _NumeroRegistre_
+	* _DataCreacio_
+	* _DataRegistre_
+	* _DataPublicacio_
+	* _DataVisualitzacio_
+	* _DataAcceptarRebutjar_
+	* _DataReintent_
+	* _Estat_
+	* _Titol_
+	
 * `/Paginacio/SentitOrdenacio`
 Indica el sentit de l'ordenació dels camps retornats en cas que s'hagi indicat un camp d'ordenació:
-  * _Ascendent_ Sentit d'ordenació ascendent.
-  * _Descendent_ Sentit d'ordenació descendent.
+	* _Ascendent_ Sentit d'ordenació ascendent.
+	* _Descendent_ Sentit d'ordenació descendent.
  
 ## Resposta
 
@@ -1459,14 +1471,14 @@ Tot i que l'estructura definida dins de l'esquema _Errors.xsd_ és més complexe
 
 ```xml
 <xs:complexContent>
-  <xs:extension base="RespostaType">
-    <xs:choice>
-      <xs:element name="Errors" type="ErrorsType" />
-      <xs:sequence>
-         <!-- Seqüencia pròpia de la resposta de la modalitat de consum -->
-      </xs:sequence>
-    </xs:choice>
-  </xs:extension>
+	<xs:extension base="RespostaType">
+		<xs:choice>
+			<xs:element name="Errors" type="ErrorsType" />
+			<xs:sequence>
+				 <!-- Seqüencia pròpia de la resposta de la modalitat de consum -->
+			</xs:sequence>
+		</xs:choice>
+	</xs:extension>
 </xs:complexContent>
 ```
 
@@ -1474,19 +1486,19 @@ L'element `<Errors>` serà una seqüencia amb els possibles errors de la petici�
 
 ```xml
 <xs:complexType name="ErrorsType">
-  <xs:sequence>
-    <xs:element name="Error" maxOccurs="unbounded">
-      <xs:complexType>
-        <xs:all>
-          <xs:element name="CodiError" type="xs:integer"/>
-          <xs:element name="MissatgeError" type="xs:string"/>
-          <xs:element name="DadesNotificacio" type="DadesNotificacioErrorType" minOccurs="0"/>
-          <xs:element name="FaseError" type="xs:string" minOccurs="0"/>
-          <xs:element name="TipusError" type="xs:string" minOccurs="0"/>
-        </xs:all>
-      </xs:complexType>
-    </xs:element>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="Error" maxOccurs="unbounded">
+			<xs:complexType>
+				<xs:all>
+					<xs:element name="CodiError" type="xs:integer"/>
+					<xs:element name="MissatgeError" type="xs:string"/>
+					<xs:element name="DadesNotificacio" type="DadesNotificacioErrorType" minOccurs="0"/>
+					<xs:element name="FaseError" type="xs:string" minOccurs="0"/>
+					<xs:element name="TipusError" type="xs:string" minOccurs="0"/>
+				</xs:all>
+			</xs:complexType>
+		</xs:element>
+	</xs:sequence>
 </xs:complexType>
 ```
 
@@ -1500,13 +1512,13 @@ Aquest esquema de petició és la resposta a la creació de les notificacions qu
 
 ```xml
 <xs:sequence>
-  <xs:element name="NotificacionsCreades">
-      <xs:complexType>
-          <xs:sequence>
-              <xs:element name="IdNotificacio" type="xs:integer" maxOccurs="unbounded"/>
-          </xs:sequence>
-      </xs:complexType>
-  </xs:element>
+	<xs:element name="NotificacionsCreades">
+			<xs:complexType>
+					<xs:sequence>
+							<xs:element name="IdNotificacio" type="xs:integer" maxOccurs="unbounded"/>
+					</xs:sequence>
+			</xs:complexType>
+	</xs:element>
 </xs:sequence>
 ```
 
@@ -1521,9 +1533,9 @@ Aquesta modalitat de consum permet obtenir un resum de les notificacions pendent
 
 ```xml
 <xs:sequence>
-  <xs:element name="NotificacionsEntitat" minOccurs="0" maxOccurs="unbounded"/>
-  <xs:element name="TotalNotificacionsPendents" type="xs:integer"/>
-  <xs:element name="NotificacionsPendentsAmbCertificat" type="xs:boolean" minOccurs="0"/>
+	<xs:element name="NotificacionsEntitat" minOccurs="0" maxOccurs="unbounded"/>
+	<xs:element name="TotalNotificacionsPendents" type="xs:integer"/>
+	<xs:element name="NotificacionsPendentsAmbCertificat" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 ```
 
@@ -1538,16 +1550,16 @@ Indica si hi ha notificacions pendents per ser practicades amb certificat digita
 
 ```xml
 <xs:element name="NotificacionsEntitat" minOccurs="0" maxOccurs="unbounded">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="NomOrganisme" type="xs:string"/>
-      <xs:element name="CodiOrganisme" type="xs:string"/>
-      <xs:element name="NomDepartament" type="xs:string"/>
-      <xs:element name="CodiDepartament" type="xs:string"/>
-      <xs:element name="UrlAcces" type="xs:anyURI"/>
-      <xs:element name="NotificacionsPendents" type="xs:integer"/>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="NomOrganisme" type="xs:string"/>
+			<xs:element name="CodiOrganisme" type="xs:string"/>
+			<xs:element name="NomDepartament" type="xs:string"/>
+			<xs:element name="CodiDepartament" type="xs:string"/>
+			<xs:element name="UrlAcces" type="xs:anyURI"/>
+			<xs:element name="NotificacionsPendents" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 * `/NotificacionsEntitat/NomOrganisme`
@@ -1571,23 +1583,23 @@ Retorna les evidències relacionades amb el procés de la notificació, tant els
 
 ```xml
 <xs:sequence>
-  <xs:element name="IdNotificacio" type="xs:integer" />
-  <xs:element name="TipusEvidencia" type="TipusEvidenciaType" />
-  <xs:element name="Diposit" type="xs:string" minOccurs="0">
-    <xs:annotation>
-      <xs:documentation>Evidència del dipòsit de la notificació.</xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:element name="AcceptacioRebuig" type="xs:string" minOccurs="0">
-    <xs:annotation>
-      <xs:documentation>Evidència de l'acceptació o rebuig de la notificació.</xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:element name="EvidenciaPDF" type="xs:anyURI" minOccurs="0">
-    <xs:annotation>
-      <xs:documentation>URL de descàrrega de l'evidència de la notificacio</xs:documentation>
-    </xs:annotation>
-  </xs:element>
+	<xs:element name="IdNotificacio" type="xs:integer" />
+	<xs:element name="TipusEvidencia" type="TipusEvidenciaType" />
+	<xs:element name="Diposit" type="xs:string" minOccurs="0">
+		<xs:annotation>
+			<xs:documentation>Evidència del dipòsit de la notificació.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AcceptacioRebuig" type="xs:string" minOccurs="0">
+		<xs:annotation>
+			<xs:documentation>Evidència de l'acceptació o rebuig de la notificació.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="EvidenciaPDF" type="xs:anyURI" minOccurs="0">
+		<xs:annotation>
+			<xs:documentation>URL de descàrrega de l'evidència de la notificacio</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 </xs:sequence>
 ```
 
@@ -1595,8 +1607,8 @@ Retorna les evidències relacionades amb el procés de la notificació, tant els
 Identificador de la notificació per la qual es retorna l'evidència.
 * `/RespostaEvidenciaType/TipusEvidencia`
 Tipus d’evidència retornada:
-  * _XML_ : Per a les evidències de dipósit i practica.
-  * _PDF_ : Per al justificant en format PDF.
+	* _XML_ : Per a les evidències de dipósit i practica.
+	* _PDF_ : Per al justificant en format PDF.
 * `/RespostaEvidenciaType/Diposit`
 Evidència del dipòsit de la notificació.
 * `/RespostaEvidenciaType/AcceptacioRebuig`
@@ -1612,19 +1624,19 @@ Resposta a les peticions explícites de l'usuari vinculades amb la pràctica de 
 
 ```xml
 <xs:sequence>
-  <xs:element name="IdNotificacio" type="xs:integer"/>
-  <xs:element name="Operacio" type="OperacioPracticarType"/>
-  <xs:element name="Decisio" type="DecisioPracticarType"/>
-  <xs:element name="DadesNotificacio" type="xs:anyType" minOccurs="0">
-    <xs:annotation>
-        <xs:documentation>Dades de la notificació per ser mostrades.</xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:element name="DigestDades" type="xs:base64Binary" minOccurs="0">
-    <xs:annotation>
-        <xs:documentation>Digest SHA-1 de l'element DadesNotificacio que ha de ser utilitzat per realitzar una signatura XAdES-T Detached.</xs:documentation>
-    </xs:annotation>
-  </xs:element>
+	<xs:element name="IdNotificacio" type="xs:integer"/>
+	<xs:element name="Operacio" type="OperacioPracticarType"/>
+	<xs:element name="Decisio" type="DecisioPracticarType"/>
+	<xs:element name="DadesNotificacio" type="xs:anyType" minOccurs="0">
+		<xs:annotation>
+				<xs:documentation>Dades de la notificació per ser mostrades.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DigestDades" type="xs:base64Binary" minOccurs="0">
+		<xs:annotation>
+				<xs:documentation>Digest SHA-1 de l'element DadesNotificacio que ha de ser utilitzat per realitzar una signatura XAdES-T Detached.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 </xs:sequence>
 ```
 
@@ -1632,12 +1644,12 @@ Resposta a les peticions explícites de l'usuari vinculades amb la pràctica de 
 Identificador de la notificació sobre la que s'està operant.
 * `/RespostaPracticar/Operacio`
 Identificador de la operació a realitzar:
-  * _OBTENIR_DADES_ : En el cas de notificacions que s'han de practicar amb certificat és la resposta a la primera crida on es retorna el hash a signar.
-  * _SIGNAR_ : Indica que l'operació ja era definitiva d'acceptació o rebuig.
+	* _OBTENIR_DADES_ : En el cas de notificacions que s'han de practicar amb certificat és la resposta a la primera crida on es retorna el hash a signar.
+	* _SIGNAR_ : Indica que l'operació ja era definitiva d'acceptació o rebuig.
 * `/RespostaPracticar/Decisio`
 Indica la decisió que ha prés l'usuari sobre la notificació:
-  * _Acceptar_ : L'usuari a acceptat la notificació.
-  * _Rebutjar_ : L'usuari a rebutjat la notificació.
+	* _Acceptar_ : L'usuari a acceptat la notificació.
+	* _Rebutjar_ : L'usuari a rebutjat la notificació.
 * `/RespostaPracticar/DadesNotificacio`
 Dades de la notificació per ser mostrades.
 * `/RespostaPracticar/DigestDades`
@@ -1651,7 +1663,7 @@ Retorna el report amb el resum de dades d'una notificació concreta, o el report
 
 ```xml
 <xs:sequence>
-  <xs:element name="Report" type="ReportType" minOccurs="0"/>
+	<xs:element name="Report" type="ReportType" minOccurs="0"/>
 </xs:sequence>
 ```
 
@@ -1659,10 +1671,10 @@ Retorna el report amb el resum de dades d'una notificació concreta, o el report
 
 ```xml
 <xs:complexType name="ReportType">
-  <xs:sequence>
-    <xs:element name="Capcalera" type="ReportCapcaleraType"/>
-    <xs:element name="Dades" type="ReportDadesType" maxOccurs="unbounded" minOccurs="0"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="Capcalera" type="ReportCapcaleraType"/>
+		<xs:element name="Dades" type="ReportDadesType" maxOccurs="unbounded" minOccurs="0"/>
+	</xs:sequence>
 </xs:complexType>
 ```
 
@@ -1675,14 +1687,14 @@ Llistat de dades del report. És descriu amb més detall a [continuació](#dades
 
 ```xml
 <xs:complexType name="ReportCapcaleraType">
-  <xs:sequence>
-    <xs:element name="CodiOrganisme" type="xs:string"/>
-    <xs:element name="CodiDepartament" type="xs:string"/>
-    <xs:element name="NomOrganisme" type="xs:string"/>
-    <xs:element name="NomDepartament" type="xs:string"/>
-    <xs:element name="DataInforme" type="xs:date"/>
-    <xs:element name="TipusInforme" type="TipusInformeType"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="CodiOrganisme" type="xs:string"/>
+		<xs:element name="CodiDepartament" type="xs:string"/>
+		<xs:element name="NomOrganisme" type="xs:string"/>
+		<xs:element name="NomDepartament" type="xs:string"/>
+		<xs:element name="DataInforme" type="xs:date"/>
+		<xs:element name="TipusInforme" type="TipusInformeType"/>
+	</xs:sequence>
 </xs:complexType>
 ```
 
@@ -1698,8 +1710,8 @@ Nom del departament al que pertanyen les notificacions pendents.
 Data de l'informe.
 * `/Capcalera/TipusInforme`
 Tipus d'informe.
-  * _Diari_
-  * _Online_
+	* _Diari_
+	* _Online_
 
 ### Dades
 
@@ -1707,65 +1719,65 @@ Cadascuna de les notificacions retornades per el report retorna un element del t
 
 ```xml
 <xs:complexType name="ReportDadesType">
-  <xs:sequence>
-    <xs:element name="DadesEstat">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="Estat" type="xs:integer"/>
-          <xs:element name="DescripcioEstat" type="xs:string"/>
-          <xs:element name="DataActualitzacio" type="xs:dateTime"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-    <xs:element name="DadesNotificacio">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="Referencia" type="xs:string"/>
-          <xs:element name="IdNotificacio" type="xs:integer"/>
-          <xs:element name="TipusObjecte" type="TipusObjecteType"/>
-          <xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
-          <xs:element name="DiesExpiracio" type="xs:integer" minOccurs="0"/>
-          <xs:element name="IdNotificacioEmissor" type="xs:string" minOccurs="0"/>
-          <xs:element name="Canal" type="CanalType" minOccurs="0"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-    <xs:element name="DadesRegistre">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="DataRegistre" type="xs:dateTime" nillable="true"/>
-          <xs:element name="NumeroRegistreSortida" type="xs:string" nillable="true"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-    <xs:element name="DadesActor">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:choice>
-            <xs:element name="PracticadaPaper" type="DadesPracticarCanalPaperType"/>
-            <xs:element name="PersonaFisica">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
-                  <xs:element name="NomComplet" type="xs:string"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-            <xs:element name="PersonaJuridica">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
-                  <xs:element name="RaoSocial" type="xs:string"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:choice>
-          <xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-    <xs:element name="CodiBackOffice" type="xs:string" minOccurs="0"/>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="DadesEstat">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="Estat" type="xs:integer"/>
+					<xs:element name="DescripcioEstat" type="xs:string"/>
+					<xs:element name="DataActualitzacio" type="xs:dateTime"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="DadesNotificacio">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="Referencia" type="xs:string"/>
+					<xs:element name="IdNotificacio" type="xs:integer"/>
+					<xs:element name="TipusObjecte" type="TipusObjecteType"/>
+					<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+					<xs:element name="DiesExpiracio" type="xs:integer" minOccurs="0"/>
+					<xs:element name="IdNotificacioEmissor" type="xs:string" minOccurs="0"/>
+					<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="DadesRegistre">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="DataRegistre" type="xs:dateTime" nillable="true"/>
+					<xs:element name="NumeroRegistreSortida" type="xs:string" nillable="true"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="DadesActor">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="PracticadaPaper" type="DadesPracticarCanalPaperType"/>
+						<xs:element name="PersonaFisica">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+									<xs:element name="NomComplet" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="PersonaJuridica">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+									<xs:element name="RaoSocial" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+					<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="CodiBackOffice" type="xs:string" minOccurs="0"/>
+	</xs:sequence>
 </xs:complexType>
 ```
 
@@ -1781,8 +1793,8 @@ Referència de la notificació. És el valor que s’ha introduït al crear la n
 Identificador de la notificació.
 * `/DadesNotificacio/TipusObjecte`
 Indica si és una notificació o és una comunicació. Els valors que pot retornar són:
-  * _NOTIFICACIO_
-  * _COMUNICACIO_
+	* _NOTIFICACIO_
+	* _COMUNICACIO_
 * `/DadesNotificacio/AmbitObjecte`
 Àmbit informat en el moment de creació d’una notificació. Aquest àmbit ha d'estar informat al sistema.
 * `/DadesNotificacio/DiesExpiracio`
@@ -1791,8 +1803,8 @@ Dies per l'expiració a partir de la data de dipòsit.
 Codi de la notificació informat per l'emissor de la notificació
 * `/DadesNotificacio/Canal`
 Canal per al que s'ha generat la notificació:
-  * _PAPER_
-  * _DIGITAL_
+	* _PAPER_
+	* _DIGITAL_
 * `/DadesRegistre/DataRegistre`
 Data en que s'ha registrat la notificació.
 * `/DadesActor/PracticadaPaper`
@@ -1814,15 +1826,15 @@ Aquesta modalitat retorna una resposta detallada de totes les dades vinculades a
 
 ```xml
 <xs:sequence>
-  <xs:element name="IdNotificacio" type="xs:integer"/>
-  <xs:element name="Emissor" type="EmissorType"/>
-  <xs:element name="DadesOfici" minOccurs="0"/>
-  <xs:element name="Documents" type="DocumentsType" minOccurs="0"/>
-  <xs:element name="DadesNotificacio"/>
-  <xs:element name="DadesRegistre"/>
-  <xs:element name="DadesSignador" minOccurs="0"/>
-  <xs:element name="DadesAvisos" minOccurs="0"/>
-  <xs:element name="Destinataris" minOccurs="0"/>
+	<xs:element name="IdNotificacio" type="xs:integer"/>
+	<xs:element name="Emissor" type="EmissorType"/>
+	<xs:element name="DadesOfici" minOccurs="0"/>
+	<xs:element name="Documents" type="DocumentsType" minOccurs="0"/>
+	<xs:element name="DadesNotificacio"/>
+	<xs:element name="DadesRegistre"/>
+	<xs:element name="DadesSignador" minOccurs="0"/>
+	<xs:element name="DadesAvisos" minOccurs="0"/>
+	<xs:element name="Destinataris" minOccurs="0"/>
 </xs:sequence>
 ```
 
@@ -1847,15 +1859,15 @@ Dades dels destinataris de la notificació consultada, es descriuen amb més det
 
 ### DadesOfici
 
-```xml  
+```xml	
 <xs:element name="DadesOfici" minOccurs="0">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="CosNotificacio" type="xs:string"/>
-      <xs:element name="PeuRecurs" type="xs:string"/>
-      <xs:element name="CertificatDigital" type="xs:string" minOccurs="0"/>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="CosNotificacio" type="xs:string"/>
+			<xs:element name="PeuRecurs" type="xs:string"/>
+			<xs:element name="CertificatDigital" type="xs:string" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -1870,26 +1882,26 @@ Certificat digital de clau pública amb les que s'han signat les evidències de 
 
 ```xml
 <xs:element name="DadesNotificacio">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="Titol" type="xs:string"/>
-      <xs:element name="Referencia" type="xs:string" minOccurs="0"/>
-      <xs:element name="DataPublicacio" type="xs:dateTime" nillable="true"/>
-      <xs:element name="DataAcceptacioRebuig" type="xs:dateTime" nillable="true"/>
-      <xs:element name="Estat" type="xs:string"/>
-      <xs:element name="IdEstat" type="xs:integer" nillable="true"/>
-      <xs:element name="TipusAcces" type="TipusAccesType"/>
-      <xs:element name="TipusObjecte" type="TipusObjecteType"/>
-      <xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
-      <xs:element name="NivellCertificat" type="xs:string" minOccurs="0"/>
-      <xs:element name="DiesExpiracio" type="xs:integer" minOccurs="0"/>
-      <xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
-      <xs:element name="Canal" type="CanalType" minOccurs="0"/>
-      <xs:element name="Expedient" type="xs:string" minOccurs="0"/>
-      <xs:element name="Tramit" type="xs:string" minOccurs="0"/>
-      <xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="Titol" type="xs:string"/>
+			<xs:element name="Referencia" type="xs:string" minOccurs="0"/>
+			<xs:element name="DataPublicacio" type="xs:dateTime" nillable="true"/>
+			<xs:element name="DataAcceptacioRebuig" type="xs:dateTime" nillable="true"/>
+			<xs:element name="Estat" type="xs:string"/>
+			<xs:element name="IdEstat" type="xs:integer" nillable="true"/>
+			<xs:element name="TipusAcces" type="TipusAccesType"/>
+			<xs:element name="TipusObjecte" type="TipusObjecteType"/>
+			<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+			<xs:element name="NivellCertificat" type="xs:string" minOccurs="0"/>
+			<xs:element name="DiesExpiracio" type="xs:integer" minOccurs="0"/>
+			<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+			<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+			<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+			<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+			<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -1909,15 +1921,15 @@ Descripció de l'estat en el que es troba la notificació en el moment de la con
 Identificador de l'estat en el que es troba la notificació en el moment de la consulta.
 * `/DadesNotificacio/TipusAcces`
 Nivell d'autenticació requerit al ciutadà a la notificació:
-  * *BAIX*
-  * *SUBSTANCIAL*
-  * *ALT*
-  * *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-  * *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *BAIX*
+	* *SUBSTANCIAL*
+	* *ALT*
+	* *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/DadesNotificacio/TipusObjecte`
 Indica si és una notificació o és una comunicació. Els valors que pot retornar són:
-  * _NOTIFICACIO_ : Notificació. 
-  * _COMUNICACIO_ : Comunicació.
+	* _NOTIFICACIO_ : Notificació. 
+	* _COMUNICACIO_ : Comunicació.
 * `/DadesNotificacio/AmbitObjecte`
 Àmbit informat en el moment de creació d'una notificació. Aquest àmbit ha d’estar informat al sistema.
 * `/DadesNotificacio/NivellCertificat`
@@ -1928,8 +1940,8 @@ Número de dies fins que expiri la notificació des del moment de la consulta.
 Etiqueta de la notificació. Una notificació pot tenir múltiples etiquetes, la definició d'aquest element la trobareu [aqui](#etiquetes)
 * `/DadesNotificacio/Canal`
 Canal en el que s'ha generat la notificació:
-  * _PAPER_ : Retorna només les notificacions complementaries generades en paper.
-  * _DIGITAL_ : Retorna només les notificacions generades unicament en format digital.
+	* _PAPER_ : Retorna només les notificacions complementaries generades en paper.
+	* _DIGITAL_ : Retorna només les notificacions generades unicament en format digital.
 * `/DadesNotificacio/Expedient`
 Expedient amb el que està relacionada la notificació.
 * `/DadesNotificacio/Tramit`
@@ -1941,14 +1953,14 @@ Número de cas amb el que està relacionada la notificació.
 
 ```xml
 <xs:element name="DadesRegistre">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="OficinaRegistre" type="xs:string" minOccurs="0"/>
-      <xs:element name="UnitatOrganitzativa" type="xs:string" minOccurs="0"/>
-      <xs:element name="NumeroRegistre" type="xs:string" nillable="true"/>
-      <xs:element name="DataRegistre" type="xs:dateTime" nillable="true"/>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="OficinaRegistre" type="xs:string" minOccurs="0"/>
+			<xs:element name="UnitatOrganitzativa" type="xs:string" minOccurs="0"/>
+			<xs:element name="NumeroRegistre" type="xs:string" nillable="true"/>
+			<xs:element name="DataRegistre" type="xs:dateTime" nillable="true"/>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -1965,26 +1977,26 @@ Data en que s'ha registrat la notificació.
 
 ```xml
 <xs:element name="DadesSignador" minOccurs="0">
-  <xs:complexType>
-    <xs:choice>
-      <xs:element name="Fisic">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
-            <xs:element name="NomComplet" type="xs:string"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="Juridic">
-        <xs:complexType>
-          <xs:all>
-            <xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
-            <xs:element name="RaoSocial" type="xs:string"/>
-          </xs:all>
-        </xs:complexType>
-      </xs:element>
-    </xs:choice>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:choice>
+			<xs:element name="Fisic">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+						<xs:element name="NomComplet" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Juridic">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+						<xs:element name="RaoSocial" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -2001,28 +2013,28 @@ Raó social de la persona jurídica que ha practicat la notificació.
 
 ```xml
 <xs:element name="DadesAvisos" minOccurs="0">
-  <xs:complexType>
-    <xs:all>
-      <xs:element name="Email">
-        <xs:complexType>
-          <xs:all>
-            <xs:element name="Emissor" type="xs:string"/>
-            <xs:element name="Assumpte" type="xs:string"/>
-            <xs:element name="Missatge" type="xs:string"/>
-          </xs:all>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="SMS">
-        <xs:complexType>
-          <xs:all>
-            <xs:element name="Missatge" type="xs:string" minOccurs="0"/>
-          </xs:all>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="DiesAvisos" type="DiesAvisosType"/>
-      <xs:element name="Idioma" type="Idioma"/>
-    </xs:all>
-  </xs:complexType>
+	<xs:complexType>
+		<xs:all>
+			<xs:element name="Email">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="Emissor" type="xs:string"/>
+						<xs:element name="Assumpte" type="xs:string"/>
+						<xs:element name="Missatge" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SMS">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="Missatge" type="xs:string" minOccurs="0"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DiesAvisos" type="DiesAvisosType"/>
+			<xs:element name="Idioma" type="Idioma"/>
+		</xs:all>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -2046,24 +2058,24 @@ Identificador de l'idioma en que el destinatari ha rebut els avisos.
 
 ```xml
 <xs:element name="Destinataris" minOccurs="0">
-  <xs:complexType>
-    <xs:sequence>
-      <xs:element name="Destinatari" maxOccurs="unbounded">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:choice>
-              <xs:element name="PersonaFisica" type="PersonaFisicaType"/>
-              <xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
-            </xs:choice>
-            <xs:element name="Idioma" type="Idioma" minOccurs="0"/>
-            <xs:element name="HaSignat" type="xs:boolean"/>
-            <xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="Destinatari" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="PersonaFisica" type="PersonaFisicaType"/>
+							<xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
+						</xs:choice>
+						<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+						<xs:element name="HaSignat" type="xs:boolean"/>
+						<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
 			<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 </xs:element>
 ```
 
@@ -2088,8 +2100,8 @@ Retorna opcionalment el valor d'aquest camp només en el cas que hagi estat info
 
 ```xml
 <xs:sequence>
-    <xs:element name="IdParaulaPas" type="xs:string"/>
-    <xs:element name="IdNotificacio" type="xs:integer" minOccurs="0"/>
+		<xs:element name="IdParaulaPas" type="xs:string"/>
+		<xs:element name="IdNotificacio" type="xs:integer" minOccurs="0"/>
 </xs:sequence>
 ```
 
@@ -2106,8 +2118,8 @@ Retorna un seguit de notificacions que acompleixen els criteris de cerca fets en
 
 ```xml
 <xs:sequence>
-  <xs:element name="Resultats" type="ResultatsType" />
-  <xs:element name="DadesPaginacio" type="DadesPaginacioType" />
+	<xs:element name="Resultats" type="ResultatsType" />
+	<xs:element name="DadesPaginacio" type="DadesPaginacioType" />
 </xs:sequence>
 ```
 
@@ -2120,57 +2132,57 @@ Conté les dades de paginació dels resultats de cerca. L'element es descriu amb
 
 ```xml
 <xs:complexType name="ResultatsType">
-  <xs:sequence>
-    <xs:element name="Notificacio" minOccurs="0" maxOccurs="unbounded">
-      <xs:complexType>
-        <xs:sequence>
-          <xs:element name="TipusObjecte" type="TipusObjecteType" />
-          <xs:element name="IdNotificacio" type="xs:integer" />
-          <xs:element name="Referencia" type="xs:string" />
-          <xs:element name="Titol" type="xs:string" />
-          <xs:element name="DataCreacio" type="xs:dateTime" nillable="true" />
-          <xs:element name="DadesRegistre">
-            <xs:complexType>
-              <xs:all>
-                <xs:element name="DataRegistre" type="xs:dateTime" nillable="true" />
-                <xs:element name="NumeroRegistre" type="xs:string" nillable="true" />
-              </xs:all>
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="DataPublicacio" type="xs:dateTime" nillable="true" />
-          <xs:element name="DataVisualitzacio" type="xs:dateTime" nillable="true" />
-          <xs:element name="DataAcceptarRebutjar" type="xs:dateTime" nillable="true" />
-          <xs:element name="Estat" type="xs:string" />
-          <xs:element name="IdEstat" type="xs:integer" />
-          <xs:element name="DiesExpiracio" type="xs:integer" nillable="true" minOccurs="0"/>
-          <xs:element name="DiesResten" type="xs:integer" nillable="true" minOccurs="0" />
-          <xs:element name="DataLimit" type="xs:dateTime" nillable="true" minOccurs="0" />
-          <xs:element name="TipusAcces" type="TipusAccesType" />
-          <xs:element name="AmbitObjecte" type="xs:string" minOccurs="0" />
-          <xs:element name="Idioma" type="Idioma" />
-          <xs:element name="CodiDepartament" type="xs:string" nillable="true" />
-          <xs:element name="NomDepartament" type="xs:string" nillable="true" />
-          <xs:element name="CodiBO" type="xs:string" nillable="true" minOccurs="0" />
-          <xs:element name="NumeroReintents" type="xs:integer" nillable="true" />
-          <xs:element name="DataReintent" type="xs:dateTime" nillable="true" />
-          <xs:element name="BustiesCorreu" type="BustiesCorreuType" nillable="true" minOccurs="0" />
-          <xs:element name="Telefons" type="TelefonsType" nillable="true" minOccurs="0" />
-          <xs:element name="Consultada" type="ConsultadaType" minOccurs="0"/>
-          <xs:element name="Canal" type="CanalType" minOccurs="0"/>
-          <xs:element name="Expedient" type="xs:string" minOccurs="0"/>
-          <xs:element name="Tramit" type="xs:string" minOccurs="0"/>
-          <xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
-        </xs:sequence>
-      </xs:complexType>
-    </xs:element>
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="Notificacio" minOccurs="0" maxOccurs="unbounded">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="TipusObjecte" type="TipusObjecteType" />
+					<xs:element name="IdNotificacio" type="xs:integer" />
+					<xs:element name="Referencia" type="xs:string" />
+					<xs:element name="Titol" type="xs:string" />
+					<xs:element name="DataCreacio" type="xs:dateTime" nillable="true" />
+					<xs:element name="DadesRegistre">
+						<xs:complexType>
+							<xs:all>
+								<xs:element name="DataRegistre" type="xs:dateTime" nillable="true" />
+								<xs:element name="NumeroRegistre" type="xs:string" nillable="true" />
+							</xs:all>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="DataPublicacio" type="xs:dateTime" nillable="true" />
+					<xs:element name="DataVisualitzacio" type="xs:dateTime" nillable="true" />
+					<xs:element name="DataAcceptarRebutjar" type="xs:dateTime" nillable="true" />
+					<xs:element name="Estat" type="xs:string" />
+					<xs:element name="IdEstat" type="xs:integer" />
+					<xs:element name="DiesExpiracio" type="xs:integer" nillable="true" minOccurs="0"/>
+					<xs:element name="DiesResten" type="xs:integer" nillable="true" minOccurs="0" />
+					<xs:element name="DataLimit" type="xs:dateTime" nillable="true" minOccurs="0" />
+					<xs:element name="TipusAcces" type="TipusAccesType" />
+					<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0" />
+					<xs:element name="Idioma" type="Idioma" />
+					<xs:element name="CodiDepartament" type="xs:string" nillable="true" />
+					<xs:element name="NomDepartament" type="xs:string" nillable="true" />
+					<xs:element name="CodiBO" type="xs:string" nillable="true" minOccurs="0" />
+					<xs:element name="NumeroReintents" type="xs:integer" nillable="true" />
+					<xs:element name="DataReintent" type="xs:dateTime" nillable="true" />
+					<xs:element name="BustiesCorreu" type="BustiesCorreuType" nillable="true" minOccurs="0" />
+					<xs:element name="Telefons" type="TelefonsType" nillable="true" minOccurs="0" />
+					<xs:element name="Consultada" type="ConsultadaType" minOccurs="0"/>
+					<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+					<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+					<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+					<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+	</xs:sequence>
 </xs:complexType>
 ```
 
 * `/Resultats/Notificacio/TipusObjecte`
 Indica si és una notificació o és una comunicació. Els valors que pot retornar són
-  * _NOTIFICACIO_ 
-  * _COMUNICACIO_
+	* _NOTIFICACIO_ 
+	* _COMUNICACIO_
 * `/Resultats/Notificacio/IdNotificacio`
 Identificador de BD de la notificació dins de la llista de resultats obtinguts de la cerca.
 * `/Resultats/Notificacio/Referencia`
@@ -2201,11 +2213,11 @@ Número de dies que resten fins que la notificació expiri. Aquest valor no vind
 Data en que expirarà la notificació. Pot ser que aquest camp no vingui informat si la notificació no ha estat dipositada.
 * `/Resultats/Notificacio/TipusAcces`
 Modalitat d'accés a la notificació per part del ciutadà. Els possibles valors són:
-  * *BAIX*
-  * *SUBSTANCIAL*
-  * *ALT*
-  * *PPAS*:_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-  * *CERT*:_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *BAIX*
+	* *SUBSTANCIAL*
+	* *ALT*
+	* *PPAS*:_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *CERT*:_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/Resultats/Notificacio/AmbitObjecte`
 Àmbit de la notificació, si s'ha informat en el moment de creació de la notificació.
 * `/Resultats/Notificacio/Idioma`
@@ -2228,8 +2240,8 @@ Element que encapsula fins a 5 elements `<Telefon>` que contenen els números de
 Indica si la notificació ha estat consultada.
 * `/Resultats/Notificacio/Canal`
 Indica el tipus de canal per al qual s'ha enviat la notificació. Els possibles valors són:
-  * _DIGITAL_
-  * _PAPER_
+	* _DIGITAL_
+	* _PAPER_
 * `/Resultats/Notificacio/Expedient`
 Identificador de l'expedient informat a la notificació durant la seva creació.
 * `/Resultats/Notificacio/Tramit`
@@ -2241,12 +2253,12 @@ Identificador del número de cas informat a la notificació durant la seva creac
 
 ```xml
 <xs:complexType name="DadesPaginacioType">
-  <xs:sequence>
-    <xs:element name="NumeroPagina" type="xs:integer" />
-    <xs:element name="ResultatsPerPagina" type="xs:integer" />
-    <xs:element name="TotalResultats" type="xs:integer" />
-    <xs:element name="TotalPagines" type="xs:integer" />
-  </xs:sequence>
+	<xs:sequence>
+		<xs:element name="NumeroPagina" type="xs:integer" />
+		<xs:element name="ResultatsPerPagina" type="xs:integer" />
+		<xs:element name="TotalResultats" type="xs:integer" />
+		<xs:element name="TotalPagines" type="xs:integer" />
+	</xs:sequence>
 </xs:complexType>
 ```
 
@@ -2261,7 +2273,7 @@ Número total de pàgines de la cerca.
 
 # 4. Codis d'error d'eNotum
 
-| Codi d'error  | Descripció |
+| Codi d'error	| Descripció |
 | ------------- | ---------- |
 |101|El xml no compleix l'esquema|
 |103|Error executant l'operació|
