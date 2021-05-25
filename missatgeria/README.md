@@ -2344,7 +2344,7 @@ Número total de pàgines de la cerca.
 |1028|Element DadesParaulaPas es obligatori per aquesta operació|
 |1030|La paraula de pas no s'ha d'informar en aquesta operació|
 |1031|L'identificador de la paraula de pas no s'ha d'informar en aquesta operació|
-|1032|La notificació no és accessible amb paraula de pas|
+|1032|La notificació no és accessible amb nivell d'accés baix|
 |1033|El ciutadà no té notificacions|
 |1034|El certificat del ciutadà no és vàlid|
 |1035|Error validant el certificat digital|
