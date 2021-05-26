@@ -3,7 +3,7 @@
 Aquest repository preten anar recopilant poc a poc la nova documentació relacionada amb la integració dels reports de canvis d'estat 
 d'eNotum conforme aquesta és vagi *actualitzant*.
 
-De moment la documentació d'integració per als callbacks de canvis d'estat la trobareu en [format PDF aqui](http://www.aoc.cat/suport/wp-content/uploads/sites/4/2014/11/eNOTUM-integracio-callback.pdf?dms3override=10)
+De moment la documentació d'integració per als callbacks de canvis d'estat la trobareu en [format PDF aqui](https://www.aoc.cat/wp-content/uploads/2014/11/eNOTUM-v3-0-Guia-per-a-integradors-Callbacks.pdf)
 
 # Documentació integradors
 
