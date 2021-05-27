@@ -2363,6 +2363,7 @@ Número total de pàgines de la cerca.
 |1049|La notificació no és accessible amb nivell d'accés substancial|
 |1050|L'element IdAutenticacio informat no és vàlid|
 |1051|S'ha produit un error recuperant informació de VALId|
+|1060|El certificat del ciutadà no és d'un tipus vàlid|
 |1100|L'etiqueta indicada no existeix|
 |1200|L'àmbit de la notificació no existeix|
 |1201|L'àmbit de la notificació no està actiu|
