@@ -2304,7 +2304,7 @@ Número total de pàgines de la cerca.
 |717|El número de registre de la notificació és obligatori|
 |718|La referència de la notificació és obligatòria|
 |719|El destinatari de la notificació no es correspon amb el perfil especificat|
-|720|Aquesta notificació/comunicació no és acceptada per l'eNOTUM. Per a notificar/comunicar a qualsevol ens del sector públic català, cal utilitzar la plataforma EACAT|
+|720|No es permet enviar una notificació electrònica a l'ens especificat a través de la plataforma eNOTUM degut a la naturalesa del mateix. Cal que la redirigiu a través de la plataforma corresponent en funció de la seva naturalesa|
 |722|Les notificacions per a persona jurídica no poden ser amb Canal PAPER|
 |723|Les comunicacions no poden ser amb Canal PAPER|
 |725|El nom del destinatari no pot excedir els 50 caràcters|
