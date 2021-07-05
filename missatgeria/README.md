@@ -235,6 +235,15 @@ Identificador i paraula de pas respectivament, emprades com a mecanisme d'autent
 	</xs:choice>
 	<xs:element name="CIF" type="CIF" minOccurs="0"/>
 	<xs:element name="IdAutenticacio" type="xs:string"/>
+	<xs:element name="NivellAutenticacio">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="ALT"/>
+				<xs:enumeration value="SUBSTANCIAL"/>
+				<xs:enumeration value="BAIX"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
 </xs:sequence>
 ```
 En aquest cas és l'aplicació integrada la que assumeix la responsabilitat d'autenticar el ciutadà utilizant p.e el servei de Valid o qualsevol altre servei extern. Els camps a informar són:
@@ -242,7 +251,25 @@ En aquest cas és l'aplicació integrada la que assumeix la responsabilitat d'au
 * `/Usuari/NIF` NIF de l'usuari.
 * `/Usuari/PASSAPORT` Passaport de l'usuari.
 * `/Usuari/CIF` CIF del usuari
-* `/Usuari/IdAutenticacio` Identificador intern de l'aplicació integradad per al procés d'autenticació.
+* `/Usuari/IdAutenticacio` Identificador intern de l'aplicació integrada per al procés d'autenticació.
+* `/Usuari/NivellAutenticacio` Nivell eIDAS del mecanisme d'autenticació emprat pel ciutadà. Els valors possibles son ALT, SUBSTANCIAL i BAIX.
+
+#### NivellAutenticacio
+```xml
+<xs:element name="Perfil" minOccurs="0">
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PERSONA_JURIDICA"/>
+			<xs:enumeration value="EMPRESA"/>
+			<xs:enumeration value="PERSONA_FISICA"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:element>
+```
+Opcionalment en cas de `<Rol>` _CIUTADA_ i de que l'usuari presenti el NIF de persona física i el d'empresa, ja sigui al generar la paraula de pas, en el certificat, o indicant-ho en els camps amb autenticació delegada, es podrà indicar un perfil que afectarà directament a les cerques de notificacions. Els possibles valors que pot pendre aquest camp:
+* *PERSONA_FISICA* : Cerca les notificacions per a la persona física.
+* *EMPRESA* : Cerca les notificacions per a l'empresa.
+* *PERSONA_JURIDICA* : Cerca les notificacions com a persona jurídica.
 
 ## Emissor
 

@@ -30,6 +30,15 @@
 					</xs:choice>
 					<xs:element name="CIF" type="CIF" minOccurs="0"/>
 					<xs:element name="IdAutenticacio" type="xs:string"/>
+					<xs:element name="NivellAutenticacio">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="ALT"/>
+								<xs:enumeration value="SUBSTANCIAL"/>
+								<xs:enumeration value="BAIX"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
 				</xs:sequence>
 			</xs:choice>
 			<xs:element name="Perfil" minOccurs="0">
