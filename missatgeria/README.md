@@ -26,7 +26,7 @@ d’aquesta.
 En el següent diagrama d'estats es mostra els diferents estats possibles de la notificació i les
 transicions que es poden donar.
 
-![Cicle de vida de les notificacions](imgs/eNotum_cicle_vida_diagrama2.png)
+![Cicle de vida de les notificacions](imgs/cicle_vida_notificacions.png)
 
 ### 1.2.2. Descripció dels estats de les notificacions
 
@@ -102,15 +102,19 @@ Per l'operació [_PeticioCerca_](#petici%C3%B3---peticiocerca) de ciutadà no es
 
 Quan una notificació està en aquest estat l'administrador del sistema pot rellançar manualment el procés on s'ha produït l'error.
 
-#### 1.2.2.10. Descartada
+#### 1.2.2.10. Anul·lada
 
-Un cop en aquest estat la notificació no pot ser canviada d'estat a un estat anterior per intentar que es torni a executar la fase que ha fallat.
+Un cop en aquest estat la notificació no pot ser canviada d'estat a un estat anterior.
+
+La notificació arriba a aquest estat quan l'ens que ha generat la notificació ens demana que aquesta s'anul·li. Hi ha diversos motius que poden motivar l'anul·lació d'una notificació: que aquesta contingui dades errònies, que l'expedient que la motiva ha estat declarat nul, etc.
+
+L'anul·lació d'una notificació s'ha de demanar a través del formulari de Suport Tècnic i s'ha de proporcionar l'identificador de la notificació a anul·lar.
 
 ## 1.3. Cicle de vida de les comunicacions
 
 En el cas de les comunicacions el cicle de vida és molt similar al de les notificacions excepte en el fet de que no es necessita validesa legal de que el destinatari ha practicat la notificació, i que a més a més les comunicacions no tenen un temps determinat de vigència i per tant no expiren, així doncs el cicle de vida es simplifica i queda de la següent manera:
 
-![Cicle de vida de les comunicacions](imgs/eNotum_cicle_vida_comunicacions_diagrama3.png)
+![Cicle de vida de les comunicacions](imgs/cicle_vida_comunicacions.png)
 
 ### 1.3.1. Descripció dels estats de les comunicacions
 
@@ -130,7 +134,7 @@ Per crear-les s'ha d’informar el camp _TipusObjecte_ en el node `<Notificacio>
 
 La codificació dels estats de les notificacions a **eNotum** es fa mitjançant una paraula d'estats que permet tenir constància de l'estat actual així com traça dels diferents estats pels que ha passat una notificació.
 
-![Codificacio d'estats](imgs/eNotum_codificacio_estats_diagrama4.png)
+![Codificacio d'estats](imgs/codificacio_estats_diagrama.png)
 
 # 2. Missatgeria
 
