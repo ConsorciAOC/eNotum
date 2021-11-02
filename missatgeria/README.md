@@ -2307,6 +2307,7 @@ Número total de pàgines de la cerca.
 | Codi d'error	| Descripció |
 | ------------- | ---------- |
 |101|El xml no compleix l'esquema|
+|102|Paràmetre deprecat|
 |103|Error executant l'operació|
 |104|L'organisme autoritzat per la PCI no té permisos sobre l'organisme especificat en la petició d'eNotum|
 |500|Error executant l'operació|
@@ -2314,12 +2315,16 @@ Número total de pàgines de la cerca.
 |502|Aquest rol no té privilegis suficients per realitzar aquesta operació|
 |503|El tipus d'accés no està autoritzat per aquest tipus de petició|
 |504|La entitat especificada no existeix|
-|505|La entitat pare especificada no existeix|
-|510|El tipus de peu de notificació predefinit especificat no existeix|
-|512|El tipus de cos de notificació predefinit especificat no existeix|
+|505|La entitat especificada no està autoritzada per informar documents a través de URL|
 |613|El format de l'adreça de la bústia de correu especificada no és correcte|
 |614|El CIF especificat no és correcte|
 |615|El NIF especificat no és correcte|
+|616|El Passaport especificat no és correcte|
+|617|El país del Passaport especificat és obligatori|
+|618|El país del Passaport especificat no és vàlid|
+|619|El VAT especificat no és correcte|
+|620|El país del VAT especificat és obligatori|
+|621|El país del VAT especificat no és vàlid|
 |627|El paràmetre CodiDepartament és obligatori|
 |629|L'identificador de la notificació de l'emissor és obligatori|
 |630|El format del número de telèfon especificat no és correcte|
@@ -2331,7 +2336,7 @@ Número total de pàgines de la cerca.
 |705|La raó social del destinatari és obligatori|
 |706|Les persones jurídiques no poden tenir el camp obligat a false|
 |713|És obligatori omplir un dels camps CIF o NIF|
-|716|La data de registre de la notificació és obligatòria|
+|716|La data de registre no pot ser anterior a 30 dies ni posterior al moment actual|
 |717|El número de registre de la notificació és obligatori|
 |718|La referència de la notificació és obligatòria|
 |719|El destinatari de la notificació no es correspon amb el perfil especificat|
