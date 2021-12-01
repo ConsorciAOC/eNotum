@@ -70,7 +70,7 @@ La practica de la notificació es pot realitzar:
 * Per a notificacions creades amb `<TipusAcces>` _CERT_, s'ha de signar l'acceptació o rebuig amb el certificat digital vinculat a l'identitat de l'usuari. 
 * Per a notificacions creades amb `<TipusAcces>` _PPAS_, es poden acceptar o rebutjar de dues formes:
 	* Amb una _paraula de pas_ específica demanada per a realitzar la practica d'una notificació.
-	* O si es delega l'autenticació del usuari a [_Valid_](https://www.aoc.cat/serveis-aoc/valid/) o una altre plataforma d'un tercer, tant sols indicant el `/Usuari/IdAutenticacio` per identificar aquest procés d'autorització.
+	* O si es delega l'autenticació del usuari a [_Valid_](https://www.aoc.cat/serveis-aoc/valid/) tant sols indicant el `/Usuari/IdAutenticacio` per identificar aquest procés d'autorització.
 
 En el cas d'accés amb _certificat digital_ Les dades a signar seran proporcionades per **eNotum** mitjançant la operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _OBTENIR_DADES_.
 
@@ -78,7 +78,7 @@ La signatura del ciutadà ha de ser realitzada amb una eina de signatura que gen
 
 Un cop realitzada la signatura aquesta s'envia a **eNotum** amb l'operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _SIGNAR_. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l'estat de la notificació passa a ser _Acceptada_ o _Rebutjada_ en funció del que s'hagi especificat en l'element `<Decisio>` de l'operació de practicar.
 
-2. Sense signatura per part del ciutadà
+1. Sense signatura per part del ciutadà
 
 Utilitzant l’operació Practicar notificació indicant que la modalitat de l’operació a realitzar es SIGNAR. L’estat de la notificació passa a ser Acceptada o Rebutjada en funció del que s’hagi especificat en l’element <Decisio> de l’operació de practicar.
 
@@ -206,7 +206,7 @@ Aquest camp és obligatori i contindrà la etiqueta del rol autoritzat de l'usua
 	</xs:simpleType>
 </xs:element>
 ```
-Opcionalment en cas de `<Rol>` _CIUTADA_ i de que l'usuari presenti el NIF de persona física i el d'empresa, ja sigui al generar la paraula de pas, en el certificat, o indicant-ho en els camps amb autenticació delegada, es podrà indicar un perfil que afectarà directament a les cerques de notificacions. Els possibles valors que pot pendre aquest camp:
+Opcionalment en cas de `<Rol>` _CIUTADA_ i de que l'usuari presenti el NIF de persona física i el d'empresa, ja sigui al generar la paraula de pas, en el certificat, o amb VALId, es podrà indicar un perfil que afectarà directament a les cerques de notificacions. Els possibles valors que pot pendre aquest camp:
 * *PERSONA_FISICA* : Cerca les notificacions per a la persona física.
 * *EMPRESA* : Cerca les notificacions per a l'empresa.
 * *PERSONA_JURIDICA* : Cerca les notificacions com a persona jurídica.
@@ -230,7 +230,7 @@ En cas d'autenticació amb certificat aquest camp contindrà el certificat del c
 ```
 Identificador i paraula de pas respectivament, emprades com a mecanisme d'autenticació del ciutadà que realitza l'operació.
 
-#### Mecanisme d'autenticació extern (Valid o altres)
+#### VALId
 ```xml
 <xs:sequence>
 	<xs:choice minOccurs="0">
@@ -250,30 +250,9 @@ Identificador i paraula de pas respectivament, emprades com a mecanisme d'autent
 	</xs:element>
 </xs:sequence>
 ```
-En aquest cas és l'aplicació integrada la que assumeix la responsabilitat d'autenticar el ciutadà utilizant p.e el servei de Valid o qualsevol altre servei extern. Els camps a informar són:
+En cas d'autenticació amb VALId s'ha d'informar el camp *IdAutenticacio* amb el _access token_ del login del ciutadà que realitza l'operació.
 
-* `/Usuari/NIF` NIF de l'usuari.
-* `/Usuari/PASSAPORT` Passaport de l'usuari.
-* `/Usuari/CIF` CIF del usuari
-* `/Usuari/IdAutenticacio` Identificador intern de l'aplicació integrada per al procés d'autenticació.
-* `/Usuari/NivellAutenticacio` Nivell eIDAS del mecanisme d'autenticació emprat pel ciutadà. Els valors possibles son ALT, SUBSTANCIAL i BAIX.
-
-#### NivellAutenticacio
-```xml
-<xs:element name="Perfil" minOccurs="0">
-	<xs:simpleType>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="PERSONA_JURIDICA"/>
-			<xs:enumeration value="EMPRESA"/>
-			<xs:enumeration value="PERSONA_FISICA"/>
-		</xs:restriction>
-	</xs:simpleType>
-</xs:element>
-```
-Opcionalment en cas de `<Rol>` _CIUTADA_ i de que l'usuari presenti el NIF de persona física i el d'empresa, ja sigui al generar la paraula de pas, en el certificat, o indicant-ho en els camps amb autenticació delegada, es podrà indicar un perfil que afectarà directament a les cerques de notificacions. Els possibles valors que pot pendre aquest camp:
-* *PERSONA_FISICA* : Cerca les notificacions per a la persona física.
-* *EMPRESA* : Cerca les notificacions per a l'empresa.
-* *PERSONA_JURIDICA* : Cerca les notificacions com a persona jurídica.
+La resta de camps han estat *deprecats* i no es té en compte el valor informat.
 
 ## Emissor
 
