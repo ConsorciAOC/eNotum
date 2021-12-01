@@ -90,8 +90,8 @@ Dins del context de les expressions s'afegeixen els següents objectes per acced
 |`${notificacio.dataExpiracio}`|	Data en la qual expira la notificació.|
 |`${notificacio.diesExpiracio}`|	Número de dies de vida de la notificació.|
 |`${notificacio.tipusAcces}`|	El tipus d'accés per als enviaments són BAIX, SUBS, ALT.|
-|`${notificacio.tipus}`|	Tipus de notificació.0 = notificació.1 = comunicació.|
-|`${notificacio.idioma}`|	Idioma de la notificació amb el que s'ha enviat al client. ca = català, es = castellà, oc = aranès, en = anglès.|
+|`${notificacio.tipus}`|	Tipus de notificació: 0 = notificació.1 = comunicació.|
+|`${notificacio.idioma}`|	Idioma de la notificació amb el que s'ha enviat al client: ca = català, es = castellà, oc = aranès, en = anglès.|
 |`${notificacio.msgTipusAcces}`|	Missatge ja traduït en funció del idioma de la notificació per a definir l'accés a la notificació.|
 |`${notificacio.msgTipusEnviament}`|	Missatge ja traduït en funció del idioma de la notificació per a definir el tipus d'aquesta.|
 |`${notificacio.linkAccesBustia}`|	Enllaç per a accedir a la bústia de l'entitat a la que pertany la notificació.|
@@ -103,9 +103,9 @@ Dins del context de les expressions s'afegeixen els següents objectes per acced
 |`${destinatari.cognom2}`|	Segon cognom del destinatari de la notificació.|
 |`${destinatari.raoSocial}`|	Raó social de l'empresa a la que pertany el destinatari en cas de que sigui una persona jurídica.|
 |`${destinatari.idDocumentPF}`|	Identificador del document de la persona física **anonimitzat**. Per exemple: per un NIF amb número 12345678A mostrarà ******78A.|
-|`${destinatari.tipusDocumentPF}`|	Tipus del document de la persona física. 0 = NIF, 1 = Passaport.|
+|`${destinatari.tipusDocumentPF}`|	Tipus del document de la persona física: 0 = NIF, 1 = Passaport.|
 |`${destinatari.idDocumentPJ}`|	Identificador del document de la persona jurídica **anonimitzat**. Per exemple: per un NIF amb número Q0801175A mostrarà ******75A.|
-|`${destinatari.tipusDocumentPJ}`|	Tipus del document de persona jurídica. 0 = CIF, 1 = VAT Number.|
+|`${destinatari.tipusDocumentPJ}`|	Tipus del document de persona jurídica: 0 = CIF, 1 = VAT Number.|
 |`${entitat.nomEntitat}`|	Nom de l'organisme i el nom del departament que han enviat la notificació separats per un slash.|
 |`${entitat.departament}`|	Nom del departament que ha enviat la notificació.|
 |`${entitat.organisme}`|	Nom de l’organisme que ha enviat la notificació.|
@@ -119,7 +119,7 @@ A banda d'aquesta objectes dins del context de les plantilles hi ha carregats aq
 | --------- | ---------- |
 |`${utils.getNumberMask(<Numero>) }`|	Aplica la mascarà al ‘<numero>’. Es pot aplicar a nif, telèfons, passaports; retorna el número substituint tots els números per * deixant només visibles els 3 últims. Per exemple: 666777888 retorna ******888, Q0801175A retorna ******75A.|
 |`${utils.getEmailMask(<email>)}`|	Aplica la mascara per al ‘<email>’. Deixa el primer caràcter, el caràcter ‘@’ i el domini. Del primer caràcter a la ‘@’ sempre substitueix per cinc ‘*’. Exemple: localpart@domain.cat retorna l*****@domain.cat |
-|`${dateFormat.format(<date)}`|	Formata la data en el format dd/MM/yyyy HH:mm:ss |
+|`${dateFormat.format(<date>)}`|	Formata la data en el format dd/MM/yyyy HH:mm:ss |
                             
 ### 3.3.1	Altres
 

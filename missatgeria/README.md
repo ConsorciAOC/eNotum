@@ -458,12 +458,10 @@ Aquest element permet específicar les dades d'ofici vinculades a la notificaci�
 
 * `/DadesOfici/CosNotificacio`
 Cos de la notificació
-* `/DadesOfici/IdCosNotificacio`
-En comptes d'escriure el cos de la notificació, permet indicar l'identificador d'un cos de notificació predeterminat introduït previament al sistema.
+* `/DadesOfici/IdCosNotificacio` _Deprecat_
 * `/DadesOfici/PeuRecurs`
 Peu de recurs.
-* `/DadesOfici/IdPeuRecurs`
-En comptes d'escriure el peu de recurs, permet indicar l'identificador d'un peu de recurs predeterminat introduït previament al sistema.
+* `/DadesOfici/IdPeuRecurs` _Deprecat_
 * `/DadesOfici/OficinaRegistre`
 Codi d'oficina de registre a usar per registrar les notificacions. Aquest paràmetre no és obligatori ja que per defecte el sistema usarà la oficina de registre parametritzada per a l'entitat emissora de les notificacions (organisme\departament). Així, només cal informar aquest paràmetre en el cas que s'hagués de realitzar el registre contra una oficina diferent de la habitual.
 * `/DadesOfici/UnitatOrganitzativa`
@@ -605,8 +603,8 @@ Indica el nivell d'autenticació requerit al ciutadà per tal de poder accedir a
 	* *BAIX*
 	* *SUBSTANCIAL*
 	* *ALT*
-	* *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-	* *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *PPAS*: _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *CERT*: _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/Notificacio/NivellCertificat`
 En cas d'accés requerit amb certificat, és pot ajustar el nivell d'aquest per l'accés a la notificació.
 * `/Notificacio/DiesExpiracio`
@@ -615,8 +613,7 @@ Dies a partir dels quals la notificació exiprarà, a contar a partir de la data
 Dades dels destinataris de la notificació.
 * `/Notificacio/Etiquetes`
 Etiquetes per a agrupar la notificació.
-* `/Notificacio/AmbitObjecte`
-Àmbit de la notificació.
+* `/Notificacio/AmbitObjecte` _Deprecat_
 * `/Notificacio/Idioma`
 Idioma de la notificació. Els possibles valors són:
 	* *ca* : Indica que l'idioma de la notificació és català.
@@ -1326,8 +1323,7 @@ Permet cercar per el tipus d'accés configurat a la notificació, els possibles 
 * `/CriterisNotificacio/Etiquetes`
 Aquest element permet filtrar per una etiqueta arbitrària que s'ha informat a l'hora de crear la notificació, es descriu amb més detall a [continuació](#etiquetes)
 
-* `/CriterisNotificacio/AmbitObjecte`
-Àmbit per el que cercar la notificació.
+* `/CriterisNotificacio/AmbitObjecte` _Deprecat_
 
 * `/CriterisNotificacio/TipusObjecte`
 Tipus de les notificacions a cercar:
@@ -1826,8 +1822,7 @@ Identificador de la notificació.
 Indica si és una notificació o és una comunicació. Els valors que pot retornar són:
 	* _NOTIFICACIO_
 	* _COMUNICACIO_
-* `/DadesNotificacio/AmbitObjecte`
-Àmbit informat en el moment de creació d’una notificació. Aquest àmbit ha d'estar informat al sistema.
+* `/DadesNotificacio/AmbitObjecte` _Deprecat_
 * `/DadesNotificacio/DiesExpiracio`
 Dies per l'expiració a partir de la data de dipòsit.
 * `/DadesNotificacio/IdNotificacioEmissor`
@@ -1955,14 +1950,13 @@ Nivell d'autenticació requerit al ciutadà a la notificació:
 	* *BAIX*
 	* *SUBSTANCIAL*
 	* *ALT*
-	* *PPAS*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-	* *CERT*_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *PPAS* _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *CERT* _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
 * `/DadesNotificacio/TipusObjecte`
 Indica si és una notificació o és una comunicació. Els valors que pot retornar són:
 	* _NOTIFICACIO_ : Notificació. 
 	* _COMUNICACIO_ : Comunicació.
-* `/DadesNotificacio/AmbitObjecte`
-Àmbit informat en el moment de creació d'una notificació. Aquest àmbit ha d’estar informat al sistema.
+* `/DadesNotificacio/AmbitObjecte` _Deprecat_
 * `/DadesNotificacio/NivellCertificat`
 Indica el nivell de certificat mínim per practicar la notificació.
 * `/DadesNotificacio/DiesExpiracio`
@@ -2247,10 +2241,9 @@ Modalitat d'accés a la notificació per part del ciutadà. Els possibles valors
 	* *BAIX*
 	* *SUBSTANCIAL*
 	* *ALT*
-	* *PPAS*:_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-	* *CERT*:_Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
-* `/Resultats/Notificacio/AmbitObjecte`
-Àmbit de la notificació, si s'ha informat en el moment de creació de la notificació.
+	* *PPAS*: _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+	* *CERT*: _Suportat temporalment per compatibilitat amb versions anteriors. S'eliminarà en properes versions._
+* `/Resultats/Notificacio/AmbitObjecte` _Deprecat_
 * `/Resultats/Notificacio/Idioma`
 Idioma del contingut de la notificació.
 * `/Resultats/Notificacio/CodiDepartament`

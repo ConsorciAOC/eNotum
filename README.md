@@ -5,22 +5,15 @@ Tota la documentació d'integració antiga així com altre tipus de documentaci�
 
 # Documentació integradors - eNotum Backend
 
-De moment aqui podeu trobar:
-
-[1. Manual d'estils personalitzats `CSS` de *WebCiutada*](/customCSSWebCiutada/README.md)
+[1. Integració missatgeria versió 3.2](/missatgeria/README.md)
 
 [2. Integració callbacks canvis d'estat](/integracioReportsCanvisEstat/README.md)
 
-[3. Integració missatgeria](/missatgeria/README.md)
+[3. Plantilles de correu electrònic per a l'enviament d'avisos als destinataris](/plantilles/README.md)
 
-[4. Plantilles de correu electrònic per a l'enviament d'avisos als destinataris](/plantilles/README.md)
+# Documentació portal de la ciutadania
 
-# Documentació integradors - eNotum connector carpeta ciutadana
-
-Documentació específica  del connector de carpeta ciutadana del servei d'eNotum:
-
-[1. Integració missatgeria](/connectorCarpeta/README.md)
-
+[1. Manual d'estils personalitzats `CSS` de la *Web de la Ciutadania*](/customCSSWebCiutada/README.md)
 
 # Documentació portal d'empleat públic
 
