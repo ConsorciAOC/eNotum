@@ -8,25 +8,26 @@
 
 	<xs:include schemaLocation="Peticio.xsd"/>
 
-	<xs:element name="PeticioRecuperarReport" type="PeticioRecuperarReportType"/>
-	<xs:complexType name="PeticioRecuperarReportType">
-		<xs:complexContent>
-			<xs:extension base="PeticioType">
-				<xs:sequence>
-					<xs:choice>
-						<xs:element name="IdNotificacio" type="xs:integer">
-							<xs:annotation>
-								<xs:documentation>Identificador de la notificació a consultar.</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="DataReport" type="xs:date">
-							<xs:annotation>
-								<xs:documentation>Data del dia del qual es vol obtenir el report.</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:choice>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="PeticioRecuperarReport">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="IdNotificacio" type="xs:integer">
+								<xs:annotation>
+									<xs:documentation>Identificador de la notificació a consultar.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="DataReport" type="xs:date">
+								<xs:annotation>
+									<xs:documentation>Data del dia del qual es vol obtenir el report.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:choice>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

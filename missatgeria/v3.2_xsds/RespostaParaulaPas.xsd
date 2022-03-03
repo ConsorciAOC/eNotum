@@ -7,23 +7,23 @@
 	attributeFormDefault="unqualified">
 
 	<xs:include schemaLocation="Resposta.xsd"/>
-	<xs:include schemaLocation="Commons.xsd"/>
 
-	<xs:element name="RespostaParaulaPas" type="RespostaParaulaPasType"/>
-	<xs:complexType name="RespostaParaulaPasType">
-		<xs:annotation>
-			<xs:documentation>Resposta indicant la paraula de pas generada.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="RespostaType">
-                <xs:choice>
-                    <xs:element name="Errors" type="ErrorsType"/>
-                    <xs:sequence>
-                        <xs:element name="IdParaulaPas" type="xs:string"/>
-                        <xs:element name="IdNotificacio" type="xs:integer" minOccurs="0"/>
-                    </xs:sequence>
-                </xs:choice>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="RespostaParaulaPas">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Resposta indicant la paraula de pas generada.</xs:documentation>
+			</xs:annotation>
+			<xs:complexContent>
+				<xs:extension base="RespostaType">
+		               <xs:choice>
+		                   <xs:element name="Errors" type="ErrorsType"/>
+		                   <xs:sequence>
+		                       <xs:element name="IdParaulaPas" type="xs:string"/>
+		                       <xs:element name="IdNotificacio" type="xs:integer" minOccurs="0"/>
+		                   </xs:sequence>
+		               </xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

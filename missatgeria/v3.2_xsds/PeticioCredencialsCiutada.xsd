@@ -8,23 +8,24 @@
 
 	<xs:include schemaLocation="Peticio.xsd"/>
 
-	<xs:element name="PeticioCredencialsCiutada" type="PeticioCredencialsCiutadaType"/>
-	<xs:complexType name="PeticioCredencialsCiutadaType">
-		<xs:complexContent>
-			<!-- Aquesta operació només funciona per rol ciutada, auth amb paraula de pas, i persona física -->
-			<xs:extension base="PeticioType">
-				<xs:sequence>
-					<!-- sinó ve informat s'agafen organisme i departament del <emissor>-->
-					<xs:element name="DadesEntitat" minOccurs="0">
-						<xs:complexType>
-							<xs:all>
-								<xs:element name="CodiOrganisme" type="xs:string"/>
-								<xs:element name="CodiDepartament" type="xs:string" minOccurs="0"/>
-							</xs:all>
-						</xs:complexType>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="PeticioCredencialsCiutada">
+		<xs:complexType>
+			<xs:complexContent>
+				<!-- Aquesta operació només funciona per rol ciutada, auth amb paraula de pas, i persona física -->
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<!-- sinó ve informat s'agafen organisme i departament del <emissor>-->
+						<xs:element name="DadesEntitat" minOccurs="0">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="CodiOrganisme" type="xs:string"/>
+									<xs:element name="CodiDepartament" type="xs:string" minOccurs="0"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

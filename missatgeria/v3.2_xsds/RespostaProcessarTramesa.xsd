@@ -8,23 +8,24 @@
 
 	<xs:include schemaLocation="Resposta.xsd"/>
 
-	<xs:element name="RespostaProcessarTramesa" type="RespostaProcessarTramesaType"/>
-	<xs:complexType name="RespostaProcessarTramesaType">
-		<xs:complexContent>
-			<xs:extension base="RespostaType">
-                <xs:choice>
-                    <xs:element name="Errors" type="ErrorsType"/>
-                    <xs:sequence>
-                        <xs:element name="NotificacionsCreades">
-                            <xs:complexType>
-                                <xs:sequence>
-                                    <xs:element name="IdNotificacio" type="xs:integer" maxOccurs="unbounded"/>
-                                </xs:sequence>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:choice>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="RespostaProcessarTramesa">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="RespostaType">
+	                <xs:choice>
+	                    <xs:element name="Errors" type="ErrorsType"/>
+	                    <xs:sequence>
+	                        <xs:element name="NotificacionsCreades">
+	                            <xs:complexType>
+	                                <xs:sequence>
+	                                    <xs:element name="IdNotificacio" type="xs:integer" maxOccurs="unbounded"/>
+	                                </xs:sequence>
+	                            </xs:complexType>
+	                        </xs:element>
+	                    </xs:sequence>
+	                </xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

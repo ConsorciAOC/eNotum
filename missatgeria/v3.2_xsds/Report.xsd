@@ -8,14 +8,14 @@
 
 	<xs:include schemaLocation="Commons.xsd"/>
 
-	<xs:element name="Report" type="ReportType"/>
-
-	<xs:complexType name="ReportType">
-		<xs:sequence>
-			<xs:element name="Capcalera" type="ReportCapcaleraType"/>
-			<xs:element name="Dades" type="ReportDadesType" maxOccurs="unbounded" minOccurs="0"/>
-		</xs:sequence>
-	</xs:complexType>
+    <xs:element name="Report">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Capcalera" type="ReportCapcaleraType"/>
+                <xs:element name="Dades" type="ReportDadesType" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>   
 
 	<xs:complexType name="ReportCapcaleraType">
 		<xs:annotation>

@@ -8,27 +8,28 @@
 
 	<xs:include schemaLocation="Peticio.xsd"/>
 
-	<xs:element name="PeticioParaulaPas" type="PeticioParaulaPasType"/>
-	<xs:complexType name="PeticioParaulaPasType">
-		<xs:complexContent>
-			<xs:extension base="PeticioType">
-				<xs:sequence>
-					<xs:choice minOccurs="0">
-						<xs:element name="IdNotificacio" type="xs:integer"/>
-						<xs:element name="NumeroRegistre" type="xs:string"/>
-					</xs:choice>
-					<xs:element name="DocumentIdentificatiuPersonaFisica" type="DocumentPersonaFisicaType" minOccurs="0"/>
-					<xs:element name="DocumentIdentificatiuPersonaJuridica" type="DocumentPersonaJuridicaType" minOccurs="0"/>
-					<xs:element name="DadesEnviament">
-						<xs:complexType>
-							<xs:choice>
-								<xs:element name="BustiaCorreu" type="xs:string"/>
-								<xs:element name="Telefon" type="xs:string"/>
-							</xs:choice>
-						</xs:complexType>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="PeticioParaulaPas">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:choice minOccurs="0">
+							<xs:element name="IdNotificacio" type="xs:integer"/>
+							<xs:element name="NumeroRegistre" type="xs:string"/>
+						</xs:choice>
+						<xs:element name="DocumentIdentificatiuPersonaFisica" type="DocumentPersonaFisicaType" minOccurs="0"/>
+						<xs:element name="DocumentIdentificatiuPersonaJuridica" type="DocumentPersonaJuridicaType" minOccurs="0"/>
+						<xs:element name="DadesEnviament">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="BustiaCorreu" type="xs:string"/>
+									<xs:element name="Telefon" type="xs:string"/>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

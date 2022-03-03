@@ -7,38 +7,38 @@
 	attributeFormDefault="unqualified">
 
 	<xs:include schemaLocation="Resposta.xsd" />
-	<xs:include schemaLocation="Commons.xsd" />
 
-	<xs:element name="RespostaEvidencia" type="RespostaEvidenciaType" />
-	<xs:complexType name="RespostaEvidenciaType">
-		<xs:annotation>
-			<xs:documentation>Evidències del dipòsit i de l'acceptació o rebuig de la notificació.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="RespostaType">
-				<xs:choice>
-					<xs:element name="Errors" type="ErrorsType" />
-					<xs:sequence>
-						<xs:element name="IdNotificacio" type="xs:integer" />
-						<xs:element name="TipusEvidencia" type="TipusEvidenciaType" />
-						<xs:element name="Diposit" type="xs:string" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>Evidència del dipòsit de la notificació.</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="AcceptacioRebuig" type="xs:string" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>Evidència de l'acceptació o rebuig de la notificació.</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-						<xs:element name="EvidenciaPDF" type="xs:anyURI" minOccurs="0">
-							<xs:annotation>
-								<xs:documentation>URL de descàrrega de l'evidència de la notificacio</xs:documentation>
-							</xs:annotation>
-						</xs:element>
-					</xs:sequence>
-				</xs:choice>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="RespostaEvidencia">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Evidències del dipòsit i de l'acceptació o rebuig de la notificació.</xs:documentation>
+			</xs:annotation>
+			<xs:complexContent>
+				<xs:extension base="RespostaType">
+					<xs:choice>
+						<xs:element name="Errors" type="ErrorsType" />
+						<xs:sequence>
+							<xs:element name="IdNotificacio" type="xs:integer" />
+							<xs:element name="TipusEvidencia" type="TipusEvidenciaType" />
+							<xs:element name="Diposit" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Evidència del dipòsit de la notificació.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="AcceptacioRebuig" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Evidència de l'acceptació o rebuig de la notificació.</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EvidenciaPDF" type="xs:anyURI" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>URL de descàrrega de l'evidència de la notificacio</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

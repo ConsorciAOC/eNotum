@@ -8,18 +8,19 @@
 
 	<xs:include schemaLocation="Peticio.xsd"/>
 
-	<xs:element name="PeticioEvidencia" type="PeticioEvidenciaType"/>
-	<xs:complexType name="PeticioEvidenciaType">
-		<xs:complexContent>
-			<xs:extension base="PeticioType">
-				<xs:sequence>
-					<xs:element name="IdNotificacio" type="xs:integer"/>
-					<xs:element name="TipusEvidencia" type="TipusEvidenciaType"/>
-					<!-- optional. Idioma q aplica a la generació del PDF. En cas de no venir informat la
-					evidència és genera en català -->
-					<xs:element name="IdiomaEvidenciaPDF" type="Idioma" minOccurs="0" />
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="PeticioEvidencia">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="IdNotificacio" type="xs:integer"/>
+						<xs:element name="TipusEvidencia" type="TipusEvidenciaType"/>
+						<!-- optional. Idioma q aplica a la generació del PDF. En cas de no venir informat la
+						evidència és genera en català -->
+						<xs:element name="IdiomaEvidenciaPDF" type="Idioma" minOccurs="0" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

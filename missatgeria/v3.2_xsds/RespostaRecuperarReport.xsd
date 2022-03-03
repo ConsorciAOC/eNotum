@@ -9,20 +9,21 @@
 	<xs:include schemaLocation="Resposta.xsd"/>
 	<xs:include schemaLocation="Report.xsd"/>
 
-	<xs:element name="RespostaRecuperarReport" type="RespostaRecuperarReportType"/>
-	<xs:complexType name="RespostaRecuperarReportType">
-		<xs:annotation>
-			<xs:documentation>Dades del report de notificacions</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="RespostaType">
-                <xs:choice>
-                    <xs:element name="Errors" type="ErrorsType"/>
-                    <xs:sequence>
-                        <xs:element name="Report" type="ReportType" minOccurs="0"/>
-                    </xs:sequence>
-                </xs:choice>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="RespostaRecuperarReport">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Dades del report de notificacions</xs:documentation>
+			</xs:annotation>
+			<xs:complexContent>
+				<xs:extension base="RespostaType">
+	                <xs:choice>
+	                    <xs:element name="Errors" type="ErrorsType"/>
+	                    <xs:sequence>
+	                        <xs:element ref="Report" minOccurs="0"/>
+	                    </xs:sequence>
+	                </xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

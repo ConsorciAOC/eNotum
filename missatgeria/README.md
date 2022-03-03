@@ -570,7 +570,7 @@ Cadena d'identificació de la notificació. Tot i que no cal que aquesta sigui �
 * `/Notificacio/DadesRegistre/NumeroRegistre`
 Número de registre (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició.
 * `/Notificacio/DadesRegistre/DataRegistre`
-Data de l'assentament (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, junt amb el de número de registre, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició.
+Data de l'assentament (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, junt amb el de número de registre, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició. Es validarà que la data informada no sigui posterior a la data actual i que no sigui anterior a 30 dies.
 * `/Notificacio/SenseRegistre`
 De forma també opcional, només en el cas d'estar creant una COMUNICACIO, mitjançant aquest element es pot indicar que no es vol crear registre de sortida per a aquest enviament concret.
 * `/Notificacio/TipusObjecte`
@@ -1016,48 +1016,13 @@ Camp opcional, en cas de voler practicar una notificació en concret, s'ha d'inf
 * `/PeticioParaulaPas/NumeroRegistre`
 Igual que en el cas de id notificació, però identificant la notificació mitjançant el seu número de registre.
 * `/PeticioParaulaPas/DocumentIdentificatiuPersonaFisica`
-Identificador de la persona física, que vol fer l'operació. El tipus d'aquest element es defineix amb més detall al següent punt.
+Identificador de la persona física que vol fer l'operació. El tipus `DocumentPersonaFisicaType` es descriu amb més detall [aquí](#documentidentificatiupersonafisica).
 * `/PeticioParaulaPas/DocumentIdentificatiuPersonaJuridica`
-Identificador de la persona jurídica, que vol fer l'operació. El tipus d'aquest element es defineix amb més detall al següent punt.
+Identificador de la persona jurídica, que vol fer l'operació. El tipus `DocumentPersonaJuridicaType` es descriu amb més detall [aquí](#documentidentificatiupersonajuridica).
 * `/PeticioParaulaPas/DadesEnviament/BustiaCorreu`
 Adreça correu electrònic vinculada al destinatari.
 * `/PeticioParaulaPas/DadesEnviament/Telefon`
 Número de telèfon mòbil vinculat al destinatari.
-
-### DocumentIdentificatiuPersonaFisica
-
-El DocumentIdentificatiuPersonaFisica és del tipus _DocumentPersonaFisicaType_ i permet identificar la persona física que vol demanar la paraula de pas, mitjançant el seu _NIF/NIE_ o el seu _passaport_
-
-```xml
-<xs:complexType name="DocumentPersonaFisicaType">
-	<xs:choice>
-		<xs:element name="NIF" type="NIF"/>
-		<xs:element name="PASSAPORT" type="NoEmptyString"/>
-	</xs:choice>
-</xs:complexType>
-```
-* `/PeticioParaulaPas/DocumentIdentificatiuPersonaFisica/NIF`
-NIF o NIE del ciutadà que vol demanar la paraula de pas per tal d'interactuar amb **eNotum**
-* `/PeticioParaulaPas/DocumentIdentificatiuPersonaFisica/PASSAPORT`
-Passaport del ciutadà que vol demanar la paraula de pas per tal d'interactuar amb **eNotum**
-
-### DocumentIdentificatiuPersonaJuridica
-
-El DocumentIdentificatiuPersonaJuridica és del tipus _DocumentPersonaJuridicaType_ i permet identificar la persona jurídica que vol demanar la paraula de pas, mitjançant el seu _NIF d'empresa_ o el seu _VAT number_ en cas d'empreses extrangeres.
-
-```xml
-<xs:complexType name="DocumentPersonaJuridicaType">
-	<xs:choice>
-		<xs:element name="CIF" type="CIF"/>
-		<xs:element name="VAT" type="NoEmptyString"/>
-	</xs:choice>
-</xs:complexType>
-```
-
-* `/PeticioParaulaPas/DocumentIdentificatiuPersonaJuridica/CIF`
-NIF de l'empresa de la que la persona jurídica vol demanar la paraula de pas per tal d'interactuar amb **eNotum**
-* `/PeticioParaulaPas/DocumentIdentificatiuPersonaJuridica/VAT`
-VAT number de l'empresa extrangera de la que la persona jurídica vol demanar la paraula de pas per tal d'interactuar amb **eNotum**
 
 ## Petició - PeticioCerca
 
@@ -2005,11 +1970,11 @@ Data en que s'ha registrat la notificació.
 ```
 
 * `/DadesSignador/Fisic/DocumentIdentificatiu`
-Document identificatiu de la persona física que ha practicat la notificació, el tipus `DocumentPersonaFisicaType` és descriu amb més detall [aquí](#documentidentificatiupersonafisica).
+Document identificatiu de la persona física que ha practicat la notificació. El tipus `DocumentPersonaFisicaType` es descriu amb més detall [aquí](#documentidentificatiupersonafisica).
 * `/DadesSignador/Fisic/NomComplert`
 Nom complert de la persona física que ha practicat la notificació.
 * `/DadesSignador/Juridic/DocumentIdentificatiu`
-Document identificatiu de la persona jurídica que ha practicat la notificació. el tipus `DocumentPersonaJuridicaType` és descriu amb més detall [aquí](#documentidentificatiupersonajuridica)
+Document identificatiu de la persona jurídica que ha practicat la notificació. El tipus `DocumentPersonaJuridicaType` es descriu amb més detall [aquí](#documentidentificatiupersonajuridica)
 * `/DadesSignador/Juridic/RaoSocial`
 Raó social de la persona jurídica que ha practicat la notificació.
 
@@ -2273,6 +2238,89 @@ Número de registres retornats per pàgina.
 Número total de resultats de la cerca.
 * `/DadesPaginacio/TotalPagines`
 Número total de pàgines de la cerca.
+
+## Tipus comuns
+
+Hi ha una serie d'elements comuns entre les diferents operacions. A continuació se'n detalla la definició:
+
+### DocumentPersonaFisicaType
+
+El tipus _DocumentPersonaFisicaType_ identifica una persona física mitjançant el seu _NIF/NIE_ o el seu _passaport_
+
+```xml
+<xs:complexType name="DocumentPersonaFisicaType">
+	<xs:choice>
+		<xs:element name="NIF" type="NIF"/>
+		<xs:element name="PASSAPORT" type="Passaport"/>
+	</xs:choice>
+</xs:complexType>
+
+<xs:simpleType name="NIF">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[XYZKLM]?[0-9]{7,8}[A-Z]"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="Passaport">
+	<xs:simpleContent>
+		<xs:extension base="PassaportType">
+			<xs:attribute name="Pais" type="ISO3166Code2Digits"/>
+		</xs:extension>
+	</xs:simpleContent>
+</xs:complexType>
+
+<xs:simpleType name="PassaportType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[A-Z0-9]{1,9}"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="ISO3166Code2Digits">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[A-Z][A-Z]"/>
+	</xs:restriction>
+</xs:simpleType>
+```
+* `NIF`
+NIF o NIE de la persona física. Es validarà que el format sigui correcte.
+* `PASSAPORT`
+Passaport de la persona física. Es validarà que el format sigui correcte (màxim 9 caràcters). No confondre amb l'identificador nacional que apareix en els passaports i que pot ser de diferent longitud.
+* `PASSAPORT/Pais`
+País d'emissió del passaport en format [ISO 3166-1 alfa-2](https://es.wikipedia.org/wiki/ISO_3166-1_alfa-2). Inicialment és **opcional** però un futur serà **obligatori**.
+
+### DocumentPersonaJuridicaType
+
+El tipus _DocumentPersonaJuridicaType_ identificar una persona jurídica mitjançant el seu _NIF d'empresa_ o el seu _VAT number_ en cas d'empreses extrangeres.
+
+```xml
+<xs:complexType name="DocumentPersonaJuridicaType">
+	<xs:choice>
+		<xs:element name="CIF" type="CIF"/>
+		<xs:element name="VAT" type="VAT"/>
+	</xs:choice>
+</xs:complexType>
+
+<xs:complexType name="VAT">
+	<xs:simpleContent>
+		<xs:extension base="VATType">
+			<xs:attribute name="Pais" type="ISO3166Code2Digits"/>
+		</xs:extension>
+	</xs:simpleContent>
+</xs:complexType>
+
+<xs:simpleType name="VATType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[A-Z0-9]{1,50}"/>
+	</xs:restriction>
+</xs:simpleType>
+```
+
+* `CIF`
+NIF d'empresa de la persona jurídica
+* `VAT`
+VAT number de l'empresa extrangera de la persona jurídica. Només s'accepten lletres i números. De manera que s'han d'informar sense espais, guions, punts, etc. En cas d'informar l'atribut `Pais` es validarà el contigut del camp VAT segons el format del país corresponent.
+* `VAT/Pais`
+País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia.org/wiki/ISO_3166-1_alfa-2). Inicialment és **opcional** però un futur serà **obligatori**.
 
 # 4. Codis d'error d'eNotum
 

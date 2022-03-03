@@ -8,18 +8,18 @@
 
 	<xs:include schemaLocation="Peticio.xsd"/>
 
-	<xs:element name="PeticioResum" type="PeticioResumType"/>
-	<xs:complexType name="PeticioResumType">
-		<xs:complexContent>
-			<xs:extension base="PeticioType">
-				<xs:sequence>
-					<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
-					<xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
-					<!-- en cas d'accés amb ppas mostra el resum de totes les notis per aquell usuari per nif independenment 
-					de la bustia de correu -->
-					<xs:element name="MostrarTotesNotificacions" type="xs:boolean" default="false" minOccurs="0"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="PeticioResum">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
+						<xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
+						<!-- en cas d'accés amb ppas mostra el resum de totes les notis per aquell usuari per nif independentment de la bustia de correu -->
+						<xs:element name="MostrarTotesNotificacions" type="xs:boolean" default="false" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

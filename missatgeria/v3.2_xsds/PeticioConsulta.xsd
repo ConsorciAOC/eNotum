@@ -8,14 +8,15 @@
 
 	<xs:include schemaLocation="Peticio.xsd"/>
 
-	<xs:element name="PeticioConsulta" type="PeticioConsultaType"/>
-	<xs:complexType name="PeticioConsultaType">
-		<xs:complexContent>
-			<xs:extension base="PeticioType">
-				<xs:sequence>
-					<xs:element name="IdNotificacio" type="xs:integer"/>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+	<xs:element name="PeticioConsulta">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="IdNotificacio" type="xs:integer"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

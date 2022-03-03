@@ -5,13 +5,13 @@
 	targetNamespace="http://www.aocat.net/NT/v3.2"
 	elementFormDefault="qualified"
 	attributeFormDefault="unqualified">
-	
-	<xs:include schemaLocation="Commons.xsd" />
 
+	<xs:include schemaLocation="Commons.xsd"/>
+	
 	<xs:complexType name="UsuariType">
 		<xs:annotation>
 			<xs:documentation>Dades d'identificació de l'usuari. Els rols de ciutada poden ser CIUTADA o EMPLEAT. 
-				Si el rol és CIUTADA s'ha d'omplir CertificatCiutada, ParaulaPas o l'element d'autenticació del valid</xs:documentation>
+				Si el rol és CIUTADA s'ha d'omplir CertificatCiutada, ParaulaPas o l'element d'autenticació de VALId</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:choice minOccurs="0">
@@ -22,7 +22,7 @@
 				</xs:sequence>
 				<xs:sequence>
 					<xs:annotation>
-						<xs:documentation>Dades per l'autenticació amb Valid. Identificador de l'autenticació del client al que el deleguem (no cal q sigui el token de valid) sobre aquest id no es fa cap comprovació.</xs:documentation>
+						<xs:documentation>Dades per l'autenticació amb VALId</xs:documentation>
 					</xs:annotation>
 					<xs:choice minOccurs="0">
 						<xs:element name="NIF" type="NIF"/>
@@ -30,34 +30,35 @@
 					</xs:choice>
 					<xs:element name="CIF" type="CIF" minOccurs="0"/>
 					<xs:element name="IdAutenticacio" type="xs:string"/>
-					<xs:element name="NivellAutenticacio">
-						<xs:simpleType>
-							<xs:restriction base="xs:string">
-								<xs:enumeration value="ALT"/>
-								<xs:enumeration value="SUBSTANCIAL"/>
-								<xs:enumeration value="BAIX"/>
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:element>
+					<xs:element name="NivellAutenticacio" type="NivellAutenticacioType"/>
 				</xs:sequence>
 			</xs:choice>
-			<xs:element name="Perfil" minOccurs="0">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="PERSONA_JURIDICA"/>
-						<xs:enumeration value="EMPRESA"/>
-						<xs:enumeration value="PERSONA_FISICA"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="Rol">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:enumeration value="EMPLEAT"/>
-						<xs:enumeration value="CIUTADA"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
+			<xs:element name="Perfil" type="PerfilType" minOccurs="0" />
+			<xs:element name="Rol" type="RolType"/>
 		</xs:sequence>
 	</xs:complexType>
+	
+	
+	<xs:simpleType name="PerfilType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PERSONA_JURIDICA"/>
+			<xs:enumeration value="EMPRESA"/>
+			<xs:enumeration value="PERSONA_FISICA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="RolType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EMPLEAT"/>
+			<xs:enumeration value="CIUTADA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="NivellAutenticacioType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALT"/>
+			<xs:enumeration value="SUBSTANCIAL"/>
+			<xs:enumeration value="BAIX"/>
+		</xs:restriction>
+	</xs:simpleType>
 </xs:schema>

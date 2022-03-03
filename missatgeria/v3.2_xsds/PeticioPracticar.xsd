@@ -8,37 +8,38 @@
 	attributeFormDefault="unqualified">
 
 	<xs:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="http://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd"/>
-    
+
 	<xs:include schemaLocation="Peticio.xsd"/>
 
-	<xs:element name="PeticioPracticar" type="PeticioPracticarType"/>
-	<xs:complexType name="PeticioPracticarType">
-		<xs:complexContent>
-			<xs:extension base="PeticioType">
-				<xs:sequence>
-					<xs:element name="IdNotificacio" type="xs:integer"/>
-					<xs:element name="Operacio" type="OperacioPracticarType"/>
-					<xs:element name="Decisio" type="DecisioPracticarType"/>
-					<xs:choice minOccurs="0">
-						<xs:element name="Signatura">
-							<xs:annotation>
-								<xs:documentation>XML de la signatura.</xs:documentation>
-							</xs:annotation>
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element ref="ds:Signature"/>
-								</xs:sequence>
-							</xs:complexType>
+	<xs:element name="PeticioPracticar">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="IdNotificacio" type="xs:integer"/>
+						<xs:element name="Operacio" type="OperacioPracticarType"/>
+						<xs:element name="Decisio" type="DecisioPracticarType"/>
+						<xs:choice minOccurs="0">
+							<xs:element name="Signatura">
+								<xs:annotation>
+									<xs:documentation>XML de la signatura.</xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="ds:Signature"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="DadesPracticarCanalPaper" type="DadesPracticarCanalPaperType"/>
+						</xs:choice>
+						<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Només aplica per a notificacions en canal "paper", per els quals es vol fer un canvi de canal. En cas de no aplicar, s'ignorarà l'element.</xs:documentation>
+						</xs:annotation>
 						</xs:element>
-						<xs:element name="DadesPracticarCanalPaper" type="DadesPracticarCanalPaperType"/>
-					</xs:choice>
-					<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0">
-					<xs:annotation>
-						<xs:documentation>Només aplica per a notificacions en canal "paper", per els quals es vol fer un canvi de canal. En cas de no aplicar, s'ignorarà l'element.</xs:documentation>
-					</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>
