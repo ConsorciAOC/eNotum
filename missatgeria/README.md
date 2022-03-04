@@ -78,7 +78,7 @@ La signatura del ciutadà ha de ser realitzada amb una eina de signatura que gen
 
 Un cop realitzada la signatura aquesta s'envia a **eNotum** amb l'operació [_Practicar notificació_](#petici%C3%B3---peticiopracticar) indicant que la modalitat de l'operació a realitzar es _SIGNAR_. Llavors, el sistema comprova la validesa de la signatura i, si aquesta és valida, l'estat de la notificació passa a ser _Acceptada_ o _Rebutjada_ en funció del que s'hagi especificat en l'element `<Decisio>` de l'operació de practicar.
 
-1. Sense signatura per part del ciutadà
+2. Sense signatura per part del ciutadà
 
 Utilitzant l’operació Practicar notificació indicant que la modalitat de l’operació a realitzar es SIGNAR. L’estat de la notificació passa a ser Acceptada o Rebutjada en funció del que s’hagi especificat en l’element <Decisio> de l’operació de practicar.
 
@@ -680,10 +680,12 @@ Adreça de correu electrònic del destinatari.
 Telèfon mòbil del destinatari. A nivell de missatgeria no existeix restricció al respecte del camp, però al servidor es comprova i normalitza el format del telèfon.
 * `/PersonaFisica/PersonesAvis`
 Dades de les persones que rebran l'avís de la notificació però que no podràn accedir a la mateixa.
+* `/PersonaFisica/DocumentIdentificatiu`
+Document d'identitat de la persona física destinataria de la notificació. El tipus `DocumentPersonaFisicaType` es descriu amb més detall [aquí](#documentpersonafisicatype).
 * `/PersonaFisica/DocumentIdentificatiu/NIF`
-NIF o NIE del destinatari de la notificació. A nivell de missatgeria es valida la següent expressió regular `[XYZ]?[0-9]{7,8}[A-Z]`. A nivell de servidor també es comprova el [codi de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_n%C3%BAmeros_de_DNI_o_NIE) del mateix.
+NIF o NIE del destinatari de la notificació.
 * `/PersonaFisica/DocumentIdentificatiu/PASSPORT`
-Si la notificació és per a un destinatari estranger en comptes del NIF o NIE es pot informar el passaport. L'única restricció d’aquest camp és que en cas de venir informat, no pot ser buit.
+Si la notificació és per a un destinatari estranger en comptes del NIF o NIE es pot informar el passaport.
 * `/PersonaFisica/Nom`
 Nom del destinatari.
 * `/PersonaFisica/PrimerCognom`
@@ -721,10 +723,12 @@ Aquests camp, té la mateixa definició que l'equivalent de `PersonaFisica`
 Aquests camp, té la mateixa definició que l'equivalent de `PersonaFisica`
 * `/PersonaJuridica/PersonesAvis`
 Aquests camp, té la mateixa definició que l'equivalent de `PersonaFisica`
+* `/PersonaJuridica/DocumentIdentificatiu`
+Document d'identitat de la persona jurídica destinataria de la notificació. El tipus `DocumentPersonaJuridicaType` es descriu amb més detall [aquí](#documentpersonajuridicatype).
 * `/PersonaJuridica/DocumentIdentificatiu/CIF`
-NIF de l'empresa destinataria de la notificació. A nivell de missatgeria es valida la següent expressió regular `[A-Z][0-9]{7}[A-J,0-9]`. A nivell de servidor també es comprova el [digit de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_otros_NIF).
+NIF de l'empresa destinataria de la notificació.
 * `/PersonaJuridica/DocumentIdentificatiu/VAT`
-VAT de l'empresa estrangera destinataria de la notificació. L'única validació que es realitza sobre aquest camp és a nivell de missatgeria comprovant que en cas de ser informat, el camp no sigui buit.
+VAT de l'empresa estrangera destinataria de la notificació.
 * `/PersonaJuridica/DocumentIdentificatiu/RaoSocial`
 Raó social de l'empresa.
 * `/PersonaJuridica/DocumentIdentificatiu/PersonaVinculada`
@@ -747,7 +751,7 @@ Persona vinculada amb l'empresa, que podrà accedir a la notificació.
 * `/PersonaVinculada/DocumentIdentificatiu/NIF`
 NIF o NIE de la persona vinculada amb l'empresa receptora de la notificació.
 * `/PersonaVinculada/DocumentIdentificatiu/PASSPORT`
-PASSAPORT de la persona vinculada amb l'empresa receptora de la notificació en cas d'empresa estrangera
+PASSAPORT de la persona vinculada amb l'empresa receptora de la notificació en cas d'empresa estrangera.
 * `/PersonaVinculada/Nom`
 Nom de la persona vinculada de l'empresa.
 * `/PersonaVinculada/PrimerCognom`
@@ -1016,9 +1020,9 @@ Camp opcional, en cas de voler practicar una notificació en concret, s'ha d'inf
 * `/PeticioParaulaPas/NumeroRegistre`
 Igual que en el cas de id notificació, però identificant la notificació mitjançant el seu número de registre.
 * `/PeticioParaulaPas/DocumentIdentificatiuPersonaFisica`
-Identificador de la persona física que vol fer l'operació. El tipus `DocumentPersonaFisicaType` es descriu amb més detall [aquí](#documentidentificatiupersonafisica).
+Identificador de la persona física que vol fer l'operació. El tipus `DocumentPersonaFisicaType` es descriu amb més detall [aquí](#documentpersonafisicatype).
 * `/PeticioParaulaPas/DocumentIdentificatiuPersonaJuridica`
-Identificador de la persona jurídica, que vol fer l'operació. El tipus `DocumentPersonaJuridicaType` es descriu amb més detall [aquí](#documentidentificatiupersonajuridica).
+Identificador de la persona jurídica, que vol fer l'operació. El tipus `DocumentPersonaJuridicaType` es descriu amb més detall [aquí](#documentpersonajuridicatype).
 * `/PeticioParaulaPas/DadesEnviament/BustiaCorreu`
 Adreça correu electrònic vinculada al destinatari.
 * `/PeticioParaulaPas/DadesEnviament/Telefon`
@@ -1970,11 +1974,11 @@ Data en que s'ha registrat la notificació.
 ```
 
 * `/DadesSignador/Fisic/DocumentIdentificatiu`
-Document identificatiu de la persona física que ha practicat la notificació. El tipus `DocumentPersonaFisicaType` es descriu amb més detall [aquí](#documentidentificatiupersonafisica).
+Document identificatiu de la persona física que ha practicat la notificació. El tipus `DocumentPersonaFisicaType` es descriu amb més detall [aquí](#documentpersonafisicatype).
 * `/DadesSignador/Fisic/NomComplert`
 Nom complert de la persona física que ha practicat la notificació.
 * `/DadesSignador/Juridic/DocumentIdentificatiu`
-Document identificatiu de la persona jurídica que ha practicat la notificació. El tipus `DocumentPersonaJuridicaType` es descriu amb més detall [aquí](#documentidentificatiupersonajuridica)
+Document identificatiu de la persona jurídica que ha practicat la notificació. El tipus `DocumentPersonaJuridicaType` es descriu amb més detall [aquí](#documentpersonajuridicatype).
 * `/DadesSignador/Juridic/RaoSocial`
 Raó social de la persona jurídica que ha practicat la notificació.
 
@@ -2282,9 +2286,9 @@ El tipus _DocumentPersonaFisicaType_ identifica una persona física mitjançant 
 </xs:simpleType>
 ```
 * `NIF`
-NIF o NIE de la persona física. Es validarà que el format sigui correcte.
+NIF o NIE de la persona física. A nivell de missatgeria es valida la següent expressió regular `[XYZ]?[0-9]{7,8}[A-Z]`. A nivell de servidor també es comprova el [codi de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_n%C3%BAmeros_de_DNI_o_NIE) del mateix.
 * `PASSAPORT`
-Passaport de la persona física. Es validarà que el format sigui correcte (màxim 9 caràcters). No confondre amb l'identificador nacional que apareix en els passaports i que pot ser de diferent longitud.
+Passaport de la persona física. A nivell de missatgeria es valida la següent expressió regular `[A-Z0-9]{1,9}`. No confondre amb l'identificador nacional que apareix en els passaports i que pot ser de diferent longitud.
 * `PASSAPORT/Pais`
 País d'emissió del passaport en format [ISO 3166-1 alfa-2](https://es.wikipedia.org/wiki/ISO_3166-1_alfa-2). Inicialment és **opcional** però un futur serà **obligatori**.
 
@@ -2316,9 +2320,9 @@ El tipus _DocumentPersonaJuridicaType_ identificar una persona jurídica mitjan�
 ```
 
 * `CIF`
-NIF d'empresa de la persona jurídica
+NIF d'empresa de la persona jurídica. A nivell de missatgeria es valida la següent expressió regular `[A-Z][0-9]{7}[A-J,0-9]`. A nivell de servidor també es comprova el [digit de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_otros_NIF).
 * `VAT`
-VAT number de l'empresa extrangera de la persona jurídica. Només s'accepten lletres i números. De manera que s'han d'informar sense espais, guions, punts, etc. En cas d'informar l'atribut `Pais` es validarà el contigut del camp VAT segons el format del país corresponent.
+VAT number de l'empresa extrangera de la persona jurídica. A nivell de missatgeria es valida la següent expressió regular `[A-Z0-9]{1,50]`. De manera que s'han d'informar sense espais, guions, punts, etc. En cas d'informar l'atribut `Pais` es validarà el format del contingut del camp en funció del país indicat.
 * `VAT/Pais`
 País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia.org/wiki/ISO_3166-1_alfa-2). Inicialment és **opcional** però un futur serà **obligatori**.
 
