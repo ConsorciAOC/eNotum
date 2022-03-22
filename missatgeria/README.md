@@ -2360,7 +2360,7 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |705|La raó social del destinatari és obligatori|
 |706|Les persones jurídiques no poden tenir el camp obligat a false|
 |713|És obligatori omplir un dels camps CIF o NIF|
-|716|La data de registre no pot ser anterior a 30 dies ni posterior al moment actual|
+|716|La data de registre no pot ser anterior a 60 dies ni posterior al moment actual|
 |717|El número de registre de la notificació és obligatori|
 |718|La referència de la notificació és obligatòria|
 |719|El destinatari de la notificació no es correspon amb el perfil especificat|
