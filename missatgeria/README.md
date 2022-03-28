@@ -587,7 +587,7 @@ Indica el nivell d'autenticació requerit al ciutadà per tal de poder accedir a
 * `/Notificacio/NivellCertificat`
 En cas d'accés requerit amb certificat, és pot ajustar el nivell d'aquest per l'accés a la notificació.
 * `/Notificacio/DiesExpiracio`
-Dies a partir dels quals la notificació exiprarà, a contar a partir de la data de dipòsit. El màxim valor establert per a aquest camp és de _500_ dies.	
+Dies a partir dels quals la notificació exiprarà, a contar a partir de la data de dipòsit. El màxim valor establert per a aquest camp és de _180_ dies.	
 * `/Notificacio/Destinataris`
 Dades dels destinataris de la notificació.
 * `/Notificacio/Etiquetes`
