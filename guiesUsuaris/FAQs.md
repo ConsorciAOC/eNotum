@@ -1,6 +1,6 @@
-<h1> Preguntes freqüents </h1>
+# Preguntes freqüents
 
-<h3> Quina és la mida màxima dels documents de resolució/annexos per adjuntar a una tramesa?</h3>
+## Quina és la mida màxima dels documents de resolució/annexos per adjuntar a una tramesa?
 
 Els documents de resolució/annexos que és poden adjuntar a una tramesa de diverses formes:
 
@@ -15,7 +15,7 @@ Per a la resta de casos la mida màxima permesa per un document és de **6MB**.
 
 **NOTA ADDICIONAL**: Degut a una restricció futura de la _PCI_, proximament en cas d'ajuntar el/s document/s en _base64_ dins del missatge, el total del missatge (document/s i resta de contingut a excepció unicament dels tags) no podrà superar els **2MB**. Es recomana per tant utilitzar una dels altres mecanismes en cas de voler adjuntar document/s pesats.
 
-<h3> Es pot notificar a telefons estrangers? </h3>
+# Es pot notificar a telefons estrangers?
 
 **eNotum** accepta números de telèfons estrangers. Els servei web concretament fa els següents passos amb aquest ordre per tal de validar els telèfons:
 * Normalitza el telèfon:
