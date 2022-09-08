@@ -352,7 +352,7 @@ Aquest camp conté l'adreça de correu electrònic que s'utilitzarà com a remit
 * `/Email/Assumpte`
 Assumpte que s'utilitzarà per a l'avís del correu electrònic.
 * `/Email/Missatge`
-Cos del missatge del avis per correu electrònic. El missatge ha de ser en format de text pla. Aquest missatge s'embolcallarà dins de les plantilles definides al sistema, concretament a les plantilles s'espeficarà l'element `@@EMAIL_BODY@@` ([per més informació podeu veure documentació plantilles](/plantilles)) que serà substituit per aquest missatge en cas d'existir.
+Cos del missatge del avis per correu electrònic. El missatge ha de ser en format de text pla. Aquest missatge s'embolcallarà dins de les plantilles definides al sistema, concretament a les plantilles s'espeficarà l'element `@@EMAIL_BODY@@` ([per més informació podeu veure documentació plantilles](/plantilles/README.md)) que serà substituit per aquest missatge en cas d'existir.
 
 #### SMS
 ```xml
