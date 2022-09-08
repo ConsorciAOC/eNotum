@@ -8,7 +8,7 @@ Aquesta modalitat és independent del producte, i no implica la integració prev
 
 Aquest servei s'integra dins de l'arquitectura de la Plataforma de Col·laboració Interadministrativa (en endavant _PCI_) a mode d'un nou servei accessible a través de la MTI. 
 
-Per tant els integradors que vulguin accedir al connector de **carpeta ciutadana d'eNotum** ho hauran de fer a través de la missatgeria de la _PCI_ utilitzant l'element `<DatosEspecificos>` d'aquesta, per a més informació podeu consultar [el document d'integració de la _PCI_ aqui](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/idservei/enotum/)
+Per tant els integradors que vulguin accedir al connector de **carpeta ciutadana d'eNotum** ho hauran de fer a través de la missatgeria de la _PCI_ utilitzant l'element `<DatosEspecificos>` d'aquesta, per a més informació podeu consultar [el document d'integració de la _PCI_ aqui](https://suport-enotum.aoc.cat/hc/ca/articles/4412319190929-Documentaci%25C3%25B3-gen%25C3%25A8rica-per-a-integrar-se-a-la-PCI)
 
 # 2. Missatgeria
 
@@ -21,7 +21,7 @@ Específicament per a fer ús del servei dins de la missatgeria de la _PCI_ és 
 * `//Peticion/Solicitudes/SolicitudTransmision/DatosGenericos/Transmision/CodigoCertificado` el _string_ ENOTUM
 * `//Peticion/Solicitudes/SolicitudTransmision/DatosEspecíficos` Petició _XML_ específica el connector de **carpeta ciutadana d'eNotum**
 
-Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requisits definits [al document d'integració de la PCI aqui](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/idservei/enotum/)
+Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requisits definits [al document d'integració de la PCI aqui](https://suport-enotum.aoc.cat/hc/ca/articles/4412319190929-Documentaci%25C3%25B3-gen%25C3%25A8rica-per-a-integrar-se-a-la-PCI)
 
 # 3. Missatgeria específica connector carpeta ciutadana d'eNotum
 

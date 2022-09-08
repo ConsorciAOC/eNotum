@@ -6,7 +6,7 @@ Els documents de resolució/annexos que és poden adjuntar a una tramesa de dive
 
 * Directament com a _base64_ dins del missatge.
 * Indicant una ruta FTP (els ens que estan integrats mitjançant aquesta via).
-* Adjuntant el document al missatge través de la _PCI_ fent ús de [`MTOM`](https://en.wikipedia.org/wiki/Message_Transmission_Optimization_Mechanism). Per a més informació respecte a l'ús d'aquest mecanisme podeu consultar [la guia d'integració de la _PCI_](https://www.aoc.cat/knowledge-base/plataforma-de-col-laboracio-administrativa-2/)
+* Adjuntant el document al missatge través de la _PCI_ fent ús de [`MTOM`](https://en.wikipedia.org/wiki/Message_Transmission_Optimization_Mechanism). Per a més informació respecte a l'ús d'aquest mecanisme podeu consultar [la guia d'integració de la _PCI_](https://suport-enotum.aoc.cat/hc/ca/articles/4412319190929-Documentaci%25C3%25B3-gen%25C3%25A8rica-per-a-integrar-se-a-la-PCI)
 
 En una tramesa és obligatori adjuntar un document de tipus _Resolució_ i opcionalment és poden adjuntar fins a un màxim de 4 documents més de tipus _Annex_. Fent un total màxim de 5 documents.
 

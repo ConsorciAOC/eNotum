@@ -1,7 +1,7 @@
 # eNotum
 Aquest repositori preten anar recopilant poc a poc la nova documentació relacionada amb eNotum conforme aquesta és vagi *actualitzant*.
 
-Tota la documentació d'integració antiga així com altre tipus de documentació no tècnica (per exemple legal) relacionada amb eNotum la podeu seguir trobant a l'apartat corresponent de la plana de suport del [Consorci AOC](https://www.aoc.cat/portal-suport/e-notum/).
+Tota la documentació d'integració antiga així com altre tipus de documentació no tècnica (per exemple legal) relacionada amb eNotum la podeu seguir trobant a l'apartat corresponent de la plana de suport del [Consorci AOC](https://suport-enotum.aoc.cat/hc/ca).
 
 # Documentació integradors - eNotum Backend
 
