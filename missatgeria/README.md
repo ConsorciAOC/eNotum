@@ -106,9 +106,9 @@ Quan una notificació està en aquest estat l'administrador del sistema pot rell
 
 Un cop en aquest estat la notificació no pot ser canviada d'estat a un estat anterior.
 
-La notificació arriba a aquest estat quan l'ens que ha generat la notificació ens demana que aquesta s'anul·li. Hi ha diversos motius que poden motivar l'anul·lació d'una notificació: que aquesta contingui dades errònies, que l'expedient que la motiva ha estat declarat nul, etc.
+La notificació arriba a aquest estat quan l'ens que ha generat la notificació demana que aquesta s'anul·li. Hi ha diversos motius que poden motivar l'anul·lació d'una notificació: que aquesta contingui dades errònies, que l'expedient que la motiva ha estat declarat nul, etc.
 
-L'anul·lació d'una notificació s'ha de demanar a través del formulari de Suport Tècnic i s'ha de proporcionar l'identificador de la notificació a anul·lar.
+L'anul·lació d'una notificació s'ha de realitzar a través de l'aplicació eNOTUM del portal EACAT. Al portal de suport podeu trobar la guia sobre [com anul·lar una notificació des de les pantalles d'EACAT](https://suport-enotum.aoc.cat/hc/ca/articles/4412324029713-Anul-laci%C3%B3-de-notificacions-electr%C3%B2niques).
 
 ## 1.3. Cicle de vida de les comunicacions
 
