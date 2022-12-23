@@ -564,9 +564,9 @@ Indica el tipus de documents adjuntat. Els possibles valors són:
 ```
 
 * `/Notificacio/Titol`
-Títol de la notificació, màxim 100 caràcters
+Títol de la notificació. Màxim 100 caràcters i mínim 3 caràcters.
 * `/Notificacio/Referencia`
-Cadena d'identificació de la notificació. Tot i que no cal que aquesta sigui única respecte a les demés notificacions existents al sistema, es recomanable utilitzar seqüències úniques de caràcters per facilitar la localització posterior a les cerques.
+Cadena d'identificació de la notificació. Tot i que no cal que aquesta sigui única respecte a les demés notificacions existents al sistema, es recomanable utilitzar seqüències úniques de caràcters per facilitar la localització posterior a les cerques. Màxim 250 caràcters i mínim 3 caràcters.
 * `/Notificacio/DadesRegistre/NumeroRegistre`
 Número de registre (opcional) pel cas de notificacions que vinguin pre-registrades. Si el paràmetre ve informat, eNOTUM no realitzarà el registre de la notificació corresponent i la dipositarà usant com a dades d'assentament les proporcionades a la petició.
 * `/Notificacio/DadesRegistre/DataRegistre`
@@ -606,11 +606,11 @@ Canal d'enviament per al que s'envia originalment la notificació. Els possibles
 	* *DIGITAL* : La notificació s'envia únicament per via telemàtica.
 	* *PAPER* : La notificació s'envia per via telemàtica i pot ser enviada en format paper en cas de que no sigui accedida per via telemàtica.
 * `/Notificacio/Expedient`
-Opcionalment es pot indicar l'expedient amb el que està relacionada la notificació. 50 caràcters.
+Opcionalment es pot indicar l'expedient al que està relacionada la notificació. S'aplicarà un límit màxim en la mida del camp en funció de l'emissor de la notificació: 50 caràcters màxim per la majoria d'ens i 34 caràcters per als ens que registrin a S@RCAT (S@RCAT no permet números d'expedient superiors a 34 caràcters).
 * `/Notificacio/Tramit`
-Opcionalment es pot indicar el tràmit amb el que està relacionada la notificació. 50 caràcters.
+Opcionalment es pot indicar el tràmit amb el que està relacionada la notificació. 50 caràcters màxim i 3 mínim.
 * `/Notificacio/NumeroCas`
-Opcionalment es pot indicar el numero de cas amb el que està relacionada la notificació. 50 caràcters.
+Opcionalment es pot indicar el numero de cas amb el que està relacionada la notificació. 50 caràcters màxim.
 
 ### Destinataris
 
@@ -2334,7 +2334,6 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |102|Paràmetre deprecat|
 |103|Error executant l'operació|
 |104|L'organisme autoritzat per la PCI no té permisos sobre l'organisme especificat en la petició d'eNotum|
-|500|Error executant l'operació|
 |501|Operació desconeguda/no implementada|
 |502|Aquest rol no té privilegis suficients per realitzar aquesta operació|
 |503|El tipus d'accés no està autoritzat per aquest tipus de petició|
@@ -2365,11 +2364,15 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |718|La referència de la notificació és obligatòria|
 |719|El destinatari de la notificació no es correspon amb el perfil especificat|
 |720|No es permet enviar una notificació electrònica a l'ens especificat a través de la plataforma eNOTUM degut a la naturalesa del mateix. Cal que la redirigiu a través de la plataforma corresponent en funció de la seva naturalesa|
+|721|La referència de la notificació ha de tenir entre 3 i 250 caràcters|
 |722|Les notificacions per a persona jurídica no poden ser amb Canal PAPER|
 |723|Les comunicacions no poden ser amb Canal PAPER|
 |725|El nom del destinatari no pot excedir els 50 caràcters|
 |726|El primer cognom del destinatari no pot excedir els 50 caràcters|
 |727|El segon cognom del destinatari no pot excedir els 50 caràcters|
+|728|El codi d'expedient de la notificació ha de tenir entre 3 i 50 caràcters|
+|729|El codi d'expedient de la notificació ha de tenir entre 3 i 34 caràcters|
+|730|El tramit de la notificació ha de tenir entre 3 i 50 caràcters|
 |911|El tipus de document enviat no està permès|
 |912|El document especificat no existeix|
 |913|El paràmetre codi de pujada del document es obligatori|
@@ -2383,6 +2386,7 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |925|El nom del document no pot excedir els 100 caràcters|
 |926|El document PDF d'evidència no es pot generar per a l'idioma especificat|
 |1003|El cos de la notificació en cas de estar informat no pot ser buït|
+|1005|El paràmetre títol ha de tenir entre 3 i 100 caràcters|
 |1006|El paràmetre títol es obligatori|
 |1007|S'ha excedit el màxim de dies d'expiració|
 |1008|S'ha excedit el màxim de recordatoris|
@@ -2391,7 +2395,6 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |1012|El paràmetre SenseRegistre només s'admet per a comunicacions|
 |1015|La notificació indicada no és visible des de l'entitat consultadora|
 |1016|El paràmetre de tipus de perfil de consulta del resum de notificacions és obligatori si s'especifiquen el NIF i el CIF|
-|1018|La informació de canvi de canal quan s'accepta amb certificat o valid s'ha de proporcionar en l'operació OBTENIR_DADES|
 |1018|El paràmetre bústia de correu o telèfon mòbil és obligatori|
 |1019|El paràmetre identificador de paraula de pas és obligatori|
 |1020|El paràmetre paraula de pas és obligatori|
@@ -2415,13 +2418,14 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |1040|El ciutadà no té notificacions accessibles amb paraula de pas|
 |1041|El canvi de mitja només és aplicable a les notificacions generades en paper|
 |1042|Si es vol realitzar un canvi de mitja a via digital és obligatori informar un email i/o telefon|
-|1044|No es pot registrar un canvi de mitjà per una notificació en estat final|
+|1043|Les persones jurídiques no poden realitzar un canvi de mitja|
+|1044|El destinatari està obligat a rebre notificacions en canal PAPER|
 |1045|La signatura realitzada amb valid no és de segon factor|
 |1046|La signatura no és valida|
 |1047|L'usuari no està autoritzat per a practicar la notificació|
 |1048|És obligatori informar l'element IdAutenticacio|
 |1049|La notificació no és accessible amb nivell d'accés substancial|
-|1050|L'element IdAutenticacio informat no és vàlid|
+|1050|L'L'Access Token de VALId informat no és vàlid|
 |1051|S'ha produit un error recuperant informació de VALId|
 |1060|El certificat del ciutadà no és d'un tipus vàlid|
 |1100|L'etiqueta indicada no existeix|
