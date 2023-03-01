@@ -2286,7 +2286,7 @@ El tipus _DocumentPersonaFisicaType_ identifica una persona física mitjançant 
 </xs:simpleType>
 ```
 * `NIF`
-NIF o NIE de la persona física. A nivell de missatgeria es valida la següent expressió regular `[XYZ]?[0-9]{7,8}[A-Z]`. A nivell de servidor també es comprova el [codi de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_n%C3%BAmeros_de_DNI_o_NIE) del mateix.
+NIF o NIE de la persona física. A nivell de missatgeria es valida la següent expressió regular `[XYZKLM]?[0-9]{7,8}[A-Z]`. A nivell de servidor també es comprova el [codi de control](https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal#C%C3%B3digo_de_control_para_n%C3%BAmeros_de_DNI_o_NIE) del mateix.
 * `PASSAPORT`
 Passaport de la persona física. A nivell de missatgeria es valida la següent expressió regular `[A-Z0-9]{1,9}`. No confondre amb l'identificador nacional que apareix en els passaports i que pot ser de diferent longitud.
 * `PASSAPORT/Pais`
