@@ -346,9 +346,7 @@ Identificador de plantilles de correu i SMS d'avis a utilitzar per a aquesta not
 ```
 Aquest element permet canviar la configuració per defecte que rebran els destinataris de la notificació via correu electrònic. Concretament permet indicar els següents camps:
 
-* `/Email/Emissor`
-Aquest camp conté l'adreça de correu electrònic que s'utilitzarà com a remitent pels avisos als destinataris de les notificacions.
-**eNotum** concatenarà el prefix *NORESPONEU_* al valor indicat per indicar al destinatari que no s'espera cap tipus de resposta de la seva part.
+* `/Email/Emissor` _Deprecat_
 * `/Email/Assumpte`
 Assumpte que s'utilitzarà per a l'avís del correu electrònic.
 * `/Email/Missatge`
