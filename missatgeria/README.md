@@ -644,7 +644,7 @@ Opcionalment permet indicar l'idioma específic de l'usuari entre del següents 
 	* *oc* : Indica que l'idioma de la notificació és aranés.
 	* *en* : Indica que l'idioma de la notificació és anglés.
 * `/Destinatari/Obligat`
-Camp opcional, que permet indicar en cas de notificacions en `<Canal>Paper</Canal>`, si el destinatari en cas de ser persona física, està obligat a relacionar-se amb l'administració per via electrònica.
+Camp opcional, que permet indicar si el destinatari està obligat a relacionar-se amb l'administració per via electrònica. Per defecte aquest camp pren el valor 'true' en el cas de persones jurídiques i 'false' en el cas de persones físiques.
 
 ### PersonaFisica
 
@@ -2349,13 +2349,12 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |627|El paràmetre CodiDepartament és obligatori|
 |629|L'identificador de la notificació de l'emissor és obligatori|
 |630|El format del número de telèfon especificat no és correcte|
-|633|El tipus d'accés especificat en la notificació i el vinculat a l'àmbit, són contradictoris|
 |701|És obligatori com a mínim un mètode de contacte per al destinatari: e-mail o telèfon.|
 |702|El nom del destinatari és obligatori|
 |703|El primer cognom del destinatari és obligatori|
-|704|El camp de destinatari obligat només està permès amb canal PAPER.|
 |705|La raó social del destinatari és obligatori|
 |706|Les persones jurídiques no poden tenir el camp obligat a false|
+|707|És obligatori com a mínim un mètode de contacte per a la persona d'avís: e-mail o telèfon.|
 |713|És obligatori omplir un dels camps CIF o NIF|
 |716|La data de registre no pot ser anterior a 60 dies ni posterior al moment actual|
 |717|El número de registre de la notificació és obligatori|
@@ -2363,7 +2362,6 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |719|El destinatari de la notificació no es correspon amb el perfil especificat|
 |720|No es permet enviar una notificació electrònica a l'ens especificat a través de la plataforma eNOTUM degut a la naturalesa del mateix. Cal que la redirigiu a través de la plataforma corresponent en funció de la seva naturalesa|
 |721|La referència de la notificació ha de tenir entre 3 i 250 caràcters|
-|722|Les notificacions per a persona jurídica no poden ser amb Canal PAPER|
 |723|Les comunicacions no poden ser amb Canal PAPER|
 |725|El nom del destinatari no pot excedir els 50 caràcters|
 |726|El primer cognom del destinatari no pot excedir els 50 caràcters|
