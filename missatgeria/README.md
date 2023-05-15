@@ -623,7 +623,7 @@ Opcionalment es pot indicar el numero de cas amb el que està relacionada la not
 						<xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
 					</xs:choice>
 					<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
-			<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
+					<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
 				</xs:sequence>
 			</xs:complexType>
 		</xs:element>
@@ -670,7 +670,7 @@ Camp opcional, que permet indicar si el destinatari està obligat a relacionar-s
 	</xs:complexContent>
 </xs:complexType>
 ```
-Per a l'element `PersonaFisica` si el `/Notificacio/Canal` és DIGITAL, serà obligatori informar una bústia de correu o un telèfon, si per el contrari el `/Notificacio/Canal` és PAPER no es realitzarà aquesta comprovació i aquests camps seran opcionals.
+Per a l'element `PersonaFisica` serà obligatori informar una bústia de correu o un telèfon. Excepte en el cas en que la persona física és subjecte obligat (el `/Destinatari/Obligat` tindrá el valor *true*) o el `/Notificacio/Canal` és PAPER, llavors no es realitzarà aquesta comprovació i aquests camps seran opcionals.
 
 * `/PersonaFisica/BustiesCorreu/BustiaCorreu`
 Adreça de correu electrònic del destinatari.
@@ -2041,7 +2041,7 @@ Identificador de l'idioma en que el destinatari ha rebut els avisos.
 						<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
 						<xs:element name="HaSignat" type="xs:boolean"/>
 						<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
-			<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
+						<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
@@ -2355,6 +2355,7 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |705|La raó social del destinatari és obligatori|
 |706|Les persones jurídiques no poden tenir el camp obligat a false|
 |707|És obligatori com a mínim un mètode de contacte per a la persona d'avís: e-mail o telèfon.|
+|708|Només pot haver-hi un destinatari titular per notificació|
 |713|És obligatori omplir un dels camps CIF o NIF|
 |716|La data de registre no pot ser anterior a 60 dies ni posterior al moment actual|
 |717|El número de registre de la notificació és obligatori|
@@ -2449,6 +2450,7 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |3035|La notificació no ha estat practicada|
 |3036|En peticions de resum on no s'informa el codi d'organisme i departament el backoffice s'ha d'informar correctament|
 |3037|La notificació ha estat rebutjada automaticament pel sistema amb anterioritat|
+|3038|La notificació ha estat anul·lada amb anterioritat|
 |3101|Element DadesConsulta és obligatori per aquesta operació|
 |3102|Element ResumNotificacions és obligatori per aquesta operació|
 |3103|El paràmetre de cerca Estat no té un valor vàlid|
