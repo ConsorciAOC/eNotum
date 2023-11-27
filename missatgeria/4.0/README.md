@@ -124,7 +124,7 @@ A continuació es detallaran els elements comuns a totes les modalitats de consu
 
 Totes les peticions de les modalitats de consum _WS_ que ofereix **eNotum** extenen el tipus _PeticioType_.
 
-[Aquí podeu veure la definició completa del esquema _Peticio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/Peticio.xsd)
+[Aquí podeu veure la definició completa del esquema _Peticio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/Peticio.xsd)
 
 ```xml
 <xs:complexType name="PeticioType" abstract="true">
@@ -227,7 +227,7 @@ Persona física o jurídica a la que representa l'usuari. Es validarà la vincul
 
 Totes les respostes a les modalitats de consum _WS_ que ofereix **eNotum** estenen l'esquema de resposta _RespostaType_.
 
-[Aquí podeu veure la definició completa del esquema _Resposta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/Resposta.xsd)
+[Aquí podeu veure la definició completa del esquema _Resposta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/Resposta.xsd)
 
 ```xml
 <xs:include schemaLocation="Errors.xsd"/>
@@ -277,7 +277,7 @@ Aquesta operació permet la creació de notificacions dins del sistema.
 
 ### Petició
 
-[Aquí podeu veure la definició completa del esquema _PeticioProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/PeticioProcessarTramesa.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/PeticioProcessarTramesa.xsd)
 
 La definició d'aquesta petició estén la _peticioType_ afegint l'element `<Tramesa>` que es descriu a continuació.
 
@@ -387,7 +387,7 @@ Camp opcional, que permet indicar si el destinatari està obligat a relacionar-s
 
 ### Resposta
 
-[Aquí podeu veure la definició completa del esquema _RespostaProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaProcessarTramesa.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaProcessarTramesa.xsd)
 
 Aquest esquema és la resposta a la creació de les notificacions que ens retorna els identificadors per a les notificacions creades, estén el tipus _RespostaType_ i que permet triar entre retornar una llista d'errors produïts durant l'execució de la petició o el següent element amb la resposta de l'operació:
 
@@ -411,7 +411,7 @@ Aquesta modalitat de consum permet obtenir un resum de les notificacions pendent
 
 ### Peticio
 
-[Aquí podeu veure la definició completa del esquema _PeticioResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/PeticioResum.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/PeticioResum.xsd)
 
 La definició d'aquesta petició estén la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -437,7 +437,7 @@ Periode de temps en que es vol extreure el recompte de notificacions. Si no s'in
 
 ### Resposta
 
-[Aquí podeu veure la definició completa del esquema _RespostaResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaResum.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaResum.xsd)
 
 ```xml
 <xs:sequence>
@@ -489,7 +489,7 @@ Aquesta petició permet recuperar les evidencies de diposit i pràctica en forma
 
 ### Petició
 
-[Aquí podeu veure la definició completa del esquema _PeticioEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/PeticioEvidencia.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/PeticioEvidencia.xsd)
 
 La definició d'aquesta petició estén la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -512,7 +512,7 @@ Idioma en el que es retornarà el document d’evidències, només aplica per a 
 
 ### Resposta
 
-[Aquí podeu veure la definició completa del esquema _RespostaEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaEvidencia.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaEvidencia.xsd)
 
 ```xml
 <xs:sequence>
@@ -570,7 +570,7 @@ Aquesta petició permet practicar una notificació per part del destinatari de l
 
 ### Petició
 
-[Aquí podeu veure la definició completa del esquema _PeticioPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/PeticioPracticar.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/PeticioPracticar.xsd)
 
  La definició d'aquesta petició estén la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -633,7 +633,7 @@ Indica com vol rebre les futures notificacions:
 
 ### Resposta
 
-[Aquí podeu veure la definició completa del esquema _RespostaPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaPracticar.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaPracticar.xsd)
 
 Resposta a les peticions explícites de l'usuari vinculades amb la pràctica de les notificacions.
 
@@ -657,7 +657,7 @@ Aquesta petició permet recuperar el report amb el resum de dades d'una notifica
 
 ### Petició
 
-[Aquí podeu veure la definició completa del esquema _PeticioRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/PeticioRecuperarReport.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/PeticioRecuperarReport.xsd)
 
 La definició d'aquesta petició estén la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -683,7 +683,7 @@ Data del dia del qual es vol obtenir el report. El format de la data ha de ser: 
 
 ### Resposta
 
-[Aquí podeu veure la definició completa del esquema _RespostaRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaRecuperarReport.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaRecuperarReport.xsd)
 
 Retorna el report amb el resum de dades d'una notificació concreta, o el report de totes les notificacions que han canviat d'estat per un departament en una data concreta.
 
@@ -701,7 +701,7 @@ Aquesta petició permet consultar les dades d'una notificació concreta. Segons 
 
 ### Petició
 
-[Aquí podeu veure la definició completa del esquema _PeticioConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/PeticioConsulta.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/PeticioConsulta.xsd)
 
 La definició d'aquesta petició estén la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -728,7 +728,7 @@ Indica si es vol que s'informi el bloc DadesSignador de la resposta. Si aquest c
 
 ### Resposta
 
-[Aquí podeu veure la definició completa del esquema _RespostaConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaConsulta.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaConsulta.xsd)
 
 Aquesta modalitat retorna una resposta detallada de totes les dades vinculades amb una notificació concreta.
 
@@ -840,7 +840,7 @@ Aquesta petició permet realitzar cerques sobre les notificacions aplicant difer
 
 ### Petició
 
-[Aquí podeu veure la definició completa del esquema _PeticioCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/PeticioCerca.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/PeticioCerca.xsd)
 
 A grans trets La definició d'aquesta petició estén la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -1200,7 +1200,7 @@ Indica el sentit de l'ordenació dels camps retornats en cas que s'hagi indicat 
 
 ### Resposta
 
-[Aquí podeu veure la definició completa del esquema _RespostaCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaCerca.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaCerca.xsd)
 
 Retorna un seguit de notificacions que acompleixen els criteris de cerca fets en la petició.
 
@@ -1339,7 +1339,7 @@ Aquesta petició permet anul·lar d'una notificació concreta. Hi ha diversos mo
 
 ### Petició
 
-[Aquí podeu veure la definició completa del esquema _PeticioAnullacio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/PeticioAnullacio.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioAnullacio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/PeticioAnullacio.xsd)
 
 La definició d'aquesta petició estén la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -1356,7 +1356,7 @@ Motiu pel que s'anul·la la notificació.
 
 ### Resposta
 
-[Aquí podeu veure la definició completa del esquema _RespostaAnullacio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaAnullacio.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaAnullacio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaAnullacio.xsd)
 
 Resposta a les peticions explícites de l'usuari vinculades amb l'anul·lació de les notificacions.
 
@@ -1887,7 +1887,7 @@ Idioma de la etiqueta, els possibles valors són:
 
 ### Report
 
-[El detall del _Report_ explicitament es troba en el següent esquema](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/Report.xsd)
+[El detall del _Report_ explicitament es troba en el següent esquema](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/Report.xsd)
 
 ```xml
 <xs:element name="Report">
@@ -2048,7 +2048,7 @@ Es pot deshabilitar la generació d’aquests reports en cas de que l’integrad
 
 A través del portal [EACAT](https://eacat.aoc.cat/enotum/) es poden configurar les dades de connexió així com configurar diferents polítiques per la comunicació via Web Service. Si no s'informa cap política el missatge s'envia sense capçaleres de segureatat. Hi ha altres polítiques que inclouen la signatura del missatge segons l'estàndard _WebService Security 1.1_ o que permeten fer mínimes modificacions en l'encapsulat del missatge SOAP que s'envia.
 
-Aquí podeu veure la definició completa del WSDL [_RecepcioReports.wsdl_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/wsdl/RecepcioReports.wsdl) que ha de complir el servei publicat per l'integrador per tal de rebre els reports de canvi d'estat.
+Aquí podeu veure la definició completa del WSDL [_RecepcioReports.wsdl_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/wsdl/RecepcioReports.wsdl) que ha de complir el servei publicat per l'integrador per tal de rebre els reports de canvi d'estat.
 
 ## Report
 
@@ -2062,7 +2062,7 @@ L'element `<Report>` es descriu amb més detall [aquí](#report).
 
 La resposta esperada per eNOTUM pel servei d’enviament de reports és de tipus _RespostaReport_. En aquesta resposta l'integrador ha d'informar si s'ha produit un error en el seu sistema al processar el report que se li ha enviat. De manera que el servei d'enviament de reports sàpiga que ha de reintentar l'enviament. Es considera que s'ha de reintentar si el missatge informa l'element `<Error>` (sigui quin sigui el seu valor) o si la resposta del servei és un `<SoapFault>`.
 
-[Aquí podeu veure la definició completa del esquema _RespostaReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v4.0/xsds/RespostaReport.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/4.0/xsds/RespostaReport.xsd)
 
 ```xml
 <xs:element name="RespostaReport">
