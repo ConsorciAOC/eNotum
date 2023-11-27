@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Peticio.xsd"/>
+
+	<xs:element name="PeticioProcessarTramesa">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="Tramesa">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DadesAvisos" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="DiesAvisos" type="DiesAvisosType" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="DadesOfici" type="DadesOficiType"/>
+									<xs:element name="Documents" type="DocumentsType"/>
+									<xs:element name="Notificacio" type="NotificacioAmbDestinatarisType" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="NotificacioAmbDestinatarisType">
+		<xs:complexContent>
+			<xs:extension base="NotificacioType">
+				<xs:sequence>
+					<xs:element name="Destinataris" type="DestinatarisType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DestinatarisType">
+		<xs:sequence>
+			<xs:element name="Destinatari" maxOccurs="100">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="PersonaFisica" type="PersonaFisicaType"/>
+							<xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
+						</xs:choice>
+						<xs:element name="Titular" type="xs:boolean" minOccurs="0"/>
+						<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+						<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

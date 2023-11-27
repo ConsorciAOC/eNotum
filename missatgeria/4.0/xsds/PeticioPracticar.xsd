@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Peticio.xsd"/>
+
+	<xs:element name="PeticioPracticar">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="IdNotificacio" type="Number"/>
+						<xs:element name="Decisio" type="DecisioPracticarType"/>
+						<xs:element name="DadesPracticarCanalPaper" type="DadesPracticarCanalPaperType" minOccurs="0"/>
+						<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.aocat.net/NT/v4.0"
+	targetNamespace="http://www.aocat.net/NT/v4.0"
+	elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Commons.xsd"/>
+
+    <xs:element name="Report">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Emissor" type="EmissorType"/>
+				<xs:element name="DataInforme" type="xs:date"/>
+				<xs:element name="TipusInforme" type="TipusInformeType"/>
+                <xs:element name="DadesNotificacio" type="ReportNotificacioType" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+	<xs:complexType name="ReportNotificacioType">
+		<xs:annotation>
+			<xs:documentation xml:lang="ca">Esquema que representa un registre de l'informe</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DadesEstat">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Estat" type="EstatType"/>
+						<xs:element name="DataActualitzacio" type="xs:dateTime"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DadesNotificacio">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Referencia" type="String255Max"/>
+						<xs:element name="IdNotificacio" type="Number"/>
+						<xs:element name="TipusObjecte" type="TipusObjecteType"/>
+						<xs:element name="DiesExpiracio" type="Number1000Max" minOccurs="0"/>
+						<xs:element name="IdNotificacioEmissor" type="String255Max" minOccurs="0"/>
+						<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DadesRegistre">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="DataRegistre" type="xs:dateTime" nillable="true"/>
+						<xs:element name="NumeroRegistreSortida" type="String100Max" nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DadesSignador" type="DadesSignadorType"/>
+			<xs:element name="DadesCanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
+			<xs:element name="BackOffice" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="TipusInformeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Diari"/>
+			<xs:enumeration value="OnLine"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Resposta.xsd"/>
+	<xs:include schemaLocation="Report.xsd"/>
+
+	<xs:element name="RespostaRecuperarReport">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Dades del report de notificacions</xs:documentation>
+			</xs:annotation>
+			<xs:complexContent>
+				<xs:extension base="RespostaType">
+					<xs:sequence minOccurs="0">
+						<xs:element ref="Report"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

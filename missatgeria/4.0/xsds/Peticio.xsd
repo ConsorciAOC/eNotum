@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Commons.xsd"/>
+
+	<xs:complexType name="PeticioType" abstract="true">
+		<xs:sequence>
+			<xs:element name="BackOffice" type="xs:string" minOccurs="0"/>
+			<xs:element name="Usuari" type="UsuariType"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UsuariType">
+		<xs:choice>
+			<xs:element name="Empleat">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CodiOrganisme" type="xs:string"/>
+						<xs:element name="CodiDepartament" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Ciutada">
+				<xs:complexType>
+					<xs:choice minOccurs="0">
+						<xs:element name="VALIdAccessToken" type="xs:string"/>
+						<xs:sequence>
+							<xs:element name="IdParaulaPas" type="xs:string"/>
+							<xs:element name="ParaulaPas" type="xs:string"/>
+						</xs:sequence>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Representant">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="VALIdAccessToken" type="xs:string"/>
+						<xs:element name="Interessat">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="PersonaFisica" type="DocumentPersonaFisicaType"/>
+									<xs:element name="PersonaJuridica" type="DocumentPersonaJuridicaType"/>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FuncionariHabilitat">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="VALIdAccessToken" type="xs:string"/>
+						<xs:element name="Interessat">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="PersonaFisica" type="DocumentPersonaFisicaType"/>
+									<xs:element name="PersonaJuridica" type="DocumentPersonaJuridicaType"/>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+
+</xs:schema>

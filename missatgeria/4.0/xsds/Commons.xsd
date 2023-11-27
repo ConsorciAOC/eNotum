@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<!-- Tipus de dades basics -->
+
+	<xs:simpleType name="EmptyString">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NoEmptyString">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String50Max">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String100Max">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String255Max">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String500Max">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String4000Max">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4000"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Number">
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Number50Max">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Number180Max">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="180"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Number1000Max">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="uuid">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Constants -->
+
+	<xs:simpleType name="EstatType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PENDENT"/>
+			<xs:enumeration value="REGISTRADA"/>
+			<xs:enumeration value="DIPOSITADA"/>
+			<xs:enumeration value="ACCEPTADA"/>
+			<xs:enumeration value="REBUTJADA"/>
+			<xs:enumeration value="EXPIRADA"/>
+			<xs:enumeration value="ERROR"/>
+			<xs:enumeration value="ANUL·LADA"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TipusAccesType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="BAIX"/>
+			<xs:enumeration value="SUBSTANCIAL"/>
+			<xs:enumeration value="ALT"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TipusObjecteType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NOTIFICACIO"/>
+			<xs:enumeration value="COMUNICACIO"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="Idioma">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ca"/>
+			<xs:enumeration value="es"/>
+			<xs:enumeration value="oc"/>
+			<xs:enumeration value="en"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CanalType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DIGITAL"/>
+			<xs:enumeration value="PAPER"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DecisioPracticarType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACCEPTAR"/>
+			<xs:enumeration value="REBUTJAR"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PerfilType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PERSONA_FISICA"/>
+			<xs:enumeration value="PERSONA_JURIDICA"/>
+			<xs:enumeration value="PERSONA_JURIDICA_VINCULADA"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TipusEvidenciaType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="XML"/>
+			<xs:enumeration value="PDF"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AlgoritmeHashType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SHA-1"/>
+			<xs:enumeration value="SHA-256"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Tipus de dades -->
+
+	<xs:complexType name="NotificacioType">
+		<xs:sequence>
+			<xs:element name="Titol" type="String100Max"/>
+			<xs:element name="Referencia" type="String255Max"/>
+			<xs:element name="IdNotificacioEmissor" type="String255Max" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element name="DadesRegistre">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NumeroRegistre" type="String100Max"/>
+							<xs:element name="DataRegistre" type="xs:dateTime"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SenseRegistre" type="EmptyString"/>
+			</xs:choice>
+			<xs:element name="TipusObjecte" type="TipusObjecteType"/>
+			<xs:element name="TipusAcces" type="TipusAccesType"/>
+			<xs:element name="DiesExpiracio" type="Number180Max" minOccurs="0"/>
+			<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+			<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+			<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+			<xs:element name="ProcedimentSIA" type="String50Max" minOccurs="0"/>
+			<xs:element name="ProcedimentQuadreClassificacio" type="String50Max" minOccurs="0"/>
+			<xs:element name="Expedient" type="String50Max" minOccurs="0"/>
+			<xs:element name="Tramit" type="String50Max" minOccurs="0"/>
+			<xs:element name="NumeroCas" type="String50Max" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DadesOficiType">
+		<xs:sequence>
+			<xs:element name="CosNotificacio" type="String4000Max"/>
+			<xs:element name="PeuRecurs" type="String4000Max" minOccurs="0"/>
+			<xs:element name="OficinaRegistre" type="xs:string" minOccurs="0"/>
+			<xs:element name="UnitatOrganitzativa" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DadesSignadorType">
+		<xs:choice>
+			<xs:element name="Interessat" type="InteressatType"/>
+			<xs:element name="Representant">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="PersonaFisica" type="PersonaFisicaSimpleType"/>
+							<xs:element name="PersonaJuridica" type="PersonaJuridicaSimpleType"/>
+						</xs:choice>
+						<xs:element name="Interessat" type="InteressatType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FuncionariHabilitat">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PersonaFisica" type="PersonaFisicaSimpleType"/>
+						<xs:element name="Interessat" type="InteressatType"/>
+						<xs:element name="Referencia" type="String255Max"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PracticadaPaper" type="DadesPracticarCanalPaperType"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="PeriodeData">
+		<xs:sequence>
+			<xs:element name="DataInferior" type="xs:date"/>
+			<xs:element name="DataSuperior" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PeriodeDataTemps">
+		<xs:sequence>
+			<xs:element name="DataInferior" type="xs:dateTime"/>
+			<xs:element name="DataSuperior" type="xs:dateTime"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EmissorType">
+		<xs:sequence>
+			<xs:element name="CodiOrganisme" type="xs:string"/>
+			<xs:element name="NomOrganisme" type="xs:string"/>
+			<xs:element name="CodiDepartament" type="xs:string"/>
+			<xs:element name="NomDepartament" type="xs:string"/>
+			<xs:element name="BackOffice" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EtiquetesType">
+		<xs:sequence>
+			<xs:element name="Etiqueta" type="EtiquetaType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EtiquetaType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="Idioma" type="Idioma"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="DiesAvisosType">
+		<xs:sequence>
+			<xs:element name="DiaAvis" type="Number1000Max" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="BustiesCorreuType">
+		<xs:sequence>
+			<xs:element name="BustiaCorreu" type="String255Max" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TelefonsType">
+		<xs:sequence>
+			<xs:element name="Telefon" type="String50Max" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PersonaType" abstract="true">
+		<xs:sequence>
+			<xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
+			<xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
+			<xs:element name="PersonesAvis" type="PersonesAvisType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PersonaFisicaType">
+		<xs:complexContent>
+			<xs:extension base="PersonaType">
+				<xs:sequence>
+					<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+					<xs:element name="Nom" type="String255Max"/>
+					<xs:element name="NomSentit" type="String255Max" minOccurs="0"/>
+					<xs:element name="PrimerCognom" type="String255Max"/>
+					<xs:element name="SegonCognom" type="String255Max" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="PersonaJuridicaType">
+		<xs:complexContent>
+			<xs:extension base="PersonaType">
+				<xs:sequence>
+					<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+					<xs:element name="RaoSocial" type="String255Max"/>
+					<xs:element name="PersonaVinculada" type="PersonaVinculadaType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="PersonaVinculadaType">
+		<xs:sequence>
+			<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+			<xs:element name="Nom" type="String255Max"/>
+			<xs:element name="NomSentit" type="String255Max" minOccurs="0"/>
+			<xs:element name="PrimerCognom" type="String255Max"/>
+			<xs:element name="SegonCognom" type="String255Max" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PersonesAvisType">
+		<xs:sequence>
+			<xs:element name="PersonaAvis" type="PersonaAvisType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PersonaAvisType">
+		<xs:sequence>
+			<xs:element name="NomComplet" type="String255Max"/>
+			<xs:element name="BustiaCorreu" type="String255Max" minOccurs="0"/>
+			<xs:element name="Telefon" type="String50Max" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="InteressatType">
+		<xs:choice>
+			<xs:element name="PersonaFisica" type="PersonaFisicaSimpleType"/>
+			<xs:element name="PersonaJuridica" type="PersonaJuridicaSimpleType"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="PersonaFisicaSimpleType">
+		<xs:sequence>
+			<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType"/>
+			<xs:element name="NomComplet" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PersonaJuridicaSimpleType">
+		<xs:sequence>
+			<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType"/>
+			<xs:element name="RaoSocial" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DocumentsType">
+		<xs:sequence>
+			<xs:element name="Resolucio" type="DocumentType"/>
+			<xs:element name="Annex" type="DocumentType" minOccurs="0" maxOccurs="4"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DocumentType">
+		<xs:sequence>
+			<xs:element name="Nom" type="String100Max"/>
+			<xs:element name="Hash" type="HashType" minOccurs="0"/>
+			<xs:element name="Mida" type="Number" minOccurs="0"/>
+			<xs:element name="UUID" type="uuid" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="Dades" type="xs:base64Binary"/>
+				<xs:element name="URLDescarrega" type="xs:anyURI"/>
+				<xs:element name="Ruta" type="xs:string"/>
+				<xs:element name="UUIDFitxer" type="uuid"/>
+				<xs:element name="UUIDDocument" type="uuid"/>
+				<xs:element name="IdFicheroPCI" type="xs:string"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="HashType">
+		<xs:simpleContent>
+			<xs:extension base="xs:base64Binary">
+				<xs:attribute name="Algoritme" type="AlgoritmeHashType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="DocumentPersonaFisicaType">
+		<xs:choice>
+			<xs:element name="NIF" type="NIF"/>
+			<xs:element name="Passaport" type="Passaport"/>
+			<xs:element name="IDC" type="IDC"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="DocumentPersonaJuridicaType">
+		<xs:choice>
+			<xs:element name="CIF" type="CIF"/>
+			<xs:element name="VAT" type="VAT"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:simpleType name="NIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[XYZKLM]?[0-9]{7,8}[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="Passaport">
+		<xs:simpleContent>
+			<xs:extension base="PassaportType">
+				<xs:attribute name="Pais" type="ISO3166Alpha2"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="PassaportType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{1,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="IDC">
+		<xs:simpleContent>
+			<xs:extension base="IDCType">
+				<xs:attribute name="Pais" type="ISO3166Alpha2" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="IDCType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{1,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CIF">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z][0-9]{7}[A-J,0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="VAT">
+		<xs:simpleContent>
+			<xs:extension base="VATType">
+				<xs:attribute name="Pais" type="ISO3166Alpha2"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="VATType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{1,50}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ISO3166Alpha2">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z][A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="DadesPracticarCanalPaperType">
+		<xs:sequence>
+			<xs:element name="Funcionari" type="NIF"/>
+			<xs:element name="DataPracticada" type="xs:dateTime"/>
+			<xs:element name="Referencia" type="String100Max"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DadesCanviCanalType">
+		<xs:sequence>
+			<xs:element name="Canal" type="CanalType"/>
+			<xs:element name="BustiaCorreu" type="String255Max" minOccurs="0"/>
+			<xs:element name="Telefon" type="String50Max" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

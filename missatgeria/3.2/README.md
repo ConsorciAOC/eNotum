@@ -2,10 +2,6 @@
 
 A continuació és descriu el funcionament i les diferents modalitats de consum de la versió de missatgeria _3.2_ d'**eNotum**.
 
-Les versions antigues de missatgeria segueixen sent compatibles i funcionen correctament, tot i que disposen de menys funcionalitats i són susceptibles de ser discontinuades en un futur, si comenceu ara la integració haurieu de fer-ho amb aquesta versió. 
-
-De totes formes podeu consultar les versions antigues de missatgeria i altres documents d'integració a través del [nostre portal de suport a la integració](https://suport-enotum.aoc.cat/hc/ca/sections/4412319169553-Integraci%C3%B3).
-
 ## 1.1. Integració PCI
 
 Tal i com es reflecteix a la següent figura, el Backend d'**eNotum** s'integra dins de l'arquitectura de la Plataforma de Col·laboració Interadministrativa (en endavant _PCI_) a mode d'un nou servei accessible a través de la MTI. 
@@ -169,13 +165,13 @@ Totes les modalitats de consum _WS_ que ofereix **eNotum** extenen el següent e
 Per tant com és pot veure totes les peticions, a banda dels elements específics de cada modalitat de consum, tenen els següents elements:
 
 * `//PeticioType/Usuari` Dades de l'usuari, es descriuen a continuació.
-* `//PeticioType/Emissor` Dades de l'emissor. es descriuen a continuació.
+* `//PeticioType/Emissor` Dades de l'emissor, es descriuen a continuació.
 
-[Aquí podeu veure la definició completa del esquema _Peticio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Peticio.xsd)
+[Aquí podeu veure la definició completa del esquema _Peticio.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/Peticio.xsd)
 
 ### Usuari
 
-La definició de l'element _UsuariType_, [la podeu trobar a _Usuari.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Usuari.xsd)
+La definició de l'element _UsuariType_, [la podeu trobar a _Usuari.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/Usuari.xsd)
 
 El tipus usuari està format pels següents elements:
 
@@ -256,7 +252,7 @@ La resta de camps han estat *deprecats* i no es té en compte el valor informat.
 
 ## Emissor
 
-La definició de l'element _EmissorType_, [la podeu trobar a _Emissor.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Emissor.xsd)
+La definició de l'element _EmissorType_, [la podeu trobar a _Emissor.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/Emissor.xsd)
 
 Els elements que conté el tipus Emissor són els següents:
 
@@ -284,7 +280,7 @@ A continuació és detallaran els elements específics per a les diferents petic
 
 ## Petició - PeticioProcessarTramesa
 
-[Aquí podeu veure la definició completa del esquema _ProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioProcessarTramesa.xsd)
+[Aquí podeu veure la definició completa del esquema _ProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/PeticioProcessarTramesa.xsd)
 
 Aquesta petició permet la creació de notificacions dins del sistema. La definició d'aquesta petició exten la _peticioType_ afegint l'element `<Tramesa>` que es descriu a continuació.
 
@@ -812,7 +808,7 @@ Idioma de la etiqueta, els possibles valors són:
 
 ## Petició - PeticioResum
 
-[Aquí podeu veure la definició completa del esquema _PeticioResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioResum.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/PeticioResum.xsd)
 
 Aquesta petició permet recuperar el resum de totes les notificacions de l'usuari té per a ens diferents a l'actual. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -840,7 +836,7 @@ Indica si s'han de mostrar o no totes les notificacions per a un usuari concret 
 
 ## Petició - PeticioEvidencia
 
-[Aquí podeu veure la definició completa del esquema _PeticioEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioEvidencia.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/PeticioEvidencia.xsd)
 
 Aquesta petició permet recuperar les evidencies de diposit i pràctica en format _XML_ així com el justificant en format _PDF_ d'una notificació. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -863,7 +859,7 @@ Idioma en el que es retornarà el document d’evidències, només aplica per a 
 
 ## Petició - PeticioPracticar
 
-[Aquí podeu veure la definició completa del esquema _PeticioPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioPracticar.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/PeticioPracticar.xsd)
 
 Aquesta petició permet practicar una notificació per part del destinatari de la mateixa amb els diferents mètodes d'autenticació: _paraula de pas_, _certificat_ o mitjançant autenticació amb _valid_. En cas de peticions amb `<Rol>` EMPLEAT, permet indicar dades sobre l'acceptació en cas de notificacions acceptades en format _paper_. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -949,7 +945,7 @@ Indica com vol rebre les futures notificacions:
 
 ## Petició - PeticioRecuperarReport
 
-[Aquí podeu veure la definició completa del esquema _PeticioRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioRecuperarReport.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/PeticioRecuperarReport.xsd)
 
 Aquesta petició permet recuperar el report amb el resum de dades d'una notificació concreta, o el report de totes les notificacions que han canviat d'estat per un departament en una data concreta. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -977,7 +973,7 @@ Data del dia del qual es vol obtenir el report. El format de la data ha de ser: 
 
 ## Petició - PeticioConsulta
 
-[Aquí podeu veure la definició completa del esquema _PeticioConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioConsulta.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/PeticioConsulta.xsd)
 
 Aquesta petició permet consultar les dades d'una notificació concreta. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -991,7 +987,7 @@ Id de la notificació que es desitja consultar.
 
 ## Petició - PeticioParaulaPas
 
-[Aquí podeu veure la definició completa del esquema _PeticioParaulaPas.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioParaulaPas.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioParaulaPas.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/PeticioParaulaPas.xsd)
 
 Aquesta petició permet obtenir paraules de pas per a que el ciutadà pugui realitzar operacions de consulta/cerca etc., i paraula de pas per a practicar una notificació en concret. La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -1028,7 +1024,7 @@ Número de telèfon mòbil vinculat al destinatari.
 
 ## Petició - PeticioCerca
 
-[Aquí podeu veure la definició completa del esquema _PeticioCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/PeticioCerca.xsd)
+[Aquí podeu veure la definició completa del esquema _PeticioCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/PeticioCerca.xsd)
 
 Aquesta petició permet realitzar cerques sobre les notificacions aplicant diferents criteris de cerca. A grans trets La definició d'aquesta petició exten la _peticioType_ afegint la sequéncia amb els elements que es descriuen a continuació:
 
@@ -1432,13 +1428,13 @@ Totes les respostes a les modalitats de consum _WS_ que ofereix **eNotum** exten
 </xs:complexType>
 ```
 
-Per defecte en aquest cas, _RespostaType_ no incorpora cap element a la petició, però inclou els elements definits a [_Errors.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Errors.xsd) per tal de que per defecte, totes les respostes puguin incloure l'estructura definida en aquest esquema.
+Per defecte en aquest cas, _RespostaType_ no incorpora cap element a la petició, però inclou els elements definits a [_Errors.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/Errors.xsd) per tal de que per defecte, totes les respostes puguin incloure l'estructura definida en aquest esquema.
 
-[Aquí podeu veure la definició completa del esquema _Resposta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Resposta.xsd)
+[Aquí podeu veure la definició completa del esquema _Resposta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/Resposta.xsd)
 
 ## Errors
 
-[Aquí podeu veure la definició completa del esquema _Errors.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Errors.xsd)
+[Aquí podeu veure la definició completa del esquema _Errors.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/Errors.xsd)
 
 Tot i que l'estructura definida dins de l'esquema _Errors.xsd_ és més complexe, ja que s'utilitza internament per a altres operacions, l'esquema simplificat que s'usarà per afegir a qualsevol resposta en cas de detectar un error serà la següent. Totes les respostes de les modalitats de consum, seran un `choice` entre un element amb la seqüencia dels possibles errors o en cas de funcionar correctament els elements propis de la missatgeria d'aquella modalitat de consum:
 
@@ -1479,7 +1475,7 @@ Com comentavem, a la practica, les respostes de les modalitats de consum amb ele
 
 ## Resposta - RespostaProcessarTramesa
 
-[Aquí podeu veure la definició completa del esquema _RespostaProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaProcessarTramesa.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaProcessarTramesa.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/RespostaProcessarTramesa.xsd)
 
 Aquest esquema de petició és la resposta a la creació de les notificacions que ens retorna els identificadors per a les notificacions creades, exten el tipus _RespostaType_ i fa un `<choice>` que permet triar entre retoranar una llista d'errors produïts durant l'execució de la petició o el següent element amb la resposta de l'operació:
 
@@ -1500,7 +1496,7 @@ Identificador/s de les notificacions creades.
 
 ## Resposta - RespostaResum
 
-[Aquí podeu veure la definició completa del esquema _RespostaResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaResum.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaResum.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/RespostaResum.xsd)
 
 Aquesta modalitat de consum permet obtenir un resum de les notificacions pendents (actives i no practicades per un usuari) agrupades per l'ens emissor de la notificació.
 
@@ -1550,7 +1546,7 @@ Numero de notificacions pendents per part de l'usuari en aquesta entitat.
 
 ## Resposta - RespostaEvidencia
 
-[Aquí podeu veure la definició completa del esquema _RespostaEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaEvidencia.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaEvidencia.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/RespostaEvidencia.xsd)
 
 Retorna les evidències relacionades amb el procés de la notificació, tant els _XML_ amb l'evidència de dipósit i de practicar, com el PDF amb el justificant del procés de la notificació generat pel sistema.
 
@@ -1591,7 +1587,7 @@ URL de descàrrega de l'evidència de la notificació en format _PDF_.
 
 ## Resposta - RespostaPracticar
 
-[Aquí podeu veure la definició completa del esquema _RespostaPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaPracticar.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaPracticar.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/RespostaPracticar.xsd)
 
 Resposta a les peticions explícites de l'usuari vinculades amb la pràctica de les notificacions.
 
@@ -1630,7 +1626,7 @@ Digest _SHA-1_ de l'element `<DadesNotificacio>` que ha de ser utilitzat per rea
 
 ## Resposta - RespostaRecuperarReport
 
-[Aquí podeu veure la definició completa del esquema _RespostaRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaRecuperarReport.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaRecuperarReport.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/RespostaRecuperarReport.xsd)
 
 Retorna el report amb el resum de dades d'una notificació concreta, o el report de totes les notificacions que han canviat d'estat per un departament en una data concreta.
 
@@ -1640,7 +1636,7 @@ Retorna el report amb el resum de dades d'una notificació concreta, o el report
 </xs:sequence>
 ```
 
-[El detall del _ReportType_ explicitament es troba en el següent esquema](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/Report.xsd)
+[El detall del _ReportType_ explicitament es troba en el següent esquema](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/Report.xsd)
 
 ```xml
 <xs:complexType name="ReportType">
@@ -1792,7 +1788,7 @@ L'identificador del backoffice que ha creat la notificació.
 
 ## Resposta - RespostaConsulta
 
-[Aquí podeu veure la definició completa del esquema _RespostaConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaConsulta.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaConsulta.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/RespostaConsulta.xsd)
 
 Aquesta modalitat retorna una resposta detallada de totes les dades vinculades amb una notificació concreta.
 
@@ -2067,7 +2063,7 @@ Retorna opcionalment el valor d'aquest camp només en el cas que hagi estat info
 
 ## Resposta - RespostaParaulaPas
 
-[Aquí podeu veure la definició completa del esquema _RespostaParaulaPas.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaParaulaPas.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaParaulaPas.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/RespostaParaulaPas.xsd)
 
 ```xml
 <xs:sequence>
@@ -2083,7 +2079,7 @@ Identificador de la notificació.
 
 ## Resposta - RespostaCerca
 
-[Aquí podeu veure la definició completa del esquema _RespostaCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2_xsds/RespostaCerca.xsd)
+[Aquí podeu veure la definició completa del esquema _RespostaCerca.xsd_](https://github.com/ConsorciAOC/eNotum/blob/master/missatgeria/v3.2/xsds/RespostaCerca.xsd)
 
 Retorna un seguit de notificacions que acompleixen els criteris de cerca fets en la petició.
 

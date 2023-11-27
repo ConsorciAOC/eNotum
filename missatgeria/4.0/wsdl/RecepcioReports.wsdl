@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions  xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:s0="http://www.openuri.org/" 
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="http://www.openuri.org/">
+	<wsdl:types>
+		<s:schema xmlns:v4="http://www.aocat.net/NT/v4.0" elementFormDefault="qualified"
+			targetNamespace="http://www.openuri.org/">
+			<s:import namespace="http://www.aocat.net/NT/v4.0"/>
+			<s:element name="clientRequestwithReturn">
+				<s:complexType>
+					<s:sequence>
+						<s:element ref="v4:Report" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="clientRequestwithReturnResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element ref="v4:RespostaReport" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+		</s:schema>
+		<s:schema
+			xmlns="http://www.aocat.net/NT/v4.0" 
+			targetNamespace="http://www.aocat.net/NT/v3.2"
+			elementFormDefault="qualified" 
+			attributeFormDefault="unqualified">
+
+			<s:include schemaLocation="../xsds/Report.xsd"/>
+			<s:include schemaLocation="../xsds/RespostaReport.xsd"/>
+
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="clientRequestwithReturnSoapIn">
+		<wsdl:part name="parameters" element="s0:clientRequestwithReturn" />
+	</wsdl:message>
+	<wsdl:message name="clientRequestwithReturnSoapOut">
+		<wsdl:part name="parameters" element="s0:clientRequestwithReturnResponse" />
+	</wsdl:message>
+	<wsdl:portType name="ReportReceiverv3Soap">
+		<wsdl:operation name="clientRequestwithReturn">
+			<wsdl:input message="s0:clientRequestwithReturnSoapIn" />
+			<wsdl:output message="s0:clientRequestwithReturnSoapOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ReportReceiverSoap" type="s0:ReportReceiverSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+			style="document" />
+		<wsdl:operation name="clientRequestwithReturn">
+			<soap:operation soapAction="http://www.openuri.org/clientRequestwithReturn"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ReportReceiverv">
+		<wsdl:port name="ReportReceiverSoap" binding="s0:ReportReceiverSoap">
+			<soap:address location="http://entitatemissora/backoffice/ReportReceiver" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

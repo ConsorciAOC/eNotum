@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.aocat.net/NT/v3.2"
+	targetNamespace="http://www.aocat.net/NT/v3.2"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="Peticio.xsd"/>
+
+	<xs:element name="PeticioProcessarTramesa">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="Tramesa">
+							<xs:annotation>
+								<xs:documentation>Dades referents a la notificació a llençar.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="DadesAvisos" minOccurs="0">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="Plantilla" type="xs:string" minOccurs="0"/>
+												<xs:element name="Email" minOccurs="0">
+													<xs:complexType>
+														<xs:all>
+															<xs:element name="Emissor" type="xs:string" minOccurs="0"/>
+															<xs:element name="Assumpte" minOccurs="0">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="100"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="Missatge" type="xs:string" minOccurs="0"/>
+														</xs:all>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="SMS" minOccurs="0">
+													<xs:complexType>
+														<xs:all>
+															<xs:element name="Missatge" minOccurs="0">
+																<xs:simpleType>
+																	<xs:restriction base="xs:string">
+																		<xs:maxLength value="512"/>
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:element>
+														</xs:all>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="DiesAvisos" type="DiesAvisosType" minOccurs="0"/>
+												<xs:element name="URLs" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>URLs d'accés a les notificacions informades per portals que no són marca blanca i que volen
+														informar dades diferents a les configurades dins de l'entitat.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:all>
+															<xs:element name="AccesNotificacio" type="xs:string" minOccurs="0"/>
+															<xs:element name="AccesLlistat" type="xs:string" minOccurs="0"/>
+														</xs:all>
+													</xs:complexType>
+												</xs:element>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="DadesOfici">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:choice>
+													<xs:element name="CosNotificacio">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="4000"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="IdCosNotificacio" type="xs:integer"/>
+												</xs:choice>
+												<xs:choice>
+													<xs:element name="PeuRecurs">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:maxLength value="4000"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="IdPeuRecurs" type="xs:integer"/>
+												</xs:choice>
+												<xs:element name="OficinaRegistre" type="xs:string" minOccurs="0"/>
+												<xs:element name="UnitatOrganitzativa" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<!-- Documents de la notificacio -->
+									<xs:element name="Documents" type="DocumentsType"/>
+									<!-- Destinataris de la notificacio -->
+									<xs:element name="Notificacio" type="NotificacioType" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="NotificacioType">
+		<xs:all>
+			<xs:element name="Titol">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Referencia">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="250"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="DadesRegistre" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+            <xs:element name="NumeroRegistre" type="NoEmptyString"/>
+						<xs:element name="DataRegistre" type="xs:dateTime"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SenseRegistre" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="TipusObjecte" type="TipusObjecteType"/>
+			<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
+			<xs:element name="NivellCertificat" type="xs:string" minOccurs="0"/>
+			<xs:element name="DiesExpiracio" type="xs:positiveInteger" minOccurs="0"/>
+			<xs:element name="Destinataris" type="DestinatarisType"/>
+			<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+			<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+			<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+			<xs:element name="IdNotificacioEmissor" type="xs:string" minOccurs="0"/>
+			<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+			<xs:element name="Expedient" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Tramit" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="NumeroCas" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="DestinatarisType">
+		<xs:sequence>
+			<xs:element name="Destinatari" maxOccurs="100">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:choice>
+							<xs:element name="PersonaFisica" type="PersonaFisicaType"/>
+							<xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
+						</xs:choice>
+						<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+						<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

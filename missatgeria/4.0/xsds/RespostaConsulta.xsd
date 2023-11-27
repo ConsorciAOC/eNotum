@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Resposta.xsd"/>
+
+	<xs:element name="RespostaConsulta">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="RespostaType">
+					<xs:sequence minOccurs="0">
+						<xs:element name="IdNotificacio" type="Number"/>
+						<xs:element name="Emissor" type="EmissorType"/>
+						<xs:element name="DadesNotificacio" type="NotificacioType" minOccurs="0"/>
+						<xs:element name="DadesEstat" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Estat" type="EstatType"/>
+									<xs:element name="DataPublicacio" type="xs:dateTime" nillable="true"/>
+									<xs:element name="DataAcceptacioRebuig" type="xs:dateTime" nillable="true"/>
+									<xs:element name="DataAnullacio" type="xs:dateTime" minOccurs="0"/>
+									<xs:element name="MotiuAnullacio" type="String500Max" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DadesOfici" type="DadesOficiType" minOccurs="0"/>
+						<xs:element name="Documents" type="DocumentsType" minOccurs="0"/>
+						<xs:element name="Destinataris" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="Destinatari" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:choice>
+													<xs:element name="PersonaFisica" type="PersonaFisicaType"/>
+													<xs:element name="PersonaJuridica" type="PersonaJuridicaType"/>
+												</xs:choice>
+												<xs:element name="Titular" type="xs:boolean" minOccurs="0"/>
+												<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+												<xs:element name="HaSignat" type="xs:boolean"/>
+												<xs:element name="CanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
+												<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DadesSignador" type="DadesSignadorType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

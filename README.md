@@ -5,15 +5,19 @@ Tota la documentació d'integració antiga així com altre tipus de documentaci�
 
 # Documentació integradors - eNotum Backend
 
-[1. Integració missatgeria versió 3.2](/missatgeria/README.md)
+En aquest apartat es descriu el funcionament i les modalitats de consum de les versions d'**eNotum**.
 
-[2. Integració callbacks canvis d'estat](/integracioReportsCanvisEstat/README.md)
+1. [Integració missatgeria versió 4.0](/missatgeria/4.0/README.md)
+1. [Integració missatgeria versió 3.2](/missatgeria/3.2/README.md) (Obsoleta)
 
-[3. Plantilles de correu electrònic per a l'enviament d'avisos als destinataris](/plantilles/README.md)
+Les versions antigues de missatgeria 3.2, 3.1 i 3.0 segueixen sent compatibles i funcionen correctament, tot i que disposen de menys funcionalitats i són susceptibles de ser discontinuades en un futur. Si comenceu ara la integració haurieu de fer-ho amb la versió 4.0.
 
-# Documentació portal de la ciutadania
+Les versions més antigues de missatgeria i altres documents d'integració els podeu consultar  a través del [nostre portal de suport a la integració](https://suport-enotum.aoc.cat/hc/ca/sections/4412319169553-Integraci%C3%B3).
 
-[1. Manual d'estils personalitzats `CSS` de la *Web de la Ciutadania*](/customCSSWebCiutada/README.md)
+El calendari d’eliminació de versions obsoletes:
+* Versió **3.0**: Finals 2024
+* Versió **3.1**: Finals 2025
+* Versió **3.2**: Finals 2026
 
 # Documentació portal d'empleat públic
 

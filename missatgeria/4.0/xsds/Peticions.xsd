@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.aocat.net/NT/v4.0"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   targetNamespace="http://www.aocat.net/NT/v4.0"
+		   elementFormDefault="qualified">
+
+	<xs:include schemaLocation="PeticioProcessarTramesa.xsd"/>
+	<xs:include schemaLocation="PeticioEvidencia.xsd"/>
+	<xs:include schemaLocation="PeticioConsulta.xsd"/>
+	<xs:include schemaLocation="PeticioRecuperarReport.xsd"/>
+	<xs:include schemaLocation="PeticioParaulaPas.xsd"/>
+	<xs:include schemaLocation="PeticioPracticar.xsd"/>
+	<xs:include schemaLocation="PeticioCerca.xsd"/>
+	<xs:include schemaLocation="PeticioResum.xsd"/>
+	<xs:include schemaLocation="PeticioAnullacio.xsd"/>
+
+</xs:schema>

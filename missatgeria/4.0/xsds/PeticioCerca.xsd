@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Peticio.xsd"/>
+
+	<xs:element name="PeticioCerca">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="DadesCerca">
+							<xs:annotation>
+								<xs:documentation>Dades referents a la cerca de notificacions.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="CriterisEntitat" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="CodiOrganisme" type="xs:string" minOccurs="0"/>
+												<xs:element name="CodiDepartament" type="xs:string" minOccurs="0"/>
+												<xs:element name="BackOffice" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CriterisDestinatari" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:choice minOccurs="0">
+													<xs:element name="Persona" type="FiltrePersonaType"/>
+													<xs:element name="PersonaFisica" type="FiltrePersonaFisicaType"/>
+													<xs:element name="PersonaJuridica" type="FiltrePersonaJuridicaType"/>
+												</xs:choice>
+												<xs:element name="Perfil" type="PerfilType" minOccurs="0"/>
+												<xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
+												<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CriterisNotificacio" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="Titol" type="xs:string" minOccurs="0"/>
+												<xs:element name="IdNotificacio" type="IntervalValorsEnters" minOccurs="0"/>
+												<xs:element name="Referencia" type="IntervalValors" minOccurs="0"/>
+												<xs:element name="NumeroRegistre" type="IntervalValors" minOccurs="0"/>
+												<xs:element name="Estat" type="EstatCercableType" minOccurs="0"/>
+												<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
+												<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+												<xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
+												<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+												<xs:element name="Consultada" type="xs:boolean" minOccurs="0"/>
+												<xs:element name="ProcedimentSIA" type="String50Max" minOccurs="0"/>
+												<xs:element name="ProcedimentQuadreClassificacio" type="String50Max" minOccurs="0"/>
+												<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+												<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+												<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CriterisData" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="DataCreacio" type="PeriodeDataTemps" minOccurs="0"/>
+												<xs:element name="DataRegistre" type="PeriodeDataTemps" minOccurs="0"/>
+												<xs:element name="DataPublicacio" type="PeriodeDataTemps" minOccurs="0"/>
+												<xs:element name="DataAcceptacioRebuig" type="PeriodeDataTemps" minOccurs="0"/>
+												<xs:element name="DataExpiracio" type="PeriodeData" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Paginacio">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="NumeroPagina" type="Number"/>
+												<xs:element name="ResultatsPerPagina" type="Number50Max"/>
+												<xs:element name="CampOrdenacio" type="xs:string" minOccurs="0"/>
+												<xs:element name="SentitOrdenacio" type="SentitOrdenacioType" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="FiltrePersonaType">
+		<xs:sequence>
+			<xs:element name="BustiesCorreu" type="BustiesCorreuType" minOccurs="0"/>
+			<xs:element name="Telefons" type="TelefonsType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="FiltrePersonaFisicaType">
+		<xs:complexContent>
+			<xs:extension base="FiltrePersonaType">
+				<xs:sequence>
+					<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType" minOccurs="0"/>
+					<xs:element name="Nom" type="String255Max" minOccurs="0"/>
+					<xs:element name="NomSentit" type="String255Max" minOccurs="0"/>
+					<xs:element name="PrimerCognom" type="String255Max" minOccurs="0"/>
+					<xs:element name="SegonCognom" type="String255Max" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="FiltrePersonaJuridicaType">
+		<xs:complexContent>
+			<xs:extension base="FiltrePersonaType">
+				<xs:sequence>
+					<xs:element name="DocumentIdentificatiu" type="DocumentPersonaJuridicaType" minOccurs="0"/>
+					<xs:element name="RaoSocial" type="String255Max" minOccurs="0"/>
+					<xs:element name="PersonaVinculada" type="FiltrePersonaVinculadaType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="FiltrePersonaVinculadaType">
+		<xs:sequence>
+			<xs:element name="DocumentIdentificatiu" type="DocumentPersonaFisicaType" minOccurs="0"/>
+			<xs:element name="Nom" type="String255Max" minOccurs="0"/>
+			<xs:element name="NomSentit" type="String255Max" minOccurs="0"/>
+			<xs:element name="PrimerCognom" type="String255Max" minOccurs="0"/>
+			<xs:element name="SegonCognom" type="String255Max" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="EstatCercableType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PENDENT"/>
+			<xs:enumeration value="REGISTRADA"/>
+			<xs:enumeration value="DIPOSITADA"/>
+			<xs:enumeration value="ACCEPTADA"/>
+			<xs:enumeration value="REBUTJADA"/>
+			<xs:enumeration value="EXPIRADA"/>
+			<xs:enumeration value="ERROR"/>
+			<xs:enumeration value="ANUL·LADA"/>
+			<!-- Meta Estats -->
+			<xs:enumeration value="TRANSIT"/>
+			<xs:enumeration value="REBUTJADA_JURIDICAMENT"/>
+			<xs:enumeration value="PRACTICADA"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SentitOrdenacioType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ascendent"/>
+			<xs:enumeration value="Descendent"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="IntervalValors">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="ValorInferior" type="xs:string"/>
+				<xs:element name="ValorSuperior" type="xs:string"/>
+			</xs:sequence>
+			<xs:element name="ValorAbsolut" type="xs:string"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="IntervalValorsEnters">
+		<xs:sequence>
+			<xs:element name="ValorInferior" type="Number"/>
+			<xs:element name="ValorSuperior" type="Number"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

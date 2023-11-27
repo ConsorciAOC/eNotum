@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.aocat.net/NT/v3.2"
+	targetNamespace="http://www.aocat.net/NT/v3.2"
+	elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+
+	<xs:include schemaLocation="Peticio.xsd"/>
+
+	<xs:element name="PeticioCerca">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PeticioType">
+					<xs:sequence>
+						<xs:element name="DadesCerca">
+							<xs:annotation>
+								<xs:documentation>Dades referents a la cerca de notificacions.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="CriterisEntitat" minOccurs="0">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="CodiOrganisme" type="xs:string" minOccurs="0"/>
+												<xs:element name="CodiDepartament" type="xs:string" minOccurs="0"/>
+												<xs:element name="CodiBO" type="xs:string" minOccurs="0"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CriterisDestinatari" minOccurs="0">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:choice minOccurs="0">
+													<xs:element name="Persona" type="FiltrePersonaType"/>
+													<xs:element name="PersonaFisica" type="FiltrePersonaFisicaType"/>
+													<xs:element name="PersonaJuridica" type="FiltrePersonaJuridicaType"/>
+												</xs:choice>
+												<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
+												<xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
+												<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CriterisNotificacio" minOccurs="0">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="Titol" type="xs:string" minOccurs="0"/>
+												<xs:element name="IdNotificacio" type="IntervalValorsEnters" minOccurs="0"/>
+												<xs:element name="Referencia" type="IntervalValors" minOccurs="0"/>
+												<xs:element name="NumeroRegistre" type="IntervalValors" minOccurs="0"/>
+												<xs:element name="Estat" type="xs:string" minOccurs="0"/>
+												<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
+												<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
+												<xs:element name="AmbitObjecte" type="xs:string" minOccurs="0"/>
+												<xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
+												<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+												<xs:element name="MostraTotes" type="xs:boolean" minOccurs="0" default="false"/>
+												<!-- filtre per a les notis consultades, el valor a la resposta només s'informa per a ciutada i en cas
+												que estigui informat aquest camp a la petició TOTES, LLEGIDES, NOLLEGIDES -->
+												<xs:element name="Consultada" type="ConsultadaType" minOccurs="0"/>
+												<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+												<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+												<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="CriterisData" minOccurs="0">
+										<xs:complexType>
+												<xs:all>
+													<xs:element name="DataCreacio" type="PeriodeDataTemps" minOccurs="0"/>
+													<xs:element name="DataRegistre" type="PeriodeDataTemps" minOccurs="0"/>
+													<xs:element name="DataPublicacio" type="PeriodeDataTemps" minOccurs="0"/>
+													<xs:element name="DataAcceptacioRebuig" type="PeriodeDataTemps" minOccurs="0"/>
+													<xs:element name="DataExpiracio" type="PeriodeData" minOccurs="0"/>
+													<xs:element name="DiesPublicada" type="xs:integer" minOccurs="0"/>
+												</xs:all>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="Paginacio">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="NumeroPagina">
+													<xs:simpleType>
+														<xs:restriction base="xs:integer">
+															<xs:minExclusive value="0"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="ResultatsPerPagina">
+													<xs:simpleType>
+														<xs:restriction base="xs:integer">
+															<xs:minExclusive value="0"/>
+															<xs:maxExclusive value="51"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="CampOrdenacio" type="xs:string" minOccurs="0"/>
+												<xs:element name="SentitOrdenacio" type="SentitOrdenacioType" minOccurs="0"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="SentitOrdenacioType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Ascendent"/>
+			<xs:enumeration value="Descendent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="IntervalValors">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="ValorInferior" type="xs:string"/>
+				<xs:element name="ValorSuperior" type="xs:string"/>
+			</xs:sequence>
+			<xs:element name="ValorAbsolut" type="xs:string"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="IntervalValorsEnters">
+		<xs:all>
+			<xs:element name="ValorInferior" type="xs:integer"/>
+			<xs:element name="ValorSuperior" type="xs:integer"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="PeriodeDataTemps">
+		<xs:all>
+			<xs:element name="DataInferior" type="xs:dateTime"/>
+			<xs:element name="DataSuperior" type="xs:dateTime"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="PeriodeData">
+		<xs:all>
+			<xs:element name="DataInferior" type="xs:date"/>
+			<xs:element name="DataSuperior" type="xs:date"/>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

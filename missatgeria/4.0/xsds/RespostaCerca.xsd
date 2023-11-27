@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Resposta.xsd"/>
+
+	<xs:element name="RespostaCerca">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="RespostaType">
+					<xs:sequence minOccurs="0">
+						<xs:element name="Resultats" type="ResultatsType"/>
+						<xs:element name="DadesPaginacio" type="DadesPaginacioType"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="DadesPaginacioType">
+		<xs:sequence>
+			<xs:element name="NumeroPagina" type="Number"/>
+			<xs:element name="ResultatsPerPagina" type="Number50Max"/>
+			<xs:element name="TotalResultats" type="Number"/>
+			<xs:element name="TotalPagines" type="Number"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ResultatsType">
+		<xs:sequence>
+			<xs:element name="Notificacio" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="IdNotificacio" type="Number"/>
+						<xs:element name="Emissor" type="EmissorType"/>
+						<xs:element name="Titol" type="String100Max"/>
+						<xs:element name="Referencia" type="String255Max"/>
+						<xs:element name="TipusObjecte" type="TipusObjecteType"/>
+						<xs:element name="DataCreacio" type="xs:dateTime"/>
+						<xs:element name="DadesRegistre" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="NumeroRegistre" type="String100Max" nillable="true"/>
+									<xs:element name="DataRegistre" type="xs:dateTime" nillable="true"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="DataPublicacio" type="xs:dateTime" nillable="true"/>
+						<xs:element name="DataAcceptacioRebuig" type="xs:dateTime" nillable="true"/>
+						<xs:element name="Estat" type="EstatType"/>
+						<xs:element name="DiesExpiracio" type="Number1000Max" minOccurs="0"/>
+						<xs:element name="DataLimit" type="xs:dateTime" minOccurs="0"/>
+						<xs:element name="TipusAcces" type="TipusAccesType"/>
+						<xs:element name="Idioma" type="Idioma"/>
+						<xs:element name="Consultada" type="xs:boolean" minOccurs="0"/>
+						<xs:element name="Canal" type="CanalType" minOccurs="0"/>
+						<xs:element name="ProcedimentSIA" type="String50Max" minOccurs="0"/>
+						<xs:element name="ProcedimentQuadreClassificacio" type="String50Max" minOccurs="0"/>
+						<xs:element name="Expedient" type="xs:string" minOccurs="0"/>
+						<xs:element name="Tramit" type="xs:string" minOccurs="0"/>
+						<xs:element name="NumeroCas" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

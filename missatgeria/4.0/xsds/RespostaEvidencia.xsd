@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://www.aocat.net/NT/v4.0"
+		targetNamespace="http://www.aocat.net/NT/v4.0"
+		elementFormDefault="qualified">
+
+	<xs:include schemaLocation="Resposta.xsd"/>
+
+	<xs:element name="RespostaEvidencia">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:documentation>Evidències del dipòsit i de l'acceptació o rebuig de la notificació.</xs:documentation>
+			</xs:annotation>
+			<xs:complexContent>
+				<xs:extension base="RespostaType">
+					<xs:sequence minOccurs="0">
+						<xs:element name="IdNotificacio" type="Number"/>
+						<xs:element name="TipusEvidencia" type="TipusEvidenciaType"/>
+						<xs:element name="Diposit" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Evidència del dipòsit de la notificació.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="AcceptacioRebuig" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Evidència de l'acceptació o rebuig de la notificació.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Anullacio" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Evidència de l'anul·lació de la notificació.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="EvidenciaPDF" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>URL de descàrrega de l'evidència de la notificacio</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="UUID" type="uuid"/>
+									<xs:element name="URLDescarrega" type="xs:anyURI"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
