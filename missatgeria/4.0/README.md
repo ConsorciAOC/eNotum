@@ -903,7 +903,6 @@ Codi del backoffice emissor de les notificacions.
 				<xs:element name="PersonaFisica" type="FiltrePersonaFisicaType"/>
 				<xs:element name="PersonaJuridica" type="FiltrePersonaJuridicaType"/>
 			</xs:choice>
-			<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
 			<xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
 			<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
 		</xs:sequence>
@@ -917,12 +916,6 @@ Aquest element permet filtrar bàsicament per les bústies de correu i/o telefon
 Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona física destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](#personafisica)
 * `/CriterisDestinatari/PersonaJuridica`
 Aquest element permet cercar per els mateixos camps que el camp anterior `/Persona`, i a més a més permet afegir criteris vinculats a la identificació de la persona jurídica destinataria de la notificació. Aquest camp es descriu amb més detall a [continuació](#personajuridica)
-* `/CriterisDestinatari/Idioma`
-Permet cerca les notificacions creades en un idioma concret. Els possibles valors d'aquest camp són:
-	* *ca* : Indica que l'idioma de les notificacions a cercar és català.
-	* *es* : Indica que l'idioma de les notificacions a cercar és castellà.
-	* *oc* : Indica que l'idioma de les notificacions a cercar és aranés.
-	* *en* : Indica que l'idioma de les notificacions a cercar és anglés.
 * `/CriterisDestinatari/CanviCanal`
 És un booleà que permet indicar si s'han de cercar notificacions que hagin canviat de canal, el camp és opcional i en cas de no venir informat no s'aplicarà cap criteri, es a dir no informar el camp és diferent que informar-lo amb el valor `false`. Els possibles valors són:
 	* *true* : Indica explicitament que s'han de cercar notificacions per les quals l'usuari hagi decidit fer un canvi de canal a digital i hagi donat les dades de contacte electrònic.
