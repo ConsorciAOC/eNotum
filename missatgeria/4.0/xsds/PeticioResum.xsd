@@ -15,7 +15,6 @@
 					<xs:sequence>
 						<xs:element name="TipusAcces" type="TipusAccesType" minOccurs="0"/>
 						<xs:element name="TipusObjecte" type="TipusObjecteType" minOccurs="0"/>
-						<xs:element name="Perfil" type="PerfilType" minOccurs="0"/>
 						<xs:element name="DataPublicacio" type="PeriodeDataTemps" minOccurs="0"/>
 					</xs:sequence>
 				</xs:extension>

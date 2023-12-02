@@ -140,14 +140,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="PerfilType">
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="PERSONA_FISICA"/>
-			<xs:enumeration value="PERSONA_JURIDICA"/>
-			<xs:enumeration value="PERSONA_JURIDICA_VINCULADA"/>
-		</xs:restriction>
-	</xs:simpleType>
-
 	<xs:simpleType name="TipusEvidenciaType">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="XML"/>

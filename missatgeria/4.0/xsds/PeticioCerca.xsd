@@ -35,7 +35,6 @@
 													<xs:element name="PersonaFisica" type="FiltrePersonaFisicaType"/>
 													<xs:element name="PersonaJuridica" type="FiltrePersonaJuridicaType"/>
 												</xs:choice>
-												<xs:element name="Perfil" type="PerfilType" minOccurs="0"/>
 												<xs:element name="CanviCanal" type="xs:boolean" minOccurs="0" default="false"/>
 												<xs:element name="Obligat" type="xs:boolean" minOccurs="0"/>
 											</xs:sequence>
