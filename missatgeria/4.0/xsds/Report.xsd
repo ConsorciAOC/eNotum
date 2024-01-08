@@ -7,16 +7,16 @@
 
 	<xs:include schemaLocation="Commons.xsd"/>
 
-    <xs:element name="Report">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Emissor" type="EmissorType"/>
-				<xs:element name="DataInforme" type="xs:date"/>
-				<xs:element name="TipusInforme" type="TipusInformeType"/>
-                <xs:element name="DadesNotificacio" type="ReportNotificacioType" maxOccurs="unbounded" minOccurs="0"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+  <xs:element name="Report">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Emissor" type="EmissorType"/>
+        <xs:element name="DataInforme" type="xs:date"/>
+        <xs:element name="TipusInforme" type="TipusInformeType"/>
+        <xs:element name="DadesNotificacio" type="ReportNotificacioType" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 
 	<xs:complexType name="ReportNotificacioType">
 		<xs:annotation>

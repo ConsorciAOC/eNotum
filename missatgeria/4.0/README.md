@@ -688,12 +688,12 @@ Data del dia del qual es vol obtenir el report. El format de la data ha de ser: 
 Retorna el report amb el resum de dades d'una notificació concreta, o el report de totes les notificacions que han canviat d'estat per un departament en una data concreta.
 
 ```xml
-<xs:sequence>
-	<xs:element name="Report" type="ReportType" minOccurs="0"/>
+<xs:sequence minOccurs="0">
+	<xs:element ref="Report"/>
 </xs:sequence>
 ```
 
-La definició d'aquest element la podeu trobar a l'apartat de dades comuns [ReportType](#reporttype).
+La definició d'aquest element la podeu trobar a l'apartat de dades comuns [Report](#report).
 
 ## Operació _Consulta_
 
