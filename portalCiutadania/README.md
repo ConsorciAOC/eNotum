@@ -29,8 +29,7 @@ Aquesta API segueix el principi `Open/Closed` de manera que en un futur es podra
 
 Les aplicacions que vulguin utilitzar l'API de recollida de notificacions s'han d'autenticar seguint el protocol *Mutual TLS* (mTLS) i presentant el certificat de la persona de la que volen consultar les notificacions o del representant d'aquesta.
 
-> [!IMPORTANT]
-> Els certificats de representant d'entitat amb personalitat jurídica o els certificats de represetnant d'entitat sense personalitat jurídica son considerats certificats de persona física i només es podrà operar sobre les notificacions i comunicacions de la persona física. Si voleu consultar les notificacions i comunicacions de l'entitat representada s'ha de demanar explicitament com s'indica al punt següent.
+> :information_source: Els certificats de representant d'entitat amb personalitat jurídica o els certificats de represetnant d'entitat sense personalitat jurídica son considerats certificats de persona física i només es podrà operar sobre les notificacions i comunicacions de la persona física. Si voleu consultar les notificacions i comunicacions de l'entitat representada s'ha de demanar explicitament com s'indica al punt següent.
 
 ## Representacions
 
@@ -54,8 +53,7 @@ L'adreça base de les operacions per cadascún dels entorns és la següent:
  * **PRE**: https://api-pre.enotum.cat:8443
  * **PRO**: https://api.enotum.cat:8443
 
-> [!IMPORTANT]
-> Remarcar l'ús del port 8443 que és el que permet realitzar l'autenticació mTLS.
+> :information_source: Remarcar l'ús del port 8443 que és el que permet realitzar l'autenticació mTLS.
 
 # 2. Operacions
 
@@ -67,8 +65,7 @@ Les operacions que proporciona l'API estan detallades en el fitxer en format Ope
 
 La cerca de notificacions proporciona el llistat de notificacions i comunicacions del ciutadà. Aquesta llista inclou les notificacions de **totes** les entitats emissores de notificacions adherides a eNOTUM.
 
-> [!TIP]
-> Per defecte es cerca per notificacions i comunicacions dipositades durant els últims 30 dies.
+> :information_source: Per defecte es cerca per notificacions i comunicacions dipositades durant els últims 30 dies.
 
 ### **GET** `/ciutadania/notificacions`
 
@@ -110,8 +107,7 @@ La resposta té els seguents camps:
 
 Proporciona el detall d'una notificació o una comunicació. Inclosos els documents d'aquesta.
 
-> [!TIP]
-> En el cas de les comunicacions no caldrà acceptar-les amb l'operació [Practicar Notificació](#23-practicar-notificació) sinó que simplement fent-ne la consulta ja passaran a estar acceptades i es podran recuperar els documents.
+> :information_source: En el cas de les comunicacions no caldrà acceptar-les amb l'operació [Practicar Notificació](#23-practicar-notificació) sinó que simplement fent-ne la consulta ja passaran a estar acceptades i es podran recuperar els documents.
 
 ### **GET** `/ciutadania/notificacions/{id}`
 
@@ -132,8 +128,7 @@ La resposta és del tipus `Notificacio`. Es descriu amb detall [aquí](#Notifica
 
 Aquesta operació realitza la pràctica de la notificació a eNotum. Es realitza canviant l'estat del recurs Notificacio a ACCEPTADA o REBUTJADA.
 
-> [!TIP]
-> Per les comunicacions no s'ha de realitzar aquesta operació ja que passen automàticament a ser acceptades quan es realitza l'[Operació Consultar](#22-consulta-notificació) sobre aquestes.
+> :information_source: Per les comunicacions no s'ha de realitzar aquesta operació ja que passen automàticament a ser acceptades quan es realitza l'[Operació Consultar](#22-consulta-notificació) sobre aquestes.
 
 ### **PATCH** `/ciutadania/notificacions/{id}`
 
@@ -226,8 +221,7 @@ La resposta té els seguents camps:
 
 Aquesta operació retorna les dades de l'usuari autenticat. Entre les dades que es retorna hi ha el llistat de persones representades segons les credencials de l'usuari. 
 
-> [!TIP]
-> Aquest llistat de representats inclou tant les representacions donades d'alta a **Representa** com la representació present al **certificat digital** si aquest és un certificat de representació.
+> :information_source: Aquest llistat de representats inclou tant les representacions donades d'alta a **Representa** com la representació present al **certificat digital** si aquest és un certificat de representació.
 
 ### **GET** `/ciutadania/usuari`
 
