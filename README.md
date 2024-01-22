@@ -3,7 +3,9 @@ Aquest repositori preten anar recopilant poc a poc la nova documentació relacio
 
 Tota la documentació d'integració antiga així com altre tipus de documentació no tècnica (per exemple legal) relacionada amb eNotum la podeu seguir trobant a l'apartat corresponent de la plana de suport del [Consorci AOC](https://suport-enotum.aoc.cat/hc/ca).
 
-# Documentació integradors - eNotum Backend
+# Documentació integradors 
+
+## eNotum Backend
 
 En aquest apartat es descriu el funcionament i les modalitats de consum de les versions d'**eNotum**.
 
@@ -18,6 +20,13 @@ El calendari d’eliminació de versions obsoletes:
 * Versió **3.0**: Finals 2024
 * Versió **3.1**: Finals 2025
 * Versió **3.2**: Finals 2026
+
+## eNotum Ciutadania
+
+En aquest apartat es descriu el funcionament de l'API per la recollida automatitzada de notificacions per part de ciutadans i representants de persones físiques i jurídiques.
+
+1. [Documentació API per a la recollida automatitzada de notificacions](/portalCiutadania/README.md)
+
 
 # Documentació portal d'empleat públic
 

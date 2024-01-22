@@ -1,0 +1,645 @@
+---
+openapi: 3.0.3
+info:
+  title: eNotum Ciutadania API
+  version: 1.0-SNAPSHOT
+paths:
+  /ciutadania/etiquetes:
+    get:
+      tags:
+      - Etiqueta Resource
+      parameters:
+      - name: idioma
+        in: query
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Etiquetes'
+  /ciutadania/info:
+    get:
+      tags:
+      - Info Resource
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersion'
+  /ciutadania/notificacions:
+    get:
+      tags:
+      - Notificacio Resource
+      parameters:
+      - name: dataFinal
+        in: query
+        schema:
+          type: string
+      - name: dataInicial
+        in: query
+        schema:
+          type: string
+      - name: departament
+        in: query
+        schema:
+          type: string
+      - name: estat
+        in: query
+        schema:
+          $ref: '#/components/schemas/Estat'
+      - name: etiqueta
+        in: query
+        schema:
+          type: string
+      - name: noLlegides
+        in: query
+        schema:
+          type: boolean
+      - name: ordre
+        in: query
+        schema:
+          $ref: '#/components/schemas/Ordenacio'
+      - name: organisme
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          format: int32
+          type: integer
+      - name: tipus
+        in: query
+        schema:
+          $ref: '#/components/schemas/Tipus'
+      - name: x-enotum-representat
+        in: header
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notificacions'
+  /ciutadania/notificacions/{id}:
+    get:
+      tags:
+      - Notificacio Resource
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: x-enotum-representat
+        in: header
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notificacio'
+    patch:
+      tags:
+      - Notificacio Resource
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: x-enotum-representat
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DadesPracticar'
+      responses:
+        "200":
+          description: OK
+  /ciutadania/notificacions/{id}/documents/{uuid}:
+    get:
+      tags:
+      - Notificacio Resource
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: descarrega
+        in: query
+        schema:
+          type: boolean
+      - name: x-enotum-representat
+        in: header
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document1'
+  /ciutadania/notificacions/{id}/documents/{uuid}/contingut:
+    get:
+      tags:
+      - Notificacio Resource
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: uuid
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: x-enotum-representat
+        in: header
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /ciutadania/notificacions/{id}/evidencia:
+    get:
+      tags:
+      - Notificacio Resource
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: descarrega
+        in: query
+        schema:
+          type: boolean
+      - name: idioma
+        in: query
+        schema:
+          type: string
+      - name: x-enotum-representat
+        in: header
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document1'
+  /ciutadania/notificacions/{id}/evidencia/contingut:
+    get:
+      tags:
+      - Notificacio Resource
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      - name: descarrega
+        in: query
+        schema:
+          type: boolean
+      - name: idioma
+        in: query
+        schema:
+          type: string
+      - name: x-enotum-representat
+        in: header
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /ciutadania/organismes:
+    get:
+      tags:
+      - Organisme Resource
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organismes'
+  /ciutadania/organismes/{codi}:
+    get:
+      tags:
+      - Organisme Resource
+      parameters:
+      - name: codi
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entitat'
+  /ciutadania/organismes/{codi}/departaments:
+    get:
+      tags:
+      - Organisme Resource
+      parameters:
+      - name: codi
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Departaments'
+  /ciutadania/organismes/{codi}/logo:
+    get:
+      tags:
+      - Organisme Resource
+      parameters:
+      - name: codi
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /ciutadania/resum:
+    get:
+      tags:
+      - Resum Resource
+      parameters:
+      - name: dataFinal
+        in: query
+        schema:
+          type: string
+      - name: dataInicial
+        in: query
+        schema:
+          type: string
+      - name: x-enotum-representat
+        in: header
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resum'
+  /ciutadania/usuari:
+    get:
+      tags:
+      - Usuari Resource
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuari'
+components:
+  schemas:
+    ApplicationVersion:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+    Canal:
+      enum:
+      - DIGITAL
+      - PAPER
+      type: string
+    DadesCanviCanal:
+      type: object
+      properties:
+        canal:
+          $ref: '#/components/schemas/Canal'
+        telefon:
+          type: string
+        bustiaCorreu:
+          type: string
+    DadesOfici:
+      type: object
+      properties:
+        cos:
+          type: string
+        peu:
+          type: string
+    DadesPracticar:
+      type: object
+      properties:
+        estat:
+          $ref: '#/components/schemas/Estat'
+        canviCanal:
+          $ref: '#/components/schemas/DadesCanviCanal'
+    DadesRegistre:
+      type: object
+      properties:
+        numero:
+          type: string
+        data:
+          $ref: '#/components/schemas/LocalDateTime'
+    Departaments:
+      type: object
+      properties:
+        departaments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entitat'
+    Document:
+      type: object
+      properties:
+        nom:
+          type: string
+        uuid:
+          type: string
+        mida:
+          format: int64
+          type: integer
+    Document1:
+      type: object
+      properties:
+        nom:
+          type: string
+        mimeType:
+          type: string
+        mida:
+          format: int64
+          type: integer
+        urlDescarrega:
+          format: uri
+          type: string
+    Documents:
+      type: object
+      properties:
+        resolucio:
+          $ref: '#/components/schemas/Document'
+        annexos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+    Emissor:
+      type: object
+      properties:
+        codiOrganisme:
+          type: string
+        nomOrganisme:
+          type: string
+        codiDepartament:
+          type: string
+        nomDepartament:
+          type: string
+    Entitat:
+      type: object
+      properties:
+        codi:
+          type: string
+        nom:
+          type: string
+        esquemaColors:
+          type: string
+        elMeuEspaiActiu:
+          type: boolean
+    Estat:
+      enum:
+      - DIPOSITADA
+      - ACCEPTADA
+      - REBUTJADA
+      - EXPIRADA
+      type: string
+    Etiqueta:
+      type: object
+      properties:
+        nom:
+          type: string
+        idioma:
+          $ref: '#/components/schemas/Idioma'
+    Etiquetes:
+      type: object
+      properties:
+        etiquetes:
+          type: array
+          items:
+            type: string
+    Idioma:
+      enum:
+      - CA
+      - ES
+      - OC
+      - EN
+      type: string
+    LocalDateTime:
+      format: date-time
+      type: string
+      example: 2022-03-10T12:15:50
+    NivellAcces:
+      enum:
+      - ALT
+      - SUBSTANCIAL
+      - BAIX
+      type: string
+    NivellSeguretat:
+      enum:
+      - BAIX
+      - SUBSTANCIAL
+      - ALT
+      type: string
+    Notificacio:
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        tipus:
+          $ref: '#/components/schemas/Tipus'
+        emissor:
+          $ref: '#/components/schemas/Emissor'
+        dadesOfici:
+          $ref: '#/components/schemas/DadesOfici'
+        titol:
+          type: string
+        referencia:
+          type: string
+        nivellAcces:
+          $ref: '#/components/schemas/NivellAcces'
+        dadesRegistre:
+          $ref: '#/components/schemas/DadesRegistre'
+        dataPublicacio:
+          $ref: '#/components/schemas/LocalDateTime'
+        dataExpiracioPrevista:
+          $ref: '#/components/schemas/LocalDateTime'
+        dataPracticada:
+          $ref: '#/components/schemas/LocalDateTime'
+        estat:
+          $ref: '#/components/schemas/Estat'
+        consultada:
+          type: boolean
+        diesExpiracio:
+          format: int32
+          type: integer
+        etiquetes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Etiqueta'
+        canal:
+          $ref: '#/components/schemas/Canal'
+        expedient:
+          type: string
+        tramit:
+          type: string
+        numeroCas:
+          type: string
+        documents:
+          $ref: '#/components/schemas/Documents'
+    Notificacions:
+      type: object
+      properties:
+        notificacions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Notificacio'
+        pagina:
+          format: int64
+          type: integer
+        totalPagines:
+          format: int64
+          type: integer
+        totalResultats:
+          format: int64
+          type: integer
+    Ordenacio:
+      enum:
+      - ASC
+      - DESC
+      type: string
+    Organismes:
+      type: object
+      properties:
+        organismes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entitat'
+    Representat:
+      type: object
+      properties:
+        nom:
+          type: string
+        document:
+          type: string
+        tipusDocument:
+          $ref: '#/components/schemas/TipusDocument'
+    Resum:
+      type: object
+      properties:
+        entitats:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResumEntitat'
+        totalNotificacions:
+          format: int64
+          type: integer
+        totalNotificacionsPendents:
+          format: int64
+          type: integer
+    ResumEntitat:
+      type: object
+      properties:
+        codiOrganisme:
+          type: string
+        nomOrganisme:
+          type: string
+        codiDepartament:
+          type: string
+        nomDepartament:
+          type: string
+        notificacions:
+          format: int64
+          type: integer
+        notificacionsPendents:
+          format: int64
+          type: integer
+    Tipus:
+      enum:
+      - NOTIFICACIO
+      - COMUNICACIO
+      type: string
+    TipusDocument:
+      enum:
+      - NIF
+      - PASSAPORT
+      - CIF
+      - VAT
+      type: string
+    Usuari:
+      type: object
+      properties:
+        nivellSeguretat:
+          $ref: '#/components/schemas/NivellSeguretat'
+        nom:
+          type: string
+        cognoms:
+          type: string
+        document:
+          type: string
+        tipusDocument:
+          $ref: '#/components/schemas/TipusDocument'
+        bustiaCorreu:
+          type: string
+        telefon:
+          type: string
+        funcionariHabilitat:
+          type: boolean
+        representats:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Representat'
+  securitySchemes:
+    OAuth2SecurityScheme:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /ciutadania/oauth/authorize
+          tokenUrl: /ciutadania/oauth/token
+          scopes:
+            autenticacio_usuari: Dades d'autenticació de l'usuari
