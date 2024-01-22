@@ -19,9 +19,9 @@
 
 A continuació es descriu l'API que proporciona **eNotum** per la recollida automatitzada de notificacions per part dels destinataris o dels representants d'aquests.
 
-Aquesta API va dirigida a tant a destinataris que reben moltes notificacions com a les plataformes de recollida de notificacions de tercers que automatitzen la recollida periòdica de les notificacions de múltiples destinataris. Per cadascún d'aquests perfils tenim una serie de recomanacions per facilitar-ne la recollida i fer-la més eficient.
+Aquesta API va dirigida a tant a destinataris que reben moltes notificacions com a les plataformes de recollida de notificacions de tercers que automatitzen la recollida periòdica de les notificacions de múltiples destinataris.
 
-L'API de recollida de notificacions és una API de tipus REST amb missatges en format JSON. L'autenticació dels usuaris es farà amb VALId i es podrà operar en nom d'un altre destinatari de les notificacions a través de les representacions donades d'alta a Representa o amb un certificat de represenant.
+L'API de recollida de notificacions és una API de tipus REST amb missatges en format JSON. L'autenticació dels usuaris es farà via autenticació mútua de certificats i es podrà operar en nom d'un altre destinatari de les notificacions a través de les representacions donades d'alta a Representa o amb un certificat de represenant.
 
 Aquesta API segueix el principi `Open/Closed` de manera que en un futur es podran introduir modificacions a la API garantint la compatibilitat sempre que els canvis que s'introdueixin es restringeixin exclusivament a afegir nous camps sense modificar els existents o a afegir noves operacions. De manera que els integradors han de garantir que les seves implementacions no fallen si en algun moment s'afegeix un camp extra en una resposta. En cas que sigui necessari fer un canvi en una operació existent que pugui trencar les integracions realitzades es prendrà la decisió de versionar l'operació o fer el canvi sobre l'operació existent. En aquest últim cas s'avisaria amb temps als integradors.
 
@@ -29,7 +29,7 @@ Aquesta API segueix el principi `Open/Closed` de manera que en un futur es podra
 
 Les aplicacions que vulguin utilitzar l'API de recollida de notificacions s'han d'autenticar seguint el protocol *Mutual TLS* (mTLS) i presentant el certificat de la persona de la que volen consultar les notificacions o del representant d'aquesta.
 
-> :information_source: Els certificats de representant d'entitat amb personalitat jurídica o els certificats de represetnant d'entitat sense personalitat jurídica son considerats certificats de persona física i només es podrà operar sobre les notificacions i comunicacions de la persona física. Si voleu consultar les notificacions i comunicacions de l'entitat representada s'ha de demanar explicitament com s'indica al punt següent.
+> :information_source: Els certificats de representant d'entitat amb personalitat jurídica o els certificats de representant d'entitat sense personalitat jurídica son considerats certificats de persona física i només es podrà operar sobre les notificacions i comunicacions de la persona física. Si voleu consultar les notificacions i comunicacions de l'entitat representada s'ha de demanar explicitament com s'indica al punt següent.
 
 ## Representacions
 
