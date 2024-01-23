@@ -4,6 +4,7 @@
    1. [Autenticacio](#autenticació)
    2. [Representacions](#representacions)
    3. [Entorns](#entorns)
+   4. [Com demanar l'alta al servei](#com-demanar-lalta-al-servei)
 2. [Operacions](#2-operacions)
    1. [Cerca Notificacions](#21-cerca-notificacions)
    2. [Consultar Notificació](#22-consulta-notificació)
@@ -23,7 +24,9 @@ Aquesta API va dirigida a tant a destinataris que reben moltes notificacions com
 
 L'API de recollida de notificacions és una API de tipus REST amb missatges en format JSON. L'autenticació dels usuaris es farà via autenticació mútua de certificats i es podrà operar en nom d'un altre destinatari de les notificacions a través de les representacions donades d'alta a Representa o amb un certificat de representant.
 
-Aquesta API segueix el principi `Open/Closed` de manera que en un futur es podran introduir modificacions a la API garantint la compatibilitat sempre que els canvis que s'introdueixin es restringeixin exclusivament a afegir nous camps sense modificar els existents o a afegir noves operacions. De manera que els integradors han de garantir que les seves implementacions no fallen si en algun moment s'afegeix un camp extra en una resposta. En cas que sigui necessari fer un canvi en una operació existent que pugui trencar les integracions realitzades es prendrà la decisió de versionar l'operació o fer el canvi sobre l'operació existent. En aquest últim cas s'avisaria amb temps als integradors.
+Aquesta API segueix el principi `Open/Closed` de manera que en un futur es podran introduir modificacions a la API garantint la compatibilitat sempre que els canvis que s'introdueixin es restringeixin exclusivament a afegir nous camps sense modificar els existents o a afegir noves operacions. De manera que els integradors han de garantir que les seves implementacions no fallen si en algun moment s'afegeix un camp extra en una resposta. En cas que sigui necessari fer un canvi en una operació existent que pugui trencar les integracions realitzades es prendrà la decisió de versionar l'operació o fer el canvi sobre l'operació existent. En aquest últim cas s'avisarà amb temps als integradors.
+
+El servei només estarà obert per les aplicacions que s'hagin donat d'alta previament (veure apartat [Com demanar l'alta al servei](#com-demanar-lalta-al-servei)). Per garantir-ne el bon ús es realitzarà un filtrat per IP i s'aplicaran quotes de volum de peticions.
 
 ## Autenticació
 
@@ -33,7 +36,7 @@ Les aplicacions que vulguin utilitzar l'API de recollida de notificacions s'han 
 
 ## Representacions
 
-L'API de recollida de notificacions permet als usuaris actuar com a representants d'una tercera persona física o jurídica. La representació s'acredita via la utilització d'un certificat de representant o donant d'alta una representació al servei Representa (més informació del servei [aquí](https://www.aoc.cat/serveis-aoc/representa/)).
+L'API de recollida de notificacions permet als usuaris actuar com a representants d'una tercera persona física o jurídica. La representació s'acredita via la utilització d'un certificat de representant o donant d'alta una representació al servei Representa (més informació del servei [aquí](https://suport-representa-ciutadania.aoc.cat/hc/ca)).
 
 Per invocar les operacions de l'API com a representant d'una tercera persona s'ha d'afegir la capçalera `x-enotum-representat` amb el tipus i identificador de la persona a representar separats per un guió. Per exemple una capçalera vàlida per representar una persona física seria:
 
@@ -54,6 +57,10 @@ L'adreça base de les operacions per cadascún dels entorns és la següent:
  * **PRO**: https://api.enotum.cat:8443
 
 > :information_source: Remarcar l'ús del port 8443 que és el que permet realitzar l'autenticació mTLS.
+
+## Com demanar l'alta al servei
+
+Per demanar l'alta al servei s'ha d'omplir el següent formulari (Pendent de publicar) i obrir un tiquet a [Suport](https://suport-enotum-ciutadania.aoc.cat/hc/ca).
 
 # 2. Operacions
 
@@ -166,7 +173,7 @@ L'operació de detall d'una notificació retorna el llistat de documents d'aques
 
 ### Resposta
 
-Es retorna un codi HTTP 302 amb l'adreça temporal per efectuar la descàrrega. En funció de la llibreria utilitzada per l'integrador aquesta redirecció serà automàtica o s'haurà de recuperar de la capçalera ``Location``.
+Es retorna un codi HTTP 307 (*Temporary Redirect*) amb l'adreça temporal per efectuar la descàrrega. En funció de la llibreria utilitzada per l'integrador aquesta redirecció serà automàtica o s'haurà de recuperar de la capçalera ``Location``.
 
 ## 2.5 Obtenir justificant PDF de la pràctica d'una notificació
 
@@ -184,7 +191,7 @@ Permet obtenir el justificant PDF de la pràctica d'una notificació.
 
 ### Resposta
 
-Es retorna un codi HTTP 302 amb l'adreça temporal per efectuar la descàrrega. En funció de la llibreria utilitzada per l'integrador aquesta redirecció serà automàtica o s'haurà de recuperar de la capçalera ``Location``.
+Es retorna un codi HTTP 307 (*Temporary Redirect*) amb l'adreça temporal per efectuar la descàrrega. En funció de la llibreria utilitzada per l'integrador aquesta redirecció serà automàtica o s'haurà de recuperar de la capçalera ``Location``.
 
 ## 2.6 Resum de notificacions
 
