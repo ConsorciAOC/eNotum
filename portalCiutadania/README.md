@@ -12,8 +12,9 @@
    4. [Obtenir document d'una notificació](#24-obtenir-document-duna-notificació)
    5. [Obtenir justificant PDF de la pràctica d'una notificació](#25-obtenir-justificant-pdf-de-la-pràctica-duna-notificació)
    6. [Resum de notificacions](#26-resum-de-notificacions)
-   7. [Informació del servei](#27-informació-del-servei)
-   8. [Model de dades dels recursos](#model-de-dades-dels-recursos)
+   7. [Obtenir dades de l’usuari autenticat](#27-obtenir-dades-de-lusuari-autenticat)
+   8. [Informació del servei](#28-informació-del-servei)
+   9. [Model de dades dels recursos](#model-de-dades-dels-recursos)
 3. [Respostes en cas d'error](#3-respostes-en-cas-derror)
 
 # 1. Introducció
@@ -255,7 +256,7 @@ No accepta paràmetres d'entrada. Només és necessari que l'usuari s'hagi auten
   * **tipusDocument**: Tipus del document identificador de l'usuari representat.
   * **document**: Numero del document identificatiu de l'usuari representat.
 
-## 2.7 Informació del servei
+## 2.8 Informació del servei
 
 Retorna informació de la versió de l'API desplegada.
 
