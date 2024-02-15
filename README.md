@@ -17,9 +17,9 @@ Les versions antigues de missatgeria 3.2, 3.1 i 3.0 segueixen sent compatibles i
 Les versions més antigues de missatgeria i altres documents d'integració els podeu consultar  a través del [nostre portal de suport a la integració](https://suport-enotum.aoc.cat/hc/ca/sections/4412319169553-Integraci%C3%B3).
 
 El calendari d’eliminació de versions obsoletes:
-* Versió **3.0**: Finals 2024
-* Versió **3.1**: Finals 2025
-* Versió **3.2**: Finals 2026
+* Versió **3.0**: 15 desembre 2024
+* Versió **3.1**: 15 desembre 2025
+* Versió **3.2**: 15 desembre 2026
 
 ## eNotum Ciutadania
 
