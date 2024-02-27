@@ -107,7 +107,7 @@ La cerca de notificacions proporciona el llistat de notificacions i comunicacion
 La resposta té els seguents camps:
 
 * **notificacions**: array de `Notificacions`. Es descriu amb detall [aquí](#Notificacio). Aquest llistat no inclou els documents de la notificació. 
-* **pagina**: númeor de pàgina actual del llistat retornat.
+* **pagina**: número de pàgina actual del llistat retornat.
 * **totalPagines**: número total de pagines del llistat.
 * **totalResultats**: número total de notificacions del llistat.
 
