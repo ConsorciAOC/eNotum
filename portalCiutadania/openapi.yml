@@ -2,7 +2,12 @@
 openapi: 3.0.3
 info:
   title: eNotum Ciutadania API
-  version: 1.0-SNAPSHOT
+  version: "1.0"
+servers:
+- url: https://api.enotum.cat:8443
+  description: Producció
+- url: https://api-pre.enotum.cat:8443
+  description: Test
 paths:
   /ciutadania/etiquetes:
     get:
@@ -56,6 +61,10 @@ paths:
         in: query
         schema:
           type: string
+      - name: etiquetaIdioma
+        in: query
+        schema:
+          type: string
       - name: noLlegides
         in: query
         schema:
@@ -68,7 +77,7 @@ paths:
         in: query
         schema:
           type: string
-      - name: page
+      - name: pagina
         in: query
         schema:
           format: int32
@@ -463,10 +472,10 @@ components:
             type: string
     Idioma:
       enum:
-      - CA
-      - ES
-      - OC
-      - EN
+      - ca
+      - es
+      - en
+      - oc
       type: string
     LocalDateTime:
       format: date-time
@@ -523,6 +532,8 @@ components:
             $ref: '#/components/schemas/Etiqueta'
         canal:
           $ref: '#/components/schemas/Canal'
+        idioma:
+          $ref: '#/components/schemas/Idioma'
         expedient:
           type: string
         tramit:
@@ -638,7 +649,7 @@ components:
     OAuth2SecurityScheme:
       type: oauth2
       flows:
-        authorizationCode:
+        implicit:
           authorizationUrl: /ciutadania/oauth/authorize
           tokenUrl: /ciutadania/oauth/token
           scopes:
