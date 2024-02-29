@@ -22,8 +22,8 @@
 
 	<xs:complexType name="DadesPaginacioType">
 		<xs:sequence>
-			<xs:element name="NumeroPagina" type="Number"/>
-			<xs:element name="ResultatsPerPagina" type="Number50Max"/>
+			<xs:element name="NumeroPagina" type="PositiveNumber"/>
+			<xs:element name="ResultatsPerPagina" type="PositiveNumber50Max"/>
 			<xs:element name="TotalResultats" type="Number"/>
 			<xs:element name="TotalPagines" type="Number"/>
 		</xs:sequence>
@@ -51,7 +51,7 @@
 						<xs:element name="DataPublicacio" type="xs:dateTime" nillable="true"/>
 						<xs:element name="DataAcceptacioRebuig" type="xs:dateTime" nillable="true"/>
 						<xs:element name="Estat" type="EstatType"/>
-						<xs:element name="DiesExpiracio" type="Number1000Max" minOccurs="0"/>
+						<xs:element name="DiesExpiracio" type="PositiveNumber1000Max" minOccurs="0"/>
 						<xs:element name="DataLimit" type="xs:dateTime" minOccurs="0"/>
 						<xs:element name="TipusAcces" type="TipusAccesType"/>
 						<xs:element name="Idioma" type="Idioma"/>

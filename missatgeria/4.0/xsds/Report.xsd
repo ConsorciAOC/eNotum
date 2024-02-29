@@ -37,7 +37,7 @@
 						<xs:element name="Referencia" type="String255Max"/>
 						<xs:element name="IdNotificacio" type="Number"/>
 						<xs:element name="TipusObjecte" type="TipusObjecteType"/>
-						<xs:element name="DiesExpiracio" type="Number1000Max" minOccurs="0"/>
+						<xs:element name="DiesExpiracio" type="PositiveNumber1000Max" minOccurs="0"/>
 						<xs:element name="IdNotificacioEmissor" type="String255Max" minOccurs="0"/>
 						<xs:element name="Canal" type="CanalType" minOccurs="0"/>
 					</xs:sequence>

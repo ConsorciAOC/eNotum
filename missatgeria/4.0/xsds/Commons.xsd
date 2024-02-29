@@ -60,23 +60,29 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="Number50Max">
+	<xs:simpleType name="PositiveNumber">
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PositiveNumber50Max">
 		<xs:restriction base="xs:integer">
-			<xs:minInclusive value="0"/>
+			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="50"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="Number180Max">
+	<xs:simpleType name="PositiveNumber180Max">
 		<xs:restriction base="xs:integer">
-			<xs:minInclusive value="0"/>
+			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="180"/>
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="Number1000Max">
+	<xs:simpleType name="PositiveNumber1000Max">
 		<xs:restriction base="xs:integer">
-			<xs:minInclusive value="0"/>
+			<xs:minInclusive value="1"/>
 			<xs:maxInclusive value="1000"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -174,7 +180,7 @@
 			</xs:choice>
 			<xs:element name="TipusObjecte" type="TipusObjecteType"/>
 			<xs:element name="TipusAcces" type="TipusAccesType"/>
-			<xs:element name="DiesExpiracio" type="Number180Max" minOccurs="0"/>
+			<xs:element name="DiesExpiracio" type="PositiveNumber180Max" minOccurs="0"/>
 			<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
 			<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
 			<xs:element name="Canal" type="CanalType" minOccurs="0"/>
@@ -262,7 +268,7 @@
 
 	<xs:complexType name="DiesAvisosType">
 		<xs:sequence>
-			<xs:element name="DiaAvis" type="Number1000Max" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DiaAvis" type="PositiveNumber1000Max" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -368,7 +374,7 @@
 		<xs:sequence>
 			<xs:element name="Nom" type="String100Max"/>
 			<xs:element name="Hash" type="HashType" minOccurs="0"/>
-			<xs:element name="Mida" type="Number" minOccurs="0"/>
+			<xs:element name="Mida" type="PositiveNumber" minOccurs="0"/>
 			<xs:element name="UUID" type="uuid" minOccurs="0"/>
 			<xs:choice>
 				<xs:element name="Dades" type="xs:base64Binary"/>

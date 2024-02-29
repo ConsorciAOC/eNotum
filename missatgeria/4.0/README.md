@@ -1159,8 +1159,8 @@ Permet cercar per els intervals per la data d'expiració.
 <xs:element name="Paginacio">
 	<xs:complexType>
 		<xs:sequence>
-			<xs:element name="NumeroPagina" type="Number"/>
-			<xs:element name="ResultatsPerPagina" type="Number50Max"/>
+			<xs:element name="NumeroPagina" type="PositiveNumber"/>
+			<xs:element name="ResultatsPerPagina" type="PositiveNumber50Max"/>
 			<xs:element name="CampOrdenacio" type="xs:string" minOccurs="0"/>
 			<xs:element name="SentitOrdenacio" type="SentitOrdenacioType" minOccurs="0"/>
 		</xs:sequence>
@@ -1234,7 +1234,7 @@ Conté les dades de paginació dels resultats de cerca. L'element es descriu amb
 					<xs:element name="DataPublicacio" type="xs:dateTime" nillable="true"/>
 					<xs:element name="DataAcceptacioRebuig" type="xs:dateTime" nillable="true"/>
 					<xs:element name="Estat" type="EstatType"/>
-					<xs:element name="DiesExpiracio" type="Number1000Max" minOccurs="0"/>
+					<xs:element name="DiesExpiracio" type="PositiveNumber1000Max" minOccurs="0"/>
 					<xs:element name="DataLimit" type="xs:dateTime" minOccurs="0"/>
 					<xs:element name="TipusAcces" type="TipusAccesType"/>
 					<xs:element name="Idioma" type="Idioma"/>
@@ -1309,8 +1309,8 @@ Identificador del número de cas informat a la notificació durant la seva creac
 ```xml
 <xs:complexType name="DadesPaginacioType">
 	<xs:sequence>
-		<xs:element name="NumeroPagina" type="Number"/>
-		<xs:element name="ResultatsPerPagina" type="Number50Max"/>
+		<xs:element name="NumeroPagina" type="PositiveNumber"/>
+		<xs:element name="ResultatsPerPagina" type="PositiveNumber50Max"/>
 		<xs:element name="TotalResultats" type="Number"/>
 		<xs:element name="TotalPagines" type="Number"/>
 	</xs:sequence>
@@ -1410,7 +1410,7 @@ La definició de `DocumentType` es pot veure a continuació:
 	<xs:sequence>
 		<xs:element name="Nom" type="String100Max"/>
 		<xs:element name="Hash" type="HashType" minOccurs="0"/>
-		<xs:element name="Mida" type="Number" minOccurs="0"/>
+		<xs:element name="Mida" type="PositiveNumber" minOccurs="0"/>
 		<xs:element name="UUID" type="uuid" minOccurs="0"/>
 		<xs:choice>
 			<xs:element name="Dades" type="xs:base64Binary"/>
@@ -1494,7 +1494,7 @@ Algoritme utilitzat per obtenir el resum criptogràfic del document. Pot tenir e
 		</xs:choice>
 		<xs:element name="TipusObjecte" type="TipusObjecteType"/>
 		<xs:element name="TipusAcces" type="TipusAccesType"/>
-		<xs:element name="DiesExpiracio" type="Number180Max" minOccurs="0"/>
+		<xs:element name="DiesExpiracio" type="PositiveNumber180Max" minOccurs="0"/>
 		<xs:element name="Etiquetes" type="EtiquetesType" minOccurs="0"/>
 		<xs:element name="Idioma" type="Idioma" minOccurs="0"/>
 		<xs:element name="Canal" type="CanalType" minOccurs="0"/>
@@ -1930,7 +1930,7 @@ Cadascuna de les notificacions retornades per el report retorna un element del t
 						<xs:element name="Referencia" type="String255Max"/>
 						<xs:element name="IdNotificacio" type="Number"/>
 						<xs:element name="TipusObjecte" type="TipusObjecteType"/>
-						<xs:element name="DiesExpiracio" type="Number1000Max" minOccurs="0"/>
+						<xs:element name="DiesExpiracio" type="PositiveNumber1000Max" minOccurs="0"/>
 						<xs:element name="IdNotificacioEmissor" type="String255Max" minOccurs="0"/>
 						<xs:element name="Canal" type="CanalType" minOccurs="0"/>
 					</xs:sequence>

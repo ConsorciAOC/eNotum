@@ -75,8 +75,8 @@
 									<xs:element name="Paginacio">
 										<xs:complexType>
 											<xs:sequence>
-												<xs:element name="NumeroPagina" type="Number"/>
-												<xs:element name="ResultatsPerPagina" type="Number50Max"/>
+												<xs:element name="NumeroPagina" type="PositiveNumber"/>
+												<xs:element name="ResultatsPerPagina" type="PositiveNumber50Max"/>
 												<xs:element name="CampOrdenacio" type="xs:string" minOccurs="0"/>
 												<xs:element name="SentitOrdenacio" type="SentitOrdenacioType" minOccurs="0"/>
 											</xs:sequence>
