@@ -315,57 +315,11 @@ La tramesa és l'estructura que permet la creació de notificacions i/o comunica
 </xs:element>
 ```	
 L'element `<DadesAvisos>` és opcional ja que **eNotum** disposa d'un comportament per defecte per als valors especificats en aquest element, en cas de que vinguin informats al missatge, aquests tindran prioritat per a ser utilitzats en comptes dels que hi hagi establers per defecte. `<DadesAvisos>` està format pels següents elements:
-	
-##### Plantilla
-```xml
-<xs:element name="Plantilla" type="xs:string" minOccurs="0"/>
-```
-Identificador de plantilles de correu i SMS d'avis a utilitzar per a aquesta notificació. Es condició que a **eNotum** existeixi aquest identificador amb les plantilles creades.
 
-#### Email
-```xml
-<xs:element name="Email" minOccurs="0">
-	<xs:complexType>
-		<xs:all>
-			<xs:element name="Emissor" type="xs:string" minOccurs="0"/>
-			<xs:element name="Assumpte" minOccurs="0">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="100"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-			<xs:element name="Missatge" type="xs:string" minOccurs="0"/>
-		</xs:all>
-	</xs:complexType>
-</xs:element>
-```
-Aquest element permet canviar la configuració per defecte que rebran els destinataris de la notificació via correu electrònic. Concretament permet indicar els següents camps:
-
-* `/Email/Emissor` _Deprecat_
-* `/Email/Assumpte`
-Assumpte que s'utilitzarà per a l'avís del correu electrònic.
-* `/Email/Missatge`
-Cos del missatge del avis per correu electrònic. El missatge ha de ser en format de text pla. Aquest missatge s'embolcallarà dins de les plantilles definides al sistema, concretament a les plantilles s'espeficarà l'element `@@EMAIL_BODY@@` ([per més informació podeu veure documentació plantilles](../plantilles/README.md)) que serà substituit per aquest missatge en cas d'existir.
-
-#### SMS
-```xml
-<xs:element name="SMS" minOccurs="0">
-	<xs:complexType>
-		<xs:all>
-			<xs:element name="Missatge" minOccurs="0">
-				<xs:simpleType>
-					<xs:restriction base="xs:string">
-						<xs:maxLength value="512"/>
-					</xs:restriction>
-				</xs:simpleType>
-			</xs:element>
-		</xs:all>
-	</xs:complexType>
-</xs:element>
-```
-* `/SMS/Missatge`
-Aquest element conté un únic camp amb el cos del missatge que s'enviarà com a avis de la notificació.
+* `/DadesAvisos/Plantilla` _Deprecat_
+* `/DadesAvisos/Email` _Deprecat_
+* `/DadesAvisos/SMS` _Deprecat_
+* `/DadesAvisos/URLs` _Deprecat_
 
 #### DiesAvisos
 ```xml
@@ -379,21 +333,6 @@ Aquest element conté un únic camp amb el cos del missatge que s'enviarà com a
 ```
 * `/DiesAvisos/DiaAvis`
 Llista d'elements d'aquest tipus amb els número de dies a comptar a partir del enviament per el qual s'enviaran recordatoris al/s destinatari/s de la notificació mentre aquesta no es trobi en un estat final.
-
-#### URLs
-```xml
-<xs:element name="URLs" minOccurs="0">
-	<xs:complexType>
-		<xs:all>
-			<xs:element name="AccesNotificacio" type="xs:string" minOccurs="0"/>
-			<xs:element name="AccesLlistat" type="xs:string" minOccurs="0"/>
-		</xs:all>
-	</xs:complexType>
-</xs:element>
-```
-Aquest element igual que la resta de tags de `<DadesAvisos>` són opcionals, ja que **eNotum** disposa de configuració per entitat i per defecte per a aquests camps, només s'han d'usar en cas de voler modificar aquests valors per notificacions concretes.
-* `/URLs/AccesNotificacio` Permet informar l'enllaç d'accés directe que desprès es podrà utilitzar des de les plantilles d'avisos de notificacions.
-* `/URLs/AccesLlistat` Permet informar l'enllaç d'accés genèric al llistat de notificacions per a l'organisme i departament de la notificació en concret, que desprès igual que en el cas anterior es podrà utilitzar des de les plantilles d'avisos de notificacions.
 
 ### DadesOfici
 
