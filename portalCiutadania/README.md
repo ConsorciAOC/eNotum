@@ -61,7 +61,7 @@ L'adreça base de les operacions per cadascún dels entorns és la següent:
 
 ## Com demanar l'alta al servei
 
-Per demanar l'alta al servei s'ha d'omplir el següent formulari (Pendent de publicar) i obrir un tiquet a [Suport](https://suport-enotum-ciutadania.aoc.cat/hc/ca).
+Per demanar l'alta al servei s'ha d'omplir el formulari que podeu trobar [aquí](https://suport-integradors.aoc.cat/hc/ca/articles/16865197344029-Recollida-automatitzada-de-notificacions) i obrir un tiquet a [Suport](https://suport-enotum-ciutadania.aoc.cat/hc/ca).
 
 # 2. Operacions
 
