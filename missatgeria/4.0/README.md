@@ -16,7 +16,9 @@
    7. [Operació Cerca](#operació-cerca)
    8. [Tipus comuns](#tipus-comuns)
 4. [Reports de canvis d'estat](#4-reports-de-canvi-destat)
-6. [Codis d'error d'eNotum](#5-codis-derror-denotum)
+5. [Codis d'error d'eNotum](#5-codis-derror-denotum)
+6. [Notes per la migració de missatgeria de versions anteriors](#6-notes-per-la-migracio-de-missatgeria-de-versions-anteriors)
+   1. [Correspondencia d'estats](#correspondencia-destats)
 
 
 # 1. Introducció
@@ -2211,3 +2213,22 @@ Cadena de text indicant el motiu de l'error.
 |3108|El codi d'organisme no es correspón amb l'indicat|
 |3200|El tipus de document identificatiu a retornar no està suportat per la versió de missatgeria utilitzada|
 |3201|Les dades del report a retornar no són compatibles amb la versió de missatgeria utilitzada. Faci la petició amb la versió de la missatgeria >= 3.2|
+
+# 6. Notes per la migració de missatgeria de versions anteriors
+
+## 6.1 Correspondencia d'estats
+
+A les versions 3.0, 3.1 i 3.2 els estats de les notificacions es mostraven tant amb un codi numèric com amb la descripció d'aquest. En la versió 4.0 es prescindeix del codi numèric i es retorna només l'estat amb un literal.
+
+La taula de correspondencia entre el codi d'estat de les versions anteriors i els literals de la versió 4.0 és la següent:
+
+| Codi d'estat v3 | Estat v4.0 |
+| --------------- | ---------- |
+| 0               | PENDENT    |
+| 1               | REGISTRADA |
+| 3, 7            | DIPOSITADA |
+| 47              | ACCEPTADA  |
+| 31              | REBUTJADA  |
+| 19, 23          | EXPIRADA   |
+| 512 - 1023      | ANUL·LADA  |
+| 1024 - 2048     | ERROR      |
