@@ -31,7 +31,7 @@ El servei només estarà obert per les aplicacions que s'hagin donat d'alta prev
 
 ## Autenticació
 
-Les aplicacions que vulguin utilitzar l'API de recollida de notificacions s'han d'autenticar seguint el protocol *Mutual TLS* (mTLS) i presentant el certificat de la persona de la que volen consultar les notificacions o del representant d'aquesta.
+Les aplicacions que vulguin utilitzar l'API de recollida de notificacions s'han d'autenticar seguint el protocol *Mutual TLS* (mTLS) i presentant el certificat de la persona de la que volen consultar les notificacions, o del representant d'aquesta, o el certificat de segell electrònic de l'empresa.
 
 > :information_source: Els certificats de representant d'entitat amb personalitat jurídica o els certificats de representant d'entitat sense personalitat jurídica son considerats certificats de persona física i només es podrà operar sobre les notificacions i comunicacions de la persona física. Si voleu consultar les notificacions i comunicacions de l'entitat representada s'ha de demanar explicitament com s'indica al punt següent.
 
