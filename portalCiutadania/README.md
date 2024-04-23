@@ -150,6 +150,20 @@ Aquesta operació realitza la pràctica de la notificació a eNotum. Es realitza
 
 * **x-enotum-representat**: Identificador de la persona representada de la que consultar les notificacions. A l'apartat [Representacions](#representacions) es detalla aquest camp.
 
+### Exemple:
+
+**URL:**
+```
+PATCH /ciutadania/notificacions/12345
+```
+
+**Cos de la petició:**
+```json
+{
+  "estat": "ACCEPTADA"
+}
+```
+
 ### Resposta
 
 La resposta no retorna cap missatge. Només es retornen els codis HTTP:
