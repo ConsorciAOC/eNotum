@@ -17,8 +17,8 @@
    8. [Tipus comuns](#tipus-comuns)
 4. [Reports de canvis d'estat](#4-reports-de-canvi-destat)
 5. [Codis d'error d'eNotum](#5-codis-derror-denotum)
-6. [Notes per la migració de missatgeria de versions anteriors](#6-notes-per-la-migracio-de-missatgeria-de-versions-anteriors)
-   1. [Correspondencia d'estats](#correspondencia-destats)
+6. [Notes per la migració de missatgeria de versions anteriors](#6-notes-per-la-migració-de-missatgeria-de-versions-anteriors)
+   1. [Correspondencia d'estats](#61-correspondencia-destats)
 
 
 # 1. Introducció
