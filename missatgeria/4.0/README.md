@@ -1416,7 +1416,6 @@ La definició de `DocumentType` es pot veure a continuació:
 		<xs:element name="UUID" type="uuid" minOccurs="0"/>
 		<xs:choice>
 			<xs:element name="Dades" type="xs:base64Binary"/>
-			<xs:element name="URLDescarrega" type="xs:anyURI"/>
 			<xs:element name="Ruta" type="xs:string"/>
 			<xs:element name="UUIDFitxer" type="uuid"/>
 			<xs:element name="UUIDDocument" type="uuid"/>
@@ -1440,8 +1439,6 @@ Mida del document en bytes. No és necessari informar-la en l'operació de _Proc
 UUID del document guardat a DESA'L. Aquest UUID és generat per eNOTUM en el moment de dipositar la notificació. No s'ha d'informar en l'operació de _ProcessarTramesa_
 * `/Document/Dades`
 En cas que és vulgui incrustar el document dins del missatge en _base64_. S'ha de tenir en compte que per a documents on la mida superi **1MB**, no recomanem aquest mecanisme, donat que la _PCI_ té una restricció on el missatge _XML_ de la petició complet no pot superar els **2MB**. 
-* `/Documents/Document/URLDescarrega`
-Permet informar una URL on l'ens té penjat el document. Aquesta URL no hauria de ser pública i tenir accés securitzat per IP. S'ha de demanar a través del portal de suport. El contingut del document es descarregarà en l'execució de l'operació _ProcessarTramesa_.
 * `/Documents/Document/Ruta`
 Ruta del document pujat al FTP. Aquesta ruta és la relativa dins el directori arrel de l'usuari que es connecta al FTP. Només disponible per als ens que s'han donat d'alta amb la integració per aquesta via.
 * `/Documents/Document/UUIDFitxer`

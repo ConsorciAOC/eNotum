@@ -196,8 +196,8 @@
 		<xs:sequence>
 			<xs:element name="CosNotificacio" type="String4000Max"/>
 			<xs:element name="PeuRecurs" type="String4000Max" minOccurs="0"/>
-			<xs:element name="OficinaRegistre" type="xs:string" minOccurs="0"/>
-			<xs:element name="UnitatOrganitzativa" type="xs:string" minOccurs="0"/>
+			<xs:element name="OficinaRegistre" type="String50Max" minOccurs="0"/>
+			<xs:element name="UnitatOrganitzativa" type="String50Max" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 
@@ -220,7 +220,7 @@
 					<xs:sequence>
 						<xs:element name="PersonaFisica" type="PersonaFisicaSimpleType"/>
 						<xs:element name="Interessat" type="InteressatType"/>
-						<xs:element name="Referencia" type="String255Max"/>
+						<xs:element name="RegistreEntradaHabilitacio" type="String255Max"/>
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
