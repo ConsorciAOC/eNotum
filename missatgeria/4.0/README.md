@@ -1943,7 +1943,7 @@ Cadascuna de les notificacions retornades per el report retorna un element del t
 					</xs:sequence>
 				</xs:complexType>
 			</xs:element>
-			<xs:element name="DadesSignador" type="DadesSignadorType"/>
+			<xs:element name="DadesSignador" type="DadesSignadorType" minOccurs="0"/>
 			<xs:element name="DadesCanviCanal" type="DadesCanviCanalType" minOccurs="0"/>
 			<xs:element name="BackOffice" type="xs:string" minOccurs="0"/>
 		</xs:sequence>
