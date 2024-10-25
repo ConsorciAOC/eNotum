@@ -265,9 +265,9 @@ L'element `<Errors>` serà una seqüencia amb els possibles errors de la petici�
 	</xs:complexType>
 ```
 
-A la practica, les respostes de les modalitats de consum amb elements `<Error>`, només tindran informat els elements obligatoris: `<CodiError>` i `<MissatgeError>`. Els tres elements opcionals restants mai vindran informat en aquests casos. Podeu veure els possibles [codis i missatges d'error en aquest apartat](#4-codis-derror-denotum).
+A la practica, les respostes de les modalitats de consum amb elements `<Error>`, només tindran informat els elements obligatoris: `<CodiError>` i `<MissatgeError>`. Els tres elements opcionals restants mai vindran informat en aquests casos. Podeu veure els possibles [codis i missatges d'error en aquest apartat](#5-codis-derror-denotum).
 
-Els tres elements opcionals vindran informats en els missatges d'error que envia eNOTUM als backoffices integrats informant dels errors en les fases d'execució de la notifiació. Veure la secció [Callacks]() més endavant.
+Els tres elements opcionals vindran informats en els missatges d'error que envia eNOTUM als backoffices integrats informant dels errors en les fases d'execució de la notifiació. Veure la secció [Callacks](#4-reports-de-canvi-destat) més endavant.
 
 # 3. Operacions
 
