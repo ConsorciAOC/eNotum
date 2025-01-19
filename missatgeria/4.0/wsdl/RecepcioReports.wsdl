@@ -26,7 +26,7 @@
 		</s:schema>
 		<s:schema
 			xmlns="http://www.aocat.net/NT/v4.0" 
-			targetNamespace="http://www.aocat.net/NT/v3.2"
+			targetNamespace="http://www.aocat.net/NT/v4.0"
 			elementFormDefault="qualified" 
 			attributeFormDefault="unqualified">
 
@@ -41,7 +41,7 @@
 	<wsdl:message name="clientRequestwithReturnSoapOut">
 		<wsdl:part name="parameters" element="s0:clientRequestwithReturnResponse" />
 	</wsdl:message>
-	<wsdl:portType name="ReportReceiverv3Soap">
+	<wsdl:portType name="ReportReceiverSoap">
 		<wsdl:operation name="clientRequestwithReturn">
 			<wsdl:input message="s0:clientRequestwithReturnSoapIn" />
 			<wsdl:output message="s0:clientRequestwithReturnSoapOut" />
