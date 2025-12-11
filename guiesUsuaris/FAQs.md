@@ -21,6 +21,8 @@ Per a la resta de casos la mida màxima permesa per un document és de **6MB**.
 * Normalitza el telèfon:
   * Si el telèfon hi ha un caràcter `+` el remplaça per `00`.
   * Si el telèfon comença per `0034` elimina aquests caràcters perquè és el prefix d'Espanya.
-* Valida el telèfon:
+
+# Quines validacions es realitzen als telefons?
+
   * Validem la correctesa de qualsevol número de teléfon de país o regió del mon mitjançant la llibreria https://github.com/googlei18n/libphonenumber
-  * Es valida que, si el número de telèfon mòbil és espanyol, ha de començar per 6 o 71, 72, 73, 74 segons el [Plan Nacional de Numeración](https://avance.digital.gob.es/es-ES/Servicios/Numeracion/Documents/Guia_Numeracion.pdf)
+  * Validem que, si el número de telèfon mòbil és espanyol, comenci per 6 o 71, 72, 73, 74 segons el [Plan Nacional de Numeración](https://avance.digital.gob.es/es-ES/Servicios/Numeracion/Documents/Guia_Numeracion.pdf)
