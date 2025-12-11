@@ -6,7 +6,7 @@ A continuació és descriu el funcionament i les diferents modalitats de consum 
 
 Tal i com es reflecteix a la següent figura, el Backend d'**eNotum** s'integra dins de l'arquitectura de la Plataforma de Col·laboració Interadministrativa (en endavant _PCI_) a mode d'un nou servei accessible a través de la MTI. 
 
-Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a través de la missatgeria de la _PCI_ utilitzant l'element `<DatosEspecificos>` d'aquesta, per a més informació podeu consultar [el document d'integració de la _PCI_ aqui](https://suport-enotum.aoc.cat/hc/ca/articles/4412319190929-Documentaci%25C3%25B3-gen%25C3%25A8rica-per-a-integrar-se-a-la-PCI)
+Per tant els integradors que vulguin accedir a l'**eNotum** ho hauran de fer a través de la missatgeria de la _PCI_ utilitzant l'element `<DatosEspecificos>` d'aquesta, per a més informació podeu consultar [el document d'integració de la _PCI_ aqui](https://suport.aoc.cat/ca-es/article/?servei=integracio&id=KA-07379_documentacio-generica-per-a-integrar-se-a-la-pci)
 
 ![eNotum_integracio_pci](imgs/eNotum_arquitectura_pci.png)
 
@@ -104,7 +104,7 @@ Un cop en aquest estat la notificació no pot ser canviada d'estat a un estat an
 
 La notificació arriba a aquest estat quan l'ens que ha generat la notificació demana que aquesta s'anul·li. Hi ha diversos motius que poden motivar l'anul·lació d'una notificació: que aquesta contingui dades errònies, que l'expedient que la motiva ha estat declarat nul, etc.
 
-L'anul·lació d'una notificació s'ha de realitzar a través de l'aplicació eNOTUM del portal EACAT. Al portal de suport podeu trobar la guia sobre [com anul·lar una notificació des de les pantalles d'EACAT](https://suport-enotum.aoc.cat/hc/ca/articles/4412324029713-Anul-laci%C3%B3-de-notificacions-electr%C3%B2niques).
+L'anul·lació d'una notificació s'ha de realitzar a través de l'aplicació eNOTUM del portal EACAT. Al portal de suport podeu trobar la guia sobre [com anul·lar una notificació des de les pantalles d'EACAT](https://suport.aoc.cat/ca-ES/article/?servei=enotum-administracions&id=KA-08125_anul-lacio-tecnica-de-notificacions-electroniques).
 
 ## 1.3. Cicle de vida de les comunicacions
 
@@ -143,7 +143,7 @@ Específicament per a fer ús del servei d'**eNotum** dins de la missatgeria de 
 * `//Peticion/Solicitudes/SolicitudTransmision/DatosGenericos/Transmision/CodigoCertificado` el _string_ ENOTUM
 * `//Peticion/Solicitudes/SolicitudTransmision/DatosEspecíficos` Petició _XML_ específica d'**eNotum**
 
-Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requisits definits [al document d'integració de la PCI aqui](https://suport-enotum.aoc.cat/hc/ca/articles/4412319190929-Documentaci%25C3%25B3-gen%25C3%25A8rica-per-a-integrar-se-a-la-PCI)
+Pel que fa a la resta del missatge _PCI_, cal que aquest compleixi amb els requisits definits [al document d'integració de la PCI aqui](https://suport.aoc.cat/ca-es/article/?servei=integracio&id=KA-07379_documentacio-generica-per-a-integrar-se-a-la-pci)
 
 # 3. Missatgeria específica eNotum versió 3.2
 
@@ -421,7 +421,7 @@ En cas que és vulgui incrustar el document dins del missatge en _base64_. S'ha 
 * `/Documents/Document/Ruta`
 Ruta del document pujat al FTP. Aquesta ruta és la relativa dins el directori arrel de l'usuari que es connecta al FTP. Només disponible per als ens que s'han donat d'alta amb la integració per aquesta via.
 * `/Documents/Document/IdFicheroPCI`
-Permet adjuntar un document mitjançant _MTOM_. Aquest identificador s'ha de correspondre amb el `<Id>` del `<Fichero>` de les `<DatosGenericos>` de la missatgeria de la _PCI_ per a que **eNotum** pugui recuperar correctament el document. En aquest cas el document s'adjunta en la petició _XML_ i s'ha d'específicar mitjançant el tag `<Contendio>` del `<Fichero>` en fromat _MTOM_ dins de la missatgeria de la _PCI_. Per a més informació podeu consultar [la guia d'integració de la _PCI_](https://suport-enotum.aoc.cat/hc/ca/articles/4412319190929-Documentaci%25C3%25B3-gen%25C3%25A8rica-per-a-integrar-se-a-la-PCI)
+Permet adjuntar un document mitjançant _MTOM_. Aquest identificador s'ha de correspondre amb el `<Id>` del `<Fichero>` de les `<DatosGenericos>` de la missatgeria de la _PCI_ per a que **eNotum** pugui recuperar correctament el document. En aquest cas el document s'adjunta en la petició _XML_ i s'ha d'específicar mitjançant el tag `<Contendio>` del `<Fichero>` en fromat _MTOM_ dins de la missatgeria de la _PCI_. Per a més informació podeu consultar [la guia d'integració de la _PCI_](https://suport.aoc.cat/ca-es/article/?servei=integracio&id=KA-07379_documentacio-generica-per-a-integrar-se-a-la-pci)
 * `/Documents/Document/Tipus`
 Indica el tipus de documents adjuntat. Els possibles valors són:
 	* *Resolució* : És obligatori adjuntar un document d'aquest tipus per tramesa.

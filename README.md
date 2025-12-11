@@ -1,7 +1,7 @@
 # eNotum
 Aquest repositori preten anar recopilant poc a poc la nova documentació relacionada amb eNotum conforme aquesta és vagi *actualitzant*.
 
-Tota la documentació d'integració antiga així com altre tipus de documentació no tècnica (per exemple legal) relacionada amb eNotum la podeu seguir trobant a l'apartat corresponent de la plana de suport del [Consorci AOC](https://suport-enotum.aoc.cat/hc/ca).
+Tota la documentació d'integració antiga així com altre tipus de documentació no tècnica (per exemple legal) relacionada amb eNotum la podeu seguir trobant a l'apartat corresponent de la plana de suport del [Consorci AOC](https://suport.aoc.cat/ca-ES/category/?id=CAT-01000).
 
 # Documentació integradors 
 
@@ -14,8 +14,6 @@ En aquest apartat es descriu el funcionament i les modalitats de consum de les v
 
 Les versions antigues de missatgeria 3.2 i 3.1 segueixen sent compatibles i funcionen correctament, tot i que disposen de menys funcionalitats i són susceptibles de ser discontinuades en un futur. Si comenceu ara la integració haurieu de fer-ho amb la versió 4.0.
 
-Les versions més antigues de missatgeria i altres documents d'integració els podeu consultar  a través del [nostre portal de suport a la integració](https://suport-enotum.aoc.cat/hc/ca/sections/4412319169553-Integraci%C3%B3).
-
 El calendari d’eliminació de versions obsoletes:
 * Versió **3.1**: 15 desembre 2025
 * Versió **3.2**: 15 desembre 2026
@@ -24,14 +22,14 @@ El calendari d’eliminació de versions obsoletes:
 
 En aquest apartat es descriu el funcionament de l'API per la recollida automatitzada de notificacions per part de ciutadans i representants de persones físiques i jurídiques.
 
-1. [Documentació API per a la recollida automatitzada de notificacions](/portalCiutadania/README.md)
+1. [Documentació API per a la recollida automatitzada de notificacions](/ciutadania/README.md)
 
 
 # Documentació portal d'empleat públic
 
 Documentació específica i manuals d'usuari relacionats amb el portlet d'empleat públic:
 
-[1. FAQs portal empleat public](/empleatPublic/FAQs.md)
+[1. FAQs portal empleat public](/eacat/FAQs.md)
 
 # Altres
 
