@@ -207,7 +207,7 @@ Dins el tipus _UsuariType_ es defineixen els diferents tipus de Rol que pot assu
 L'empleat públic és el rol d'usuari autoritzat per a la creació de notificacions. A banda permet fer les operacions de modalitats de consum de Cerca, Consulta etc. A excepció de les operacions de Practicar i Resum.
 * `Empleat/CodiOrganisme`
 Codi ENS de l'Organisme donat d'alta a eNotum al que pertany l'empleat públic que realitza l'operació.
-* `Empleat/CodiOrganisme`
+* `Empleat/CodiDepartament`
 Codi ENS del Departament donat d'alta a eNotum al que pertany l'empleat públic que realitza l'operació.
 * `Ciutada`
 El ciutadà és el rol d'usuari autoritzat a cercar i acceptar notificacions vinculades al propi usuari.
