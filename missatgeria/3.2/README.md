@@ -2325,6 +2325,8 @@ País de l'empresa extrangera en format [ISO 3166-1 alfa-2](https://es.wikipedia
 |1010|La notificació indicada no existeix|
 |1011|No es poden indicar simultàniament els paràmetres SenseRegistre i DadesRegistre|
 |1012|El paràmetre SenseRegistre només s'admet per a comunicacions|
+|1013|L'oficina de registre ha de ser un número|
+|1014|L'unitat organitzativa ha de ser un número|
 |1015|La notificació indicada no és visible des de l'entitat consultadora|
 |1016|El paràmetre de tipus de perfil de consulta del resum de notificacions és obligatori si s'especifiquen el NIF i el CIF|
 |1018|El paràmetre bústia de correu o telèfon mòbil és obligatori|
