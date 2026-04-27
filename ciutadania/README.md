@@ -59,6 +59,11 @@ L'adreça base de les operacions per cadascún dels entorns és la següent:
 
 > :information_source: Remarcar l'ús del port 8443 que és el que permet realitzar l'autenticació mTLS.
 
+|IMPORTANT |
+|---- | 
+|**Recordeu que els entorns de DEV i PRE estan destinats únicament per a l’ús de proves** i que, d’acord amb el Supervisor Europeu de Protecció de Dades (EDPS), **en cap cas podem fer servir dades personals reals**. Així doncs, als entorns de DEV i PRE hem de fer servir exclusivament dades fictícies o creades artificialment. |
+|A l'hora de realitzar la vostra integració amb eNotum, tingueu present les recomanacions sobre **Protecció de Dades** recollides al document https://www.apdcat.cat/content/dam/aem-apdcat/03-documentacio/documents/guiadesenvolupadors/GUIA-PDDD.pdf de l'APDCAT. |
+
 ## Com demanar l'alta al servei
 
 Per demanar l'alta al servei s'ha d'omplir el formulari que podeu trobar [aquí](https://suport-integradors.aoc.cat/hc/ca/articles/16865197344029-Recollida-automatitzada-de-notificacions) i obrir un tiquet a [Suport](https://suport-enotum-ciutadania.aoc.cat/hc/ca).
