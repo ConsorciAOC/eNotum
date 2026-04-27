@@ -111,7 +111,7 @@ Com es pot observar en el diagrama anterior hi ha poques diferències en els est
 |IMPORTANT |
 |---- | 
 |**Recordeu que els entorns de DEV i PRE estan destinats únicament per a l’ús de proves** i que, d’acord amb el Supervisor Europeu de Protecció de Dades (EDPS), **en cap cas podem fer servir dades personals reals**. Així doncs, als entorns de DEV i PRE hem de fer servir exclusivament dades fictícies o creades artificialment. |
-|A l'hora de realitzar la vostra integració amb eNotum, tingueu present les recomanacions sobre **Protecció de Dades** recollides al document https://www.apdcat.cat/content/dam/aem-apdcat/03-documentacio/documents/guiadesenvolupadors/GUIA-PDDD.pdf de l'APDCAT. |
+|A l'hora de realitzar la vostra integració amb eNotum, tingueu present les recomanacions sobre **Protecció de Dades** recollides al document [La privacitat des del disseny i la privacitat per defecte - Guia per a desenvolupadors](https://www.apdcat.cat/content/dam/aem-apdcat/03-documentacio/documents/guiadesenvolupadors/GUIA-PDDD.pdf) de l'APDCAT. |
 
 Com es comenta en [el punt 1 d'aquest document](#11-integració-pci) **eNotum** funciona com a servei dins de la _PCI_, serà per tant necessari treballar amb la missatgeria de la _PCI_, encapsulant la missatgeria específica de **eNotum** dins d'aquesta.
 
