@@ -93,6 +93,13 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<!-- Referència de fitxer: UUID estàndard o referència d'EspaiDocs amb prefix de tenant (${prefix}-${UUIDv4}, prefix = 3 lletres + dígit, p.ex. cpd2) -->
+	<xs:simpleType name="referenciaFitxer">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([A-Za-z]{3}[0-9]-)?([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}"/>
+		</xs:restriction>
+	</xs:simpleType>
+
 	<!-- Constants -->
 
 	<xs:simpleType name="EstatType">
@@ -380,7 +387,7 @@
 				<xs:element name="Dades" type="xs:base64Binary"/>
 				<xs:element name="URLDescarrega" type="xs:anyURI"/>
 				<xs:element name="Ruta" type="xs:string"/>
-				<xs:element name="UUIDFitxer" type="uuid"/>
+				<xs:element name="UUIDFitxer" type="referenciaFitxer"/>
 				<xs:element name="UUIDDocument" type="uuid"/>
 				<xs:element name="IdFicheroPCI" type="xs:string"/>
 			</xs:choice>
