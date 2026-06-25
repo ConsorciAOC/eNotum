@@ -93,10 +93,10 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<!-- Referència de fitxer: UUID estàndard o referència d'EspaiDocs amb prefix de tenant (${prefix}-${UUIDv4}, prefix = 3 lletres + dígit, p.ex. cpd2) -->
+	<!-- Referència de fitxer: UUID estàndard o referència d'EspaiDocs -->
 	<xs:simpleType name="referenciaFitxer">
 		<xs:restriction base="xs:string">
-			<xs:pattern value="([A-Za-z]{3}[0-9]-)?([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}"/>
+			<xs:pattern value="([A-Za-z0-9]{4}-)?([0-9]|[a-f]|[A-F]){8}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){4}-([0-9]|[a-f]|[A-F]){12}"/>
 		</xs:restriction>
 	</xs:simpleType>
 

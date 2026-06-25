@@ -1448,7 +1448,7 @@ En cas que és vulgui incrustar el document dins del missatge en _base64_. S'ha 
 * `/Documents/Document/Ruta`
 Ruta del document pujat al FTP. Aquesta ruta és la relativa dins el directori arrel de l'usuari que es connecta al FTP. Només disponible per als ens que s'han donat d'alta amb la integració per aquesta via.
 * `/Documents/Document/UUIDFitxer`
-Identificador del Fitxer creat a DESA'L per l'organisme emissor de la notificació. Admet dos formats: el _UUID_ estàndard d'un Fitxer ja existent a DESA'L, o bé una referència d'_EspaiDocs_ amb el format `${tenant}-${UUIDv4}`, on `tenant` és un prefix de 3 lletres seguides d'un dígit (p.ex. `cpd2-0fa0421b-3cbb-4e08-9df8-2b8cb7f17ae2`).
+Identificador del Fitxer creat a DESA'L per l'organisme emissor de la notificació. Admet dos formats: el _UUID_ estàndard d'un Fitxer ja existent a DESA'L, o bé una referència d'_EspaiDocs_ amb el format `${tenant}-${UUIDv4}`, on `tenant` és un prefix de 4 caràcters alfanumèrics (p.ex. `cpd2-0fa0421b-3cbb-4e08-9df8-2b8cb7f17ae2`).
 * `/Documents/Document/UUIDDocument`
 Identificador del Document creat a DESA'L per l'organisme emissor de la notificació.
 * `/Documents/Document/IdFicheroPCI`
