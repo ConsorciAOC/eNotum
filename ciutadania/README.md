@@ -16,6 +16,7 @@
    8. [Informació del servei](#28-informació-del-servei)
    9. [Model de dades dels recursos](#model-de-dades-dels-recursos)
 3. [Respostes en cas d'error](#3-respostes-en-cas-derror)
+   1. [Errors d'autenticació](#errors-dautenticació)
 
 # 1. Introducció
 
@@ -34,6 +35,8 @@ El servei només estarà obert per les aplicacions que s'hagin donat d'alta prev
 Les aplicacions que vulguin utilitzar l'API de recollida de notificacions s'han d'autenticar seguint el protocol *Mutual TLS* (mTLS) i presentant el certificat de la persona de la que volen consultar les notificacions, o del representant d'aquesta, o el certificat de segell electrònic de l'empresa.
 
 > :information_source: Els certificats de representant d'entitat amb personalitat jurídica o els certificats de representant d'entitat sense personalitat jurídica son considerats certificats de persona física i només es podrà operar sobre les notificacions i comunicacions de la persona física. Si voleu consultar les notificacions i comunicacions de l'entitat representada s'ha de demanar explicitament com s'indica al punt següent.
+
+Quan l'autenticació no es pot completar, el servei respon amb un **401** i un payload que identifica la causa; els codis es detallen a [Errors d'autenticació](#errors-dautenticació).
 
 ## Representacions
 
@@ -345,6 +348,7 @@ El servei pot respondre amb els següents codis HTTP:
 
 * **200**: L'operació s'ha processat correctament. De manera que no es tracta d'un error.
 * **400**: Algun dels paràmetres d'entrada no és correcte.
+* **401**: L'autenticació no s'ha pogut completar. Veure [Errors d'autenticació](#errors-dautenticació).
 * **500**; Error intern del servei.
 
 El payload de la resposta tindrà el següents camps:
@@ -354,4 +358,25 @@ El payload de la resposta tindrà el següents camps:
 * **parametresInvalids**: Array amb els paràmetres invàlids (en cas de repostes HTTP 400). Conté els camps:
   * **nom**: Nom del paràmetre invàlid.
   * **motiu**: Motiu pel qual el paràmetre és invàlid.
+
+## Errors d'autenticació
+
+Les respostes **401** també porten aquest payload, de manera que la causa sempre es pot identificar a partir del camp `codi`:
+
+| codi | missatge |
+|------|----------|
+| 1024 | Paraula de pas no registrada |
+| 1025 | Paraula de pas incorrecta |
+| 1026 | Paraula de pas caducada |
+| 1027 | Paraula de pas no associada a eNOTUM |
+| 1034 | El certificat del ciutadà no és vàlid |
+| 1035 | Error validant el certificat digital |
+| 1050 | L'Access Token de VALId informat no és vàlid |
+| 1051 | S'ha produit un error recuperant informació de VALId |
+| 1060 | El certificat del ciutadà no és d'un tipus vàlid |
+| 1061 | El certificat del ciutadà no conté dades de persona física |
+| 1062 | El certificat del ciutadà no conté dades de persona jurídica |
+| 4010 | No s'han informat les credencials d'autenticació |
+| 4011 | Les credencials d'autenticació no són vàlides |
+| 4012 | Les credencials d'autenticació informades no tenen un format vàlid |
 
