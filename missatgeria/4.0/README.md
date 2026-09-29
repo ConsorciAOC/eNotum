@@ -2119,6 +2119,7 @@ Cadena de text indicant el motiu de l'error.
 |720|No es permet enviar una notificació electrònica a l'ens especificat a través de la plataforma eNOTUM degut a la naturalesa del mateix. Cal que la redirigiu a través de la plataforma corresponent en funció de la seva naturalesa|
 |721|La referència de la notificació ha de tenir entre 3 i 250 caràcters|
 |723|Les comunicacions no poden ser amb Canal PAPER|
+|724|No es permet enviar una notificació electrònica a l'ens especificat: no rep notificacions electròniques ni trameses genèriques. Cal adreçar la comunicació a l'ens al qual està adherit|
 |725|El nom del destinatari no pot excedir els 50 caràcters|
 |726|El primer cognom del destinatari no pot excedir els 50 caràcters|
 |727|El segon cognom del destinatari no pot excedir els 50 caràcters|
